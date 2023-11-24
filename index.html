@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<div id="shipMap">
-    <!-- Image of the ship map -->
-    <img src="spaceship.png" alt="Ship Map" id="mapImage">
-
-    <!-- Highlight overlay for the current room -->
-    <div id="highlight"></div>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ship Map Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="ship_map_test">
+        <img src="spaceship.png" alt="Ship Map" id="mapImage">
+        <div class="roomHighlight" data-room-id="room1" style="top: 100px; left: 200px;"></div>
+        <div class="roomHighlight" data-room-id="room2" style="top: 200px; left: 200px;"></div>
+        <!-- Add more room highlights as needed -->
+    </div>
+    <script src="scripts/game.js"></script>
+</body>
+</html>
