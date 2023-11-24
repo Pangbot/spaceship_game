@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function areRoomsAdjacent(currentRoom, clickedRoom) {
         // Check if the rooms share a horizontal or vertical wall
         const horizontalAdjacent =
-            (currentRoom.top === clickedRoom.top && Math.abs(currentRoom.left - clickedRoom.left) === 100) ||
+            (currentRoom.top === clickedRoom.top && Math.abs(currentRoom.left + currentRoom.width - clickedRoom.left) === 100) ||
             (currentRoom.top + currentRoom.height === clickedRoom.top && Math.abs(currentRoom.left - clickedRoom.left) === 100);
 
         const verticalAdjacent =
-            (currentRoom.left === clickedRoom.left && Math.abs(currentRoom.top - clickedRoom.top) === 100) ||
+            (currentRoom.left === clickedRoom.left && Math.abs(currentRoom.top + currentRoom.height - clickedRoom.top) === 100) ||
             (currentRoom.left + currentRoom.width === clickedRoom.left && Math.abs(currentRoom.top - clickedRoom.top) === 100);
 
         return horizontalAdjacent || verticalAdjacent;
