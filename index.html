@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controlled Circle</title>
-    <style>
-        canvas {
-            border: 1px solid #000;
-        }
-    </style>
-</head>
-<body>
-    <canvas id="myCanvas" width="400" height="400"></canvas>
+<div id="shipMap">
+    <!-- Image of the ship map -->
+    <img src="spaceship.png" alt="Ship Map" id="mapImage">
 
-    <!-- Link to your JavaScript file -->
-    <script src="scripts/game.js"></script>
-</body>
-</html>
-
+    <!-- Highlight overlay for the current room -->
+    <div id="highlight"></div>
+</div>
