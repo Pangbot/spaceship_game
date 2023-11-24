@@ -6,11 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to check if two rooms are adjacent
     function areRoomsAdjacent(currentRoom, clickedRoom) {
-        // Add your adjacency rules here based on room positions
-        // For simplicity, I'll assume rooms are adjacent if they are horizontally or vertically aligned
+        // Check if the rooms share a horizontal or vertical wall
+        const horizontalAdjacent =
+            (currentRoom.top === clickedRoom.top && Math.abs(currentRoom.left - clickedRoom.left) === 100) ||
+            (currentRoom.top + currentRoom.height === clickedRoom.top && Math.abs(currentRoom.left - clickedRoom.left) === 100);
 
-        return Math.abs(currentRoom.top - clickedRoom.top) <= 100 && Math.abs(currentRoom.left - clickedRoom.left) <= 100;
+        const verticalAdjacent =
+            (currentRoom.left === clickedRoom.left && Math.abs(currentRoom.top - clickedRoom.top) === 100) ||
+            (currentRoom.left + currentRoom.width === clickedRoom.left && Math.abs(currentRoom.top - clickedRoom.top) === 100);
+
+        return horizontalAdjacent || verticalAdjacent;
     }
+
 
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x1, .roomHighlight2x1');
