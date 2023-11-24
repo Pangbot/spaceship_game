@@ -35,8 +35,8 @@ function isAdjacent(room1, room2) {
 // Function to update the player's position
 function updateHighlightPosition(room) {
     const playerRoom = document.getElementById('highlight');
-    playerRoom.style.top = `${room.top}px`; // Adjust based on your layout
-    playerRoom.style.left = `${room.left}px`; // Adjust based on your layout
-    playerRoom.style.width = `${room.width * 100}px`; // Adjust based on your layout
-    playerRoom.style.height = `${room.height * 100}px`; // Adjust based on your layout
+    playerRoom.style.top = highlight.style.top;
+    playerRoom.style.left = highlight.style.left;
+    playerRoom.style.width = `${room.width * 100}px`;
+    playerRoom.style.height = `${room.height * 100}px`;
 }
