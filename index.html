@@ -9,14 +9,16 @@
 <body>
     <div id="shipMap">
         <!-- Image of the ship map -->
-        <img src="spaceship.png" alt="Ship Map" id="mapImage">
+        <img src="rectangle.png" alt="Ship Map" id="mapImage">
 
         <!-- Highlight overlays for rooms -->
-        <div class="roomHighlight size2x2" data-room-id="room1" data-room-width="2" data-room-height="2" style="top: 311px; left: 65px;"></div>
-        <div class="roomHighlight size1x2" data-room-id="room2" data-room-width="1" data-room-height="2" style="top: 184px; left: 134px;"></div>
+        <div class="roomHighlight size1x1" data-room-id="room1" data-room-width="1" data-room-height="1" style="top: 0px; left: 0px;"></div>
+        <div class="roomHighlight size2x1" data-room-id="room2" data-room-width="2" data-room-height="1" style="top: 0px; left: 100px;"></div>
+        <div class="roomHighlight size1x1" data-room-id="room3" data-room-width="1" data-room-height="1" style="top: 0px; left: 300px;"></div>
+        <div class="roomHighlight size1x1" data-room-id="room4" data-room-width="1" data-room-height="1" style="top: 0px; left: 400px;"></div>
 
         <!-- Add more room highlights as needed -->
-        <div id="playerHighlight" class="roomHighlight" data-room-id="room1" data-room-width="2" data-room-height="2" style="top: 311px; left: 65px;"></div>
+        <div id="playerHighlight" class="roomHighlight" data-room-id="room1" data-room-width="1" data-room-height="1" style="top: 0px; left: 0px;"></div>
 
     </div>
     <script src="scripts/game.js"></script>
