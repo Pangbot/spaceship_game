@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to check if two rooms share a wall
     function areRoomsAdjacent(currentRoom, clickedRoom) {
+        console.log(currentRoom.left)
+        console.log(clickedRoom.left)
         const currentRight = currentRoom.left + currentRoom.width;
         const currentBottom = currentRoom.top + currentRoom.height;
         const clickedRight = clickedRoom.left + clickedRoom.width;
