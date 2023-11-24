@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x1, .roomHighlight2x1');
 
     allRoomHighlights.forEach(highlight => {
-        highlight.addEventListener('click', () => {
+        highlight.addEventListener('click', function() {
             console.log("Clicked!");
 
             // Get the position and size of the clicked room
