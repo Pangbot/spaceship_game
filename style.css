@@ -1,28 +1,11 @@
 #shipMap {
     position: relative;
+    height: 100px; /* Set the height of the room map */
+    width: 500px; /* Set the width of the room map */
+    border: 1px solid #000; /* Add border for visualization */
 }
 
-#mapImage {
-    width: auto;
-    height: 100%;
-}
-
-/* CSS for rooms of size 2x1 */
-.roomHighlight.size2x1 {
-    position: absolute;
-    width: 200px;
-    height: 100px;
-    background-color: rgba(255, 0, 0, 0.5);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.roomHighlight.size2x2.highlighted {
-    background-color: rgba(0, 255, 0, 0.5);
-}
-
-/* CSS for rooms of size 1x1 */
-.roomHighlight.size1x1 {
+.roomHighlight {
     position: absolute;
     width: 100px;
     height: 100px;
@@ -31,6 +14,10 @@
     transition: background-color 0.3s ease;
 }
 
-.roomHighlight.size1x2.highlighted {
+.roomHighlight.size1x1.highlighted {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
+.roomHighlight.size2x1.highlighted {
     background-color: rgba(0, 255, 0, 0.5);
 }
