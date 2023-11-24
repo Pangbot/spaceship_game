@@ -10,8 +10,8 @@
 /* CSS for rooms of size 2x2 */
 .roomHighlight.size2x2 {
     position: absolute;
-    width: 234px;
-    height: 234px;
+    width: 117px;
+    height: 117px;
     background-color: rgba(255, 0, 0, 0.5);
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -24,8 +24,8 @@
 /* CSS for rooms of size 1x2 */
 .roomHighlight.size1x2 {
     position: absolute;
-    width: 117px;
-    height: 234px;
+    width: 58px;
+    height: 117px;
     background-color: rgba(255, 0, 0, 0.5);
     cursor: pointer;
     transition: background-color 0.3s ease;
