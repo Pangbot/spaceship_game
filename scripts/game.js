@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Script loaded!");
 
-    // Example: Current room ID
-    let currentRoomId = "room1";
+    // Example: Current room ID and size
+    let currentRoom = {
+        id: "room1",
+        width: 1,  // default width
+        height: 1, // default height
+    };
 
     // Function to check if two rooms share a wall
     function areRoomsAdjacent(currentRoom, clickedRoom) {
@@ -35,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Check if the clicked room is different from the current room and shares a wall
             const clickedRoomId = highlight.getAttribute('data-room-id');
-            if (clickedRoomId !== currentRoomId && areRoomsAdjacent(currentRoom, clickedRoom)) {
+            if (clickedRoomId !== currentRoom.id && areRoomsAdjacent(currentRoom, clickedRoom)) {
                 console.log("Different and adjacent room clicked!");
 
                 // Remove highlighting from all rooms
@@ -47,7 +51,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 highlight.classList.add('highlighted');
 
                 // Update current room
-                currentRoomId = clickedRoomId;
+                currentRoom.id = clickedRoomId;
+                currentRoom.width = parseInt(highlight.getAttribute('data-room-width'));
+                currentRoom.height = parseInt(highlight.getAttribute('data-room-height'));
             }
         });
     });
