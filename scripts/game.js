@@ -1,6 +1,9 @@
 // Example: Current room ID and size
 let currentRoom = { id: "room1", width: 2, height: 2 };
 
+// Set initial player position over room1
+updateHighlightPosition(currentRoom);
+
 // Add click event listeners to room highlights
 const roomHighlights = document.querySelectorAll('.roomHighlight');
 roomHighlights.forEach(highlight => {
@@ -13,16 +16,16 @@ roomHighlights.forEach(highlight => {
             left: parseInt(highlight.style.left.replace('px', ''))
         };
 
-        // Clear highlights from all rooms
-        roomHighlights.forEach(room => {
-            room.classList.remove('highlighted');
-        });
-
-        // Apply highlight to the clicked room
-        highlight.classList.add('highlighted');
+        // Switch colors between the clicked room and the current room
+        highlight.classList.toggle('highlighted');
+        const currentRoomHighlight = document.querySelector(`[data-room-id="${currentRoom.id}"]`);
+        currentRoomHighlight.classList.toggle('highlighted');
 
         // Update player's position
         updateHighlightPosition(clickedRoom);
+
+        // Update current room
+        currentRoom = clickedRoom;
     });
 });
 
