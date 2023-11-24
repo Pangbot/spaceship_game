@@ -38,6 +38,6 @@ function updateHighlightPosition(roomWidth, roomHeight, topPosition, leftPositio
     const playerRoom = document.getElementById('playerHighlight');
     playerRoom.style.top = topPosition;
     playerRoom.style.left = leftPosition;
-    playerRoom.style.width = `${roomWidth * 117}px`;
-    playerRoom.style.height = `${roomHeight * 117}px`;
+    playerRoom.style.width = `${roomWidth * 117 / 2}px`;
+    playerRoom.style.height = `${roomHeight * 117 / 2}px`;
 }
