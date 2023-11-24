@@ -1,3 +1,5 @@
+console.log("Script loaded!");
+
 // Example: Current room ID
 let currentRoomId = "room1";
 
@@ -9,6 +11,8 @@ const allRoomHighlights = document.querySelectorAll('.roomHighlight1x1, .roomHig
 
 allRoomHighlights.forEach(highlight => {
     highlight.addEventListener('click', () => {
+        console.log("Clicked!"); // Check if this log is printed
+
         const clickedRoomId = highlight.getAttribute('data-room-id'); // Replace with the correct attribute
         const clickedRoomWidth = parseInt(highlight.getAttribute('data-room-width')); // Replace with the correct attribute
         const clickedRoomHeight = parseInt(highlight.getAttribute('data-room-height')); // Replace with the correct attribute
