@@ -1,3 +1,7 @@
+// Set initial player position over room1
+const initialRoomHighlight = document.getElementById('playerHighlight');
+initialRoomHighlight.classList.add('highlighted');
+
 // Add click event listeners to room highlights
 const roomHighlights = document.querySelectorAll('.roomHighlight');
 roomHighlights.forEach(highlight => {
@@ -10,21 +14,18 @@ roomHighlights.forEach(highlight => {
             left: parseInt(highlight.style.left.replace('px', ''))
         };
 
-        // Check if the clicked room is the current room
-        if (clickedRoom.id !== currentRoom.id) {
-            // Remove highlighting from the current room
-            const currentRoomHighlight = document.getElementById('playerHighlight');
-            currentRoomHighlight.classList.remove('highlighted');
+        // Remove highlighting from the current room
+        const currentRoomHighlight = document.getElementById('playerHighlight');
+        currentRoomHighlight.classList.remove('highlighted');
 
-            // Add highlighting to the clicked room
-            highlight.classList.add('highlighted');
+        // Add highlighting to the clicked room
+        highlight.classList.add('highlighted');
 
-            // Update player's position
-            updateHighlightPosition(clickedRoom);
+        // Update player's position
+        updateHighlightPosition(clickedRoom);
 
-            // Update the current room
-            currentRoom = clickedRoom;
-        }
+        // Update current room
+        currentRoom = clickedRoom;
     });
 });
 
