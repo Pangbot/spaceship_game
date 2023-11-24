@@ -17,7 +17,7 @@ allRoomHighlights.forEach(highlight => {
         if (clickedRoomId !== currentRoomId) {
             // Remove highlighting from all rooms
             allRoomHighlights.forEach(room => {
-                room.classList.remove('highlighted');
+                room.classList.remove('highlighted', `size${room.getAttribute('data-room-width')}x${room.getAttribute('data-room-height')}`);
             });
 
             // Add highlighting to the clicked room
