@@ -20,4 +20,5 @@
 
 .roomHighlight.size2x1.highlighted {
     background-color: rgba(0, 255, 0, 0.5);
+    width: 200px;
 }
