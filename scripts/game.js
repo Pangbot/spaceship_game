@@ -2,8 +2,8 @@
 let currentRoomId = "room1";
 
 // Set initial player position over room1
-const initialRoomHighlight = document.getElementById('playerHighlight');
-initialRoomHighlight.classList.add('highlighted', 'size2x2');
+const initialPlayerHighlight = document.getElementById('playerHighlight');
+initialPlayerHighlight.classList.add('highlighted', 'size2x2'); // Adjust the class to size2x2 or size1x2 as needed
 
 // Add click event listeners to room highlights
 const roomHighlights = document.querySelectorAll('.roomHighlight');
@@ -38,6 +38,6 @@ function updateHighlightPosition(roomWidth, roomHeight, topPosition, leftPositio
     const playerRoom = document.getElementById('playerHighlight');
     playerRoom.style.top = topPosition;
     playerRoom.style.left = leftPosition;
-    playerRoom.style.width = `${roomWidth * 117 / 2}px`;
-    playerRoom.style.height = `${roomHeight * 117 / 2}px`;
+    playerRoom.style.width = `${roomWidth * 117}px`;
+    playerRoom.style.height = `${roomHeight * 117}px`;
 }
