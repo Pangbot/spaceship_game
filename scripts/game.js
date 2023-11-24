@@ -1,9 +1,3 @@
-// Example: Current room ID and size
-let currentRoom = { id: "room1", width: 2, height: 2 };
-
-// Set initial player position over room1
-updateHighlightPosition(currentRoom);
-
 // Add click event listeners to room highlights
 const roomHighlights = document.querySelectorAll('.roomHighlight');
 roomHighlights.forEach(highlight => {
@@ -16,22 +10,26 @@ roomHighlights.forEach(highlight => {
             left: parseInt(highlight.style.left.replace('px', ''))
         };
 
-        // Switch colors between the clicked room and the current room
-        highlight.classList.toggle('highlighted');
-        const currentRoomHighlight = document.querySelector(`[data-room-id="${currentRoom.id}"]`);
-        currentRoomHighlight.classList.toggle('highlighted');
+        // Check if the clicked room is the current room
+        if (clickedRoom.id !== currentRoom.id) {
+            // Remove highlighting from the current room
+            const currentRoomHighlight = document.getElementById('playerHighlight');
+            currentRoomHighlight.classList.remove('highlighted');
 
-        // Update player's position
-        updateHighlightPosition(clickedRoom);
+            // Add highlighting to the clicked room
+            highlight.classList.add('highlighted');
 
-        // Update current room
-        currentRoom = clickedRoom;
+            // Update player's position
+            updateHighlightPosition(clickedRoom);
+
+            // Update the current room
+            currentRoom = clickedRoom;
+        }
     });
 });
 
-// Function to update the player's position
 function updateHighlightPosition(room) {
-    const playerRoom = document.getElementById('highlight');
+    const playerRoom = document.getElementById('playerHighlight'); // Updated ID
     playerRoom.style.top = `${room.top}px`;
     playerRoom.style.left = `${room.left}px`;
     playerRoom.style.width = `${room.width * 100}px`;
