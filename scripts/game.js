@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Example: Current room ID
     let currentRoomId = "room1";
 
-    // Function to check if two rooms are adjacent
+    // Function to check if two rooms share a wall
     function areRoomsAdjacent(currentRoom, clickedRoom) {
         // Check if the rooms share a horizontal or vertical wall
         const horizontalAdjacent =
@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return horizontalAdjacent || verticalAdjacent;
     }
 
-
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x1, .roomHighlight2x1');
 
@@ -26,13 +25,15 @@ document.addEventListener('DOMContentLoaded', function() {
         highlight.addEventListener('click', () => {
             console.log("Clicked!");
 
-            // Get the position of the clicked room
+            // Get the position and size of the clicked room
             const clickedRoom = {
                 top: parseInt(highlight.style.top),
-                left: parseInt(highlight.style.left)
+                left: parseInt(highlight.style.left),
+                width: parseInt(highlight.getAttribute('data-room-width')) * 100,
+                height: parseInt(highlight.getAttribute('data-room-height')) * 100,
             };
 
-            // Check if the clicked room is different from the current room and is adjacent
+            // Check if the clicked room is different from the current room and shares a wall
             const clickedRoomId = highlight.getAttribute('data-room-id');
             if (clickedRoomId !== currentRoomId && areRoomsAdjacent(currentRoom, clickedRoom)) {
                 console.log("Different and adjacent room clicked!");
