@@ -33,10 +33,35 @@ function isAdjacent(room1, room2) {
 }
 
 // Function to update the player's position
-function updateHighlightPosition(room) {
+function updateHighlightPosition(highlight) {
     const playerRoom = document.getElementById('highlight');
     playerRoom.style.top = highlight.style.top;
     playerRoom.style.left = highlight.style.left;
-    playerRoom.style.width = `${room.width * 100}px`;
-    playerRoom.style.height = `${room.height * 100}px`;
+    playerRoom.style.width = highlight.style.width;
+    playerRoom.style.height = highlight.style.height;
 }
+
+// Add click event listeners to room highlights
+roomHighlights.forEach(highlight => {
+    highlight.addEventListener('click', () => {
+        const clickedRoom = {
+            id: highlight.getAttribute('data-room-id'),
+            width: parseInt(highlight.getAttribute('data-room-width')),
+            height: parseInt(highlight.getAttribute('data-room-height'))
+        };
+
+        // Clear highlights from all rooms
+        roomHighlights.forEach(room => {
+            room.classList.remove('highlighted');
+        });
+
+        // Apply highlight to the clicked room
+        highlight.classList.add('highlighted');
+
+        // Update player's position
+        updateHighlightPosition(highlight);
+
+        // Update current room
+        currentRoom = clickedRoom;
+    });
+});
