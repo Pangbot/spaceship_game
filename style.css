@@ -5,7 +5,7 @@
     border: 1px solid #000; /* Add border for visualization */
 }
 
-.roomHighlight {
+.roomHighlight1x1 {
     position: absolute;
     width: 100px;
     height: 100px;
@@ -14,11 +14,12 @@
     transition: background-color 0.3s ease;
 }
 
-.roomHighlight.size1x1.highlighted {
+.roomHighlight1x1.highlighted {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
-.roomHighlight.size2x1 {
+.roomHighlight2x1 {
+    position: absolute;
     width: 200px;
     height: 100px;
     background-color: rgba(255, 0, 0, 0.5);
@@ -26,6 +27,6 @@
     transition: background-color 0.3s ease;
 }
 
-.roomHighlight.size2x1.highlighted {
+.roomHighlight2x1.highlighted {
     background-color: rgba(0, 255, 0, 0.5);
 }
