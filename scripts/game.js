@@ -10,18 +10,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to check if two rooms share a wall
     function areRoomsAdjacent(currentRoom, clickedRoom) {
+        const currentRight = currentRoom.left + currentRoom.width;
+        const currentBottom = currentRoom.top + currentRoom.height;
+        const clickedRight = clickedRoom.left + clickedRoom.width;
+        const clickedBottom = clickedRoom.top + clickedRoom.height;
+
         // Check if the rooms share a horizontal or vertical wall
         const horizontalAdjacent =
-            (currentRoom.top === clickedRoom.top && Math.abs(currentRoom.left + currentRoom.width - clickedRoom.left) === 100) ||
-            (currentRoom.top + currentRoom.height === clickedRoom.top && Math.abs(currentRoom.left - clickedRoom.left) === 100) ||
-            (currentRoom.top === clickedRoom.top && Math.abs(currentRoom.left + currentRoom.width - clickedRoom.left) === 200) ||
-            (currentRoom.top + currentRoom.height === clickedRoom.top && Math.abs(currentRoom.left - clickedRoom.left) === 200);
+            (currentRoom.top >= clickedRoom.top && currentRoom.top <= clickedBottom) ||
+            (currentBottom >= clickedRoom.top && currentBottom <= clickedBottom) ||
+            (clickedRoom.top >= currentRoom.top && clickedRoom.top <= currentBottom) ||
+            (clickedBottom >= currentRoom.top && clickedBottom <= currentBottom);
 
         const verticalAdjacent =
-            (currentRoom.left === clickedRoom.left && Math.abs(currentRoom.top + currentRoom.height - clickedRoom.top) === 100) ||
-            (currentRoom.left + currentRoom.width === clickedRoom.left && Math.abs(currentRoom.top - clickedRoom.top) === 100);
+            (currentRoom.left >= clickedRoom.left && currentRoom.left <= clickedRight) ||
+            (currentRight >= clickedRoom.left && currentRight <= clickedRight) ||
+            (clickedRoom.left >= currentRoom.left && clickedRoom.left <= currentRight) ||
+            (clickedRight >= currentRoom.left && clickedRight <= currentRight);
 
-        return horizontalAdjacent || verticalAdjacent;
+        return horizontalAdjacent && verticalAdjacent;
     }
 
     // Add click event listeners to room highlights
