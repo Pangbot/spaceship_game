@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if the rooms share a horizontal or vertical wall
         const horizontalAdjacent =
             (currentRoom.top === clickedRoom.top && Math.abs(currentRoom.left + currentRoom.width - clickedRoom.left) === 100) ||
-            (currentRoom.top + currentRoom.height === clickedRoom.top && Math.abs(currentRoom.left - clickedRoom.left) === 100);
+            (currentRoom.top + currentRoom.height === clickedRoom.top && Math.abs(currentRoom.left - clickedRoom.left) === 100) ||
+            (currentRoom.top === clickedRoom.top && Math.abs(currentRoom.left + currentRoom.width - clickedRoom.left) === 200) ||
+            (currentRoom.top + currentRoom.height === clickedRoom.top && Math.abs(currentRoom.left - clickedRoom.left) === 200);
 
         const verticalAdjacent =
             (currentRoom.left === clickedRoom.left && Math.abs(currentRoom.top + currentRoom.height - clickedRoom.top) === 100) ||
