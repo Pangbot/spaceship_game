@@ -18,7 +18,14 @@
     background-color: rgba(0, 255, 0, 0.5);
 }
 
+.roomHighlight.size2x1 {
+    width: 200px;
+    height: 100px;
+    background-color: rgba(255, 0, 0, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 .roomHighlight.size2x1.highlighted {
     background-color: rgba(0, 255, 0, 0.5);
-    width: 200px;
 }
