@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Example: Current room ID
     let currentRoomId = "room1";
 
+    // Function to check if two rooms are adjacent
+    function areRoomsAdjacent(currentRoom, clickedRoom) {
+        // Add your adjacency rules here based on room positions
+        // For simplicity, I'll assume rooms are adjacent if they are horizontally or vertically aligned
+
+        return Math.abs(currentRoom.top - clickedRoom.top) <= 100 && Math.abs(currentRoom.left - clickedRoom.left) <= 100;
+    }
+
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x1, .roomHighlight2x1');
 
@@ -11,10 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
         highlight.addEventListener('click', () => {
             console.log("Clicked!");
 
-            // Check if the clicked room is different from the current room
+            // Get the position of the clicked room
+            const clickedRoom = {
+                top: parseInt(highlight.style.top),
+                left: parseInt(highlight.style.left)
+            };
+
+            // Check if the clicked room is different from the current room and is adjacent
             const clickedRoomId = highlight.getAttribute('data-room-id');
-            if (clickedRoomId !== currentRoomId) {
-                console.log("Different room clicked!");
+            if (clickedRoomId !== currentRoomId && areRoomsAdjacent(currentRoom, clickedRoom)) {
+                console.log("Different and adjacent room clicked!");
 
                 // Remove highlighting from all rooms
                 allRoomHighlights.forEach(room => {
