@@ -15,10 +15,10 @@ roomHighlights.forEach(highlight => {
 
         // Check if the clicked room is different from the current room
         if (clickedRoomId !== currentRoomId) {
-            // Remove highlighting from the current room
-            const currentRoomHighlight = document.getElementById('playerHighlight');
-            currentRoomHighlight.classList.remove('highlighted');
-            currentRoomHighlight.classList.remove(`size${clickedRoomWidth}x${clickedRoomHeight}`);
+            // Remove highlighting from all rooms
+            roomHighlights.forEach(room => {
+                room.classList.remove('highlighted');
+            });
 
             // Add highlighting to the clicked room
             const roomSizeClass = `size${clickedRoomWidth}x${clickedRoomHeight}`;
