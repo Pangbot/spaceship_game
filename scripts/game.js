@@ -17,20 +17,23 @@ roomHighlights.forEach(highlight => {
             left: parseInt(highlight.style.left.replace('px', ''))
         };
 
-        // Remove highlighting from the current room
-        const currentRoomHighlight = document.getElementById('playerHighlight');
-        currentRoomHighlight.classList.remove('highlighted');
-        currentRoomHighlight.classList.remove(`size${currentRoom.width}x${currentRoom.height}`);
+        // Check if the clicked room is different from the current room
+        if (clickedRoom.id !== currentRoom.id) {
+            // Remove highlighting from the current room
+            const currentRoomHighlight = document.getElementById('playerHighlight');
+            currentRoomHighlight.classList.remove('highlighted');
+            currentRoomHighlight.classList.remove(`size${currentRoom.width}x${currentRoom.height}`);
 
-        // Add highlighting to the clicked room
-        const roomSizeClass = `size${clickedRoom.width}x${clickedRoom.height}`;
-        highlight.classList.add('highlighted', roomSizeClass);
+            // Add highlighting to the clicked room
+            const roomSizeClass = `size${clickedRoom.width}x${clickedRoom.height}`;
+            highlight.classList.add('highlighted', roomSizeClass);
 
-        // Update player's position
-        updateHighlightPosition(clickedRoom);
+            // Update player's position
+            updateHighlightPosition(clickedRoom);
 
-        // Update current room
-        currentRoom = clickedRoom;
+            // Update current room
+            currentRoom = clickedRoom;
+        }
     });
 });
 
