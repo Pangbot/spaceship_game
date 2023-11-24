@@ -1,12 +1,12 @@
+// Example: Current room ID and size
+let currentRoom = {
+    id: "room1",
+    width: 1,  // default width
+    height: 1, // default height
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Script loaded!");
-
-    // Example: Current room ID and size
-    let currentRoom = {
-        id: "room1",
-        width: 1,  // default width
-        height: 1, // default height
-    };
 
     // Function to check if two rooms share a wall
     function areRoomsAdjacent(currentRoom, clickedRoom) {
