@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas Example</title>
+    <title>Controlled Circle</title>
     <style>
         canvas {
             border: 1px solid #000;
@@ -11,30 +11,10 @@
     </style>
 </head>
 <body>
-    <canvas id="myCanvas" width="400" height="200"></canvas>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
 
-    <script>
-        // Get the canvas element and its context
-        const canvas = document.getElementById('myCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Draw a rectangle
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(50, 50, 100, 75);
-
-        // Draw a circle
-        ctx.beginPath();
-        ctx.arc(300, 100, 30, 0, 2 * Math.PI);
-        ctx.fillStyle = 'red';
-        ctx.fill();
-
-        // Draw a line
-        ctx.beginPath();
-        ctx.moveTo(200, 50);
-        ctx.lineTo(250, 150);
-        ctx.strokeStyle = 'green';
-        ctx.lineWidth = 5;
-        ctx.stroke();
-    </script>
+    <!-- Link to your JavaScript file -->
+    <script src="scripts/game.js"></script>
 </body>
 </html>
+
