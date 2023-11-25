@@ -29,9 +29,19 @@ document.addEventListener('DOMContentLoaded', function() {
             (clickedRoom.left >= currentRoom.left - tolerance && clickedRoom.left <= currentRight + tolerance) ||
             (clickedRight >= currentRoom.left - tolerance && clickedRight <= currentRight + tolerance);
     
-        // Check if the rooms share more than one side
-        const sharedSides = (horizontalAdjacent ? 1 : 0) + (verticalAdjacent ? 1 : 0);
-        return sharedSides > 1;
+        // Check if the rooms share a corner
+        const shareCorner =
+            (currentRoom.left >= clickedRoom.left - tolerance && currentRoom.left <= clickedRight + tolerance && 
+             currentRoom.top >= clickedRoom.top - tolerance && currentRoom.top <= clickedBottom + tolerance) ||
+            (currentRight >= clickedRoom.left - tolerance && currentRight <= clickedRight + tolerance && 
+             currentRoom.top >= clickedRoom.top - tolerance && currentRoom.top <= clickedBottom + tolerance) ||
+            (currentRoom.left >= clickedRoom.left - tolerance && currentRoom.left <= clickedRight + tolerance && 
+             currentBottom >= clickedRoom.top - tolerance && currentBottom <= clickedBottom + tolerance) ||
+            (currentRight >= clickedRoom.left - tolerance && currentRight <= clickedRight + tolerance && 
+             currentBottom >= clickedRoom.top - tolerance && currentBottom <= clickedBottom + tolerance);
+    
+        // Check if the rooms share more than one side or corner
+        return (horizontalAdjacent || verticalAdjacent) && shareCorner;
     }
 
     // Add click event listeners to room highlights
