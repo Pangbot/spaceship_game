@@ -15,21 +15,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentBottom = currentRoom.top + currentRoom.height;
         const clickedRight = clickedRoom.left + clickedRoom.width;
         const clickedBottom = clickedRoom.top + clickedRoom.height;
-
+    
         // Check if the rooms share a horizontal or vertical wall with tolerance
         const horizontalAdjacent =
             (currentRoom.top >= clickedRoom.top - tolerance && currentRoom.top <= clickedBottom + tolerance) ||
             (currentBottom >= clickedRoom.top - tolerance && currentBottom <= clickedBottom + tolerance) ||
             (clickedRoom.top >= currentRoom.top - tolerance && clickedRoom.top <= currentBottom + tolerance) ||
             (clickedBottom >= currentRoom.top - tolerance && clickedBottom <= currentBottom + tolerance);
-
+    
         const verticalAdjacent =
             (currentRoom.left >= clickedRoom.left - tolerance && currentRoom.left <= clickedRight + tolerance) ||
             (currentRight >= clickedRoom.left - tolerance && currentRight <= clickedRight + tolerance) ||
             (clickedRoom.left >= currentRoom.left - tolerance && clickedRoom.left <= currentRight + tolerance) ||
             (clickedRight >= currentRoom.left - tolerance && clickedRight <= currentRight + tolerance);
-
-        return horizontalAdjacent && verticalAdjacent;
+    
+        // Check if the rooms share more than one side
+        const sharedSides = (horizontalAdjacent ? 1 : 0) + (verticalAdjacent ? 1 : 0);
+        return sharedSides > 1;
     }
 
     // Add click event listeners to room highlights
