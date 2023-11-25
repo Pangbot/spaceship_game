@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Add highlighting to the clicked room
                 highlight.classList.add('highlighted');
+                highlight.classList.remove('adjacent');
             }
         });
     });
