@@ -6,24 +6,25 @@
 }
 
 #text-container {
+    position: absolute;
+    top: 0;
+    left: 620px; /* Adjust the left position as needed */
     width: 300px; /* Set the width of the text container */
-    height: 500px; /* Set the height of the text container */
-    float: left; /* Align to the left of the ship map */
-    margin-right: 10px; /* Add margin for spacing */
-}
-
-#story-text,
-#examine-text {
-    max-height: 80%; /* Set the maximum height of the text areas */
-    overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
-    padding: 10px; /* Add padding for better readability */
+    height: 600px; /* Set the height of the text container */
     border: 1px solid #000; /* Add border for visualization */
 }
 
+#story-text, #examine-text {
+    height: 50%; /* Divide the text container vertically */
+    overflow: auto; /* Enable scrolling if content exceeds container height */
+}
+
 #button-container {
-    width: 200px; /* Set the width of the button container */
-    float: left; /* Align to the left of the ship map */
-    padding: 10px; /* Add padding for better spacing */
+    position: absolute;
+    top: 610px; /* Adjust the top position as needed */
+    left: 620px; /* Adjust the left position as needed */
+    width: 300px; /* Set the width of the button container */
+    height: 100px; /* Set the height of the button container */
     border: 1px solid #000; /* Add border for visualization */
 }
 
