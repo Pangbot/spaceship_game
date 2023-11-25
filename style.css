@@ -7,9 +7,9 @@
 
 .roomHighlight1x2 {
     position: absolute;
-    width: 100px;
+    width: 101px;
     height: 200px;
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -22,7 +22,7 @@
     position: absolute;
     width: 202px;
     height: 100px;
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: rgba(0,0,0,0);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -35,7 +35,7 @@
     position: absolute;
     width: 202px;
     height: 202px;
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
