@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (currentRoom.id == highlight.getAttribute('data-room-id')) {
-            highlight.classList.add('highlight');
+            highlight.classList.add('highlighted');
         }
 
     });
@@ -78,9 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     room.classList.remove('highlighted', 'adjacent');
                 });
 
-                // Add highlighting to the clicked room
-                highlight.classList.add('highlighted');
-
                 // Update current room
                 currentRoom = clickedRoom;
 
@@ -98,7 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
 
-                currentRoom.classList.add('highlight');
+                // Add highlighting to the clicked room
+                highlight.classList.add('highlighted');
 
             }
         });
