@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Script loaded!");
 
+    // Disable context menu on right-click for the ship map
+    document.getElementById('mapImage').addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
     let currentRoom = {
         id: "clone_bay",
         top: 502,
