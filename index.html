@@ -7,29 +7,49 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="shipMap">
-        <!-- Image of the ship map -->
-        <img src="spaceship_real.png" alt="Ship Map" id="mapImage">
+    <div id="game-container">
+        <!-- Ship Map -->
+        <div id="shipMap">
+            <!-- Image of the ship map -->
+            <img src="spaceship_real.png" alt="Ship Map" id="mapImage">
 
-        <!-- Highlight overlays for rooms -->
-        <div class="roomHighlight2x1" data-room-id="piloting" data-room-width="2" data-room-height="1" style="top: 0px; left: 202px;"></div>
-        <div class="roomHighlight2x2" data-room-id="kitchen" data-room-width="2" data-room-height="2" style="top: 102px; left: 202px;"></div>
-        <div class="roomHighlight1x2" data-room-id="scanners" data-room-width="1" data-room-height="2" style="top: 302px; left: 202px;"></div>
-        <div class="roomHighlight1x2" data-room-id="doors" data-room-width="1" data-room-height="2" style="top: 302px; left: 303px;"></div>
-        <div class="roomHighlight2x2 higlighted" data-room-id="clone_bay" data-room-width="2" data-room-height="2" style="top: 502px; left: 101px;"></div>
-        <div class="roomHighlight2x2" data-room-id="shields" data-room-width="2" data-room-height="2" style="top: 502px; left: 303px;"></div>
-        <div class="roomHighlight2x2" data-room-id="fabrication" data-room-width="2" data-room-height="2" style="top: 702px; left: 101px;"></div>
-        <div class="roomHighlight2x2" data-room-id="weapons" data-room-width="2" data-room-height="2" style="top: 702px; left: 303px;"></div>
-        <div class="roomHighlight1x2" data-room-id="escape_pods_L" data-room-width="1" data-room-height="2" style="top: 702px; left: 0px;"></div>
-        <div class="roomHighlight1x2" data-room-id="escape_pods_R" data-room-width="1" data-room-height="2" style="top: 702px; left: 505px;"></div>
-        <div class="roomHighlight2x2" data-room-id="electrics" data-room-width="2" data-room-height="2" style="top: 902px; left: 202px;"></div>
-        <div class="roomHighlight1x2" data-room-id="oxygen" data-room-width="1" data-room-height="2" style="top: 1001px; left: 101px;"></div>
-        <div class="roomHighlight1x2" data-room-id="water" data-room-width="1" data-room-height="2" style="top: 1001px; left: 404px;"></div>
-        <div class="roomHighlight1x2" data-room-id="recycling" data-room-width="1" data-room-height="2" style="top: 1201px; left: 101px;"></div>
-        <div class="roomHighlight1x2" data-room-id="security" data-room-width="1" data-room-height="2" style="top: 1201px; left: 404px;"></div>
-        <div class="roomHighlight2x2" data-room-id="engine" data-room-width="2" data-room-height="2" style="top: 1201px; left: 202px;"></div>
-        <div class="roomHighlight2x1" data-room-id="storage" data-room-width="2" data-room-height="1" style="top: 1401px; left: 202px;"></div>
+            <!-- Highlight overlays for rooms -->
+            <div class="roomHighlight2x1" data-room-id="piloting" data-room-width="2" data-room-height="1" style="top: 0px; left: 202px;"></div>
+            <div class="roomHighlight2x2" data-room-id="kitchen" data-room-width="2" data-room-height="2" style="top: 102px; left: 202px;"></div>
+            <div class="roomHighlight1x2" data-room-id="scanners" data-room-width="1" data-room-height="2" style="top: 302px; left: 202px;"></div>
+            <div class="roomHighlight1x2" data-room-id="doors" data-room-width="1" data-room-height="2" style="top: 302px; left: 303px;"></div>
+            <div class="roomHighlight2x2 higlighted" data-room-id="clone_bay" data-room-width="2" data-room-height="2" style="top: 502px; left: 101px;"></div>
+            <div class="roomHighlight2x2" data-room-id="shields" data-room-width="2" data-room-height="2" style="top: 502px; left: 303px;"></div>
+            <div class="roomHighlight2x2" data-room-id="fabrication" data-room-width="2" data-room-height="2" style="top: 702px; left: 101px;"></div>
+            <div class="roomHighlight2x2" data-room-id="weapons" data-room-width="2" data-room-height="2" style="top: 702px; left: 303px;"></div>
+            <div class="roomHighlight1x2" data-room-id="escape_pods_L" data-room-width="1" data-room-height="2" style="top: 702px; left: 0px;"></div>
+            <div class="roomHighlight1x2" data-room-id="escape_pods_R" data-room-width="1" data-room-height="2" style="top: 702px; left: 505px;"></div>
+            <div class="roomHighlight2x2" data-room-id="electrics" data-room-width="2" data-room-height="2" style="top: 902px; left: 202px;"></div>
+            <div class="roomHighlight1x2" data-room-id="oxygen" data-room-width="1" data-room-height="2" style="top: 1001px; left: 101px;"></div>
+            <div class="roomHighlight1x2" data-room-id="water" data-room-width="1" data-room-height="2" style="top: 1001px; left: 404px;"></div>
+            <div class="roomHighlight1x2" data-room-id="recycling" data-room-width="1" data-room-height="2" style="top: 1201px; left: 101px;"></div>
+            <div class="roomHighlight1x2" data-room-id="security" data-room-width="1" data-room-height="2" style="top: 1201px; left: 404px;"></div>
+            <div class="roomHighlight2x2" data-room-id="engine" data-room-width="2" data-room-height="2" style="top: 1201px; left: 202px;"></div>
+            <div class="roomHighlight2x1" data-room-id="storage" data-room-width="2" data-room-height="1" style="top: 1401px; left: 202px;"></div>
+        </div>
+        <!-- Story and Examine Text -->
+        <div id="text-container">
+            <div id="story-text">
+                <!-- Your story text content goes here -->
+            </div>
+            <div id="examine-text">
+                <!-- Your examine text content goes here -->
+            </div>
+        </div>
 
+        <!-- Buttons -->
+        <div id="button-container">
+            <!-- Your buttons go here -->
+            <!-- Example button: -->
+            <button id="button1">Action 1</button>
+            <button id="button2">Action 2</button>
+            <!-- Add more buttons as needed -->
+        </div>
     </div>
     <script src="scripts/game.js"></script>
 </body>

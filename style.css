@@ -5,6 +5,28 @@
     border: 1px solid #000; /* Add border for visualization */
 }
 
+#text-container {
+    width: 300px; /* Set the width of the text container */
+    height: 500px; /* Set the height of the text container */
+    float: left; /* Align to the left of the ship map */
+    margin-right: 10px; /* Add margin for spacing */
+}
+
+#story-text,
+#examine-text {
+    max-height: 80%; /* Set the maximum height of the text areas */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+    padding: 10px; /* Add padding for better readability */
+    border: 1px solid #000; /* Add border for visualization */
+}
+
+#button-container {
+    width: 200px; /* Set the width of the button container */
+    float: left; /* Align to the left of the ship map */
+    padding: 10px; /* Add padding for better spacing */
+    border: 1px solid #000; /* Add border for visualization */
+}
+
 .roomHighlight1x2 {
     position: absolute;
     width: 101px;
