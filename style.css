@@ -18,10 +18,14 @@
     background-color: rgba(0, 255, 0, 0.5);
 }
 
+.roomHighlight1x2.adjacent {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
 .roomHighlight2x1 {
     position: absolute;
     width: 202px;
-    height: 100px;
+    height: 102px;
     background-color: rgba(0,0,0,0);
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -31,10 +35,14 @@
     background-color: rgba(0, 255, 0, 0.5);
 }
 
+.roomHighlight2x1.adjacent {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
 .roomHighlight2x2 {
     position: absolute;
     width: 202px;
-    height: 202px;
+    height: 200px;
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -42,4 +50,8 @@
 
 .roomHighlight2x2.highlighted {
     background-color: rgba(0, 255, 0, 0.5);
+}
+
+.roomHighlight2x2.adjacent {
+    background-color: rgba(255, 0, 0, 0.5);
 }
