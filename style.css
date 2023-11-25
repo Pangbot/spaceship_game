@@ -58,6 +58,7 @@
     left: 620px; /* Adjust the left position as needed */
     width: calc(80% - 305px);
     height: 200px;
+    border: 1px solid #000; /* Add border for visualization */
 }
 
 .button-wrapper {
