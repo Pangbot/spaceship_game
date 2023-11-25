@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             (clickedRoom.left >= currentRoom.left - tolerance && clickedRoom.left <= currentRight + tolerance) ||
             (clickedRight >= currentRoom.left - tolerance && clickedRight <= currentRight + tolerance);
 
-        return horizontalAdjacent && verticalAdjacent;
+        return horizontalAdjacent || verticalAdjacent;
     }
 
     // Add click event listeners to room highlights
@@ -48,19 +48,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Check if the clicked room is different from the current room and shares a wall
             const clickedRoomId = highlight.getAttribute('data-room-id');
-            if (clickedRoomId !== currentRoom.id && areRoomsAdjacent(currentRoom, clickedRoom)) {
-                console.log("Different and adjacent room clicked!");
-
+            if (clickedRoomId !== currentRoom.id) {
                 // Remove highlighting from all rooms
                 allRoomHighlights.forEach(room => {
                     room.classList.remove('highlighted');
                 });
 
-                // Add highlighting to the clicked room
-                highlight.classList.add('highlighted');
-
-                // Update current room
-                currentRoom = clickedRoom;
+                // Add red highlighting only if the clicked room is adjacent
+                if (areRoomsAdjacent(currentRoom, clickedRoom)) {
+                    console.log("Different and adjacent room clicked!");
+                    highlight.classList.add('highlighted');
+                    // Update current room
+                    currentRoom = clickedRoom;
+                }
             }
         });
     });
