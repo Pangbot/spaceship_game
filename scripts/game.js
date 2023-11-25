@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
+    // Add highlighting to the current room
     allRoomHighlights.forEach(highlight => {
-        // Get the position and size of the room
         const room = {
             top: parseInt(highlight.style.top),
             left: parseInt(highlight.style.left),
@@ -43,9 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
             height: parseInt(highlight.getAttribute('data-room-height')) * 100,
         };
 
-        // Check if the room is adjacent to the current room
         if (areRoomsAdjacent(currentRoom, room)) {
-            highlight.classList.add('adjacent');
+            highlight.classList.add('highlighted', 'adjacent');
         }
     });
 
@@ -77,6 +76,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Update current room
                 currentRoom = clickedRoom;
+
+                // Add highlighting to adjacent rooms
+                allRoomHighlights.forEach(room => {
+                    const roomData = {
+                        top: parseInt(room.style.top),
+                        left: parseInt(room.style.left),
+                        width: parseInt(room.getAttribute('data-room-width')) * 100,
+                        height: parseInt(room.getAttribute('data-room-height')) * 100,
+                    };
+
+                    if (areRoomsAdjacent(currentRoom, roomData)) {
+                        room.classList.add('adjacent');
+                    }
+                });
             }
         });
     });
