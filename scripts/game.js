@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add click event listeners to room highlights
-    const allRoomHighlights = document.querySelectorAll('.roomHighlight1x1, .roomHighlight2x1');
+    const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
     allRoomHighlights.forEach(highlight => {
         highlight.addEventListener('click', function() {
