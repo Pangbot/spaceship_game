@@ -16,23 +16,38 @@ document.addEventListener('DOMContentLoaded', function() {
         const clickedRight = clickedRoom.left + clickedRoom.width;
         const clickedBottom = clickedRoom.top + clickedRoom.height;
     
+        // Convert absolute coordinates to relative coordinates
+        const currentRelative = {
+            left: currentRoom.left,
+            top: currentRoom.top,
+            width: currentRoom.width,
+            height: currentRoom.height
+        };
+    
+        const clickedRelative = {
+            left: clickedRoom.left,
+            top: clickedRoom.top,
+            width: clickedRoom.width,
+            height: clickedRoom.height
+        };
+    
         // Check if the rooms share a horizontal or vertical wall with tolerance
         const horizontalAdjacent =
-            (currentRoom.top >= clickedRoom.top - tolerance && currentRoom.top <= clickedBottom + tolerance) ||
-            (currentBottom >= clickedRoom.top - tolerance && currentBottom <= clickedBottom + tolerance) ||
-            (clickedRoom.top >= currentRoom.top - tolerance && clickedRoom.top <= currentBottom + tolerance) ||
-            (clickedBottom >= currentRoom.top - tolerance && clickedBottom <= currentBottom + tolerance);
+            (currentRelative.top >= clickedRelative.top - tolerance && currentRelative.top <= clickedBottom + tolerance) ||
+            (currentBottom >= clickedRelative.top - tolerance && currentBottom <= clickedBottom + tolerance) ||
+            (clickedRelative.top >= currentRelative.top - tolerance && clickedRelative.top <= currentBottom + tolerance) ||
+            (clickedBottom >= currentRelative.top - tolerance && clickedBottom <= currentBottom + tolerance);
     
         const verticalAdjacent =
-            (currentRoom.left >= clickedRoom.left - tolerance && currentRoom.left <= clickedRight + tolerance) ||
-            (currentRight >= clickedRoom.left - tolerance && currentRight <= clickedRight + tolerance) ||
-            (clickedRoom.left >= currentRoom.left - tolerance && clickedRoom.left <= currentRight + tolerance) ||
-            (clickedRight >= currentRoom.left - tolerance && clickedRight <= currentRight + tolerance);
+            (currentRelative.left >= clickedRelative.left - tolerance && currentRelative.left <= clickedRight + tolerance) ||
+            (currentRight >= clickedRelative.left - tolerance && currentRight <= clickedRight + tolerance) ||
+            (clickedRelative.left >= currentRelative.left - tolerance && clickedRelative.left <= currentRight + tolerance) ||
+            (clickedRight >= currentRelative.left - tolerance && clickedRight <= currentRight + tolerance);
     
         // Check if the rooms share more than one side with a small gap
         const shareSidesWithoutGaps =
-            (horizontalAdjacent && Math.abs(currentRoom.left - clickedRight) < tolerance) ||
-            (verticalAdjacent && Math.abs(currentRoom.top - clickedBottom) < tolerance);
+            (horizontalAdjacent && Math.abs(currentRelative.left - clickedRight) < tolerance) ||
+            (verticalAdjacent && Math.abs(currentRelative.top - clickedBottom) < tolerance);
     
         return shareSidesWithoutGaps;
     }
