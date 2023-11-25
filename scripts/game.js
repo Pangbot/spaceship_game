@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentRoom = {
         top: 0,
         left: 202,
-        width: 202,
-        height: 102,
+        width: 2,
+        height: 1,
     }
 
     // Function to check if two rooms share a wall
@@ -36,20 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     allRoomHighlights.forEach(highlight => {
         highlight.addEventListener('click', function() {
-            console.log("Clicked!");
 
             // Get the position and size of the clicked room
             const clickedRoom = {
                 top: parseInt(highlight.style.top),
                 left: parseInt(highlight.style.left),
-                width: parseInt(highlight.getAttribute('data-room-width')) * 100,
-                height: parseInt(highlight.getAttribute('data-room-height')) * 100,
+                width: parseInt(highlight.getAttribute('data-room-width')),
+                height: parseInt(highlight.getAttribute('data-room-height')),
             };
 
             // Check if the clicked room is different from the current room and shares a wall
             const clickedRoomId = highlight.getAttribute('data-room-id');
             if (clickedRoomId !== currentRoom.id && areRoomsAdjacent(currentRoom, clickedRoom)) {
-                console.log("Different and adjacent room clicked!");
 
                 // Remove highlighting from all rooms
                 allRoomHighlights.forEach(room => {
@@ -65,8 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const roomData = {
                         top: parseInt(room.style.top),
                         left: parseInt(room.style.left),
-                        width: parseInt(room.getAttribute('data-room-width')) * 100,
-                        height: parseInt(room.getAttribute('data-room-height')) * 100,
+                        width: parseInt(room.getAttribute('data-room-width')),
+                        height: parseInt(room.getAttribute('data-room-height')),
                     };
 
                     if (areRoomsAdjacent(currentRoom, roomData)) {
