@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentRoom = {
         top: 0,
         left: 202,
-        width: 2,
-        height: 1,
+        width: 202,
+        height: 102,
     }
 
     // Function to check if two rooms share a wall
@@ -35,46 +35,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
     allRoomHighlights.forEach(highlight => {
+        // Get the position and size of the room
+        const room = {
+            top: parseInt(highlight.style.top),
+            left: parseInt(highlight.style.left),
+            width: parseInt(highlight.getAttribute('data-room-width')) * 100,
+            height: parseInt(highlight.getAttribute('data-room-height')) * 100,
+        };
+
+        // Check if the room is adjacent to the current room
+        if (areRoomsAdjacent(currentRoom, room)) {
+            highlight.classList.add('adjacent');
+        }
+    });
+
+    // Add click event listeners
+    allRoomHighlights.forEach(highlight => {
         highlight.addEventListener('click', function() {
+            console.log("Clicked!");
 
             // Get the position and size of the clicked room
             const clickedRoom = {
                 top: parseInt(highlight.style.top),
                 left: parseInt(highlight.style.left),
-                width: parseInt(highlight.getAttribute('data-room-width')),
-                height: parseInt(highlight.getAttribute('data-room-height')),
+                width: parseInt(highlight.getAttribute('data-room-width')) * 100,
+                height: parseInt(highlight.getAttribute('data-room-height')) * 100,
             };
 
             // Check if the clicked room is different from the current room and shares a wall
             const clickedRoomId = highlight.getAttribute('data-room-id');
             if (clickedRoomId !== currentRoom.id && areRoomsAdjacent(currentRoom, clickedRoom)) {
+                console.log("Different and adjacent room clicked!");
 
                 // Remove highlighting from all rooms
                 allRoomHighlights.forEach(room => {
-                    room.classList.remove('highlighted');
-                    room.classList.remove('adjacent');
-                });
-
-                // Update current room
-                currentRoom = clickedRoom;
-
-                // Add highlighting to adjacent rooms
-                allRoomHighlights.forEach(room => {
-                    const roomData = {
-                        top: parseInt(room.style.top),
-                        left: parseInt(room.style.left),
-                        width: parseInt(room.getAttribute('data-room-width')),
-                        height: parseInt(room.getAttribute('data-room-height')),
-                    };
-
-                    if (areRoomsAdjacent(currentRoom, roomData)) {
-                        room.classList.add('adjacent');
-                    }
+                    room.classList.remove('highlighted', 'adjacent');
                 });
 
                 // Add highlighting to the clicked room
                 highlight.classList.add('highlighted');
-                highlight.classList.remove('adjacent');
+
+                // Update current room
+                currentRoom = clickedRoom;
             }
         });
     });
