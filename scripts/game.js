@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Script loaded!");
 
     let currentRoom = {
+        id: "room1",
         top: 0,
         left: 202,
         width: 202,
@@ -44,8 +45,13 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         if (areRoomsAdjacent(currentRoom, room)) {
-            highlight.classList.add('highlighted', 'adjacent');
+            highlight.classList.add('adjacent');
         }
+
+        if (currentRoom.id == highlight.getAttribute('data-room-id')) {
+            highlight.classList.add('highlight');
+        }
+
     });
 
     // Add click event listeners
@@ -55,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Get the position and size of the clicked room
             const clickedRoom = {
+                id: highlight.getAttribute('data-room-id'),
                 top: parseInt(highlight.style.top),
                 left: parseInt(highlight.style.left),
                 width: parseInt(highlight.getAttribute('data-room-width')) * 100,
@@ -90,6 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         room.classList.add('adjacent');
                     }
                 });
+
+                currentRoom.classList.add('highlight');
+
             }
         });
     });
