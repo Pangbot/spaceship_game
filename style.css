@@ -28,10 +28,24 @@
 #button-container {
     position: absolute;
     top: 0px; /* Adjust the top position as needed */
-    left: 305px; /* Adjust the left position as needed */
-    width: calc(80% - 305px); /* Set a percentage of the viewport width for the button container */
-    height: 100px; /* Set the height of the button container */
-    border: 1px solid #000; /* Add border for visualization */
+    left: 620px; /* Adjust the left position as needed */
+    width: calc(80% - 305px);
+    height: 200px;
+}
+
+.button-wrapper {
+    margin-bottom: 10px; /* Adjust the spacing between buttons */
+}
+
+button {
+    display: block;
+    width: 150px; /* Set the width of the buttons */
+    margin-bottom: 5px; /* Adjust the spacing between the button and description */
+}
+
+.button-description {
+    display: inline-block;
+    margin-left: 10px; /* Adjust the spacing between the button and description */
 }
 
 .roomHighlight1x2 {
