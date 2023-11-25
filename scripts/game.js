@@ -1,40 +1,51 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log("Script loaded!");
 
     let currentRoom = {
-        id: "room1",
-        top: 0,
-        left: 202,
+        id: "clone_bay",
+        top: 502,
+        left: 101,
         width: 202,
-        height: 102,
+        height: 202,
     }
 
-    // Function to check if two rooms share a wall
-    function areRoomsAdjacent(currentRoom, clickedRoom, tolerance = 5) {
-        const currentRight = currentRoom.left + currentRoom.width + tolerance;
-        const currentBottom = currentRoom.top + currentRoom.height + tolerance;
-        const clickedRight = clickedRoom.left + clickedRoom.width + tolerance;
-        const clickedBottom = clickedRoom.top + clickedRoom.height + tolerance;
-    
-        const horizontalAdjacent =
-            currentRoom.top <= clickedBottom &&
-            currentBottom >= clickedRoom.top &&
-            currentRoom.left <= clickedRight &&
-            currentRight >= clickedRoom.left;
-    
-        const verticalAdjacent =
-            currentRoom.left <= clickedRight &&
-            currentRight >= clickedRoom.left &&
-            currentRoom.top <= clickedBottom &&
-            currentBottom >= clickedRoom.top;
-    
-        // Check if the rooms are adjacent either horizontally or vertically, but not diagonally
-        return (
-            (horizontalAdjacent && !verticalAdjacent && currentRoom.width !== clickedRoom.width) ||
-            (!horizontalAdjacent && verticalAdjacent && currentRoom.height !== clickedRoom.height)
-        );
+    // Define doors between rooms
+    const doors = [
+        { roomId: "piloting", targetRoomId: "kitchen", doorPosition: "bottom" },
+        { roomId: "kitchen", targetRoomId: "scanners", doorPosition: "bottom" },
+        { roomId: "kitchen", targetRoomId: "doors", doorPosition: "bottom" },
+        { roomId: "scanners", targetRoomId: "clone_bay", doorPosition: "bottom" },
+        { roomId: "doors", targetRoomId: "shields", doorPosition: "bottom" },
+        { roomId: "clone_bay", targetRoomId: "shields", doorPosition: "right" },
+        { roomId: "clone_bay", targetRoomId: "fabrication", doorPosition: "bottom" },
+        { roomId: "shields", targetRoomId: "weapons", doorPosition: "bottom" },
+        { roomId: "fabrication", targetRoomId: "escape_pods_L", doorPosition: "left" },
+        { roomId: "fabrication", targetRoomId: "weapons", doorPosition: "right" },
+        { roomId: "fabrication", targetRoomId: "electrics", doorPosition: "bottom" },
+        { roomId: "weapons", targetRoomId: "escape_pods_R", doorPosition: "right" },
+        { roomId: "weapons", targetRoomId: "electrics", doorPosition: "bottom" },
+        { roomId: "electrics", targetRoomId: "oxygen", doorPosition: "left" },
+        { roomId: "electrics", targetRoomId: "water", doorPosition: "right" },
+        { roomId: "water", targetRoomId: "security", doorPosition: "bottom" },
+        { roomId: "oxygen", targetRoomId: "recycling", doorPosition: "bottom" },
+        { roomId: "engine", targetRoomId: "recycling", doorPosition: "left" },
+        { roomId: "engine", targetRoomId: "security", doorPosition: "right" },
+        { roomId: "engine", targetRoomId: "storage", doorPosition: "bottom" },
+    ];
+
+    // Function to check if a door is clicked
+    function isDoorClicked(room, mouseX, mouseY) {
+        const door = doors.find(door => door.roomId === room.id);
+        if (door) {
+            const doorX = room.left + (room.width / 2); // assuming the door is in the middle horizontally
+            const doorY = (door.doorPosition === "bottom") ? room.top + room.height : room.top; // adjust based on door position
+
+            // Check if the click is within the door area
+            return Math.abs(mouseX - doorX) < tolerance && Math.abs(mouseY - doorY) < tolerance;
+        }
+
+        return false;
     }
-    
 
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
@@ -42,28 +53,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add highlighting to the current room
     allRoomHighlights.forEach(highlight => {
         const room = {
+            id: highlight.getAttribute('data-room-id'),
             top: parseInt(highlight.style.top),
             left: parseInt(highlight.style.left),
             width: parseInt(highlight.getAttribute('data-room-width')) * 100,
             height: parseInt(highlight.getAttribute('data-room-height')) * 100,
         };
 
-        if (areRoomsAdjacent(currentRoom, room)) {
-            highlight.classList.add('adjacent');
-        }
-
-        if (currentRoom.id == highlight.getAttribute('data-room-id')) {
-            highlight.classList.remove('adjacent');
+        if (currentRoom.id === room.id) {
             highlight.classList.add('highlighted');
         }
-
     });
 
     // Add click event listeners
     allRoomHighlights.forEach(highlight => {
-        highlight.addEventListener('click', function() {
-
-            // Get the position and size of the clicked room
+        highlight.addEventListener('click', function (event) {
             const clickedRoom = {
                 id: highlight.getAttribute('data-room-id'),
                 top: parseInt(highlight.style.top),
@@ -72,37 +76,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 height: parseInt(highlight.getAttribute('data-room-height')) * 100,
             };
 
-            // Check if the clicked room is different from the current room and shares a wall
-            const clickedRoomId = highlight.getAttribute('data-room-id');
-            if (clickedRoomId !== currentRoom.id && areRoomsAdjacent(currentRoom, clickedRoom)) {
+            // Check if a door is clicked in either direction
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
 
-                // Remove highlighting from all rooms
-                allRoomHighlights.forEach(room => {
-                    room.classList.remove('highlighted', 'adjacent');
-                });
+            const doorFromCurrentToClicked = doors.find(door => door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id);
+            const doorFromClickedToCurrent = doors.find(door => door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id);
 
-                // Update current room
+            if (doorFromCurrentToClicked && isDoorClicked(currentRoom, mouseX, mouseY)) {
+                // Transition to the target room
                 currentRoom = clickedRoom;
-
-                // Add highlighting to adjacent rooms
-                allRoomHighlights.forEach(room => {
-                    const roomData = {
-                        top: parseInt(room.style.top),
-                        left: parseInt(room.style.left),
-                        width: parseInt(room.getAttribute('data-room-width')) * 100,
-                        height: parseInt(room.getAttribute('data-room-height')) * 100,
-                    };
-
-                    if (areRoomsAdjacent(currentRoom, roomData)) {
-                        room.classList.add('adjacent');
-                    }
-                });
-
-                // Add highlighting to the clicked room
-                highlight.classList.remove('adjacent');
-                highlight.classList.add('highlighted');
-
+            } else if (doorFromClickedToCurrent && isDoorClicked(clickedRoom, mouseX, mouseY)) {
+                // Transition to the target room
+                currentRoom = clickedRoom;
             }
+
+            // Remove highlighting from all rooms
+            allRoomHighlights.forEach(room => {
+                room.classList.remove('highlighted');
+            });
+
+            // Add highlighting to the clicked room
+            highlight.classList.add('highlighted');
         });
     });
 });
