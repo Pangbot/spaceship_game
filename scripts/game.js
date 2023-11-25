@@ -58,11 +58,12 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             if (hasOpenDoor(currentRoom, room)) {
-                highlight.classList.add('adjacent');
-            } else if (hasClosedDoor(currentRoom, room)) {
                 highlight.classList.add('available');
+            } else if (hasClosedDoor(currentRoom, room)) {
+                highlight.classList.add('adjacent');
             } else {
                 highlight.classList.remove('adjacent');
+                highlight.classList.remove('available');
             }
         });
     }
