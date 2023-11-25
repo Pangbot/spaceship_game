@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listeners
     allRoomHighlights.forEach(highlight => {
         highlight.addEventListener('click', function() {
-            console.log("Clicked!");
 
             // Get the position and size of the clicked room
             const clickedRoom = {
@@ -72,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Check if the clicked room is different from the current room and shares a wall
             const clickedRoomId = highlight.getAttribute('data-room-id');
             if (clickedRoomId !== currentRoom.id && areRoomsAdjacent(currentRoom, clickedRoom)) {
-                console.log("Different and adjacent room clicked!");
 
                 // Remove highlighting from all rooms
                 allRoomHighlights.forEach(room => {
