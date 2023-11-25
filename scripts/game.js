@@ -9,26 +9,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to check if two rooms share a wall
-    function areRoomsAdjacent(currentRoom, clickedRoom) {
+    function areRoomsAdjacent(currentRoom, clickedRoom, tolerance = 5) {
         const currentRight = currentRoom.left + currentRoom.width;
         const currentBottom = currentRoom.top + currentRoom.height;
         const clickedRight = clickedRoom.left + clickedRoom.width;
         const clickedBottom = clickedRoom.top + clickedRoom.height;
 
-        // Check if the rooms share a horizontal or vertical wall
+        // Check if the rooms share a horizontal or vertical wall with tolerance
         const horizontalAdjacent =
-            (currentRoom.top >= clickedRoom.top && currentRoom.top <= clickedBottom) ||
-            (currentBottom >= clickedRoom.top && currentBottom <= clickedBottom) ||
-            (clickedRoom.top >= currentRoom.top && clickedRoom.top <= currentBottom) ||
-            (clickedBottom >= currentRoom.top && clickedBottom <= currentBottom);
+            (currentRoom.top >= clickedRoom.top - tolerance && currentRoom.top <= clickedBottom + tolerance) ||
+            (currentBottom >= clickedRoom.top - tolerance && currentBottom <= clickedBottom + tolerance) ||
+            (clickedRoom.top >= currentRoom.top - tolerance && clickedRoom.top <= currentBottom + tolerance) ||
+            (clickedBottom >= currentRoom.top - tolerance && clickedBottom <= currentBottom + tolerance);
 
         const verticalAdjacent =
-            (currentRoom.left >= clickedRoom.left && currentRoom.left <= clickedRight) ||
-            (currentRight >= clickedRoom.left && currentRight <= clickedRight) ||
-            (clickedRoom.left >= currentRoom.left && clickedRoom.left <= currentRight) ||
-            (clickedRight >= currentRoom.left && clickedRight <= currentRight);
+            (currentRoom.left >= clickedRoom.left - tolerance && currentRoom.left <= clickedRight + tolerance) ||
+            (currentRight >= clickedRoom.left - tolerance && currentRight <= clickedRight + tolerance) ||
+            (clickedRoom.left >= currentRoom.left - tolerance && clickedRoom.left <= currentRight + tolerance) ||
+            (clickedRight >= currentRoom.left - tolerance && clickedRight <= currentRight + tolerance);
 
-        return true //horizontalAdjacent && verticalAdjacent;
+        return horizontalAdjacent && verticalAdjacent;
     }
 
     // Add click event listeners to room highlights
