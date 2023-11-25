@@ -2,8 +2,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 1503px; /* Set the height of the room map */
-    width: 606px; /* Set the width of the room map */
+    height: 752px; /* Set the height of the room map */
+    width: 303px; /* Set the width of the room map */
     border: 1px solid #000; /* Add border for visualization */
 }
 
@@ -32,8 +32,8 @@
 
 .roomHighlight1x2 {
     position: absolute;
-    width: 101px;
-    height: 200px;
+    width: 50px;
+    height: 100px;
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -53,8 +53,8 @@
 
 .roomHighlight2x1 {
     position: absolute;
-    width: 202px;
-    height: 102px;
+    width: 101px;
+    height: 51px;
     background-color: rgba(0,0,0,0);
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -74,8 +74,8 @@
 
 .roomHighlight2x2 {
     position: absolute;
-    width: 202px;
-    height: 200px;
+    width: 101px;
+    height: 100px;
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     transition: background-color 0.3s ease;
