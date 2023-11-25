@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             (clickedRoom.left >= currentRoom.left && clickedRoom.left <= currentRight) ||
             (clickedRight >= currentRoom.left && clickedRight <= currentRight);
 
-        return horizontalAdjacent && verticalAdjacent;
+        return true //horizontalAdjacent && verticalAdjacent;
     }
 
     // Add click event listeners to room highlights
