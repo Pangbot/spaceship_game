@@ -18,6 +18,10 @@
     background-color: rgba(0, 255, 0, 0.5);
 }
 
+.roomHighlight1x2.available {
+    background-color: rgba(255, 187, 0, 0.5);
+}
+
 .roomHighlight1x2.adjacent {
     background-color: rgba(255, 0, 0, 0.5);
 }
@@ -35,6 +39,10 @@
     background-color: rgba(0, 255, 0, 0.5);
 }
 
+.roomHighlight2x1.available {
+    background-color: rgba(255, 187, 0, 0.5);
+}
+
 .roomHighlight2x1.adjacent {
     background-color: rgba(255, 0, 0, 0.5);
 }
@@ -50,6 +58,10 @@
 
 .roomHighlight2x2.highlighted {
     background-color: rgba(0, 255, 0, 0.5);
+}
+
+.roomHighlight2x2.available {
+    background-color: rgba(255, 187, 0, 0.5);
 }
 
 .roomHighlight2x2.adjacent {

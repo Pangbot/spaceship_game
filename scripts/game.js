@@ -11,32 +11,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Define doors between rooms
     const doors = [
-        { roomId: "piloting", targetRoomId: "kitchen" },
-        { roomId: "kitchen", targetRoomId: "scanners" },
-        { roomId: "kitchen", targetRoomId: "doors" },
-        { roomId: "scanners", targetRoomId: "clone_bay" },
-        { roomId: "doors", targetRoomId: "shields" },
-        { roomId: "clone_bay", targetRoomId: "shields" },
-        { roomId: "clone_bay", targetRoomId: "fabrication" },
-        { roomId: "shields", targetRoomId: "weapons" },
-        { roomId: "fabrication", targetRoomId: "escape_pods_L" },
-        { roomId: "fabrication", targetRoomId: "weapons" },
-        { roomId: "fabrication", targetRoomId: "electrics" },
-        { roomId: "weapons", targetRoomId: "escape_pods_R" },
-        { roomId: "weapons", targetRoomId: "electrics" },
-        { roomId: "electrics", targetRoomId: "oxygen" },
-        { roomId: "electrics", targetRoomId: "water" },
-        { roomId: "water", targetRoomId: "security" },
-        { roomId: "oxygen", targetRoomId: "recycling" },
-        { roomId: "engine", targetRoomId: "recycling" },
-        { roomId: "engine", targetRoomId: "security" },
-        { roomId: "engine", targetRoomId: "storage" },
+        { roomId: "piloting", targetRoomId: "kitchen", status: "closed" },
+        { roomId: "kitchen", targetRoomId: "scanners", status: "closed" },
+        { roomId: "kitchen", targetRoomId: "doors", status: "closed" },
+        { roomId: "scanners", targetRoomId: "clone_bay", status: "open" },
+        { roomId: "doors", targetRoomId: "shields", status: "closed" },
+        { roomId: "clone_bay", targetRoomId: "shields", status: "open" },
+        { roomId: "clone_bay", targetRoomId: "fabrication", status: "open" },
+        { roomId: "shields", targetRoomId: "weapons", status: "closed" },
+        { roomId: "fabrication", targetRoomId: "escape_pods_L", status: "closed" },
+        { roomId: "fabrication", targetRoomId: "weapons", status: "closed" },
+        { roomId: "fabrication", targetRoomId: "electrics", status: "closed" },
+        { roomId: "weapons", targetRoomId: "escape_pods_R", status: "closed" },
+        { roomId: "weapons", targetRoomId: "electrics", status: "closed" },
+        { roomId: "electrics", targetRoomId: "oxygen", status: "closed" },
+        { roomId: "electrics", targetRoomId: "water", status: "closed" },
+        { roomId: "water", targetRoomId: "security", status: "closed" },
+        { roomId: "oxygen", targetRoomId: "recycling", status: "closed" },
+        { roomId: "engine", targetRoomId: "recycling", status: "closed" },
+        { roomId: "engine", targetRoomId: "security", status: "closed" },
+        { roomId: "engine", targetRoomId: "storage", status: "closed" },
     ];
 
     // Function to check if a door exists between two rooms
-    function hasDoor(currentRoom, clickedRoom) {
-        return doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id) ||
-                                   (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id));
+    function hasOpenDoor(currentRoom, clickedRoom) {
+        return doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status == "open") ||
+                                   (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status == "open"));
+    }
+
+    function hasClosedDoor(currentRoom, clickedRoom) {
+        return doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status == "closed") ||
+                                   (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status == "closed"));
     }
 
     // Function to highlight adjacent rooms
@@ -52,8 +57,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 height: parseInt(highlight.getAttribute('data-room-height')) * 100,
             };
 
-            if (hasDoor(currentRoom, room)) {
+            if (hasOpenDoor(currentRoom, room)) {
                 highlight.classList.add('adjacent');
+            } else if (hasClosedDoor(currentRoom, room)) {
+                highlight.classList.add('available');
             } else {
                 highlight.classList.remove('adjacent');
             }
@@ -92,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             // Check if a door exists between the current room and the clicked room
-            if (hasDoor(currentRoom, clickedRoom)) {
+            if (hasOpenDoor(currentRoom, clickedRoom)) {
                 // Transition to the target room
                 currentRoom = clickedRoom;
 
