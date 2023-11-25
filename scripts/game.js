@@ -29,7 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
             currentBottom >= clickedRoom.top;
     
         // Check if the rooms are adjacent either horizontally or vertically, but not diagonally
-        return (horizontalAdjacent && !verticalAdjacent) || (!horizontalAdjacent && verticalAdjacent);
+        return (
+            (horizontalAdjacent && !verticalAdjacent && currentRoom.width !== clickedRoom.width) ||
+            (!horizontalAdjacent && verticalAdjacent && currentRoom.height !== clickedRoom.height)
+        );
     }
     
 
