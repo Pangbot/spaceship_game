@@ -34,13 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
 
     // Function to check if a door is clicked
-    function isDoorClicked(room, mouseX, mouseY) {
+    function isDoorClicked(room, mouseX, mouseY, tolerance = 5) {
         const door = doors.find(door => door.roomId === room.id);
         if (door) {
             const doorX = room.left + (room.width / 2); // assuming the door is in the middle horizontally
             const doorY = (door.doorPosition === "bottom") ? room.top + room.height : room.top; // adjust based on door position
 
-            // Check if the click is within the door area
+            // Check if the click is within the door area with tolerance
             return Math.abs(mouseX - doorX) < tolerance && Math.abs(mouseY - doorY) < tolerance;
         }
 
