@@ -14,8 +14,8 @@
 #text-container {
     position: absolute;
     top: 100px;
-    left: 606px; /* Adjust the left position as needed */
-    width: calc(100% - 608px); /* Set a percentage of the viewport width for the text container */
+    left: 305px; /* Adjust the left position as needed */
+    width: calc(80% - 305px); /* Set a percentage of the viewport width for the text container */
     height: 600px; /* Set the height of the text container */
     border: 1px solid #000; /* Add border for visualization */
 }
@@ -28,8 +28,8 @@
 #button-container {
     position: absolute;
     top: 0px; /* Adjust the top position as needed */
-    left: 606px; /* Adjust the left position as needed */
-    width: calc(100% - 608px); /* Set a percentage of the viewport width for the button container */
+    left: 305px; /* Adjust the left position as needed */
+    width: calc(80% - 305px); /* Set a percentage of the viewport width for the button container */
     height: 100px; /* Set the height of the button container */
     border: 1px solid #000; /* Add border for visualization */
 }
