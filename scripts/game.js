@@ -39,6 +39,27 @@ document.addEventListener('DOMContentLoaded', function () {
                                    (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id));
     }
 
+    // Function to highlight adjacent rooms
+    function highlightAdjacentRooms() {
+        const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
+
+        allRoomHighlights.forEach(highlight => {
+            const room = {
+                id: highlight.getAttribute('data-room-id'),
+                top: parseInt(highlight.style.top),
+                left: parseInt(highlight.style.left),
+                width: parseInt(highlight.getAttribute('data-room-width')) * 100,
+                height: parseInt(highlight.getAttribute('data-room-height')) * 100,
+            };
+
+            if (hasDoor(currentRoom, room)) {
+                highlight.classList.add('adjacent');
+            } else {
+                highlight.classList.remove('adjacent');
+            }
+        });
+    }
+
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
@@ -77,6 +98,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 allRoomHighlights.forEach(room => {
                     room.classList.remove('highlighted');
                 });
+
+                // Highlight adjacent rooms
+                highlightAdjacentRooms();
 
                 // Add highlighting to the clicked room
                 highlight.classList.add('highlighted');
