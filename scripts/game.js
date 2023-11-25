@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
             (clickedRoom.left >= currentRoom.left - tolerance && clickedRoom.left <= currentRight + tolerance) ||
             (clickedRight >= currentRoom.left - tolerance && clickedRight <= currentRight + tolerance);
     
-        // Check if the rooms share more than one side without any gaps
+        // Check if the rooms share more than one side with a small gap
         const shareSidesWithoutGaps =
-            (horizontalAdjacent && Math.abs(currentRoom.left - clickedRight) <= tolerance) ||
-            (verticalAdjacent && Math.abs(currentRoom.top - clickedBottom) <= tolerance);
+            (horizontalAdjacent && Math.abs(currentRoom.left - clickedRight) < tolerance) ||
+            (verticalAdjacent && Math.abs(currentRoom.top - clickedBottom) < tolerance);
     
         return shareSidesWithoutGaps;
     }
