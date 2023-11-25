@@ -11,45 +11,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to check if two rooms share a wall
     function areRoomsAdjacent(currentRoom, clickedRoom, tolerance = 5) {
-        const currentRight = currentRoom.left + currentRoom.width;
-        const currentBottom = currentRoom.top + currentRoom.height;
-        const clickedRight = clickedRoom.left + clickedRoom.width;
-        const clickedBottom = clickedRoom.top + clickedRoom.height;
+        const currentRight = currentRoom.left + currentRoom.width + tolerance;
+        const currentBottom = currentRoom.top + currentRoom.height + tolerance;
+        const clickedRight = clickedRoom.left + clickedRoom.width + tolerance;
+        const clickedBottom = clickedRoom.top + clickedRoom.height + tolerance;
     
-        // Convert absolute coordinates to relative coordinates
-        const currentRelative = {
-            left: currentRoom.left,
-            top: currentRoom.top,
-            width: currentRoom.width,
-            height: currentRoom.height
-        };
-    
-        const clickedRelative = {
-            left: clickedRoom.left,
-            top: clickedRoom.top,
-            width: clickedRoom.width,
-            height: clickedRoom.height
-        };
-    
-        // Check if the rooms share a horizontal or vertical wall with tolerance
-        const horizontalAdjacent =
-            (currentRelative.top >= clickedRelative.top - tolerance && currentRelative.top <= clickedBottom + tolerance) ||
-            (currentBottom >= clickedRelative.top - tolerance && currentBottom <= clickedBottom + tolerance) ||
-            (clickedRelative.top >= currentRelative.top - tolerance && clickedRelative.top <= currentBottom + tolerance) ||
-            (clickedBottom >= currentRelative.top - tolerance && clickedBottom <= currentBottom + tolerance);
-    
-        const verticalAdjacent =
-            (currentRelative.left >= clickedRelative.left - tolerance && currentRelative.left <= clickedRight + tolerance) ||
-            (currentRight >= clickedRelative.left - tolerance && currentRight <= clickedRight + tolerance) ||
-            (clickedRelative.left >= currentRelative.left - tolerance && clickedRelative.left <= currentRight + tolerance) ||
-            (clickedRight >= currentRelative.left - tolerance && clickedRight <= currentRight + tolerance);
-    
-        // Check if the rooms share more than one side with a small gap
-        const shareSidesWithoutGaps =
-            (horizontalAdjacent && Math.abs(currentRelative.left - clickedRight) < tolerance) ||
-            (verticalAdjacent && Math.abs(currentRelative.top - clickedBottom) < tolerance);
-    
-        return shareSidesWithoutGaps;
+        return (
+            currentRoom.top <= clickedBottom &&
+            currentBottom >= clickedRoom.top &&
+            currentRoom.left <= clickedRight &&
+            currentRight >= clickedRoom.left
+        );
     }
 
     // Add click event listeners to room highlights
