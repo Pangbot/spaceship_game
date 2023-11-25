@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to check if a door is clicked
     function isDoorClicked(room, mouseX, mouseY, tolerance = 5) {
-        const roomDoors = doors.filter(door => door.roomId === room.id);
+        const roomDoors = doors.filter(door => door.roomId === room.id || door.targetRoomId === room.id);
 
         for (const door of roomDoors) {
             let doorX, doorY;
