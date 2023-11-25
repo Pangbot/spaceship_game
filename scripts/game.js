@@ -16,13 +16,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const clickedRight = clickedRoom.left + clickedRoom.width + tolerance;
         const clickedBottom = clickedRoom.top + clickedRoom.height + tolerance;
     
-        return (
+        const horizontalAdjacent =
             currentRoom.top <= clickedBottom &&
             currentBottom >= clickedRoom.top &&
             currentRoom.left <= clickedRight &&
-            currentRight >= clickedRoom.left
-        );
+            currentRight >= clickedRoom.left;
+    
+        const verticalAdjacent =
+            currentRoom.left <= clickedRight &&
+            currentRight >= clickedRoom.left &&
+            currentRoom.top <= clickedBottom &&
+            currentBottom >= clickedRoom.top;
+    
+        // Check if the rooms are adjacent either horizontally or vertically, but not both
+        return (horizontalAdjacent || verticalAdjacent) && !(horizontalAdjacent && verticalAdjacent);
     }
+    
 
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
