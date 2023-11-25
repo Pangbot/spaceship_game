@@ -11,41 +11,60 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Define doors between rooms
     const doors = [
-        { roomId: "piloting", targetRoomId: "kitchen", doorPosition: "bottom" },
-        { roomId: "kitchen", targetRoomId: "scanners", doorPosition: "bottom" },
-        { roomId: "kitchen", targetRoomId: "doors", doorPosition: "bottom" },
-        { roomId: "scanners", targetRoomId: "clone_bay", doorPosition: "bottom" },
-        { roomId: "doors", targetRoomId: "shields", doorPosition: "bottom" },
-        { roomId: "clone_bay", targetRoomId: "shields", doorPosition: "right" },
-        { roomId: "clone_bay", targetRoomId: "fabrication", doorPosition: "bottom" },
-        { roomId: "shields", targetRoomId: "weapons", doorPosition: "bottom" },
-        { roomId: "fabrication", targetRoomId: "escape_pods_L", doorPosition: "left" },
-        { roomId: "fabrication", targetRoomId: "weapons", doorPosition: "right" },
-        { roomId: "fabrication", targetRoomId: "electrics", doorPosition: "bottom" },
-        { roomId: "weapons", targetRoomId: "escape_pods_R", doorPosition: "right" },
-        { roomId: "weapons", targetRoomId: "electrics", doorPosition: "bottom" },
-        { roomId: "electrics", targetRoomId: "oxygen", doorPosition: "left" },
-        { roomId: "electrics", targetRoomId: "water", doorPosition: "right" },
-        { roomId: "water", targetRoomId: "security", doorPosition: "bottom" },
-        { roomId: "oxygen", targetRoomId: "recycling", doorPosition: "bottom" },
-        { roomId: "engine", targetRoomId: "recycling", doorPosition: "left" },
-        { roomId: "engine", targetRoomId: "security", doorPosition: "right" },
-        { roomId: "engine", targetRoomId: "storage", doorPosition: "bottom" },
+        { roomId: "piloting", targetRoomId: "kitchen", sharedWall: "bottom" },
+        { roomId: "kitchen", targetRoomId: "scanners", sharedWall: "bottom" },
+        { roomId: "kitchen", targetRoomId: "doors", sharedWall: "bottom" },
+        { roomId: "scanners", targetRoomId: "clone_bay", sharedWall: "bottom" },
+        { roomId: "doors", targetRoomId: "shields", sharedWall: "bottom" },
+        { roomId: "clone_bay", targetRoomId: "shields", sharedWall: "right" },
+        { roomId: "clone_bay", targetRoomId: "fabrication", sharedWall: "bottom" },
+        { roomId: "shields", targetRoomId: "weapons", sharedWall: "bottom" },
+        { roomId: "fabrication", targetRoomId: "escape_pods_L", sharedWall: "left" },
+        { roomId: "fabrication", targetRoomId: "weapons", sharedWall: "right" },
+        { roomId: "fabrication", targetRoomId: "electrics", sharedWall: "bottom" },
+        { roomId: "weapons", targetRoomId: "escape_pods_R", sharedWall: "right" },
+        { roomId: "weapons", targetRoomId: "electrics", sharedWall: "bottom" },
+        { roomId: "electrics", targetRoomId: "oxygen", sharedWall: "left" },
+        { roomId: "electrics", targetRoomId: "water", sharedWall: "right" },
+        { roomId: "water", targetRoomId: "security", sharedWall: "bottom" },
+        { roomId: "oxygen", targetRoomId: "recycling", sharedWall: "bottom" },
+        { roomId: "engine", targetRoomId: "recycling", sharedWall: "left" },
+        { roomId: "engine", targetRoomId: "security", sharedWall: "right" },
+        { roomId: "engine", targetRoomId: "storage", sharedWall: "bottom" },
     ];
 
     // Function to check if a door is clicked
     function isDoorClicked(room, mouseX, mouseY, tolerance = 5) {
-        const door = doors.find(door => door.roomId === room.id);
-        if (door) {
-            const doorX = room.left + (room.width / 2); // assuming the door is in the middle horizontally
-            const doorY = (door.doorPosition === "bottom") ? room.top + room.height : room.top; // adjust based on door position
+        const roomDoors = doors.filter(door => door.roomId === room.id);
+
+        for (const door of roomDoors) {
+            let doorX, doorY;
+
+            // Calculate door position based on the shared wall
+            switch (door.sharedWall) {
+                case "bottom":
+                    doorX = room.left + (room.width / 2);
+                    doorY = room.top + room.height;
+                    break;
+                case "right":
+                    doorX = room.left + room.width;
+                    doorY = room.top + (room.height / 2);
+                    break;
+                case "left":
+                    doorX = room.left;
+                    doorY = room.top + (room.height / 2);
+                    break;
+            }
 
             // Check if the click is within the door area with tolerance
-            return Math.abs(mouseX - doorX) < tolerance && Math.abs(mouseY - doorY) < tolerance;
+            if (Math.abs(mouseX - doorX) < tolerance && Math.abs(mouseY - doorY) < tolerance) {
+                return true;
+            }
         }
 
         return false;
     }
+
 
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
