@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
             currentRoom.top <= clickedBottom &&
             currentBottom >= clickedRoom.top;
     
-        // Check if the rooms are adjacent either horizontally or vertically, but not both
-        return (horizontalAdjacent || verticalAdjacent) && !(horizontalAdjacent && verticalAdjacent);
+        // Check if the rooms are adjacent either horizontally or vertically, but not diagonally
+        return (horizontalAdjacent && !verticalAdjacent) || (!horizontalAdjacent && verticalAdjacent);
     }
     
 
