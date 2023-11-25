@@ -43,7 +43,7 @@
     top: 400px;
     left: 305px; /* Adjust the left position as needed */
     width: calc(80% - 305px); /* Set a percentage of the viewport width for the text container */
-    height: 600px; /* Set the height of the text container */
+    height: 552px; /* Set the height of the text container */
     border: 1px solid #000; /* Add border for visualization */
 }
 
