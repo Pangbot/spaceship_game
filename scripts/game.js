@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (currentRoom.id == highlight.getAttribute('data-room-id')) {
+            highlight.classList.remove('adjacent');
             highlight.classList.add('highlighted');
         }
 
@@ -96,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 // Add highlighting to the clicked room
+                highlight.classList.remove('adjacent');
                 highlight.classList.add('highlighted');
 
             }
