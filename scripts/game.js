@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentRoom = {
         top: 0,
-        left: 0,
-        width: 100,
-        height: 100,
+        left: 202,
+        width: 202,
+        height: 102,
     }
 
     // Function to check if two rooms share a wall

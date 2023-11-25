@@ -1,32 +1,45 @@
 #shipMap {
     position: relative;
-    height: 100px; /* Set the height of the room map */
-    width: 500px; /* Set the width of the room map */
+    height: 1503px; /* Set the height of the room map */
+    width: 606px; /* Set the width of the room map */
     border: 1px solid #000; /* Add border for visualization */
 }
 
-.roomHighlight1x1 {
+.roomHighlight1x2 {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 102px;
+    height: 202px;
     background-color: rgba(255, 0, 0, 0.5);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.roomHighlight1x1.highlighted {
+.roomHighlight1x2.highlighted {
     background-color: rgba(0, 255, 0, 0.5);
 }
 
 .roomHighlight2x1 {
     position: absolute;
-    width: 200px;
-    height: 100px;
+    width: 202px;
+    height: 102px;
     background-color: rgba(255, 0, 0, 0.5);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .roomHighlight2x1.highlighted {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
+.roomHighlight2x2 {
+    position: absolute;
+    width: 202px;
+    height: 202px;
+    background-color: rgba(255, 0, 0, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.roomHighlight2x2.highlighted {
     background-color: rgba(0, 255, 0, 0.5);
 }
