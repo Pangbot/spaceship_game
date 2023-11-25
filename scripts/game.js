@@ -57,6 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     room.classList.remove('adjacent');
                 });
 
+                // Update current room
+                currentRoom = clickedRoom;
+
                 // Add highlighting to adjacent rooms
                 allRoomHighlights.forEach(room => {
                     const roomData = {
@@ -73,9 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Add highlighting to the clicked room
                 highlight.classList.add('highlighted');
-
-                // Update current room
-                currentRoom = clickedRoom;
             }
         });
     });
