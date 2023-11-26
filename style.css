@@ -42,8 +42,8 @@
     position: absolute;
     top: 201px;
     left: 305px; /* Adjust the left position as needed */
-    width: calc(50% - 152.5px); /* Set the width for the ship map and text container */
-    height: 552px; /* Set the height of the container */
+    width: calc(100% - 305px); /* Set the width for the ship map and text container */
+    height: 276px; /* Set the height of the container */
     display: flex;
     flex-direction: column; /* Stack child elements vertically */
     border: 1px solid #000; /* Add border for visualization */
@@ -60,7 +60,7 @@
 }
 
 #line {
-    width: 100%;
+    width: calc(100% - 305px);
     height: 2px;
     background-color: #000; /* Set the color of the line */
 }
@@ -72,8 +72,8 @@
 #button-container {
     position: absolute;
     top: 201px; /* Adjust the top position as needed */
-    left: calc(50% + 152.5px); /* Adjust the left position as needed */
-    width: calc(50% - 152.5px);
+    left: 305px; /* Adjust the left position as needed */
+    width: calc(100% - 305px);
     height: 276px; /* Set the height of the button container */
     border: 1px solid #000; /* Add border for visualization */
 }
