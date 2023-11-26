@@ -27,7 +27,7 @@
 
 #shipMap {
     position: absolute;
-    top: 201px;
+    top: 203px;
     left: 0;
     height: 752px; /* Set the height of the room map */
     width: 303px; /* Set the width of the room map */
@@ -40,7 +40,7 @@
 
 #container {
     position: absolute;
-    top: 201px;
+    top: 203px;
     left: 305px;
     width: calc(100%-305px);
     display: flex;
@@ -50,6 +50,8 @@
 .container-buttons,
 .container-text {
     padding: 10px;
+    height: calc(752px / 3);
+    width: 100%;
     border: 1px solid #000;
 }
 
