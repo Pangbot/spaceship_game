@@ -26,9 +26,15 @@ body {
     height: 50px;
 }
 
+.resource-fill {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
 .resource-bar {
     height: 50px;
-    flex: 1;
+    flex: 1; /* Take remaining space */
     border: 1px solid #000;
     background-color: #eee;
     overflow: hidden;
@@ -47,10 +53,6 @@ body {
 
 #food_bar::before {
     background-color: #00ff00; /* Green color for food bar */
-}
-
-.percentage {
-    margin-left: 5px; /* Add a small space between bar and percentage */
 }
 
 #shipMap {
