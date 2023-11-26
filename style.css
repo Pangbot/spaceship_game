@@ -41,18 +41,11 @@ body {
     transition: width 1s ease;
 }
 
-.resource-bar::before {
-    content: '';
-    display: block;
-    height: 100%;
-    background-color: inherit;
-}
-
-#oxygen_bar::before {
+#oxygen_bar {
     background-color: #ff0000; /* Red color for oxygen bar */
 }
 
-#food_bar::before {
+#food_bar {
     background-color: #00ff00; /* Green color for food bar */
 }
 
