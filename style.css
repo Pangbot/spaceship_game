@@ -42,60 +42,24 @@
     position: absolute;
     top: 201px;
     left: 305px;
-    width: calc(100% - 305px);
-    height: 752px;
+    transform: translate(-50%, -50%);
+    width: calc(100%-305px);
     display: flex;
     flex-direction: column;
+}
+
+.container-buttons,
+.container-text {
+    padding: 10px;
     border: 1px solid #000;
 }
 
-#text-container {
-    flex: 1;
-    overflow: auto;
-    position: relative;
-}
-
 .line {
-    position: absolute;
     width: 100%;
     height: 2px;
     background-color: #000;
+    margin: 10px 0;
 }
-
-.line:nth-child(1) {
-    top: 33%; /* Adjust the percentage as needed */
-}
-
-.line:nth-child(2) {
-    top: 66%;
-}
-
-#story-text, #examine-text {
-    height: 50%;
-}
-
-#button-container {
-    width: 100%;
-    height: 200px;
-    border-top: 1px solid #000;
-}
-
-.button-wrapper {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-button {
-    width: 150px;
-    margin-right: 10px;
-}
-
-.button-description {
-    flex: 1;
-}
-
-
 
 .roomHighlight1x2 {
     position: absolute;
