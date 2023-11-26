@@ -135,10 +135,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const percentageElement = bar.parentElement.querySelector('.percentage');
         const fillPercentage = parseInt(bar.dataset.fill);
     
+        console.log('Initial fill percentage:', fillPercentage);
+    
         const tween = new TWEEN.Tween({ percentage: fillPercentage })
             .to({ percentage: 0 }, duration)
             .onUpdate(function () {
                 const newPercentage = Math.round(this.percentage);
+                console.log('New percentage:', newPercentage);
                 fillElement.style.width = `${newPercentage}%`;
                 percentageElement.textContent = `${newPercentage}%`;
             })
