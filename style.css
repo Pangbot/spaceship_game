@@ -19,21 +19,24 @@ body {
 .resource-bar-container {
     display: flex;
     align-items: center;
+    margin-bottom: 10px; /* Add margin between bars */
 }
 
 .resource-icon {
     width: 50px;
     height: 50px;
+    margin-right: 10px; /* Add margin between icon and bar */
 }
 
 .resource-fill {
     display: flex;
-    align-items: center; /* Align the percentage fill and bar vertically */
+    align-items: center;
+    width: 100%;
 }
 
 .resource-bar {
     height: 50px;
-    width: 100%;
+    flex: 1; /* Take remaining space */
     border: 1px solid #000;
     background-color: #eee;
     overflow: hidden;
@@ -43,7 +46,7 @@ body {
     content: '';
     display: block;
     height: 100%;
-    background-color: inherit; /* Inherit the background color from the parent */
+    background-color: inherit;
 }
 
 #oxygen_bar::before {
@@ -73,7 +76,7 @@ body {
     top: 205px; /* Adjust the top position to avoid overlap */
     left: calc(2.5% + 305px);
     height: 752px;
-    width: calc(95% - 325px);
+    width: calc(95% - 335px);
     display: flex;
     flex-direction: column;
     box-sizing: content-box;
