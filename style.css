@@ -19,6 +19,8 @@ body {
 
 .resource-bar-container {
     height: 50px;
+    display: flex;
+    flex-shrink: 0;
 }
 
 .resource-icon {
