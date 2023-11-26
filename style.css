@@ -16,15 +16,6 @@
     border: 1px solid #000;
     background-color: #eee;
     overflow: hidden;
-    transition: width 1s linear; /* Transition property moved to resource-bar class */
-}
-
-#oxygen_bar {
-    height: 50px; /* Adjust height if needed */
-}
-
-#food_bar {
-    height: 50px; /* Adjust height if needed */
 }
 
 #oxygen_bar::before,
@@ -32,16 +23,16 @@
     content: '';
     display: block;
     height: 100%;
-    width: 100%;
+    width: 0;
     background-color: #4CAF50;
-    transition: width 1s linear;
+    transition: width 1s linear; /* Each bar has its own transition */
 }
 
 #shipMap {
     position: absolute;
     top: 202px;
     left: 0;
-    height: 752px; /* Set the height of the room map */
+    height: 750px; /* Set the height of the room map */
     width: 303px; /* Set the width of the room map */
     border: 1px solid #000; /* Add border for visualization */
 }
