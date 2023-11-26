@@ -5,6 +5,7 @@
     width: 95%;
     height: 204px;
     border: 1px solid #000; /* Add border for visualization */
+    background-color: #333;
 }
 
 #banner {
@@ -23,7 +24,6 @@
     content: '';
     display: block;
     height: 100%;
-    background-color: #ccc; /* Grey background color */
 }
 
 #oxygen_bar::before {

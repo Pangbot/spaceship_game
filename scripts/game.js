@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     // Example: Decrease fill levels over time
-    decreaseFillOverTime('oxygen_bar', 100);
+    decreaseFillOverTime('oxygen_bar', 1000);
     decreaseFillOverTime('food_bar', 100);  
 
 });
