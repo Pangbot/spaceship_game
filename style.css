@@ -17,8 +17,8 @@ body {
 }
 
 .resource-bar-container {
+    height: 50px;
     display: flex;
-    align-items: center;
 }
 
 .resource-icon {
@@ -33,7 +33,6 @@ body {
 }
 
 .resource-bar {
-    height: 50px;
     flex: 1; /* Take remaining space */
     border: 1px solid #000;
     background-color: #eee;
