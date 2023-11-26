@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
             percentageElement.textContent = `${fillPercentage}%`;
     
             if (fillPercentage > 0) {
-                setTimeout(update, 1000); // Wait for 1 second before the next update
+                setTimeout(update, duration); // Use the provided duration
             }
         }
     
