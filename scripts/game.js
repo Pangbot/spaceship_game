@@ -133,19 +133,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function decreaseFillOverTime(bar, duration) {
         const fillElement = bar;
         const percentageElement = bar.parentElement.querySelector('.percentage');
-        const fillPercentage = parseFloat(bar.dataset.fill);
-    
-        console.log('Initial fill percentage:', fillPercentage);
+        const fillPercentage = parseFloat(bar.dataset.fill) || 0; // Ensure a valid numeric value
     
         const tween = new TWEEN.Tween({ percentage: fillPercentage })
             .to({ percentage: 0 }, duration)
             .onUpdate(function () {
                 const newPercentage = Math.round(this.percentage);
-                console.log("New percentage:", newPercentage);
-                
-                // Log the fill element for additional debugging
-                console.log("Fill element:", fillElement);
-
+    
                 fillElement.style.width = `${newPercentage}%`;
                 percentageElement.textContent = `${newPercentage}%`;
             })
