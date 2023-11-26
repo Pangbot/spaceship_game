@@ -41,56 +41,54 @@
 #container {
     position: absolute;
     top: 401px;
-    left: 305px; /* Adjust the left position as needed */
-    width: calc(100% - 305px); /* Set the width for the ship map and text container */
-    height: 352px; /* Set the height of the container */
+    left: 305px;
+    width: calc(100% - 305px);
+    height: 352px;
     display: flex;
-    flex-direction: column; /* Stack child elements vertically */
-    border: 1px solid #000; /* Add border for visualization */
+    flex-direction: column;
+    border: 1px solid #000;
 }
 
 #text-container {
-    flex: 1; /* Take up the available space in the flex container */
-    overflow: auto; /* Enable scrolling if content exceeds container height */
-    position: relative; /* Set position to relative */
+    flex: 1;
+    overflow: auto;
+    position: relative;
 }
 
 #line {
-    position: absolute; /* Set position to absolute */
-    top: 50%; /* Place the line in the middle */
+    position: absolute;
+    top: 50%;
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #000; /* Set the color of the line */
+    background-color: #000;
 }
 
 #story-text, #examine-text {
-    height: 50%; /* Divide the text container vertically */
+    height: 50%;
 }
 
 #button-container {
-    position: absolute;
-    bottom: 0; /* Adjust the bottom position as needed */
-    left: 0;
-    width: 100%; /* Set the width of the button container */
-    height: 200px; /* Set the height of the button container */
-    border-top: 1px solid #000; /* Add a border at the top of the button container */
+    width: 100%;
+    height: 200px;
+    border-top: 1px solid #000;
 }
 
 .button-wrapper {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Adjust the spacing between buttons */
+    margin-bottom: 10px;
 }
 
 button {
-    width: 150px; /* Set the width of the buttons */
-    margin-right: 10px; /* Adjust the spacing between the button and description */
+    width: 150px;
+    margin-right: 10px;
 }
 
 .button-description {
-    flex: 1; /* Take up the remaining space in the flex container */
+    flex: 1;
 }
+
 
 .roomHighlight1x2 {
     position: absolute;
