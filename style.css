@@ -19,6 +19,21 @@
     overflow: hidden;
 }
 
+.resource-bar::before {
+    content: '';
+    display: block;
+    height: 100%;
+    background-color: #ccc; /* Grey background color */
+}
+
+#oxygen_bar::before {
+    background-color: #ff0000; /* Red color for oxygen bar */
+}
+
+#food_bar::before {
+    background-color: #00ff00; /* Green color for food bar */
+}
+
 #shipMap {
     position: absolute;
     top: 205px; /* Adjust the top position to avoid overlap */
