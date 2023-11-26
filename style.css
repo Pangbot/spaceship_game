@@ -36,6 +36,8 @@ body {
 
 .resource-fill {
     align-items: center;
+    position: relative;
+    left: 50px;
     width: calc(100% - 50px);
 }
 
