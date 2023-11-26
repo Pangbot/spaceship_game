@@ -79,7 +79,6 @@ body {
     flex-direction: column;
     box-sizing: border-box;
     background-color: #444;
-    padding: 10px;
 }
 
 .container-buttons,
@@ -89,6 +88,7 @@ body {
     width: 100%;
     border: 1px solid #000;
     flex-direction: column;
+    padding: 10px;
 }
 
 button {
