@@ -38,24 +38,35 @@
     width: 100%; /* Make the image fill the container */
 }
 
-#text-container {
+#container {
     position: absolute;
     top: 201px;
     left: 305px; /* Adjust the left position as needed */
     width: calc(50% - 152.5px); /* Set the width for the ship map and text container */
-    height: 552px; /* Set the height of the text container */
+    height: 552px; /* Set the height of the container */
+    display: flex;
+    flex-direction: column; /* Stack child elements vertically */
     border: 1px solid #000; /* Add border for visualization */
 }
 
+#button-container {
+    flex: 1; /* Take up the available space in the flex container */
+    border-bottom: 1px solid #000; /* Add a border at the bottom of the button container */
+}
+
+#text-container {
+    flex: 1; /* Take up the available space in the flex container */
+    overflow: auto; /* Enable scrolling if content exceeds container height */
+}
+
 #line {
-    width: 2px; /* Set the width of the line */
-    height: 100%; /* Set the height of the line to match the text container */
+    width: 100%;
+    height: 2px;
     background-color: #000; /* Set the color of the line */
 }
 
 #story-text, #examine-text {
     height: 50%; /* Divide the text container vertically */
-    overflow: auto; /* Enable scrolling if content exceeds container height */
 }
 
 #button-container {
@@ -63,7 +74,7 @@
     top: 201px; /* Adjust the top position as needed */
     left: calc(50% + 152.5px); /* Adjust the left position as needed */
     width: calc(50% - 152.5px);
-    height: 552px; /* Set the height of the button container */
+    height: 276px; /* Set the height of the button container */
     border: 1px solid #000; /* Add border for visualization */
 }
 
