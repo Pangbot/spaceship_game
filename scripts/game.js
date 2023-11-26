@@ -139,9 +139,10 @@ document.addEventListener('DOMContentLoaded', function () {
             .to({ percentage: 0 }, duration)
             .onUpdate(function () {
                 const newPercentage = Math.round(this.percentage);
+                const clampedPercentage = Math.max(0, Math.min(newPercentage, 100)); // Ensure the value is between 0 and 100
     
-                fillElement.style.width = `${newPercentage}%`;
-                percentageElement.textContent = `${newPercentage}%`;
+                fillElement.style.width = `${clampedPercentage}%`;
+                percentageElement.textContent = `${clampedPercentage}%`;
             })
             .start();
     
