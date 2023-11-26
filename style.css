@@ -40,10 +40,10 @@
 
 #container {
     position: absolute;
-    top: 201px;
+    top: 401px;
     left: 305px; /* Adjust the left position as needed */
     width: calc(100% - 305px); /* Set the width for the ship map and text container */
-    height: 276px; /* Set the height of the container */
+    height: 352px; /* Set the height of the container */
     display: flex;
     flex-direction: column; /* Stack child elements vertically */
     border: 1px solid #000; /* Add border for visualization */
@@ -71,10 +71,10 @@
 
 #button-container {
     position: absolute;
-    top: 201px; /* Adjust the top position as needed */
-    left: 305px; /* Adjust the left position as needed */
+    top: 0px; /* Adjust the top position as needed */
+    left: 0px; /* Adjust the left position as needed */
     width: calc(100% - 305px);
-    height: 276px; /* Set the height of the button container */
+    height: 200px; /* Set the height of the button container */
     border: 1px solid #000; /* Add border for visualization */
 }
 
