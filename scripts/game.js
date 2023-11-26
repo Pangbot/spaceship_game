@@ -135,15 +135,15 @@ document.addEventListener('DOMContentLoaded', function () {
             percentageElement.textContent = `${fillPercentage}%`;
     
             if (fillPercentage > 0) {
-                setTimeout(update, duration);
+                requestAnimationFrame(update);
             }
         }
     
-        update();
+        setTimeout(update, duration);
     }
     
     // Example: Decrease fill levels over time
     decreaseFillOverTime(document.getElementById('oxygen_bar'), 10000);
-    decreaseFillOverTime(document.getElementById('food_bar'), 1000);
+    decreaseFillOverTime(document.getElementById('food_bar'), 1000);    
 
 });
