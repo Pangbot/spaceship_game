@@ -1,29 +1,13 @@
 #game-container {
     display: flex;
+    flex-wrap: wrap;
 }
 
 #status-container {
     height: 200px;
     border: 1px solid #000;
-}
-
-#banner {
-    height: 100px; /* Set the height of the banner */
-}
-
-.resource-bar {
-    height: 50px;
-    border: 1px solid #000;
-    background-color: #eee;
-    overflow: hidden;
-}
-
-.resource-bar::before {
-    content: '';
-    display: block;
-    height: 100%;
     width: 100%;
-    background-color: #4CAF50;
+    order: 1;
 }
 
 #shipMap {
@@ -31,6 +15,7 @@
     height: 40%; /* Adjust as needed */
     margin-top: 10px; /* Add margin to separate from the resource bar */
     border: 1px solid #000;
+    order: 2;
 }
 
 #mapImage {
@@ -38,9 +23,9 @@
 }
 
 #container {
-    display: flex;
-    flex-direction: column;
     width: calc(100% - 305px);
+    height: 50%; /* Adjust as needed */
+    order: 3;
 }
 
 .container-buttons,
@@ -60,7 +45,6 @@ button {
     flex: 1;
     margin-left: 10px;
 }
-
 
 .roomHighlight1x2 {
     position: absolute;
