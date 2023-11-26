@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function decreaseFillOverTime(bar, duration) {
         const fillElement = bar;
         const percentageElement = bar.parentElement.querySelector('.percentage');
-        const fillPercentage = parseInt(bar.dataset.fill);
+        const fillPercentage = parseFloat(bar.dataset.fill);
     
         console.log('Initial fill percentage:', fillPercentage);
     
@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .onUpdate(function () {
                 const newPercentage = Math.round(this.percentage);
                 console.log('New percentage:', newPercentage);
+                console.log('Fill element:', fillElement);
                 fillElement.style.width = `${newPercentage}%`;
                 percentageElement.textContent = `${newPercentage}%`;
             })
