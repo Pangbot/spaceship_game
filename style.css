@@ -47,6 +47,13 @@
     border: 1px solid #000; /* Add border for visualization */
 }
 
+#line {
+    width: calc(80% - 305);
+    height: 2px;
+    background-color: #000; /* Set the color of the line */
+    margin-top: 50%; /* Adjust the margin to center the line */
+}
+
 #story-text, #examine-text {
     height: 50%; /* Divide the text container vertically */
     overflow: auto; /* Enable scrolling if content exceeds container height */
