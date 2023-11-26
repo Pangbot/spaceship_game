@@ -1,3 +1,7 @@
+#game-container {
+    display: flex;
+}
+
 #status-container {
     height: 200px;
     border: 1px solid #000;
@@ -22,12 +26,6 @@
     background-color: #4CAF50;
 }
 
-#shipMap,
-#container {
-    display: flex;
-    flex-direction: column;
-}
-
 #shipMap {
     width: 305px;
     height: 40%; /* Adjust as needed */
@@ -40,8 +38,9 @@
 }
 
 #container {
+    display: flex;
+    flex-direction: column;
     width: calc(100% - 305px);
-    height: 50%; /* Adjust as needed */
 }
 
 .container-buttons,
@@ -61,6 +60,7 @@ button {
     flex: 1;
     margin-left: 10px;
 }
+
 
 .roomHighlight1x2 {
     position: absolute;
