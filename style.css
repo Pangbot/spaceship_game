@@ -27,6 +27,12 @@ body {
     height: 50px;
 }
 
+.percentage {
+    width: 50px;
+    text-align: center;
+    font-size: 14px;
+}
+
 .resource-fill {
     display: flex;
     align-items: center;
@@ -72,7 +78,7 @@ body {
 
 #container {
     left: calc(2.5% + 305px);
-    width: calc(95% - 335px);
+    width: calc(95% - 325px);
     display: flex;
     flex-direction: column;
     background-color: #444;
