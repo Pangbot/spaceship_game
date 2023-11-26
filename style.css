@@ -41,23 +41,21 @@ body {
 }
 
 .oxygen-bar {
-    width: calc(100% - 50px);
+    width: 100%;
     height: 48px;
     border: 1px solid #000;
     background-color: #ff0000;
     overflow: hidden;
     transition: width 1s ease;
-    flex-shrink: 0;
 }
 
 .food-bar {
-    width: calc(100% - 50px);
+    width: 100%;
     height: 48px;
     border: 1px solid #000;
     background-color: #00ff00;
     overflow: hidden;
     transition: width 1s ease;
-    flex-shrink: 0;
 }
 
 #shipMap,
