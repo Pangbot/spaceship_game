@@ -41,7 +41,7 @@ body {
 
 .oxygen-bar {
     display: flex;
-    width: calc(100% - 100px);
+    width: calc(100% - 2px);
     height: 48px;
     border: 1px solid #000;
     background-color: #ff0000;
@@ -51,7 +51,7 @@ body {
 
 .food-bar {
     display: flex;
-    width: calc(100% - 100px);
+    width: calc(100% - 2px);
     height: 48px;
     border: 1px solid #000;
     background-color: #00ff00;
@@ -79,7 +79,7 @@ body {
 }
 
 #container {
-    left: calc(2.5% + 305px);
+    left: calc(2.5% + 300px);
     width: calc(95% - 320px);
     display: flex;
     flex-direction: column;
