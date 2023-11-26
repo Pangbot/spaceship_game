@@ -43,26 +43,22 @@
     top: 202px;
     left: 305px;
     height: 752px;
-    width: 100%;
+    width: calc(100% - 305px);
     display: flex;
     flex-direction: column;
 }
 
 .container-buttons,
 .container-text {
-    padding: 10px;
     display: flex;
     height: calc(752px / 3);
     width: 100%;
     border: 1px solid #000;
+    flex-direction: column;
 }
 
 .container-buttons {
-    flex-direction: column; /* Stack buttons vertically */
-}
-
-.container-text {
-    flex-direction: column;
+    padding: 10px;
 }
 
 button {
