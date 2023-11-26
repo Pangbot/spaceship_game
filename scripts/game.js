@@ -124,24 +124,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function decreaseFillOverTime(bar, duration) {
-        const fillElement = bar.querySelector('.resource-bar::before');
         let fillPercentage = bar.dataset.fill;
+        const fillElement = bar.querySelector('.resource-bar::before');
     
-        function update() {
+        const intervalId = setInterval(() => {
             fillPercentage = Math.max(0, fillPercentage - 1);
-    
             fillElement.style.width = `${fillPercentage}%`;
     
-            if (fillPercentage > 0) {
-                setTimeout(update, 1000); // Wait for 1 second before the next update
+            if (fillPercentage === 0) {
+                clearInterval(intervalId); // Stop the interval when the fillPercentage reaches 0
             }
-        }
-    
-        update();
+        }, duration);
     }
     
     // Example: Decrease fill levels over time
     decreaseFillOverTime(document.getElementById('oxygen_bar'), 100);
-    decreaseFillOverTime(document.getElementById('food_bar'), 100);
-    
+    decreaseFillOverTime(document.getElementById('food_bar'), 100);    
+
 });

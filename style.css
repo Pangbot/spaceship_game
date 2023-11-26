@@ -5,7 +5,6 @@
     width: 95%;
     height: 200px;
     border: 1px solid #000; /* Add border for visualization */
-    box-sizing: border-box;
 }
 
 #banner {
@@ -18,7 +17,6 @@
     border: 1px solid #000;
     background-color: #eee;
     overflow: hidden;
-    box-sizing: border-box;
 }
 
 .resource-bar::before {
@@ -59,7 +57,7 @@
     top: 205px; /* Adjust the top position to avoid overlap */
     left: 305px;
     height: 752px;
-    width: calc(95% - 305px);
+    width: calc(95% - 315px);
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
