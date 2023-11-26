@@ -45,7 +45,7 @@ body {
     height: 752px; /* Adjust the height based on the remaining space */
     width: 303px; /* Set the width of the room map */
     border: 1px solid #000; /* Add border for visualization */
-    background-color: #444;
+    background-color: #000;
 }
 
 #mapImage {
@@ -60,7 +60,7 @@ body {
     width: calc(95% - 325px);
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
+    box-sizing: content-box;
     background-color: #444;
 }
 
