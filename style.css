@@ -9,27 +9,32 @@
 
 .resource-bar {
     position: absolute;
-    top: 100px; /* Adjust the top position as needed */
+    top: 100px;
     left: 0;
     height: 50px;
     width: 100%;
     border: 1px solid #000;
     background-color: #eee;
-    overflow: hidden; /* Ensure the overflow is hidden */
+    overflow: hidden;
+    transition: width 1s linear; /* Transition property moved to resource-bar class */
 }
 
-.resource-fill {
-    height: 100%;
-    background-color: #4CAF50;
+#oxygen_bar {
+    height: 50px; /* Adjust height if needed */
 }
 
-.resource-fill::before {
+#food_bar {
+    height: 50px; /* Adjust height if needed */
+}
+
+#oxygen_bar::before,
+#food_bar::before {
     content: '';
     display: block;
     height: 100%;
-    width: 0;
+    width: 100%;
     background-color: #4CAF50;
-    transition: width 1s linear; /* Adjust the transition timing function */
+    transition: width 1s linear;
 }
 
 #shipMap {

@@ -124,12 +124,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function setFill(bar, fillPercentage) {
-        const fillElement = bar.querySelector('.resource-fill::before'); // Update the selector
-        fillElement.style.width = `${fillPercentage}%`;
+        bar.style.width = `${fillPercentage}%`;
     }
     
     function decreaseFillOverTime(bar, duration) {
-        const fillElement = bar.querySelector('.resource-fill::before'); // Update the selector
         let fillPercentage = bar.dataset.fill;
         const startTime = performance.now();
     
@@ -137,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const elapsed = performance.now() - startTime;
             fillPercentage = Math.max(0, fillPercentage - (elapsed / (duration * 1000)) * 100);
     
-            setFill(bar, fillPercentage);
+            setFill(bar, fillPercentage + '%');
     
             if (fillPercentage > 0) {
                 requestAnimationFrame(update);
@@ -149,6 +147,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Example: Decrease fill levels over time
     decreaseFillOverTime(document.getElementById('oxygen_bar'), 100);
-    decreaseFillOverTime(document.getElementById('food_bar'), 100);    
+    decreaseFillOverTime(document.getElementById('food_bar'), 100);
     
 });
