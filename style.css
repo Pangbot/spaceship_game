@@ -16,11 +16,6 @@
     overflow: hidden;
 }
 
-#oxygen_bar,
-#food_bar {
-    height: 50%;
-}
-
 #oxygen_bar::before,
 #food_bar::before {
     content: '';

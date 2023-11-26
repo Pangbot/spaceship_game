@@ -123,23 +123,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    function setFill(bar, fillPercentage) {
-        bar.style.width = `${fillPercentage}%`;
-    }
-    
     function decreaseFillOverTime(bar, duration) {
         const fillElement = bar.querySelector('::before');
         let fillPercentage = bar.dataset.fill;
-        const startTime = performance.now();
-    
+        
         function update() {
-            const elapsed = performance.now() - startTime;
-            fillPercentage = Math.max(0, fillPercentage - (elapsed / (duration * 1000)) * 100);
+            fillPercentage = Math.max(0, fillPercentage - 1);
     
-            setFill(fillElement, fillPercentage);
+            fillElement.style.width = `${fillPercentage}%`;
     
             if (fillPercentage > 0) {
-                requestAnimationFrame(update);
+                setTimeout(update, 1000); // Wait for 1 second before the next update
             }
         }
     
@@ -148,6 +142,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Example: Decrease fill levels over time
     decreaseFillOverTime(document.getElementById('oxygen_bar'), 100);
-    decreaseFillOverTime(document.getElementById('food_bar'), 100); 
+    decreaseFillOverTime(document.getElementById('food_bar'), 100);
     
 });
