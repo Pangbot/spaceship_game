@@ -14,10 +14,10 @@
     border: 1px solid #000;
     background-color: #eee;
     overflow: hidden;
+    margin-bottom: 50px; /* Adjust as needed to separate the bars */
 }
 
-#oxygen_bar::before,
-#food_bar::before {
+.resource-bar::before {
     content: '';
     display: block;
     height: 100%;
