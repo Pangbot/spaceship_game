@@ -38,7 +38,7 @@ body {
     display: flex;
     align-items: center;
     left: 50px;
-    width: calc(100% - 50px);
+    width: calc(100% - 100px);
 }
 
 .oxygen-bar {
