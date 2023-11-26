@@ -57,6 +57,10 @@
     border: 1px solid #000;
 }
 
+.container-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+}
+
 .container-text {
     flex-direction: column;
 }
