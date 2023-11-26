@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function decreaseFillOverTime(bar, duration) {
         const fillElement = bar;
         const percentageElement = bar.parentElement.querySelector('.percentage');
-        const fillPercentage = parseFloat(bar.dataset.fill);
+        const fillPercentage = parseInt(bar.dataset.fill);
 
         const tween = new TWEEN.Tween({ percentage: fillPercentage })
             .to({ percentage: 0 }, duration)
