@@ -126,20 +126,24 @@ document.addEventListener('DOMContentLoaded', function () {
     function decreaseFillOverTime(bar, duration) {
         const fillElement = bar;
         const percentageElement = bar.parentElement.querySelector('.percentage');
-        let fillPercentage = parseInt(bar.dataset.fill);
+        const fillPercentage = parseInt(bar.dataset.fill);
     
-        function update() {
-            fillPercentage = Math.max(0, fillPercentage - 1);
+        const tween = new TWEEN.Tween({ percentage: fillPercentage })
+            .to({ percentage: 0 }, duration)
+            .onUpdate(function () {
+                const newPercentage = Math.round(this.percentage);
+                fillElement.style.width = `${newPercentage}%`;
+                percentageElement.textContent = `${newPercentage}%`;
+            })
+            .start();
     
-            fillElement.style.width = `${fillPercentage}%`;
-            percentageElement.textContent = `${fillPercentage}%`;
-    
-            if (fillPercentage > 0) {
-                setTimeout(update, duration / 100); // Use the provided duration
+        function animate() {
+            if (tween.update()) {
+                requestAnimationFrame(animate);
             }
         }
     
-        update();
+        animate();
     }
     
     // Example: Decrease fill levels over time
