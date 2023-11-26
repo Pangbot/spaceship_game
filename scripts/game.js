@@ -123,40 +123,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    function animate() {
-        requestAnimationFrame(animate);
-        TWEEN.update();
-    }
-
-    animate();
-
-    function decreaseFillOverTime(bar, duration) {
-        const fillElement = bar;
-        const percentageElement = bar.parentElement.querySelector('.percentage');
-        const fillPercentage = parseFloat(bar.dataset.fill) || 0; // Ensure a valid numeric value
-    
-        const tween = new TWEEN.Tween({ percentage: fillPercentage })
-            .to({ percentage: 0 }, duration)
-            .onUpdate(function () {
-                const newPercentage = Math.round(this.percentage);
-                const clampedPercentage = Math.max(0, Math.min(newPercentage, 100)); // Ensure the value is between 0 and 100
-    
-                fillElement.style.width = `${clampedPercentage}%`;
-                percentageElement.textContent = `${clampedPercentage}%`;
-            })
-            .start();
-    
-        function animate() {
-            if (tween.update()) {
-                requestAnimationFrame(animate);
-            }
-        }
-    
-        animate();
-    }
-
-    // Example: Decrease fill levels over time
-    decreaseFillOverTime(document.getElementById('oxygen_bar'), 10000);
-    decreaseFillOverTime(document.getElementById('food_bar'), 1000);
-
 });

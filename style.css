@@ -35,7 +35,7 @@ body {
 .oxygen-bar {
     flex: 1; /* Take remaining space */
     border: 1px solid #000;
-    background-color: #eee;
+    background-color: #ff0000;
     overflow: hidden;
     transition: width 1s ease;
 }
@@ -43,17 +43,9 @@ body {
 .food-bar {
     flex: 1; /* Take remaining space */
     border: 1px solid #000;
-    background-color: #eee;
+    background-color: #00ff00;
     overflow: hidden;
     transition: width 1s ease;
-}
-
-#oxygen_bar {
-    background-color: #ff0000; /* Red color for oxygen bar */
-}
-
-#food_bar {
-    background-color: #00ff00; /* Green color for food bar */
 }
 
 #shipMap {
