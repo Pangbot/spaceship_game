@@ -19,17 +19,16 @@ body {
 .resource-bar-container {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Adjust as needed */
 }
 
 .resource-icon {
     width: 50px;
     height: 50px;
-    margin-right: 10px; /* Adjust as needed for spacing */
 }
 
 .resource-fill {
-    flex-grow: 1;
+    display: flex;
+    align-items: center; /* Align the percentage fill and bar vertically */
 }
 
 .resource-bar {
