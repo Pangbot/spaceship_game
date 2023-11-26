@@ -15,6 +15,7 @@
     width: 100%;
     border: 1px solid #000;
     background-color: #eee;
+    overflow: hidden; /* Ensure the overflow is hidden */
 }
 
 .resource-fill {
@@ -22,7 +23,7 @@
     background-color: #4CAF50;
 }
 
-.resource-bar::before {
+.resource-fill::before {
     content: '';
     display: block;
     height: 100%;
