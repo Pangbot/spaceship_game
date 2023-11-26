@@ -77,18 +77,18 @@ body {
     width: calc(95% - 335px);
     display: flex;
     flex-direction: column;
-    box-sizing: content-box;
+    box-sizing: border-box;
     background-color: #444;
+    padding: 10px;
 }
 
 .container-buttons,
 .container-text {
     display: flex;
-    height: 100%; /* Occupy the full height of the container */
+    height: 100%;
     width: 100%;
     border: 1px solid #000;
     flex-direction: column;
-    padding: 10px;
 }
 
 button {
