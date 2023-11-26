@@ -124,22 +124,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function decreaseFillOverTime(bar, duration) {
-        const fillElement = bar.querySelector('.resource-bar::before');
-        const percentageElement = bar.parentElement.querySelector('.percentage');
         let fillPercentage = bar.dataset.fill;
+        const fillElement = document.getElementById(bar.id);
     
         function update() {
             fillPercentage = Math.max(0, fillPercentage - 1);
-    
             fillElement.style.width = `${fillPercentage}%`;
-            percentageElement.textContent = `${fillPercentage}%`;
     
             if (fillPercentage > 0) {
-                requestAnimationFrame(update);
+                setTimeout(update, duration);
             }
         }
     
-        setTimeout(update, duration);
+        update();
     }
     
     // Example: Decrease fill levels over time
