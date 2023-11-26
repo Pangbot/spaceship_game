@@ -123,4 +123,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Function to update the resource bars over time
+    function updateResourceBars() {
+        // Oxygen Bar
+        const oxygenBar = document.getElementById('oxygen_bar');
+        const currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
+
+        // Food Bar
+        const foodBar = document.getElementById('food_bar');
+        const currentFood = parseFloat(foodBar.getAttribute('data-fill'));
+
+        // Update bars by decreasing 1% every second (adjust the interval as needed)
+        const decreaseRate = 1;
+        const interval = 1000; // 1000 milliseconds = 1 second
+
+        setInterval(function () {
+            const newOxygen = Math.max(0, currentOxygen - decreaseRate);
+            oxygenBar.style.width = `${newOxygen}%`;
+            oxygenBar.setAttribute('data-fill', newOxygen);
+
+            const newFood = Math.max(0, currentFood - decreaseRate);
+            foodBar.style.width = `${newFood}%`;
+            foodBar.setAttribute('data-fill', newFood);
+        }, interval);
+    }
+
+    // Call the function to start updating the bars
+    updateResourceBars();
+
 });
