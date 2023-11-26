@@ -23,8 +23,20 @@
     content: '';
     display: block;
     height: 100%;
-    width: 100%;
     background-color: #4CAF50;
+}
+
+.decreasing-fill {
+    animation: decreaseFill linear 1s infinite;
+}
+
+@keyframes decreaseFill {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
 }
 
 #shipMap {
@@ -48,6 +60,7 @@
     width: calc(95% - 305px);
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 .container-buttons,

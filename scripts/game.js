@@ -124,9 +124,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function decreaseFillOverTime(bar, duration) {
-        const fillElement = bar.querySelector('::before');
+        const fillElement = bar.querySelector('.resource-bar::before');
         let fillPercentage = bar.dataset.fill;
-        
+    
         function update() {
             fillPercentage = Math.max(0, fillPercentage - 1);
     
@@ -142,6 +142,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Example: Decrease fill levels over time
     decreaseFillOverTime(document.getElementById('oxygen_bar'), 100);
-    decreaseFillOverTime(document.getElementById('food_bar'), 100);    
+    decreaseFillOverTime(document.getElementById('food_bar'), 100);        
     
 });
