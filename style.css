@@ -9,8 +9,6 @@
 
 .resource-bar {
     position: absolute;
-    top: 100px;
-    left: 0;
     height: 50px;
     width: 100%;
     border: 1px solid #000;
@@ -18,14 +16,19 @@
     overflow: hidden;
 }
 
+#oxygen_bar,
+#food_bar {
+    height: 50%;
+}
+
 #oxygen_bar::before,
 #food_bar::before {
     content: '';
     display: block;
     height: 100%;
-    width: 0;
+    width: 100%;
     background-color: #4CAF50;
-    transition: width 1s linear; /* Each bar has its own transition */
+    transition: width 1s linear;
 }
 
 #shipMap {

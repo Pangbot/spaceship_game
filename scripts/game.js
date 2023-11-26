@@ -148,6 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Example: Decrease fill levels over time
     decreaseFillOverTime(document.getElementById('oxygen_bar'), 100);
-    decreaseFillOverTime(document.getElementById('food_bar'), 100);    
+    decreaseFillOverTime(document.getElementById('food_bar'), 100); 
     
 });
