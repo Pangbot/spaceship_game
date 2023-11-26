@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function decreaseFillOverTime(bar, duration) {
         const fillElement = bar;
         const percentageElement = bar.parentElement.querySelector('.percentage');
-        let fillPercentage = bar.dataset.fill;
+        let fillPercentage = parseInt(bar.dataset.fill);
     
         function update() {
             fillPercentage = Math.max(0, fillPercentage - 1);
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
             percentageElement.textContent = `${fillPercentage}%`;
     
             if (fillPercentage > 0) {
-                setTimeout(update, duration); // Use the provided duration
+                setTimeout(update, duration / 100); // Use the provided duration
             }
         }
     
