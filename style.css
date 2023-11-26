@@ -43,6 +43,7 @@ body {
     content: '';
     display: block;
     height: 100%;
+    background-color: inherit; /* Inherit the background color from the parent */
 }
 
 #oxygen_bar::before {
@@ -86,6 +87,7 @@ body {
     width: 100%;
     border: 1px solid #000;
     flex-direction: column;
+    padding: 10px;
 }
 
 button {

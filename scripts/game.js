@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
             percentageElement.textContent = `${fillPercentage}%`;
     
             if (fillPercentage > 0) {
-                setTimeout(update, duration); // Use the provided duration
+                setTimeout(update, duration);
             }
         }
     
