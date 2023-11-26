@@ -124,15 +124,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function decreaseFillOverTime(bar, duration) {
+        const fillElement = bar;
+        const percentageElement = bar.parentElement.querySelector('.percentage');
         let fillPercentage = bar.dataset.fill;
-        const fillElement = document.getElementById(bar.id);
     
         function update() {
             fillPercentage = Math.max(0, fillPercentage - 1);
+    
             fillElement.style.width = `${fillPercentage}%`;
+            percentageElement.textContent = `${fillPercentage}%`;
     
             if (fillPercentage > 0) {
-                setTimeout(update, duration);
+                setTimeout(update, duration); // Use the provided duration
             }
         }
     
@@ -141,6 +144,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Example: Decrease fill levels over time
     decreaseFillOverTime(document.getElementById('oxygen_bar'), 10000);
-    decreaseFillOverTime(document.getElementById('food_bar'), 1000);    
+    decreaseFillOverTime(document.getElementById('food_bar'), 1000);
 
 });
