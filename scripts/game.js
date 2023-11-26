@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const fillElement = bar;
         const percentageElement = bar.parentElement.querySelector('.percentage');
         const fillPercentage = parseInt(bar.dataset.fill);
-
+    
         const tween = new TWEEN.Tween({ percentage: fillPercentage })
             .to({ percentage: 0 }, duration)
             .onUpdate(function () {
@@ -143,13 +143,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 percentageElement.textContent = `${newPercentage}%`;
             })
             .start();
-
+    
         function animate() {
             if (tween.update()) {
                 requestAnimationFrame(animate);
             }
         }
-
+    
         animate();
     }
 
