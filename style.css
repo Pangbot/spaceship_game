@@ -16,9 +16,25 @@ body {
     height: 100px; /* Set the height of the banner */
 }
 
+.resource-bar-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust as needed */
+}
+
+.resource-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px; /* Adjust as needed for spacing */
+}
+
+.resource-fill {
+    flex-grow: 1;
+}
+
 .resource-bar {
     height: 50px;
-    width: calc(100% - 1px);
+    width: 100%;
     border: 1px solid #000;
     background-color: #eee;
     overflow: hidden;
