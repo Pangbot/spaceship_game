@@ -131,19 +131,27 @@ document.addEventListener('DOMContentLoaded', function () {
     function decreaseFillOverTime(bar, duration) {
         const fillElement = bar.querySelector('.resource-fill');
         let fillPercentage = bar.dataset.fill;
+        const startTime = performance.now();
     
-        const interval = setInterval(() => {
-            fillPercentage -= (100 / duration);
-            if (fillPercentage <= 0) {
-                fillPercentage = 0;
-                clearInterval(interval);
-            }
+        function update() {
+            const elapsed = performance.now() - startTime;
+            fillPercentage = Math.max(0, fillPercentage - (elapsed / (duration * 1000)) * 100);
     
             setFill(bar, fillPercentage);
-        }, 1000); // Update every second
+    
+            if (fillPercentage > 0) {
+                requestAnimationFrame(update);
+            }
+        }
+    
+        update();
     }
     
-    // Example: Decrease fill levels over time
+    // Example: Set positioning and decrease fill levels over time
+    document.getElementById('oxygen_bar').style.top = '100px';
+    document.getElementById('food_bar').style.top = '150px';
+    
     decreaseFillOverTime(document.getElementById('oxygen_bar'), 100);
     decreaseFillOverTime(document.getElementById('food_bar'), 100);
+    
 });
