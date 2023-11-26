@@ -19,7 +19,7 @@ body {
 
 .resource-bar-container {
     height: 50px;
-    width: calc(100% - 50px);
+    width: 100%;
     display: flex;
 }
 
@@ -37,6 +37,7 @@ body {
 .resource-fill {
     display: flex;
     align-items: center;
+    left: 50px;
     width: calc(100% - 50px);
 }
 
