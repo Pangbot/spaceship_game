@@ -1,7 +1,7 @@
 #status-container {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 2.5%;
     width: 95%;
     height: 200px;
     border: 1px solid #000; /* Add border for visualization */
@@ -13,36 +13,16 @@
 
 .resource-bar {
     height: 50px;
-    width: 100%;
+    width: calc(100% - 1px);
     border: 1px solid #000;
     background-color: #eee;
     overflow: hidden;
 }
 
-.resource-bar::before {
-    content: '';
-    display: block;
-    height: 100%;
-    background-color: #4CAF50;
-}
-
-.decreasing-fill {
-    animation: decreaseFill linear 1s infinite;
-}
-
-@keyframes decreaseFill {
-    0% {
-        width: 100%;
-    }
-    100% {
-        width: 0%;
-    }
-}
-
 #shipMap {
     position: absolute;
     top: 205px; /* Adjust the top position to avoid overlap */
-    left: 0;
+    left: 2.5%;
     height: 752px; /* Adjust the height based on the remaining space */
     width: 303px; /* Set the width of the room map */
     border: 1px solid #000; /* Add border for visualization */
@@ -55,9 +35,9 @@
 #container {
     position: absolute;
     top: 205px; /* Adjust the top position to avoid overlap */
-    left: 305px;
+    left: calc(2.5% + 305px);
     height: 752px;
-    width: calc(95% - 315px);
+    width: calc(95% - 325px);
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
