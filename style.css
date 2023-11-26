@@ -5,6 +5,7 @@
     width: 95%;
     height: 200px;
     border: 1px solid #000; /* Add border for visualization */
+    box-sizing: border-box;
 }
 
 #banner {
@@ -17,6 +18,7 @@
     border: 1px solid #000;
     background-color: #eee;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .resource-bar::before {
