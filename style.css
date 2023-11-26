@@ -32,7 +32,15 @@ body {
     width: 100%;
 }
 
-.resource-bar {
+.oxygen-bar {
+    flex: 1; /* Take remaining space */
+    border: 1px solid #000;
+    background-color: #eee;
+    overflow: hidden;
+    transition: width 1s ease;
+}
+
+.food-bar {
     flex: 1; /* Take remaining space */
     border: 1px solid #000;
     background-color: #eee;
