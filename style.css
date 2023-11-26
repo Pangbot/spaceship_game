@@ -51,10 +51,27 @@
 .container-buttons,
 .container-text {
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     height: calc(752px / 3);
     width: 100%;
     border: 1px solid #000;
 }
+
+.container-text {
+    flex-direction: column;
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+.button-description {
+    flex: 1;
+    margin-left: 10px;
+}
+
 
 .roomHighlight1x2 {
     position: absolute;
