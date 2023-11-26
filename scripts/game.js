@@ -122,4 +122,28 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    function setFill(bar, fillPercentage) {
+        const fillElement = bar.querySelector('.resource-fill');
+        fillElement.style.width = `${fillPercentage}%`;
+    }
+    
+    function decreaseFillOverTime(bar, duration) {
+        const fillElement = bar.querySelector('.resource-fill');
+        let fillPercentage = bar.dataset.fill;
+    
+        const interval = setInterval(() => {
+            fillPercentage -= (100 / duration);
+            if (fillPercentage <= 0) {
+                fillPercentage = 0;
+                clearInterval(interval);
+            }
+    
+            setFill(bar, fillPercentage);
+        }, 1000); // Update every second
+    }
+    
+    // Example: Decrease fill levels over time
+    decreaseFillOverTime(document.getElementById('oxygen_bar'), 100);
+    decreaseFillOverTime(document.getElementById('food_bar'), 100);
 });
