@@ -40,18 +40,17 @@
 
 #text-container {
     position: absolute;
-    top: 401px;
+    top: 201px;
     left: 305px; /* Adjust the left position as needed */
-    width: calc(80% - 305px); /* Set a percentage of the viewport width for the text container */
+    width: calc(50% - 152.5px); /* Set the width for the ship map and text container */
     height: 552px; /* Set the height of the text container */
     border: 1px solid #000; /* Add border for visualization */
 }
 
 #line {
-    width: calc(80% - 305);
-    height: 2px;
+    width: 2px; /* Set the width of the line */
+    height: 100%; /* Set the height of the line to match the text container */
     background-color: #000; /* Set the color of the line */
-    margin-top: 50%; /* Adjust the margin to center the line */
 }
 
 #story-text, #examine-text {
@@ -62,9 +61,9 @@
 #button-container {
     position: absolute;
     top: 201px; /* Adjust the top position as needed */
-    left: 305px; /* Adjust the left position as needed */
-    width: calc(80% - 305px);
-    height: 200px;
+    left: calc(50% + 152.5px); /* Adjust the left position as needed */
+    width: calc(50% - 152.5px);
+    height: 552px; /* Set the height of the button container */
     border: 1px solid #000; /* Add border for visualization */
 }
 
