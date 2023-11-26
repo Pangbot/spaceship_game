@@ -9,6 +9,8 @@
 
 .resource-bar {
     position: absolute;
+    top: 100px; /* Adjust the top position as needed */
+    left: 0;
     height: 50px;
     width: 100%;
     border: 1px solid #000;
@@ -20,14 +22,13 @@
     background-color: #4CAF50;
 }
 
-#oxygen_bar::before,
-#food_bar::before {
+.resource-bar::before {
     content: '';
     display: block;
     height: 100%;
     width: 0;
     background-color: #4CAF50;
-    transition: width 0.5s ease;
+    transition: width 1s linear; /* Adjust the transition timing function */
 }
 
 #shipMap {

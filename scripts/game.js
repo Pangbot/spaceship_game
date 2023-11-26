@@ -147,10 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
         update();
     }
     
-    // Example: Set positioning and decrease fill levels over time
-    document.getElementById('oxygen_bar').style.top = '100px';
-    document.getElementById('food_bar').style.top = '150px';
-    
+    // Example: Decrease fill levels over time
     decreaseFillOverTime(document.getElementById('oxygen_bar'), 100);
     decreaseFillOverTime(document.getElementById('food_bar'), 100);
     
