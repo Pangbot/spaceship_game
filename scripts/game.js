@@ -141,8 +141,11 @@ document.addEventListener('DOMContentLoaded', function () {
             .to({ percentage: 0 }, duration)
             .onUpdate(function () {
                 const newPercentage = Math.round(this.percentage);
-                console.log('New percentage:', newPercentage);
-                console.log('Fill element:', fillElement);
+                console.log("New percentage:", newPercentage);
+                
+                // Log the fill element for additional debugging
+                console.log("Fill element:", fillElement);
+
                 fillElement.style.width = `${newPercentage}%`;
                 percentageElement.textContent = `${newPercentage}%`;
             })
