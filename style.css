@@ -70,7 +70,7 @@ body {
 
 #shipMap {
     left: 2.5%;
-    width: 303px; /* Set the width of the room map */
+    width: 302px; /* Set the width of the room map */
     border: 1px solid #000; /* Add border for visualization */
     background-color: #000;
 }
