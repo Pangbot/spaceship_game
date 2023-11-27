@@ -81,8 +81,8 @@ body {
 }
 
 #container {
-    left: calc(2.5% + 303px);
-    width: calc(95% - 322px);
+    left: calc(2.5% + 305px);
+    width: calc(95% - 320px);
     display: flex;
     flex-direction: column;
     background-color: #444;
