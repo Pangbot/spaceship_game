@@ -70,7 +70,7 @@ body {
 
 #shipMap {
     left: 2.5%;
-    width: 303px; /* Set the width of the room map */
+    width: 304px; /* Set the width of the room map */
     border: 1px solid #000; /* Add border for visualization */
     background-color: #000;
 }
@@ -80,7 +80,7 @@ body {
 }
 
 #container {
-    left: calc(2.5% + 303px);
+    left: calc(2.5% + 304px);
     width: calc(95% - 321px);
     display: flex;
     flex-direction: column;
