@@ -30,7 +30,8 @@ body {
 }
 
 .percentage {
-    float: left;
+    display: flex;
+    align-items: center;
     width: 50px;
     text-align: center;
     font-size: 14px;
