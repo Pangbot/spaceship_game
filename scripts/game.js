@@ -184,12 +184,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to update button descriptions based on the current room
     function updateButtonDescriptions(roomId) {   
         const roomButtons = buttonDescriptions[roomId] || {};
-        
-        if(roomButtons === null) {
-            const numButtons = 2;
-        }
-        else {
-            const numButtons = Object.keys(roomButtons).length;
+        const numButtons = 2;
+
+        if(roomButtons != null) {
+            numButtons = Object.keys(roomButtons).length;
         }
     
         for (let i = 1; i <= numButtons; i++) {
