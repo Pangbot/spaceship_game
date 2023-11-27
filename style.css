@@ -29,18 +29,22 @@ body {
     height: 50px;
 }
 
-.percentage {
-    float: left;
+.percentage-container {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 50px;
+    height: 50px;
+}
+
+.percentage {
     text-align: center;
     font-size: 14px;
 }
 
 .resource-fill {
-    margin-left: 100px; /* Sum of icon and percentage widths */
-    overflow: hidden; /* Clearfix for floated elements */
+    margin-left: 100px;
+    overflow: hidden;
 }
 
 .oxygen-bar {
@@ -82,7 +86,7 @@ body {
 #container {
     left: calc(2.5% + 303px);
     height: 754px;
-    width: calc(95% - 321px);
+    width: calc(95% - 322px);
     display: flex;
     flex-direction: column;
     background-color: #444;
