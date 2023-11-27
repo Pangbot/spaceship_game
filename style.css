@@ -24,11 +24,13 @@ body {
 }
 
 .resource-icon {
+    float: left;
     width: 50px;
     height: 50px;
 }
 
 .percentage {
+    float: left;
     width: 50px;
     text-align: center;
     font-size: 14px;
