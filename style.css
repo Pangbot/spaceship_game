@@ -80,7 +80,7 @@ body {
 }
 
 #container {
-    left: calc(2.5% + 306px);
+    left: calc(2.5% + 304px);
     width: calc(95% - 321px);
     display: flex;
     flex-direction: column;
