@@ -35,6 +35,7 @@ body {
 }
 
 .resource-fill {
+    display: flex;
     align-items: center;
     width: calc(100% - 50px);
 }
@@ -46,7 +47,6 @@ body {
     background-color: #ff0000;
     overflow: hidden;
     transition: width 1s ease;
-    align-items: left;
 }
 
 .food-bar {
@@ -56,7 +56,6 @@ body {
     background-color: #00ff00;
     overflow: hidden;
     transition: width 1s ease;
-    align-items: left;
 }
 
 #shipMap,
