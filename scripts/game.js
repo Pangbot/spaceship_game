@@ -129,11 +129,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const oxygenBar = document.getElementById('oxygen_bar');
         let currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
         const oxygenPercentage = oxygenBar.parentElement.querySelector('.percentage');
+        console.log(oxygenBar.parentElement)
 
         // Food Bar
         const foodBar = document.getElementById('food_bar');
         let currentFood = parseFloat(foodBar.getAttribute('data-fill'));
         const foodPercentage = foodBar.parentElement.querySelector('.percentage');
+        console.log(foodBar.parentElement)
 
         // Update bars by decreasing 1% every second for oxygen and 10% for food (adjust the interval as needed)
         const oxygenDecreaseRate = 0.1; // 10x slower than food
