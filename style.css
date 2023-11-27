@@ -37,7 +37,7 @@ body {
 .resource-fill {
     display: flex;
     align-items: center;
-    width: calc(100% - 50px);
+    width: calc(100% - 100px);
 }
 
 .oxygen-bar {
