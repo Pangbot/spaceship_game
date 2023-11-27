@@ -37,27 +37,23 @@ body {
 .resource-fill {
     display: flex;
     align-items: center;
-    width: calc(100% - 50px);
+    width: 100%;
 }
 
 .oxygen-bar {
-    width: 100%;
+    width: calc(100% - 50px);
     height: 48px;
     border: 1px solid #000;
     background-color: #ff0000;
-    overflow: hidden;
     transition: width 1s ease;
-    box-sizing: border-box;
 }
 
 .food-bar {
-    width: 100%;
+    width: calc(100% - 50px);
     height: 48px;
     border: 1px solid #000;
     background-color: #00ff00;
-    overflow: hidden;
     transition: width 1s ease;
-    box-sizing: border-box;
 }
 
 #shipMap,
