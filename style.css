@@ -65,12 +65,12 @@ body {
 #container {
     position: absolute;
     top: 205px; /* Adjust the top position to avoid overlap */
-    height: 752px;
 }
 
 #shipMap {
     left: 2.5%;
     width: 302px; /* Set the width of the room map */
+    height: 752px;
     border: 1px solid #000; /* Add border for visualization */
     background-color: #000;
 }
@@ -81,6 +81,7 @@ body {
 
 #container {
     left: calc(2.5% + 303px);
+    height: 754px;
     width: calc(95% - 321px);
     display: flex;
     flex-direction: column;
