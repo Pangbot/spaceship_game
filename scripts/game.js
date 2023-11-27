@@ -182,10 +182,17 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Function to update button descriptions based on the current room
-    function updateButtonDescriptions(roomId) {
-        for (let i = 1; i <= 4; i++) {
-            const actionDescription = buttonDescriptions[roomId]?.[`action${i}`] || `Default Description for Action ${i}`;
+    function updateButtonDescriptions(roomId) {   
+        const roomButtons = buttonDescriptions[roomId] || {};
+        const numButtons = Object.keys(roomButtons).length;
+    
+        for (let i = 1; i <= numButtons; i++) {
+            const actionDescription = roomButtons[`action${i}`] || `Default Description for Action ${i}`;
             document.querySelector(`#container .button-wrapper:nth-child(${i}) .button-description`).textContent = actionDescription;
+    
+            // Hide buttons that don't have descriptions (optional)
+            const buttonWrapper = document.querySelector(`#container .button-wrapper:nth-child(${i})`);
+            buttonWrapper.style.display = i <= numButtons ? 'block' : 'none';
         }
     }
 
