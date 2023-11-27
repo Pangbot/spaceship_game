@@ -185,6 +185,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateButtonDescriptions(roomId) {   
         const roomButtons = buttonDescriptions[roomId] || {};
         const numButtons = Object.keys(roomButtons).length;
+
+        if(numButtons == 0) {
+            numButtons = 2;
+        }
     
         for (let i = 1; i <= numButtons; i++) {
             const actionDescription = roomButtons[`action${i}`] || `Default Description for Action ${i}`;
