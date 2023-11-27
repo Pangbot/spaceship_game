@@ -46,6 +46,7 @@ body {
     border: 1px solid #000;
     background-color: #ff0000;
     transition: width 1s ease;
+    overflow: visible;
 }
 
 .food-bar {
@@ -54,6 +55,7 @@ body {
     border: 1px solid #000;
     background-color: #00ff00;
     transition: width 1s ease;
+    overflow: visible;
 }
 
 #shipMap,
