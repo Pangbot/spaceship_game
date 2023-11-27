@@ -20,7 +20,7 @@ body {
 .resource-bar-container {
     height: 50px;
     width: 100%;
-    display: flex;
+    overflow: hidden; /* Clearfix for floated elements */
 }
 
 .resource-icon {
@@ -37,9 +37,8 @@ body {
 }
 
 .resource-fill {
-    margin-left: 100px;
-    align-items: center;
-    width: calc(100% - 100px);
+    margin-left: 100px; /* Sum of icon and percentage widths */
+    overflow: hidden; /* Clearfix for floated elements */
 }
 
 .oxygen-bar {
