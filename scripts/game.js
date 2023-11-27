@@ -103,22 +103,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 width: parseInt(highlight.getAttribute('data-room-width')) * 100,
                 height: parseInt(highlight.getAttribute('data-room-height')) * 100,
             };
-
-            // Check if a door exists between the current room and the clicked room
+    
             if (hasOpenDoor(currentRoom, clickedRoom)) {
                 // Transition to the target room
                 currentRoom = clickedRoom;
-
+    
                 // Remove highlighting from all rooms
                 allRoomHighlights.forEach(room => {
                     room.classList.remove('highlighted');
                 });
-
+    
                 // Highlight adjacent rooms
                 highlightAdjacentRooms();
-
+    
                 // Add highlighting to the clicked room
                 highlight.classList.add('highlighted');
+    
+                // Update button descriptions based on the new room
+                updateButtonDescriptions(currentRoom.id);
             }
         });
     });
@@ -155,8 +157,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }, interval);
     }
 
-
     // Call the function once the DOM is fully loaded
     updateResourceBars();
+
+    const buttonDescriptions = {
+        piloting: {
+            action1: "Description for Action 1 in Piloting",
+            action2: "Description for Action 2 in Piloting",
+        },
+        kitchen: {
+            action1: "Description for Action 1 in Kitchen",
+            action2: "Description for Action 2 in Kitchen",
+        },
+        scanners: {
+            action1: "Description for Action 1 in Scanners",
+            action2: "Description for Action 2 in Scanners",
+        },
+        // ... Add descriptions for other rooms
+    };
+
+    // Function to update button descriptions based on the current room
+    function updateButtonDescriptions(roomId) {
+        const action1Description = buttonDescriptions[roomId]?.action1 || "Default Description for Action 1";
+        const action2Description = buttonDescriptions[roomId]?.action2 || "Default Description for Action 2";
+
+        // Update button descriptions in the DOM
+        document.querySelector("#container .button-wrapper:nth-child(1) .button-description").textContent = action1Description;
+        document.querySelector("#container .button-wrapper:nth-child(2) .button-description").textContent = action2Description;
+    }
+
+    // Call the function initially with the current room ID
+    updateButtonDescriptions(currentRoom.id);
 
 });
