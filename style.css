@@ -35,6 +35,7 @@ body {
 }
 
 .resource-fill {
+    margin-left: 100px;
     align-items: center;
     width: calc(100% - 100px);
 }
