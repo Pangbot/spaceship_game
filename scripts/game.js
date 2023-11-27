@@ -128,12 +128,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // Oxygen Bar
         const oxygenBar = document.getElementById('oxygen_bar');
         let currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
-        const oxygenPercentage = document.querySelector('.resource-bar-container .percentage'); // Update the selector
+        const oxygenPercentage = oxygenBar.parentElement.querySelector('.percentage');
     
         // Food Bar
         const foodBar = document.getElementById('food_bar');
         let currentFood = parseFloat(foodBar.getAttribute('data-fill'));
-        const foodPercentage = document.querySelector('.resource-bar-container .percentage'); // Update the selector
+        const foodPercentage = foodBar.parentElement.querySelector('.percentage');
     
         // Update bars by decreasing 1% every second for oxygen and 10% for food (adjust the interval as needed)
         const oxygenDecreaseRate = 0.1; // 10x slower than food
