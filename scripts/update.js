@@ -33,7 +33,7 @@ export function updateGame() {
                 currentRoom.width = clickedRoom.width;
                 currentRoom.height = clickedRoom.height;
 
-                // Highlight adjacent rooms
+                // Update room highlights
                 highlightAdjacentRooms(currentRoom);
 
                 // Update button descriptions based on the new room

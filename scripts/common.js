@@ -1,6 +1,7 @@
 // common.js
 // A place for common variables
 
+// Set to the inital value, "let" so it can be dynamically adjusted
 let currentRoom = {
     id: "clone_bay",
     top: 251,
@@ -9,8 +10,8 @@ let currentRoom = {
     height: 200,
 };
 
-// Define doors between rooms
-const doors = [
+// Container for status of all doors
+let doors = [
     { roomId: "piloting", targetRoomId: "kitchen", status: "closed" },
     { roomId: "kitchen", targetRoomId: "scanners", status: "open" },
     { roomId: "kitchen", targetRoomId: "doors", status: "open" },

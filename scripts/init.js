@@ -4,8 +4,8 @@ import { highlightAdjacentRooms } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
 import { currentRoom } from './common.js';
 
-export function initializeGame() {
-    console.log("Initialization script loaded!");
+export function initialiseGame() {
+    console.log("Initialisation script loaded!");
 
     // Disable context menu on right-click for the ship map
     document.getElementById('mapImage').addEventListener('contextmenu', function (e) {
