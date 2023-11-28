@@ -27,13 +27,19 @@ const doors = [
 
 // Function to check if a door exists between two rooms
 function hasOpenDoor(currentRoom, clickedRoom) {
-    return doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status == "open") ||
-                                (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status == "open"));
+    const isOpen = doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status === "open") ||
+                                      (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status === "open"));
+
+    console.log(`Open door between ${currentRoom.id} and ${clickedRoom.id}: ${isOpen}`);
+    return isOpen;
 }
 
 function hasClosedDoor(currentRoom, clickedRoom) {
-    return doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status == "closed") ||
-                                (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status == "closed"));
+    const isClosed = doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status === "closed") ||
+                                          (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status === "closed"));
+
+    console.log(`Closed door between ${currentRoom.id} and ${clickedRoom.id}: ${isClosed}`);
+    return isClosed;
 }
 
 function highlightAdjacentRooms(currentRoom) {
