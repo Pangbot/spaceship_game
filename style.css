@@ -17,6 +17,10 @@ body {
     height: 100px; /* Set the height of the banner */
 }
 
+#banner_image {
+    width: 100%;
+}
+
 .resource-bar-container {
     height: 50px;
     width: 100%;
