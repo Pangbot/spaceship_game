@@ -3,7 +3,7 @@
 import { highlightAdjacentRooms } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
 
-document.addEventListener('DOMContentLoaded', function () {
+export function initializeGame() {
     console.log("Initialization script loaded!");
 
     // Disable context menu on right-click for the ship map
@@ -78,4 +78,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Call the function initially with the current room ID
     updateButtonDescriptions(currentRoom.id);
-});
+}
