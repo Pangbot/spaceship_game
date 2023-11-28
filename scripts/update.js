@@ -4,6 +4,7 @@ import { updateResourceBars } from './resourceBars.js';
 import { highlightAdjacentRooms } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
 import { hasOpenDoor } from "./doorLogic.js";
+import { currentRoom } from './common.js';
 
 export function updateGame() {
     console.log("Continuous update script loaded!");

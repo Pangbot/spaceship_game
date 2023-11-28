@@ -2,6 +2,7 @@
 // Initialises stuff.
 import { highlightAdjacentRooms } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
+import { currentRoom } from './common.js';
 
 export function initializeGame() {
     console.log("Initialization script loaded!");
@@ -14,14 +15,6 @@ export function initializeGame() {
     document.getElementById('bannerImage').addEventListener('contextmenu', function (e) {
         e.preventDefault();
     });
-
-    let currentRoom = {
-        id: "clone_bay",
-        top: 502,
-        left: 101,
-        width: 202,
-        height: 202,
-    }
 
     // Initial Highlighting
     highlightAdjacentRooms(currentRoom);
