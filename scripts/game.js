@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
     });
 
+    document.getElementById('bannerImage').addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
     let currentRoom = {
         id: "clone_bay",
         top: 502,

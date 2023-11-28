@@ -19,7 +19,7 @@ function updateResourceBars() {
     const foodDecreaseRate = 1;
     const interval = 1000; // 1000 milliseconds = 1 second
 
-    setInterval(function () {
+    function updateBars() {
         currentOxygen = Math.max(0, currentOxygen - oxygenDecreaseRate);
         oxygenBar.style.width = `${currentOxygen}%`;
         oxygenBar.setAttribute('data-fill', currentOxygen);
@@ -29,7 +29,13 @@ function updateResourceBars() {
         foodBar.style.width = `${currentFood}%`;
         foodBar.setAttribute('data-fill', currentFood);
         foodPercentage.innerText = `${Math.round(currentFood)}%`;
-    }, interval);
+
+        // Recursive call after the specified interval
+        setTimeout(updateBars, interval);
+    }
+
+    // Initial call to start the recursive process
+    updateBars();
 }
 
-export {updateResourceBars};
+export { updateResourceBars };
