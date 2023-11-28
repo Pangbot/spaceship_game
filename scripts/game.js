@@ -216,8 +216,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Example unlock condition (adjust as needed)
     function isActionUnlockConditionMet(action) {
+        const foodBar = document.getElementById('food_bar');
+        const currentFood = parseFloat(foodBar.getAttribute('data-fill'));
+
         // Add your unlock condition logic here
-        if(foodBar.getAttribute('data-fill') < 70) {
+        if(currentFood < 70) {
             return false;
         }
         return true;
