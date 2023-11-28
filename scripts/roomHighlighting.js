@@ -13,20 +13,24 @@ function highlightAdjacentRooms(currentRoom) {
             width: parseInt(highlight.getAttribute('data-room-width')) * 100,
             height: parseInt(highlight.getAttribute('data-room-height')) * 100,
         };
-        console.log(room.id);
+        console.log("Checking room:", room.id);
 
         // Add highlighting to adjacent rooms
         if (hasOpenDoor(currentRoom.id, room.id)) {
+            console.log("Open door to", room.id);
             highlight.classList.add('available');
         } else if (hasClosedDoor(currentRoom.id, room.id)) {
+            console.log("Closed door to", room.id);
             highlight.classList.add('adjacent');
         } else {
+            console.log("No door to", room.id);
             highlight.classList.remove('adjacent');
             highlight.classList.remove('available');
         }
 
         // Add highlighting to the current room
         if (currentRoom.id === room.id) {
+            console.log("Highlighting current room:", room.id);
             highlight.classList.add('highlighted');
         }
     });
