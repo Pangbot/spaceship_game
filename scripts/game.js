@@ -217,6 +217,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Example unlock condition (adjust as needed)
     function isActionUnlockConditionMet(action) {
         // Add your unlock condition logic here
+        if(foodBar.getAttribute('data-fill') < 70) {
+            return false;
+        }
         return true;
     }
 
