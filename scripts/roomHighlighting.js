@@ -1,10 +1,9 @@
 // roomHighlighting.js
 // Contains the logic for highlighting rooms on the ship map.
-
-import { doors } from './common.js';
+import {doors} from './common.js';
 
 // Function to check if a door exists between two rooms
-function hasOpenDoor(currentRoom, clickedRoom) {
+function hasOpenDoor(currentRoom, clickedRoom, doors) {
     const isOpen = doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status === "open") ||
                                       (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status === "open"));
 
@@ -12,7 +11,7 @@ function hasOpenDoor(currentRoom, clickedRoom) {
     return isOpen;
 }
 
-function hasClosedDoor(currentRoom, clickedRoom) {
+function hasClosedDoor(currentRoom, clickedRoom, doors) {
     const isClosed = doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status === "closed") ||
                                           (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status === "closed"));
 
@@ -35,10 +34,10 @@ function highlightAdjacentRooms(currentRoom) {
         console.log("Checking room:", room.id);
 
         // Add highlighting to adjacent rooms
-        if (hasOpenDoor(currentRoom.id, room.id)) {
+        if (hasOpenDoor(currentRoom, room, doors)) {
             console.log("Open door to", room.id);
             highlight.classList.add('available');
-        } else if (hasClosedDoor(currentRoom.id, room.id)) {
+        } else if (hasClosedDoor(currentRoom, room, doors)) {
             console.log("Closed door to", room.id);
             highlight.classList.add('adjacent');
         } else {

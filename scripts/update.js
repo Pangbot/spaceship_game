@@ -3,7 +3,7 @@
 import { updateResourceBars } from './resourceBars.js';
 import { highlightAdjacentRooms, hasOpenDoor } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
-import { currentRoom } from './common.js';
+import { currentRoom, doors } from './common.js';
 
 export function updateGame() {
     console.log("Continuous update script loaded!");
@@ -21,11 +21,11 @@ export function updateGame() {
                 id: highlight.getAttribute('data-room-id'),
                 top: parseInt(highlight.style.top),
                 left: parseInt(highlight.style.left),
-                width: parseInt(highlight.getAttribute('data-room-width')) * 100,
-                height: parseInt(highlight.getAttribute('data-room-height')) * 100,
+                width: parseInt(highlight.getAttribute('data-room-width')) * 50,
+                height: parseInt(highlight.getAttribute('data-room-height')) * 50,
             };
 
-            if (hasOpenDoor(currentRoom, clickedRoom)) {
+            if (hasOpenDoor(currentRoom, clickedRoom, doors)) {
                 // Transition to the target room
                 currentRoom.id = clickedRoom.id;
                 currentRoom.top = clickedRoom.top;
