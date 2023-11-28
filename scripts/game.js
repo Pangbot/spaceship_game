@@ -1,4 +1,4 @@
-import { hasOpenDoor, hasClosedDoor } from './doorLogic.js';
+import { hasOpenDoor } from './doorLogic.js';
 import { highlightAdjacentRooms } from './roomHighlighting.js';
 import { updateResourceBars } from './resourceBars.js';
 import { updateButtonDescriptions } from './buttons.js';
