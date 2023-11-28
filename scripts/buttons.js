@@ -1,4 +1,4 @@
-// buttons
+// buttons.js
 // Handles the logic surrounding creating and (un)locking buttons.
 
 // Button Descriptions
