@@ -183,23 +183,39 @@ document.addEventListener('DOMContentLoaded', function () {
         // ... Add descriptions for other rooms
     };
 
-    // Function to update button descriptions based on the current room
-    function updateButtonDescriptions(roomId) {   
+    // Function to create and update buttons based on the current room
+    function updateButtonDescriptions(roomId) {
         const roomButtons = buttonDescriptions[roomId] || {};
-        let numButtons = 2;
+        const container = document.getElementById('container');
+        container.innerHTML = ''; // Clear previous buttons
 
-        if(roomButtons != null) {
-            numButtons = Object.keys(roomButtons).length;
-        }
-    
-        for (let i = 1; i <= numButtons; i++) {
-            const actionDescription = roomButtons[`action${i}`] || `Default Description for Action ${i}`;
-            document.querySelector(`#container .button-wrapper:nth-child(${i}) .button-description`).textContent = actionDescription;
-    
-            // Hide buttons that don't have descriptions (optional)
-            const buttonWrapper = document.querySelector(`#container .button-wrapper:nth-child(${i})`);
-            buttonWrapper.style.display = i <= numButtons ? 'block' : 'none';
-        }
+        Object.keys(roomButtons).forEach((action, i) => {
+            const actionDescription = roomButtons[action];
+            const buttonWrapper = document.createElement('div');
+            buttonWrapper.classList.add('button-wrapper');
+
+            const button = document.createElement('button');
+            button.textContent = `Action ${i + 1}`;
+            button.disabled = !isActionUnlockConditionMet(action); // Adjust this condition
+
+            buttonWrapper.appendChild(button);
+            container.appendChild(buttonWrapper);
+
+            button.addEventListener('click', () => {
+                // Handle button click
+                console.log(`${roomId} - ${action} clicked`);
+            });
+
+            const descriptionElement = document.createElement('div');
+            descriptionElement.textContent = actionDescription;
+            buttonWrapper.appendChild(descriptionElement);
+        });
+    }
+
+    // Example unlock condition (adjust as needed)
+    function isActionUnlockConditionMet(action) {
+        // Add your unlock condition logic here
+        return true;
     }
 
     // Call the function initially with the current room ID
