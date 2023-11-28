@@ -114,6 +114,11 @@ button {
     margin-bottom: 10px;
 }
 
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
 .button-description {
     margin-left: 10px;
     flex: 1;

@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to create and update buttons based on the current room
     function updateButtonDescriptions(roomId) {
         const roomButtons = buttonDescriptions[roomId] || {};
-        const container = document.getElementById('container');
-        container.innerHTML = ''; // Clear previous buttons
+        const containerButtons = document.querySelector('.container-buttons');
+        containerButtons.innerHTML = ''; // Clear previous buttons
 
         Object.keys(roomButtons).forEach((action, i) => {
             const actionDescription = roomButtons[action];
@@ -199,16 +199,18 @@ document.addEventListener('DOMContentLoaded', function () {
             button.disabled = !isActionUnlockConditionMet(action); // Adjust this condition
 
             buttonWrapper.appendChild(button);
-            container.appendChild(buttonWrapper);
+
+            const descriptionElement = document.createElement('span');
+            descriptionElement.classList.add('button-description');
+            descriptionElement.textContent = actionDescription;
+            buttonWrapper.appendChild(descriptionElement);
+
+            containerButtons.appendChild(buttonWrapper);
 
             button.addEventListener('click', () => {
                 // Handle button click
                 console.log(`${roomId} - ${action} clicked`);
             });
-
-            const descriptionElement = document.createElement('div');
-            descriptionElement.textContent = actionDescription;
-            buttonWrapper.appendChild(descriptionElement);
         });
     }
 
