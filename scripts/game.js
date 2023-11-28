@@ -1,7 +1,7 @@
-import { hasOpenDoor } from './scripts/doorLogic.js';
-import { highlightAdjacentRooms } from './scripts/roomHighlighting.js';
-import { updateResourceBars } from './scripts/resourceBars.js';
-import { updateButtonDescriptions } from './scripts/buttons.js';
+import { hasOpenDoor } from './doorLogic.js';
+import { highlightAdjacentRooms } from './roomHighlighting.js';
+import { updateResourceBars } from './resourceBars.js';
+import { updateButtonDescriptions } from './buttons.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Script loaded!");
