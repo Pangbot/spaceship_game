@@ -14,6 +14,7 @@ function highlightAdjacentRooms(currentRoom) {
             height: parseInt(highlight.getAttribute('data-room-height')) * 100,
         };
 
+        // Add highlighting to adjacent rooms
         if (hasOpenDoor(currentRoom.id, room.id)) {
             highlight.classList.add('available');
         } else if (hasClosedDoor(currentRoom.id, room.id)) {
@@ -21,6 +22,11 @@ function highlightAdjacentRooms(currentRoom) {
         } else {
             highlight.classList.remove('adjacent');
             highlight.classList.remove('available');
+        }
+
+        // Add highlighting to the current room
+        if (currentRoom.id === room.id) {
+            highlight.classList.add('highlighted');
         }
     });
 }
