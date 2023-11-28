@@ -3,10 +3,10 @@
 
 let currentRoom = {
     id: "clone_bay",
-    top: 502,
-    left: 101,
-    width: 202,
-    height: 202,
+    top: 251,
+    left: 51,
+    width: 200,
+    height: 200,
 };
 
 export { currentRoom };
