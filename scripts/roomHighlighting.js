@@ -1,6 +1,6 @@
 // roomHighlighting.js
 // Contains the logic for highlighting rooms on the ship map.
-import { hasOpenDoor, hasClosedDoor } from "./doorLogic";
+import { hasOpenDoor, hasClosedDoor } from "./scripts/doorLogic";
 
 function highlightAdjacentRooms(currentRoom) {
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
