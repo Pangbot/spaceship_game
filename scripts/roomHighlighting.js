@@ -13,6 +13,7 @@ function highlightAdjacentRooms(currentRoom) {
             width: parseInt(highlight.getAttribute('data-room-width')) * 100,
             height: parseInt(highlight.getAttribute('data-room-height')) * 100,
         };
+        console.log(room.id);
 
         // Add highlighting to adjacent rooms
         if (hasOpenDoor(currentRoom.id, room.id)) {
