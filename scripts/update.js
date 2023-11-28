@@ -28,7 +28,11 @@ export function updateGame() {
 
             if (hasOpenDoor(currentRoom, clickedRoom)) {
                 // Transition to the target room
-                currentRoom = clickedRoom;
+                currentRoom.id = clickedRoom.id;
+                currentRoom.top = clickedRoom.top;
+                currentRoom.left = clickedRoom.left;
+                currentRoom.width = clickedRoom.width;
+                currentRoom.height = clickedRoom.height;
 
                 // Highlight adjacent rooms
                 highlightAdjacentRooms(currentRoom);
