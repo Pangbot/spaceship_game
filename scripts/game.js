@@ -169,8 +169,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         kitchen: {
             action1: "Description for Action 1 in Kitchen",
-            action2: "Description for Action 2 in Kitchen",
-            action3: "Description for Action 3 in Kitchen",
         },
         clone_bay: {
             action1: "Description for Action 1 in Clone Bay",
@@ -178,6 +176,10 @@ document.addEventListener('DOMContentLoaded', function () {
             action3: "Description for Action 3 in Clone Bay",
             action4: "Description for Action 4 in Clone Bay",
         },
+        scanners: {
+            action1: "Description for Action 1 in Scanners",
+            action2: "Description for Action 2 in Scanners",
+        }
         // ... Add descriptions for other rooms
     };
 
