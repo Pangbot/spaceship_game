@@ -3,7 +3,7 @@ import { highlightAdjacentRooms } from './scripts/roomHighlighting.js';
 import { updateResourceBars } from './scripts/resourceBars.js';
 import { updateButtonDescriptions } from './scripts/buttons.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
     console.log("Script loaded!");
 
     // Disable context menu on right-click for the ship map
