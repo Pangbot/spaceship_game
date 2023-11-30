@@ -10,14 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize the game
     initialiseGame();
 
-    while (true) {
-
+    function gameLoop() {
         if (isUpdateEnabled) {
             // Call the continuous update function
             updateGame();
-        }
-        else {
+        } else {
             runStoryEvent();
         }
+
+        // Use requestAnimationFrame to schedule the next iteration
+        requestAnimationFrame(gameLoop);
     }
+
+    // Start the game loop
+    gameLoop();
 });
