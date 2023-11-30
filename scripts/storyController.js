@@ -30,7 +30,7 @@ function runStoryEvent() {
         document.getElementById('popup').style.display = 'none';
 
         // Store messages in the container
-        const container = document.getElementById('container');
+        const container = document.getElementById('popup-container');
         const messageList = document.createElement('ul');
 
         messages.forEach((message, index) => {
