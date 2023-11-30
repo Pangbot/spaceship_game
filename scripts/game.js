@@ -1,6 +1,8 @@
 // game.js
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
+import { isUpdateEnabled } from './common.js';
+import { runStoryEvent } from './storyController.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
@@ -8,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize the game
     initialiseGame();
 
-    // Call the continuous update function
-    updateGame();
+    while (true) {
+
+        if (isUpdateEnabled) {
+            // Call the continuous update function
+            updateGame();
+        }
+        else {
+            runStoryEvent();
+        }
+    }
 });

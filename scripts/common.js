@@ -34,4 +34,8 @@ let doors = [
     { roomId: "engine", targetRoomId: "storage", status: "closed" },
 ];
 
-export { currentRoom, doors };
+let isUpdateEnabled = true;
+
+let storyTime = false;
+
+export { currentRoom, doors, isUpdateEnabled, storyTime };

@@ -1,6 +1,8 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
+import { isUpdateEnabled, storyTime } from "./common";
+
 function updateResourceBars() {
     // Oxygen Bar
     const oxygenBar = document.getElementById('oxygen_bar');
@@ -29,6 +31,17 @@ function updateResourceBars() {
         foodBar.style.width = `${currentFood}%`;
         foodBar.setAttribute('data-fill', currentFood);
         foodPercentage.innerText = `${Math.round(currentFood)}%`;
+
+        // Conditions for a story event
+        if (currentFood >= 93 && currentFood <= 94) {
+            storyTime = true;
+        }
+
+        // Check if a story event needs to be called
+        if (storyTime) {
+            isUpdateEnabled = false;
+            return;
+        }
 
         // Recursive call after the specified interval
         setTimeout(updateBars, interval);
