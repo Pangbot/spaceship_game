@@ -1,7 +1,7 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { isUpdateEnabled, storyTime } from "./common";
+import { isUpdateEnabled, storyTime } from "./common.js";
 
 function updateResourceBars() {
     // Oxygen Bar
