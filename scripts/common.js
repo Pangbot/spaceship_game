@@ -38,4 +38,12 @@ let isUpdateEnabled = true;
 
 let storyTime = false;
 
-export { currentRoom, doors, isUpdateEnabled, storyTime };
+function setUpdateStatus(state) {
+    isUpdateEnabled = state;
+}
+
+function setStoryStatus(state) {
+    storyTime = state;
+}
+
+export { currentRoom, doors, isUpdateEnabled, storyTime, setUpdateStatus, setStoryStatus };

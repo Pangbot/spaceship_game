@@ -1,5 +1,5 @@
 // storyController.js
-import { isUpdateEnabled, storyTime } from './common.js';
+import { isUpdateEnabled, setStoryStatus, setUpdateStatus, storyTime } from './common.js';
 
 const messages = [
   "Welcome to the game!",
@@ -41,8 +41,8 @@ function runStoryEvent() {
 
         container.appendChild(messageList);
 
-        isUpdateEnabled = true;
-        storyTime = false;
+        setUpdateStatus(true);
+        setStoryStatus(false);
     }
 }
 

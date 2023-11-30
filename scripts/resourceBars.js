@@ -1,7 +1,7 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { isUpdateEnabled, storyTime } from "./common.js";
+import { isUpdateEnabled, setStoryStatus, setUpdateStatus, storyTime } from "./common.js";
 
 function updateResourceBars() {
     // Oxygen Bar
@@ -34,12 +34,12 @@ function updateResourceBars() {
 
         // Conditions for a story event
         if (currentFood >= 93 && currentFood <= 94) {
-            storyTime = true;
+            setStoryStatus(true);
         }
 
         // Check if a story event needs to be called
         if (storyTime) {
-            isUpdateEnabled = false;
+            setUpdateStatus(false);
             return;
         }
 
