@@ -10,6 +10,7 @@ const messages = [
 ];
 
 let currentMessageIndex = 0;
+let nextButtonCreated = false; // Flag to track if the button is created
 
 function showPopup() {
     document.getElementById('overlay').style.display = 'block';
@@ -26,13 +27,19 @@ function runStoryEvent() {
         showPopup();
         displayMessage();
 
-        // Create "Next" button dynamically
-        const nextButton = document.createElement('button');
-        nextButton.innerText = 'Next';
-        nextButton.onclick = nextMessage; // Attach the onclick event handler
+        // Check if the button is not created
+        if (!nextButtonCreated) {
+            // Create "Next" button dynamically
+            const nextButton = document.createElement('button');
+            nextButton.innerText = 'Next';
+            nextButton.onclick = nextMessage; // Attach the onclick event handler
 
-        // Append the button to the popup container
-        document.getElementById('popup').appendChild(nextButton);
+            // Append the button to the popup container
+            document.getElementById('popup').appendChild(nextButton);
+
+            // Set the flag to true, indicating that the button is created
+            nextButtonCreated = true;
+        }
     } else {
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('popup').style.display = 'none';
@@ -51,6 +58,9 @@ function runStoryEvent() {
 
         setUpdateStatus(true);
         setStoryStatus(false);
+
+        // Reset the flag for the next story event
+        nextButtonCreated = false;
     }
 }
 
