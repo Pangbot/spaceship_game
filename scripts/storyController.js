@@ -49,30 +49,38 @@ function runStoryEvent() {
             // Set the flag to true, indicating that the button is created
             nextButtonCreated = true;
         }
-    } else if (!document.getElementById('messageList') && nextButtonCreated) {
-        // Remove the "Next" button after the last message
+    } else {
+        const messageList = document.getElementById('messageList');
         const nextButton = document.getElementById('nextButton');
-        if (nextButton) {
-            nextButton.remove();
+
+        if (!messageList && nextButtonCreated) {
+            // Remove the "Next" button after the last message
+            if (nextButton) {
+                nextButton.remove();
+            }
+
+            // Store messages in the container
+            const container = document.getElementById('popup-container');
+            const newMessageList = document.createElement('ul');
+            newMessageList.id = 'messageList';
+
+            messages.forEach((message, index) => {
+                const listItem = document.createElement('li');
+                listItem.innerText = `${index + 1}. ${message}`;
+                newMessageList.appendChild(listItem);
+            });
+
+            container.appendChild(newMessageList);
+
+            setUpdateStatus(true);
+            setStoryStatus(false);
+
+            // Reset the flag for the next story event
+            nextButtonCreated = false;
         }
-
-        // Store messages in the container
-        const container = document.getElementById('popup-container');
-        const messageList = document.createElement('ul');
-        messageList.id = 'messageList';
-
-        messages.forEach((message, index) => {
-            const listItem = document.createElement('li');
-            listItem.innerText = `${index + 1}. ${message}`;
-            messageList.appendChild(listItem);
-        });
-
-        container.appendChild(messageList);
-
-        setUpdateStatus(true);
-        setStoryStatus(false);
     }
 }
+
 
 function nextMessage() {
     currentMessageIndex++;
