@@ -21,33 +21,34 @@ function updateResourceBars() {
     const foodDecreaseRate = 1;
 
     let animationFrameId;
+    let lastTimestamp;
 
     function updateBars() {
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
-    
+
         if (!lastTimestamp) {
             lastTimestamp = now;
         }
-    
+
         if (!storyTime) {
             // Update bars only if not in story mode
             currentOxygen = Math.max(0, currentOxygen - oxygenDecreaseRate * (elapsedMilliseconds / 1000));
             oxygenBar.style.width = `${currentOxygen}%`;
             oxygenBar.setAttribute('data-fill', currentOxygen);
             oxygenPercentage.innerText = `${Math.round(currentOxygen)}%`;
-    
+
             currentFood = Math.max(0, currentFood - foodDecreaseRate * (elapsedMilliseconds / 1000));
             foodBar.style.width = `${currentFood}%`;
             foodBar.setAttribute('data-fill', currentFood);
             foodPercentage.innerText = `${Math.round(currentFood)}%`;
-    
+
             // Conditions for a story event
             if (Math.round(currentFood) == 93) {
                 setStoryStatus(true);
             }
         }
-    
+
         // Check if a story event needs to be called
         if (storyTime) {
             setUpdateStatus(false);
@@ -57,8 +58,6 @@ function updateResourceBars() {
             lastTimestamp = now;
         }
     }
-    
-    
 
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
