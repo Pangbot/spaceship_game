@@ -24,6 +24,9 @@ function runStoryEvent() {
     if (currentMessageIndex < messages.length) {
         showPopup();
         displayMessage();
+
+        // Pause resource bars while the popup is visible
+        setUpdateStatus(false);
     } else {
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('popup').style.display = 'none';
@@ -40,6 +43,7 @@ function runStoryEvent() {
 
         container.appendChild(messageList);
 
+        // Resume resource bars when the popup is closed
         setUpdateStatus(true);
         setStoryStatus(false);
     }

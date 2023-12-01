@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initialiseGame();
 
     // Start updating resource bars independently
-    updateResourceBars();
+    const pauseBars = updateResourceBars();
 
     function gameLoop() {
         if (isUpdateEnabled) {
@@ -28,9 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Start the game loop
     gameLoop();
-});
 
-// Add an event listener for the "Next" button click
-document.getElementById('popup').addEventListener('click', function () {
-    nextMessage();
+    // Add an event listener for the "Next" button click
+    document.getElementById('popup').addEventListener('click', function () {
+        nextMessage();
+        // Resume resource bars after the popup is closed
+        isUpdateEnabled = true;
+        pauseBars(); // Optional: Pause other animations if needed
+    });
 });

@@ -20,42 +20,50 @@ function updateResourceBars() {
     const oxygenDecreaseRate = 0.2;
     const foodDecreaseRate = 1;
 
-    let lastTimestamp;
+    let animationFrameId;
 
     function updateBars() {
-        const now = performance.now(); // Use performance.now() for a high-resolution timestamp
-    
-        // Calculate elapsed time since the last update
+        const now = performance.now();
         const elapsedMilliseconds = now - lastTimestamp;
-        lastTimestamp = now;
     
-        currentOxygen = Math.max(0, currentOxygen - (oxygenDecreaseRate * (elapsedMilliseconds / 1000)));
-        oxygenBar.style.width = `${currentOxygen}%`;
-        oxygenBar.setAttribute('data-fill', currentOxygen);
-        oxygenPercentage.innerText = `${Math.round(currentOxygen)}%`;
+        if (!storyTime) {
+            // Update bars only if not in story mode
+            currentOxygen = Math.max(0, currentOxygen - oxygenDecreaseRate * (elapsedMilliseconds / 1000));
+            oxygenBar.style.width = `${currentOxygen}%`;
+            oxygenBar.setAttribute('data-fill', currentOxygen);
+            oxygenPercentage.innerText = `${Math.round(currentOxygen)}%`;
     
-        currentFood = Math.max(0, currentFood - (foodDecreaseRate * (elapsedMilliseconds / 1000)));
-        foodBar.style.width = `${currentFood}%`;
-        foodBar.setAttribute('data-fill', currentFood);
-        foodPercentage.innerText = `${Math.round(currentFood)}%`;
+            currentFood = Math.max(0, currentFood - foodDecreaseRate * (elapsedMilliseconds / 1000));
+            foodBar.style.width = `${currentFood}%`;
+            foodBar.setAttribute('data-fill', currentFood);
+            foodPercentage.innerText = `${Math.round(currentFood)}%`;
     
-        // Conditions for a story event
-        if (Math.round(currentFood) == 93) {
-            setStoryStatus(true);
+            // Conditions for a story event
+            if (Math.round(currentFood) == 93) {
+                setStoryStatus(true);
+            }
         }
     
         // Check if a story event needs to be called
         if (storyTime) {
             setUpdateStatus(false);
-            return; // Exit the function when in story mode
+        } else {
+            // Use requestAnimationFrame for the next update
+            animationFrameId = requestAnimationFrame(updateBars);
         }
-    
-        // Use setTimeout for the next update with a delay of 1000 milliseconds (1 second)
-        setTimeout(updateBars, 1000);
     }
     
+
     // Initial call to start the recursive process
-    setTimeout(updateBars, 1000);
+    animationFrameId = requestAnimationFrame(updateBars);
+
+    // Function to pause the bars
+    function pauseBars() {
+        cancelAnimationFrame(animationFrameId);
+    }
+
+    // Expose the pause function
+    return pauseBars;
 }
 
 export { updateResourceBars };
