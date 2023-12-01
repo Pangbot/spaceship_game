@@ -24,7 +24,11 @@ function updateResourceBars() {
 
     function updateBars() {
         const now = performance.now();
-        const elapsedMilliseconds = now - lastTimestamp;
+        const elapsedMilliseconds = now - (lastTimestamp || now);
+    
+        if (!lastTimestamp) {
+            lastTimestamp = now;
+        }
     
         if (!storyTime) {
             // Update bars only if not in story mode
@@ -50,8 +54,10 @@ function updateResourceBars() {
         } else {
             // Use requestAnimationFrame for the next update
             animationFrameId = requestAnimationFrame(updateBars);
+            lastTimestamp = now;
         }
     }
+    
     
 
     // Initial call to start the recursive process
