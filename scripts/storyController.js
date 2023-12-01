@@ -20,23 +20,35 @@ function showPopup() {
 function displayMessage() {
     document.getElementById('message').innerText = messages[currentMessageIndex];
 
-    // Remove existing button (if any)
-    const existingButton = document.getElementById('popup-button');
-    if (existingButton) {
-        existingButton.remove();
+    // Remove existing buttons (if any)
+    const existingButtons = document.querySelectorAll('.popup-button');
+    existingButtons.forEach(button => button.remove());
+
+    // Create 'Next' button for all messages except the last one
+    if (currentMessageIndex < messages.length - 1) {
+        const nextButton = document.createElement('button');
+        nextButton.innerText = 'Next';
+        nextButton.className = 'popup-button';
+        nextButton.addEventListener('click', handleNextButtonClick);
+        document.getElementById('popup').appendChild(nextButton);
     }
 
     // Create 'Close' button for the last message
     if (currentMessageIndex === messages.length - 1) {
         const closeButton = document.createElement('button');
-        closeButton.innerText = 'close';
-        closeButton.id = 'popup-button';
+        closeButton.innerText = 'Close';
+        closeButton.className = 'popup-button';
         closeButton.addEventListener('click', handleCloseButtonClick);
         document.getElementById('popup').appendChild(closeButton);
     }
 }
 
-function handleCloseButtonClick() {
+function handleNextButtonClick() {
+    currentMessageIndex++;
+    runStoryEvent();
+}
+
+function handleDoneButtonClick() {
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('popup').style.display = 'none';
 
@@ -52,7 +64,7 @@ function handleCloseButtonClick() {
 
     container.appendChild(messageList);
 
-    // Reset currentMessageIndex and resume resource bars when 'close' is clicked
+    // Reset currentMessageIndex and resume resource bars when 'Done' is clicked
     setUpdateStatus(true);
     setStoryStatus(false);
     setLastMessageClicked(true);
@@ -62,19 +74,13 @@ function handleCloseButtonClick() {
 function runStoryEvent() {
     if (currentMessageIndex < messages.length) {
         showPopup();
-
         // Pause resource bars while the popup is visible
         setUpdateStatus(false);
     } else {
         if (currentMessageIndex === messages.length) {
-            handleCloseButtonClick();
+            handleDoneButtonClick();
         }
     }
 }
 
-function nextMessage() {
-    currentMessageIndex++;
-    runStoryEvent(); // Continue the story event
-}
-
-export { runStoryEvent, nextMessage };
+export { runStoryEvent };
