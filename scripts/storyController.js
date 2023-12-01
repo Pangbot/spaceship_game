@@ -1,4 +1,5 @@
 import { setStoryStatus, setUpdateStatus } from './common.js';
+import { updateResourceBars } from './resourceBars.js';
 
 const messages = [
     "Welcome to the game!",
@@ -42,6 +43,7 @@ function runStoryEvent() {
 
         setUpdateStatus(true);
         setStoryStatus(false);
+        updateResourceBars();
     }
 }
 
