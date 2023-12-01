@@ -1,3 +1,4 @@
+// storyController.js
 import { setStoryStatus, setUpdateStatus } from './common.js';
 
 const messages = [
@@ -43,9 +44,11 @@ function runStoryEvent() {
 
         container.appendChild(messageList);
 
-        // Resume resource bars when the popup is closed
-        setUpdateStatus(true);
-        setStoryStatus(false);
+        // Resume resource bars when all popups are closed
+        if (currentMessageIndex === messages.length) {
+            setUpdateStatus(true);
+            setStoryStatus(false);
+        }
     }
 }
 

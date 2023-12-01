@@ -1,7 +1,7 @@
 // game.js
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
-import { isUpdateEnabled } from './common.js';
+import { isUpdateEnabled, setUpdateStatus } from './common.js';
 import { runStoryEvent, nextMessage } from './storyController.js';
 import { updateResourceBars } from './resourceBars.js';
 
@@ -32,8 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add an event listener for the "Next" button click
     document.getElementById('popup').addEventListener('click', function () {
         nextMessage();
-        // Resume resource bars after the popup is closed
-        isUpdateEnabled = true;
-        pauseBars(); // Optional: Pause other animations if needed
+        // Optional: Pause other animations if needed
     });
 });
