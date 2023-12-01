@@ -24,7 +24,6 @@ function displayMessage() {
 function runStoryEvent() {
     if (currentMessageIndex < messages.length) {
         showPopup();
-        displayMessage();
 
         // Pause resource bars while the popup is visible
         setUpdateStatus(false);
