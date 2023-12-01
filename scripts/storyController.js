@@ -37,33 +37,25 @@ function createNextButton() {
 }
 
 function runStoryEvent() {
-    if (currentMessageIndex < messages.length) {
+    // Check if the story event is already in progress
+    if (!nextButtonCreated && currentMessageIndex < messages.length) {
         showPopup();
         displayMessage();
 
-        // Check if the button is not created
-        if (!nextButtonCreated) {
-            // Create "Next" button dynamically
-            createNextButton();
+        // Create "Next" button dynamically
+        createNextButton();
 
-            // Set the flag to true, indicating that the button is created
-            nextButtonCreated = true;
+        // Set the flag to true, indicating that the button is created
+        nextButtonCreated = true;
+    } else if (nextButtonCreated && currentMessageIndex >= messages.length) {
+        // Remove the "Next" button after the last message
+        const nextButton = document.getElementById('nextButton');
+        if (nextButton) {
+            nextButton.remove();
         }
-    } else {
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('popup').style.display = 'none';
 
-        // Check if the button was created
-        if (nextButtonCreated) {
-            // Remove the "Next" button after the last message
-            const nextButton = document.getElementById('nextButton');
-            if (nextButton) {
-                nextButton.remove();
-            }
-
-            // Reset the flag for the next story event
-            nextButtonCreated = false;
-        }
+        // Reset the flag for the next story event
+        nextButtonCreated = false;
 
         // Store messages in the container
         const container = document.getElementById('popup-container');
@@ -81,6 +73,7 @@ function runStoryEvent() {
         setStoryStatus(false);
     }
 }
+
 
 function nextMessage() {
     currentMessageIndex++;
