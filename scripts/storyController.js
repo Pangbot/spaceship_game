@@ -23,13 +23,17 @@ function displayMessage() {
 }
 
 function createNextButton() {
-    // Create "Next" button dynamically
-    const nextButton = document.createElement('button');
-    nextButton.innerText = 'Next';
-    nextButton.onclick = nextMessage; // Attach the onclick event handler
+    // Check if the button already exists
+    if (!document.getElementById('nextButton')) {
+        // Create "Next" button dynamically
+        const nextButton = document.createElement('button');
+        nextButton.id = 'nextButton'; // Set an ID to check existence later
+        nextButton.innerText = 'Next';
+        nextButton.onclick = nextMessage; // Attach the onclick event handler
 
-    // Append the button to the popup container
-    document.getElementById('popup').appendChild(nextButton);
+        // Append the button to the popup container
+        document.getElementById('popup').appendChild(nextButton);
+    }
 }
 
 function runStoryEvent() {
@@ -59,6 +63,12 @@ function runStoryEvent() {
 function nextMessage() {
     currentMessageIndex++;
     runStoryEvent(); // Continue the story event
+
+    // Remove the button after it's clicked
+    const nextButton = document.getElementById('nextButton');
+    if (nextButton) {
+        nextButton.remove();
+    }
 }
 
 export { runStoryEvent };
