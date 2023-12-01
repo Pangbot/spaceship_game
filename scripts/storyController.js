@@ -37,8 +37,8 @@ function createNextButton() {
 }
 
 function runStoryEvent() {
-    // Check if the story event is already in progress
-    if (!nextButtonCreated && currentMessageIndex < messages.length) {
+    // Check if the story event is in progress and the "Next" button is not created
+    if (currentMessageIndex < messages.length && !nextButtonCreated) {
         showPopup();
         displayMessage();
 
@@ -47,7 +47,7 @@ function runStoryEvent() {
 
         // Set the flag to true, indicating that the button is created
         nextButtonCreated = true;
-    } else if (nextButtonCreated && currentMessageIndex >= messages.length) {
+    } else if (currentMessageIndex >= messages.length && nextButtonCreated) {
         // Remove the "Next" button after the last message
         const nextButton = document.getElementById('nextButton');
         if (nextButton) {
@@ -57,22 +57,27 @@ function runStoryEvent() {
         // Reset the flag for the next story event
         nextButtonCreated = false;
 
-        // Store messages in the container
-        const container = document.getElementById('popup-container');
-        const messageList = document.createElement('ul');
+        // Check if this is the first time handling the completion of the story
+        if (!document.getElementById('messageList')) {
+            // Store messages in the container
+            const container = document.getElementById('popup-container');
+            const messageList = document.createElement('ul');
+            messageList.id = 'messageList';
 
-        messages.forEach((message, index) => {
-            const listItem = document.createElement('li');
-            listItem.innerText = `${index + 1}. ${message}`;
-            messageList.appendChild(listItem);
-        });
+            messages.forEach((message, index) => {
+                const listItem = document.createElement('li');
+                listItem.innerText = `${index + 1}. ${message}`;
+                messageList.appendChild(listItem);
+            });
 
-        container.appendChild(messageList);
+            container.appendChild(messageList);
+        }
 
         setUpdateStatus(true);
         setStoryStatus(false);
     }
 }
+
 
 
 function nextMessage() {
