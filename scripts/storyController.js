@@ -49,7 +49,7 @@ function runStoryEvent() {
             // Set the flag to true, indicating that the button is created
             nextButtonCreated = true;
         }
-    } else if (!document.getElementById('messageList')) {
+    } else if (!document.getElementById('messageList') && nextButtonCreated) {
         // Remove the "Next" button after the last message
         const nextButton = document.getElementById('nextButton');
         if (nextButton) {
@@ -80,4 +80,3 @@ function nextMessage() {
 }
 
 export { runStoryEvent };
-
