@@ -38,6 +38,12 @@ let isUpdateEnabled = true;
 
 let storyTime = false;
 
+let lastMessageClicked = false;
+
+function setLastMessageClicked(state) {
+    lastMessageClicked = state;
+}
+
 function setUpdateStatus(state) {
     isUpdateEnabled = state;
 }
@@ -46,4 +52,4 @@ function setStoryStatus(state) {
     storyTime = state;
 }
 
-export { currentRoom, doors, isUpdateEnabled, storyTime, setUpdateStatus, setStoryStatus };
+export { currentRoom, doors, isUpdateEnabled, storyTime, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked };

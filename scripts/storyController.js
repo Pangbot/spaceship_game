@@ -1,5 +1,5 @@
 // storyController.js
-import { setStoryStatus, setUpdateStatus } from './common.js';
+import { setLastMessageClicked, setStoryStatus, setUpdateStatus } from './common.js';
 
 const messages = [
     "Welcome to the game!",
@@ -44,12 +44,10 @@ function runStoryEvent() {
 
         container.appendChild(messageList);
 
-        // Increment currentMessageIndex and resume resource bars when all popups are closed
-        currentMessageIndex++;
-        console.log(currentMessageIndex,messages.length + 1);
-        if (currentMessageIndex === messages.length + 1) {
+        if (currentMessageIndex === messages.length) {
             setUpdateStatus(true);
             setStoryStatus(false);
+            setLastMessageClicked(true);
         }
     }
 }

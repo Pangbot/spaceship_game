@@ -3,6 +3,7 @@
 import { highlightAdjacentRooms } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
 import { currentRoom } from './common.js';
+import { updateResourceBars } from './resourceBars.js';
 
 export function initialiseGame() {
     console.log("Initialisation script loaded!");
@@ -21,4 +22,6 @@ export function initialiseGame() {
 
     // Get initial buttons
     updateButtonDescriptions(currentRoom.id);
+
+    updateResourceBars();
 }
