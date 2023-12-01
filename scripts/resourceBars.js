@@ -22,43 +22,40 @@ function updateResourceBars() {
 
     let lastTimestamp;
 
-    function updateBars(timestamp) {
-        if (!lastTimestamp) {
-            lastTimestamp = timestamp;
-        }
-
-        const elapsedMilliseconds = timestamp - lastTimestamp;
-
+    function updateBars() {
+        const now = performance.now(); // Use performance.now() for a high-resolution timestamp
+    
+        // Calculate elapsed time since the last update
+        const elapsedMilliseconds = now - lastTimestamp;
+        lastTimestamp = now;
+    
         currentOxygen = Math.max(0, currentOxygen - (oxygenDecreaseRate * (elapsedMilliseconds / 1000)));
         oxygenBar.style.width = `${currentOxygen}%`;
         oxygenBar.setAttribute('data-fill', currentOxygen);
         oxygenPercentage.innerText = `${Math.round(currentOxygen)}%`;
-
+    
         currentFood = Math.max(0, currentFood - (foodDecreaseRate * (elapsedMilliseconds / 1000)));
         foodBar.style.width = `${currentFood}%`;
         foodBar.setAttribute('data-fill', currentFood);
         foodPercentage.innerText = `${Math.round(currentFood)}%`;
-
-        // Update last timestamp
-        lastTimestamp = timestamp;
-
+    
         // Conditions for a story event
         if (Math.round(currentFood) == 93) {
             setStoryStatus(true);
         }
-
+    
         // Check if a story event needs to be called
         if (storyTime) {
             setUpdateStatus(false);
-            return;  // Exit the function when in story mode
+            return; // Exit the function when in story mode
         }
-
-        // Use requestAnimationFrame to continue the loop
-        requestAnimationFrame(updateBars);
+    
+        // Use setTimeout for the next update with a delay of 1000 milliseconds (1 second)
+        setTimeout(updateBars, 1000);
     }
-
+    
     // Initial call to start the recursive process
-    requestAnimationFrame(updateBars);
+    setTimeout(updateBars, 1000);
 }
 
 export { updateResourceBars };
