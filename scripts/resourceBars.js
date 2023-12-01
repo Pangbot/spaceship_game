@@ -42,9 +42,6 @@ function updateResourceBars() {
         // Update last timestamp
         lastTimestamp = timestamp;
 
-        // Continue the loop
-        requestAnimationFrame(updateBars);
-
         // Conditions for a story event
         if (Math.round(currentFood) == 93) {
             setStoryStatus(true);
@@ -52,11 +49,12 @@ function updateResourceBars() {
 
         // Check if a story event needs to be called
         if (storyTime) {
-            // If in story mode, pause the resource bars update
-            requestAnimationFrame(updateBars);
             setUpdateStatus(false);
-            return;
+            return;  // Exit the function when in story mode
         }
+
+        // Use requestAnimationFrame to continue the loop
+        requestAnimationFrame(updateBars);
     }
 
     // Initial call to start the recursive process
