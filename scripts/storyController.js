@@ -25,6 +25,14 @@ function runStoryEvent() {
     if (currentMessageIndex < messages.length) {
         showPopup();
         displayMessage();
+
+        // Create "Next" button dynamically
+        const nextButton = document.createElement('button');
+        nextButton.innerText = 'Next';
+        nextButton.onclick = nextMessage; // Attach the onclick event handler
+
+        // Append the button to the popup container
+        document.getElementById('popup').appendChild(nextButton);
     } else {
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('popup').style.display = 'none';
@@ -44,6 +52,11 @@ function runStoryEvent() {
         setUpdateStatus(true);
         setStoryStatus(false);
     }
+}
+
+function nextMessage() {
+    currentMessageIndex++;
+    runStoryEvent(); // Continue the story event
 }
 
 export { runStoryEvent };
