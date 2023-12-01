@@ -2,7 +2,7 @@
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
 import { isUpdateEnabled } from './common.js';
-import { runStoryEvent } from './storyController.js';
+import { runStoryEvent, nextMessage } from './storyController.js';
 import { updateResourceBars } from './resourceBars.js';
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
             updateGame();
         } else {
             runStoryEvent();
-            updateResourceBars();
         }
 
         // Use requestAnimationFrame to schedule the next iteration
@@ -29,4 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Start the game loop
     gameLoop();
+});
+
+// Add an event listener for the "Next" button click
+document.getElementById('popup').addEventListener('click', function () {
+    nextMessage();
 });
