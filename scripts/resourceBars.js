@@ -22,12 +22,12 @@ function updateResourceBars() {
     const interval = 1000; // 1000 milliseconds = 1 second
 
     function updateBars() {
-        currentOxygen = Math.max(0, currentOxygen - oxygenDecreaseRate);
+        currentOxygen = Math.max(0, currentOxygen - (oxygenDecreaseRate * (interval / 1000))); // Adjust the decrease rate based on the interval
         oxygenBar.style.width = `${currentOxygen}%`;
         oxygenBar.setAttribute('data-fill', currentOxygen);
         oxygenPercentage.innerText = `${Math.round(currentOxygen)}%`;
 
-        currentFood = Math.max(0, currentFood - foodDecreaseRate);
+        currentFood = Math.max(0, currentFood - (foodDecreaseRate * (interval / 1000))); // Adjust the decrease rate based on the interval
         foodBar.style.width = `${currentFood}%`;
         foodBar.setAttribute('data-fill', currentFood);
         foodPercentage.innerText = `${Math.round(currentFood)}%`;
