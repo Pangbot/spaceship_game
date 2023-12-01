@@ -8,9 +8,6 @@ import { currentRoom, doors } from './common.js';
 export function updateGame() {
     console.log("Continuous update script loaded!");
 
-    // Call the function once the DOM is fully loaded
-    updateResourceBars();
-
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
