@@ -37,58 +37,47 @@ function createNextButton() {
 }
 
 function runStoryEvent() {
-    // Check if the story event is in progress and the "Next" button is not created
-    if (currentMessageIndex < messages.length && !nextButtonCreated) {
+    if (currentMessageIndex < messages.length) {
         showPopup();
         displayMessage();
 
-        // Create "Next" button dynamically
-        createNextButton();
+        // Check if the button is not created
+        if (!nextButtonCreated) {
+            // Create "Next" button dynamically
+            createNextButton();
 
-        // Set the flag to true, indicating that the button is created
-        nextButtonCreated = true;
-    } else if (currentMessageIndex >= messages.length && nextButtonCreated) {
+            // Set the flag to true, indicating that the button is created
+            nextButtonCreated = true;
+        }
+    } else if (!document.getElementById('messageList')) {
         // Remove the "Next" button after the last message
         const nextButton = document.getElementById('nextButton');
         if (nextButton) {
             nextButton.remove();
         }
 
-        // Reset the flag for the next story event
-        nextButtonCreated = false;
+        // Store messages in the container
+        const container = document.getElementById('popup-container');
+        const messageList = document.createElement('ul');
+        messageList.id = 'messageList';
 
-        // Check if this is the first time handling the completion of the story
-        if (!document.getElementById('messageList')) {
-            // Store messages in the container
-            const container = document.getElementById('popup-container');
-            const messageList = document.createElement('ul');
-            messageList.id = 'messageList';
+        messages.forEach((message, index) => {
+            const listItem = document.createElement('li');
+            listItem.innerText = `${index + 1}. ${message}`;
+            messageList.appendChild(listItem);
+        });
 
-            messages.forEach((message, index) => {
-                const listItem = document.createElement('li');
-                listItem.innerText = `${index + 1}. ${message}`;
-                messageList.appendChild(listItem);
-            });
-
-            container.appendChild(messageList);
-        }
+        container.appendChild(messageList);
 
         setUpdateStatus(true);
         setStoryStatus(false);
     }
 }
 
-
-
 function nextMessage() {
     currentMessageIndex++;
     runStoryEvent(); // Continue the story event
-
-    // Remove the button after it's clicked
-    const nextButton = document.getElementById('nextButton');
-    if (nextButton) {
-        nextButton.remove();
-    }
 }
 
 export { runStoryEvent };
+
