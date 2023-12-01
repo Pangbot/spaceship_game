@@ -1,4 +1,3 @@
-// storyController.js
 import { setStoryStatus, setUpdateStatus } from './common.js';
 
 const messages = [
@@ -10,6 +9,7 @@ const messages = [
 ];
 
 let currentMessageIndex = 0;
+let nextButtonCreated = false; // Initialize the variable
 
 function showPopup() {
     document.getElementById('overlay').style.display = 'block';
@@ -81,7 +81,6 @@ function runStoryEvent() {
         setStoryStatus(false);
     }
 }
-
 
 function nextMessage() {
     currentMessageIndex++;
