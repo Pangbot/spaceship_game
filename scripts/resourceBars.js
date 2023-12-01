@@ -45,6 +45,7 @@ function updateResourceBars() {
 
             // Conditions for a story event
             if (Math.round(currentFood) == 93) {
+                console.log('story time! (mandatory)');
                 setStoryStatus(true);
             }
         }
@@ -53,6 +54,7 @@ function updateResourceBars() {
         if (storyTime) {
             setUpdateStatus(false);
         } else {
+            console.log('bar update...');
             // Use requestAnimationFrame for the next update
             animationFrameId = requestAnimationFrame(updateBars);
             lastTimestamp = now;

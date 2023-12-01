@@ -7,8 +7,9 @@ import { currentRoom, doors, lastMessageClicked, setLastMessageClicked } from '.
 
 export function updateGame() {
     console.log("Continuous update script loaded!");
-    
+
     if(lastMessageClicked) {
+        console.log('restarting the bars...');
         updateResourceBars();
         setLastMessageClicked(false);
     }
