@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
     updateResourceBars();
 
     function gameLoop() {
-        console.log(isUpdateEnabled);
         if (isUpdateEnabled) {
             // Call the continuous update function
             updateGame();

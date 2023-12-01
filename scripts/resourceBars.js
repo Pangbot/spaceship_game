@@ -53,7 +53,7 @@ function updateResourceBars() {
         // Check if a story event needs to be called
         if (storyTime) {
             // If in story mode, pause the resource bars update
-            setTimeout(updateBars, interval);
+            requestAnimationFrame(updateBars);
             setUpdateStatus(false);
             return;
         }
