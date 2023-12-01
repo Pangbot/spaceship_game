@@ -44,8 +44,10 @@ function runStoryEvent() {
 
         container.appendChild(messageList);
 
-        // Resume resource bars when all popups are closed
-        if (currentMessageIndex === messages.length) {
+        // Increment currentMessageIndex and resume resource bars when all popups are closed
+        currentMessageIndex++;
+        console.log(currentMessageIndex,messages.length + 1);
+        if (currentMessageIndex === messages.length + 1) {
             setUpdateStatus(true);
             setStoryStatus(false);
         }
