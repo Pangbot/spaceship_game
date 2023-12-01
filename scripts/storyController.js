@@ -47,6 +47,8 @@ function runStoryEvent() {
             setUpdateStatus(true);
             setStoryStatus(false);
             setLastMessageClicked(true);
+            currentMessageIndex = 0;
+            return;
         }
     }
 }
