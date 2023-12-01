@@ -1,7 +1,7 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { isUpdateEnabled, setStoryStatus, setUpdateStatus, storyTime } from "./common.js";
+import { setStoryStatus, setUpdateStatus, storyTime } from "./common.js";
 
 function updateResourceBars() {
     // Oxygen Bar
@@ -39,8 +39,14 @@ function updateResourceBars() {
         foodBar.setAttribute('data-fill', currentFood);
         foodPercentage.innerText = `${Math.round(currentFood)}%`;
 
+        // Update last timestamp
+        lastTimestamp = timestamp;
+
+        // Continue the loop
+        requestAnimationFrame(updateBars);
+
         // Conditions for a story event
-        if (currentFood >= 93 && currentFood <= 94) {
+        if (currentFood == 93) {
             setStoryStatus(true);
         }
 
@@ -49,12 +55,6 @@ function updateResourceBars() {
             setUpdateStatus(false);
             return;
         }
-
-        // Update last timestamp
-        lastTimestamp = timestamp;
-
-        // Continue the loop
-        requestAnimationFrame(updateBars);
     }
 
     // Initial call to start the recursive process
