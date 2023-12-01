@@ -43,7 +43,6 @@ function runStoryEvent() {
 
         setUpdateStatus(true);
         setStoryStatus(false);
-        updateResourceBars();
     }
 }
 
