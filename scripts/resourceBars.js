@@ -19,7 +19,6 @@ function updateResourceBars() {
     // Update bars by decreasing 1% every second for oxygen and 10% for food (adjust the interval as needed)
     const oxygenDecreaseRate = 0.2;
     const foodDecreaseRate = 1;
-    const interval = 1000; // 1000 milliseconds = 1 second
 
     let lastTimestamp;
 

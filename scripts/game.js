@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             updateGame();
         } else {
             runStoryEvent();
+            updateResourceBars();
         }
 
         // Use requestAnimationFrame to schedule the next iteration
