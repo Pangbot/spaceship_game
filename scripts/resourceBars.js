@@ -46,7 +46,7 @@ function updateResourceBars() {
         requestAnimationFrame(updateBars);
 
         // Conditions for a story event
-        if (currentFood == 93) {
+        if (Math.round(currentFood) == 93) {
             setStoryStatus(true);
         }
 
