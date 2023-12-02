@@ -9,10 +9,18 @@ const messages = [
 let currentMessageIndex = 0;
 let resolvePause;
 
+let closeButton; // Declare closeButton outside the function
+
 function showPopup() {
     document.getElementById('overlay').style.display = 'block';
     document.getElementById('popup').style.display = 'block';
     displayMessage();
+
+    // Create 'Close' button only if it doesn't exist
+    if (!closeButton) {
+        closeButton = createButton('Close', handleCloseButtonClick);
+        document.getElementById('popup').appendChild(closeButton);
+    }
 }
 
 function displayMessage() {
