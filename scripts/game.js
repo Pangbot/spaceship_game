@@ -2,7 +2,7 @@
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
 import { isUpdateEnabled } from './common.js';
-import { runStoryEvent, nextMessage } from './storyController.js';
+import { runStoryEvent } from './storyController.js';  // Change this line
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
@@ -27,6 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add an event listener for the "Next" button click
     document.getElementById('popup').addEventListener('click', function () {
-        nextMessage();
+        runStoryEvent();
     });
 });
