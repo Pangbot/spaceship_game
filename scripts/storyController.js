@@ -44,6 +44,7 @@ function createButton(text, clickHandler) {
 }
 
 function handleCloseButtonClick() {
+    console.log('Close button clicked');
     // Remove event listener before handling the button click
     document.getElementById('popup').removeEventListener('click', handlePopupButtonClick);
 
@@ -73,6 +74,14 @@ function handleCloseButtonClick() {
 
     resumeAfterButtonClick();
 }
+
+document.body.addEventListener('click', (event) => {
+    const clickedButton = event.target.closest('.popup-button');
+    if (clickedButton) {
+        console.log('Popup button clicked');
+        handleCloseButtonClick();
+    }
+});
 
 function resumeAfterButtonClick() {
     if (resolvePause) {
