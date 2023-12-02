@@ -36,17 +36,32 @@ function createButton(text, clickHandler) {
 }
 
 function handleCloseButtonClick() {
+    // Remove event listener before handling the button click
+    document.getElementById('popup').removeEventListener('click', handlePopupButtonClick);
+
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('popup').style.display = 'none';
 
-    // Store messages in the container (if needed)
-    // ...
+    // Store messages in the container
+    const container = document.getElementById('popup-container');
+    const messageList = document.createElement('ul');
 
-    // Reset currentMessageIndex and resume resource bars when 'Close' is clicked
+    messages.forEach((message, index) => {
+        const listItem = document.createElement('li');
+        listItem.innerText = `${index + 1}. ${message}`;
+        messageList.appendChild(listItem);
+    });
+
+    container.appendChild(messageList);
+
+    // Reset currentMessageIndex and resume resource bars when 'Done' is clicked
     setUpdateStatus(true);
     setStoryStatus(false);
     setLastMessageClicked(true);
     currentMessageIndex = 0;
+
+    // Add event listener back after handling the button click
+    document.getElementById('popup').addEventListener('click', handlePopupButtonClick);
 
     resumeAfterButtonClick();
 }
