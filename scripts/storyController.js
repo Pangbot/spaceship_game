@@ -85,4 +85,4 @@ function runStoryEvent() {
     }
 }
 
-export { runStoryEvent };
+export { runStoryEvent, handleCloseButtonClick, handleNextButtonClick };

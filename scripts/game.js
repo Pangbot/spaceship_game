@@ -2,7 +2,7 @@
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
 import { isUpdateEnabled, storyTime } from './common.js';
-import { runStoryEvent, nextMessage } from './storyController.js';
+import { runStoryEvent, handleCloseButtonClick, handleNextButtonClick } from './storyController.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
@@ -27,8 +27,20 @@ document.addEventListener('DOMContentLoaded', function () {
     // Start the game loop
     gameLoop();
 
-    // Add an event listener for the "Next" button click
-    document.getElementById('popup').addEventListener('click', function () {
-        nextMessage();
-    });
+    const nextButtonExists = document.getElementById('popup').querySelector('.popup-button-next');
+    const closeButtonExists = document.getElementById('popup').querySelector('.popup-button-close');
+
+    if (nextButtonExists) {
+        // Add an event listener for the "Next" button click
+        document.getElementById('popup').addEventListener('click', function () {
+            handleNextButtonClick();
+        });
+    }
+
+    if (closeButtonExists) {
+        // Add an event listener for the "Close" button click
+        document.getElementById('popup').addEventListener('click', function () {
+            handleCloseButtonClick();
+        });
+    }
 });
