@@ -1,8 +1,8 @@
 // game.js
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
-import { isUpdateEnabled } from './common.js';
-import { runStoryEvent } from './storyController.js';  // Change this line
+import { isUpdateEnabled, storyTime } from './common.js';
+import { runStoryEvent, nextMessage } from './storyController.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isUpdateEnabled) {
             // Call the continuous update function
             updateGame();
-        } else {
+        } else if(storyTime) {
             runStoryEvent();
+        } else {
+            console.error("I DON'T KNOW WHAT TO DO");
         }
 
         // Use requestAnimationFrame to schedule the next iteration
@@ -27,6 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add an event listener for the "Next" button click
     document.getElementById('popup').addEventListener('click', function () {
-        runStoryEvent();
+        nextMessage();
     });
 });
