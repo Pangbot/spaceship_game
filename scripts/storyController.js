@@ -36,9 +36,6 @@ function displayMessage() {
         const closeButton = createButton('Close', handleCloseButtonClick);
         document.getElementById('popup').appendChild(closeButton);
     }
-
-    // Add event listener to the entire popup
-    document.getElementById('popup').addEventListener('click', handlePopupButtonClick);
 }
 
 function createButton(text, clickHandler) {
@@ -105,6 +102,9 @@ function pauseUntilButtonClick() {
         resolvePause = resolve;
     });
 }
+
+// Add event listener to the entire popup outside the displayMessage function
+document.getElementById('popup').addEventListener('click', handlePopupButtonClick);
 
 async function runStoryEvent() {
     if (currentMessageIndex < messages.length) {
