@@ -3,9 +3,6 @@ import { setLastMessageClicked, setStoryStatus, setUpdateStatus } from './common
 
 const messages = [
     "Welcome to the game!",
-    "You find yourself in a mysterious world.",
-    "A wise old wizard appears before you...",
-    "He says, 'You are the chosen one.'"
     // Add more messages as needed
 ];
 
@@ -25,17 +22,9 @@ function displayMessage() {
     const existingButtons = document.querySelectorAll('.popup-button');
     existingButtons.forEach(button => button.remove());
 
-    // Create 'Next' button for all messages except the last one
-    if (currentMessageIndex < messages.length - 1) {
-        const nextButton = createButton('Next', handleNextButtonClick);
-        document.getElementById('popup').appendChild(nextButton);
-    }
-
-    // Create 'Close' button for the last message
-    if (currentMessageIndex === messages.length - 1) {
-        const closeButton = createButton('Close', handleCloseButtonClick);
-        document.getElementById('popup').appendChild(closeButton);
-    }
+    // Create 'Close' button
+    const closeButton = createButton('Close', handleCloseButtonClick);
+    document.getElementById('popup').appendChild(closeButton);
 }
 
 function createButton(text, clickHandler) {
@@ -46,29 +35,14 @@ function createButton(text, clickHandler) {
     return button;
 }
 
-function handleNextButtonClick() {
-    currentMessageIndex++;
-    displayMessage(); // Show the next message
-    resumeAfterButtonClick();
-}
-
 function handleCloseButtonClick() {
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('popup').style.display = 'none';
 
-    // Store messages in the container
-    const container = document.getElementById('popup-container');
-    const messageList = document.createElement('ul');
+    // Store messages in the container (if needed)
+    // ...
 
-    messages.forEach((message, index) => {
-        const listItem = document.createElement('li');
-        listItem.innerText = `${index + 1}. ${message}`;
-        messageList.appendChild(listItem);
-    });
-
-    container.appendChild(messageList);
-
-    // Reset currentMessageIndex and resume resource bars when 'Done' is clicked
+    // Reset currentMessageIndex and resume resource bars when 'Close' is clicked
     setUpdateStatus(true);
     setStoryStatus(false);
     setLastMessageClicked(true);
@@ -94,12 +68,7 @@ function pauseUntilButtonClick() {
 document.body.addEventListener('click', (event) => {
     const clickedButton = event.target.closest('.popup-button');
     if (clickedButton) {
-        const buttonType = clickedButton.dataset.buttonType;
-        if (buttonType === 'next') {
-            handleNextButtonClick();
-        } else if (buttonType === 'close') {
-            handleCloseButtonClick();
-        }
+        handleCloseButtonClick();
     }
 });
 
@@ -111,9 +80,10 @@ async function runStoryEvent() {
         await pauseUntilButtonClick();
     } else {
         if (currentMessageIndex === messages.length) {
+            // Handle the end of the story (if needed)
             handleCloseButtonClick();
         }
     }
 }
 
-export { runStoryEvent, handleCloseButtonClick, handleNextButtonClick };
+export { runStoryEvent };
