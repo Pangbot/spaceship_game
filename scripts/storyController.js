@@ -45,15 +45,10 @@ function displayMessage() {
 
 function handleNextButtonClick() {
     currentMessageIndex++;
-    runStoryEvent();
-    // Update: Remove the 'Next' button after clicking
-    const nextButton = document.querySelector('.popup-button');
-    if (nextButton) {
-        nextButton.remove();
-    }
+    displayMessage(); // Show the next message
 }
 
-function handleDoneButtonClick() {
+function handleCloseButtonClick() {
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('popup').style.display = 'none';
 
@@ -83,7 +78,7 @@ function runStoryEvent() {
         setUpdateStatus(false);
     } else {
         if (currentMessageIndex === messages.length) {
-            handleDoneButtonClick();
+            handleCloseButtonClick();
         }
     }
 }
