@@ -10,6 +10,7 @@ const messages = [
 ];
 
 let currentMessageIndex = 0;
+let resolvePause;
 
 function showPopup() {
     document.getElementById('overlay').style.display = 'block';
@@ -38,7 +39,6 @@ function displayMessage() {
 
     // Add event listener to the entire popup
     document.getElementById('popup').addEventListener('click', handlePopupButtonClick);
-
 }
 
 function createButton(text, clickHandler) {
@@ -52,6 +52,7 @@ function createButton(text, clickHandler) {
 function handleNextButtonClick() {
     currentMessageIndex++;
     displayMessage(); // Show the next message
+    resumeAfterButtonClick();
 }
 
 function handleCloseButtonClick() {
@@ -75,6 +76,8 @@ function handleCloseButtonClick() {
     setStoryStatus(false);
     setLastMessageClicked(true);
     currentMessageIndex = 0;
+
+    resumeAfterButtonClick();
 }
 
 function handlePopupButtonClick(event) {
@@ -90,11 +93,25 @@ function handlePopupButtonClick(event) {
     }
 }
 
-function runStoryEvent() {
+function resumeAfterButtonClick() {
+    if (resolvePause) {
+        resolvePause();
+        resolvePause = null;
+    }
+}
+
+function pauseUntilButtonClick() {
+    return new Promise(resolve => {
+        resolvePause = resolve;
+    });
+}
+
+async function runStoryEvent() {
     if (currentMessageIndex < messages.length) {
         showPopup();
         // Pause resource bars while the popup is visible
         setUpdateStatus(false);
+        await pauseUntilButtonClick();
     } else {
         if (currentMessageIndex === messages.length) {
             handleCloseButtonClick();
