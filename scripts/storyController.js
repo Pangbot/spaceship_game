@@ -82,7 +82,7 @@ function pauseUntilButtonClick() {
 // Add event listener to the document body for button clicks
 document.body.addEventListener('click', (event) => {
     const clickedButton = event.target.closest('.popup-button');
-    if (clickedButton) {
+    if (clickedButton && clickedButton.innerText === 'Close') {
         handleCloseButtonClick();
     }
 });
