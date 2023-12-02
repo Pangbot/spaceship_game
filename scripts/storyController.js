@@ -26,21 +26,23 @@ function displayMessage() {
 
     // Create 'Next' button for all messages except the last one
     if (currentMessageIndex < messages.length - 1) {
-        const nextButton = document.createElement('button');
-        nextButton.innerText = 'Next';
-        nextButton.className = 'popup-button';
-        nextButton.addEventListener('click', handleNextButtonClick);
+        const nextButton = createButton('Next', handleNextButtonClick);
         document.getElementById('popup').appendChild(nextButton);
     }
 
     // Create 'Close' button for the last message
     if (currentMessageIndex === messages.length - 1) {
-        const closeButton = document.createElement('button');
-        closeButton.innerText = 'Close';
-        closeButton.className = 'popup-button';
-        closeButton.addEventListener('click', handleCloseButtonClick);
+        const closeButton = createButton('Close', handleCloseButtonClick);
         document.getElementById('popup').appendChild(closeButton);
     }
+}
+
+function createButton(text, clickHandler) {
+    const button = document.createElement('button');
+    button.innerText = text;
+    button.className = 'popup-button';
+    button.addEventListener('click', clickHandler);
+    return button;
 }
 
 function handleNextButtonClick() {
