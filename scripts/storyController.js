@@ -77,19 +77,6 @@ function handleCloseButtonClick() {
     resumeAfterButtonClick();
 }
 
-function handlePopupButtonClick(event) {
-    const nextButtonExists = event.target.matches('.popup-button-next');
-    const closeButtonExists = event.target.matches('.popup-button-close');
-
-    if (nextButtonExists) {
-        handleNextButtonClick();
-    }
-
-    if (closeButtonExists) {
-        handleCloseButtonClick();
-    }
-}
-
 function resumeAfterButtonClick() {
     if (resolvePause) {
         resolvePause();
@@ -103,8 +90,18 @@ function pauseUntilButtonClick() {
     });
 }
 
-// Add event listener to the entire popup outside the displayMessage function
-document.getElementById('popup').addEventListener('click', handlePopupButtonClick);
+// Add event listener to the document body for button clicks
+document.body.addEventListener('click', (event) => {
+    const clickedButton = event.target.closest('.popup-button');
+    if (clickedButton) {
+        const buttonType = clickedButton.dataset.buttonType;
+        if (buttonType === 'next') {
+            handleNextButtonClick();
+        } else if (buttonType === 'close') {
+            handleCloseButtonClick();
+        }
+    }
+});
 
 async function runStoryEvent() {
     if (currentMessageIndex < messages.length) {
