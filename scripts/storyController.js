@@ -46,6 +46,11 @@ function displayMessage() {
 function handleNextButtonClick() {
     currentMessageIndex++;
     runStoryEvent();
+    // Update: Remove the 'Next' button after clicking
+    const nextButton = document.querySelector('.popup-button');
+    if (nextButton) {
+        nextButton.remove();
+    }
 }
 
 function handleDoneButtonClick() {
