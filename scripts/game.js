@@ -26,18 +26,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Start the game loop
     gameLoop();
-
-    // Add an event listener to the parent of the buttons (e.g., popup)
-    document.getElementById('popup').addEventListener('click', function (event) {
-        const nextButtonExists = event.target.matches('.popup-button-next');
-        const closeButtonExists = event.target.matches('.popup-button-close');
-
-        if (nextButtonExists) {
-            handleNextButtonClick();
-        }
-
-        if (closeButtonExists) {
-            handleCloseButtonClick();
-        }
-    });
 });

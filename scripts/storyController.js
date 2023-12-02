@@ -76,12 +76,36 @@ function handleCloseButtonClick() {
 function runStoryEvent() {
     if (currentMessageIndex < messages.length) {
         showPopup();
+        document.getElementById('popup').addEventListener('click', function (event) {
+            const nextButtonExists = event.target.matches('.popup-button-next');
+            const closeButtonExists = event.target.matches('.popup-button-close');
+    
+            if (nextButtonExists) {
+                handleNextButtonClick();
+            }
+    
+            if (closeButtonExists) {
+                handleCloseButtonClick();
+            }
+        });
         // Pause resource bars while the popup is visible
         setUpdateStatus(false);
     } else {
         if (currentMessageIndex === messages.length) {
             handleCloseButtonClick();
         }
+        document.getElementById('popup').addEventListener('click', function (event) {
+            const nextButtonExists = event.target.matches('.popup-button-next');
+            const closeButtonExists = event.target.matches('.popup-button-close');
+    
+            if (nextButtonExists) {
+                handleNextButtonClick();
+            }
+    
+            if (closeButtonExists) {
+                handleCloseButtonClick();
+            }
+        });
     }
 }
 
