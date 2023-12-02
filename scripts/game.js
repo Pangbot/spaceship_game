@@ -10,12 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialise the game
     initialiseGame();
 
+    let waitForButtonClick = false;
+
     function gameLoop() {
         if (isUpdateEnabled) {
             // Call the continuous update function
             updateGame();
-        } else if(storyTime) {
+        } else if (storyTime) {
             runStoryEvent();
+            if (waitForButtonClick) {
+                waitForButtonClick = false;
+                return;
+            }
         } else {
             console.error("I DON'T KNOW WHAT TO DO");
         }
@@ -26,4 +32,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Start the game loop
     gameLoop();
+
+    // Add an event listener for the "Next" button click
+    document.getElementById('popup').addEventListener('click', function () {
+        waitForButtonClick = true;
+        runStoryEvent();
+    });
 });
