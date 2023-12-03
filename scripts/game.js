@@ -10,12 +10,22 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialise the game
     initialiseGame();
 
-    function gameLoop() {
-        if (isUpdateEnabled) {
+    // Variable to track whether the story event is running
+    let isStoryEventRunning = false;
+
+    async function gameLoop() {
+        if (isUpdateEnabled && !isStoryEventRunning) {
             // Call the continuous update function
             updateGame();
-        } else if (storyTime) {
-            runStoryEvent();
+        } else if (storyTime && !isStoryEventRunning) {
+            // Set the flag to prevent multiple story event runs
+            isStoryEventRunning = true;
+
+            // Run the story event and await its completion
+            await runStoryEvent();
+
+            // Reset the flag after the story event is complete
+            isStoryEventRunning = false;
         } else {
             console.error("I DON'T KNOW WHAT TO DO");
         }
