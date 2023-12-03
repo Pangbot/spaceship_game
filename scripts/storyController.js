@@ -16,9 +16,14 @@ function showPopup() {
     popup.style.display = 'block';
     displayMessage();
 
-    const closeButton = createButton('Close', handleCloseButtonClick);
-    popup.appendChild(closeButton);
+    // Check if close button already exists
+    const closeButton = document.querySelector('.popup-button');
+    if (!closeButton) {
+        const newCloseButton = createButton('Close', handleCloseButtonClick);
+        popup.appendChild(newCloseButton);
+    }
 }
+
 
 function displayMessage() {
     const messageElement = document.getElementById('message');
