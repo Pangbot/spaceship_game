@@ -70,8 +70,12 @@ async function runStoryEvent() {
 
 function pauseUntilButtonClick() {
     return new Promise(resolve => {
-        const closeButton = document.querySelector('.popup-button');
-        closeButton.addEventListener('click', resolve, { once: true });
+        document.body.addEventListener('click', (event) => {
+            const clickedButton = event.target.closest('.popup-button');
+            if (clickedButton && clickedButton.innerText === 'Close') {
+                resolve();
+            }
+        }, { once: true });
     });
 }
 
