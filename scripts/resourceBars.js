@@ -1,7 +1,7 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { setStoryStatus, setUpdateStatus, storyTime } from "./common.js";
+import { setStoryStatus, setUpdateStatus, storyTime, storyMessages } from "./common.js";
 
 function updateResourceBars() {
     // Oxygen Bar
@@ -44,7 +44,7 @@ function updateResourceBars() {
             foodPercentage.innerText = `${Math.round(currentFood)}%`;
 
             // Conditions for a story event
-            if (Math.round(currentFood) == 93) {
+            if (Math.round(currentFood) == 93 && storyMessages.message_shown == false) {
                 console.log('story time! (mandatory)');
                 setStoryStatus(true);
             }

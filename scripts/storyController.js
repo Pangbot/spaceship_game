@@ -1,10 +1,7 @@
 // storyController.js
-import { setUpdateStatus, setStoryStatus, setLastMessageClicked } from './common.js';
+import { setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages } from './common.js';
 
-const messages = [
-    "Welcome to the game!",
-    // Add more messages as needed
-];
+const messages = storyMessages.message_content;
 
 let currentMessageIndex = 0;
 
@@ -82,6 +79,7 @@ function pauseUntilButtonClick() {
             resolve();
             // Remove the event listener after the button is clicked
             popup.removeEventListener('click', clickHandler);
+            storyMessages.message_shown = true;
         }
 
         // Add the click handler to the popup

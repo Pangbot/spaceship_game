@@ -52,4 +52,8 @@ function setStoryStatus(state) {
     storyTime = state;
 }
 
-export { currentRoom, doors, isUpdateEnabled, storyTime, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked };
+let storyMessages = [
+    { message_shown: false, message_content: "1. Welcome to the game!" }
+];
+
+export { currentRoom, doors, isUpdateEnabled, storyTime, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages };
