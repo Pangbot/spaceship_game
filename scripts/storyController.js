@@ -70,11 +70,17 @@ async function runStoryEvent() {
 
 function pauseUntilButtonClick() {
     return new Promise(resolve => {
-        const closeButton = document.querySelector('.popup-button');
-        closeButton.addEventListener('click', function handler() {
-            closeButton.removeEventListener('click', handler);
+        const popup = document.getElementById('popup');
+        
+        // Create a click handler function
+        function clickHandler() {
             resolve();
-        }, { once: true });
+            // Remove the event listener after the button is clicked
+            popup.removeEventListener('click', clickHandler);
+        }
+
+        // Add the click handler to the popup
+        popup.addEventListener('click', clickHandler);
     });
 }
 
