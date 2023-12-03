@@ -1,5 +1,5 @@
 // storyController.js
-import { setLastMessageClicked, setStoryStatus, setUpdateStatus } from './common.js';
+import { setUpdateStatus, setStoryStatus, setLastMessageClicked } from './common.js';
 
 const messages = [
     "Welcome to the game!",
@@ -7,32 +7,22 @@ const messages = [
 ];
 
 let currentMessageIndex = 0;
-let resolvePause;
-
-let closeButton; // Declare closeButton outside the function
 
 function showPopup() {
-    document.getElementById('overlay').style.display = 'block';
-    document.getElementById('popup').style.display = 'block';
+    const overlay = document.getElementById('overlay');
+    const popup = document.getElementById('popup');
+
+    overlay.style.display = 'block';
+    popup.style.display = 'block';
     displayMessage();
 
-    // Create 'Close' button only if it doesn't exist
-    if (!closeButton) {
-        closeButton = createButton('Close', handleCloseButtonClick);
-        document.getElementById('popup').appendChild(closeButton);
-    }
+    const closeButton = createButton('Close', handleCloseButtonClick);
+    popup.appendChild(closeButton);
 }
 
 function displayMessage() {
-    document.getElementById('message').innerText = messages[currentMessageIndex];
-
-    // Remove existing buttons (if any)
-    const existingButtons = document.querySelectorAll('.popup-button');
-    existingButtons.forEach(button => button.remove());
-
-    // Create 'Close' button
-    const closeButton = createButton('Close', handleCloseButtonClick);
-    document.getElementById('popup').appendChild(closeButton);
+    const messageElement = document.getElementById('message');
+    messageElement.innerText = messages[currentMessageIndex];
 }
 
 function createButton(text, clickHandler) {
@@ -45,13 +35,12 @@ function createButton(text, clickHandler) {
 
 function handleCloseButtonClick() {
     console.log('Close button clicked');
-    // Remove event listener before handling the button click
-    document.getElementById('popup').removeEventListener('click', handlePopupButtonClick);
 
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('popup').style.display = 'none';
+    const overlay = document.getElementById('overlay');
+    const popup = document.getElementById('popup');
+    overlay.style.display = 'none';
+    popup.style.display = 'none';
 
-    // Store messages in the container
     const container = document.getElementById('popup-container');
     const messageList = document.createElement('ul');
 
@@ -63,59 +52,31 @@ function handleCloseButtonClick() {
 
     container.appendChild(messageList);
 
-    // Reset currentMessageIndex and resume resource bars when 'Done' is clicked
     setUpdateStatus(true);
     setStoryStatus(false);
     setLastMessageClicked(true);
     currentMessageIndex = 0;
-
-    // Add event listener back after handling the button click
-    document.getElementById('popup').addEventListener('click', handlePopupButtonClick);
-
-    resumeAfterButtonClick();
 }
 
-document.body.addEventListener('click', (event) => {
-    const clickedButton = event.target.closest('.popup-button');
-    if (clickedButton) {
-        console.log('Popup button clicked');
+async function runStoryEvent() {
+    if (currentMessageIndex < messages.length) {
+        showPopup();
+        setUpdateStatus(false);
+        await pauseUntilButtonClick();
+    } else if (currentMessageIndex === messages.length) {
         handleCloseButtonClick();
-    }
-});
-
-function resumeAfterButtonClick() {
-    if (resolvePause) {
-        resolvePause();
-        resolvePause = null;
     }
 }
 
 function pauseUntilButtonClick() {
     return new Promise(resolve => {
-        resolvePause = resolve;
+        document.body.addEventListener('click', (event) => {
+            const clickedButton = event.target.closest('.popup-button');
+            if (clickedButton && clickedButton.innerText === 'Close') {
+                resolve();
+            }
+        }, { once: true });
     });
-}
-
-// Add event listener to the document body for button clicks
-document.body.addEventListener('click', (event) => {
-    const clickedButton = event.target.closest('.popup-button');
-    if (clickedButton && clickedButton.innerText === 'Close') {
-        handleCloseButtonClick();
-    }
-});
-
-async function runStoryEvent() {
-    if (currentMessageIndex < messages.length) {
-        showPopup();
-        // Pause resource bars while the popup is visible
-        setUpdateStatus(false);
-        await pauseUntilButtonClick();
-    } else {
-        if (currentMessageIndex === messages.length) {
-            // Handle the end of the story (if needed)
-            handleCloseButtonClick();
-        }
-    }
 }
 
 export { runStoryEvent };
