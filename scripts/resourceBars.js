@@ -44,7 +44,7 @@ function updateResourceBars() {
             foodPercentage.innerText = `${Math.round(currentFood)}%`;
 
             // Conditions for a story event
-            if (Math.round(currentFood) == 93 && storyMessages.message_shown == false) {
+            if (Math.round(currentFood) == 93 && storyMessages[0].message_shown == false) {
                 console.log('story time! (mandatory)');
                 setStoryStatus(true);
             }
