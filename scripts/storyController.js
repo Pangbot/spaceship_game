@@ -71,8 +71,12 @@ async function runStoryEvent() {
 function pauseUntilButtonClick() {
     return new Promise(resolve => {
         const closeButton = document.querySelector('.popup-button');
-        closeButton.addEventListener('click', resolve, { once: true });
+        closeButton.addEventListener('click', function handler() {
+            closeButton.removeEventListener('click', handler);
+            resolve();
+        }, { once: true });
     });
 }
+
 
 export { runStoryEvent };
