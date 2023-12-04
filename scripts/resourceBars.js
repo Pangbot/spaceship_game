@@ -8,12 +8,12 @@ function updateResourceBars() {
         {
             id: 'oxygen_bar',
             rate: 0.2,
-            currentValue: 100, // Initialize with 100%
+            currentValue: document.getElementById('oxygen_bar').style.width,
         },
         {
             id: 'food_bar',
             rate: 1,
-            currentValue: 100, // Initialize with 100%
+            currentValue: document.getElementById('food_bar').style.width,
         },
     ];
 
@@ -42,13 +42,13 @@ function updateResourceBars() {
                 barElement.style.width = `${currentWidth}%`; // Set the width as a percentage
                 barElement.setAttribute('data-fill', currentWidth);
                 percentageElement.innerText = `${Math.round(currentWidth)}%`;
-
-                // Conditions for a story event
-                if (bar.id === 'food_bar' && Math.round(bar.currentValue) === 93 && storyMessages[0].message_shown === false) {
-                    console.log('story time! (mandatory)');
-                    setStoryStatus(true);
-                }
             });
+
+            // Conditions for a story event
+            if (Math.round(bars[1].currentValue) === 93 && storyMessages[0].message_shown === false) {
+                console.log('story time! (mandatory)');
+                setStoryStatus(true);
+            }
         }
 
         // Check if a story event needs to be called
