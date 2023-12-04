@@ -26,44 +26,46 @@ function updateResourceBars() {
     });
 
     function updateBars() {
-    const now = performance.now();
-    const elapsedMilliseconds = now - (lastTimestamp || now);
+        const now = performance.now();
+        const elapsedMilliseconds = now - (lastTimestamp || now);
 
-    if (!lastTimestamp) {
-        lastTimestamp = now;
-    }
+        if (!lastTimestamp) {
+            lastTimestamp = now;
+        }
 
-    if (!storyTime) {
-        bars.forEach((bar) => {
-            const barElement = document.getElementById(bar.id);
-            const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
+        if (!storyTime) {
+            bars.forEach((bar) => {
+                const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
+            
+                // Calculate the decrease based on the time elapsed
+                const decrease = bar.rate * (elapsedMilliseconds / 1000);
+    
+                // Update bar only if not in story mode
+                bar.currentValue = Math.max(0, bar.currentValue - decrease);
+                const currentWidth = bar.currentValue; // Use the percentage directly
+                bar.element.style.width = `${currentWidth}%`; // Set the width as a percentage
+                bar.element.setAttribute('data-fill', currentWidth);
+                percentageElement.innerText = `${Math.round(currentWidth)}%`;
+            });
 
-            if (bar.id === 'food_bar' && Math.round(bar.currentBar) === 93 && storyMessages[0].message_shown === false) {
+            // Conditions for a story event
+            if (Math.round(bars[1].currentValue) === 93 && storyMessages[0].message_shown === false) {
                 console.log('story time! (mandatory)');
                 setStoryStatus(true);
             }
+        }
 
-            const decreaseRate = bar.rate * (elapsedMilliseconds / 1000);
-            bar.currentBar = Math.max(0, bar.currentBar - decreaseRate);
-
-            const currentWidth = bar.currentBar;
-            barElement.style.width = `${currentWidth}%`;
-            barElement.setAttribute('data-fill', bar.currentBar);
-            percentageElement.innerText = `${Math.round(bar.currentBar)}%`;
-        });
+        console.log("story time: ",storyTime);
+        // Check if a story event needs to be called
+        if (storyTime) {
+            setUpdateStatus(false);
+            cancelAnimationFrame(animationFrameId);
+        } else {
+            // Use requestAnimationFrame for the next update
+            animationFrameId = requestAnimationFrame(updateBars);
+            lastTimestamp = now;
+        }
     }
-
-    // Check if a story event needs to be called
-    if (storyTime) {
-        setUpdateStatus(false);
-        cancelAnimationFrame(animationFrameId);
-    } else {
-        // Use requestAnimationFrame for the next update
-        animationFrameId = requestAnimationFrame(updateBars);
-        lastTimestamp = now;
-    }
-}
-
 
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
