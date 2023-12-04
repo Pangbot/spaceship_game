@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Reset the flag after the story event is complete
             isStoryEventRunning = false;
         } else if (isGamePaused) {
-            showOptionsMenu();
+            await showOptionsMenu();
         } else {
             console.error("I DON'T KNOW WHAT TO DO");
         }
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Use requestAnimationFrame to schedule the next iteration
         requestAnimationFrame(gameLoop);
     }
-    
+
     // Start the game loop
     gameLoop();
 });
