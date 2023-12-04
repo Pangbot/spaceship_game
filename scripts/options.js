@@ -1,6 +1,6 @@
 // options.js
 // Stores info in, and manages, the options menu
-import { pauseUntilButtonClick, createButton, displayMessage } from './storyController.js';
+import { pauseUntilButtonClick, createButton, displayMessage, showPopup } from './storyController.js';
 
 
 async function showOptionsMenu() {
