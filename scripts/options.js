@@ -21,7 +21,8 @@ async function showOptionsMenu() {
     messageElement.innerText = messages[currentMessageIndex];
 
     // Add event listener for the "p" key
-    document.addEventListener('keydown', handleKeyPress);
+    keyDownListener = handleKeyPress; // Assign the event listener to keyDownListener
+    document.addEventListener('keydown', keyDownListener);
 
     if (currentMessageIndex < messages.length) {
         setUpdateStatus(false);
@@ -49,7 +50,7 @@ function pauseUntilButtonClick() {
             popup.removeEventListener('click', clickHandler);
             // Remove the keydown event listener after the button is clicked
             document.removeEventListener('keydown', keyDownListener);
-            
+
             // Resolve the promise after cleaning up listeners
             resolve();
         }
