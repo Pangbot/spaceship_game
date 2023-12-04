@@ -39,7 +39,6 @@ function handleKeyPress(event) {
     }
 }
 
-
 function pauseUntilButtonClick() {
     return new Promise(resolve => {
         const popup = document.getElementById('popup');
@@ -58,6 +57,17 @@ function pauseUntilButtonClick() {
         // Add the click handler to the popup
         popup.addEventListener('click', clickHandler);
     });
+}
+
+function hideOptionsMenu() {
+    console.log("Hiding options menu.");
+
+    const overlay = document.getElementById('overlay');
+    const popup = document.getElementById('popup');
+    overlay.style.display = 'none';
+    popup.style.display = 'none';
+
+    setUpdateStatus(true);
 }
 
 export { showOptionsMenu };
