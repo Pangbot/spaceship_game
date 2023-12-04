@@ -40,6 +40,12 @@ let storyTime = false;
 
 let lastMessageClicked = false;
 
+isGamePaused = false;
+
+function toggleGamePause() {
+    isGamePaused = !isGamePaused;
+}
+
 function setLastMessageClicked(state) {
     lastMessageClicked = state;
 }
@@ -57,4 +63,4 @@ let storyMessages = [
     { message_shown: false, message_content: ["I hate you."] }
 ];
 
-export { currentRoom, doors, isUpdateEnabled, storyTime, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages };
+export { currentRoom, doors, isUpdateEnabled, storyTime, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages, isGamePaused, toggleGamePause };

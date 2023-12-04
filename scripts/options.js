@@ -1,6 +1,6 @@
 // options.js
 // Stores info in, and manages, the options menu
-import { setUpdateStatus } from './common.js';
+import { setUpdateStatus, toggleGamePause } from './common.js';
 
 let currentMessageIndex = 0; // Declare currentMessageIndex in a scope accessible to both functions
 let keyDownListener; // Variable to store the event listener reference
@@ -76,7 +76,7 @@ function hideOptionsMenu() {
     setUpdateStatus(true);
 
     // Reset the isGamePaused flag when closing the options menu
-    isGamePaused = false;
+    toggleGamePause();
 }
 
 export { showOptionsMenu, hideOptionsMenu };
