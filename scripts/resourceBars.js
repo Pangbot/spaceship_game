@@ -29,25 +29,24 @@ function updateResourceBars() {
         if (!storyTime) {
             bars.forEach((bar) => {
                 const barElement = document.getElementById(bar.id);
-                let currentBar = parseFloat(barElement.getAttribute('data-fill'));
-                const container = barElement.closest('.resource-bar-container');
-                const percentage = container.querySelector('.percentage');
+                const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
+            
+                // Calculate the decrease based on the time elapsed
+                const decrease = bar.rate * (elapsedMilliseconds / 1000);
+    
+                // Update bar only if not in story mode
+                bar.currentValue = Math.max(0, bar.currentValue - decrease);
+                const currentWidth = bar.currentValue * 100; // Use the percentage directly
+                barElement.style.width = `${currentWidth}%`; // Set the width as a percentage
+                barElement.setAttribute('data-fill', currentWidth);
+                percentageElement.innerText = `${Math.round(currentWidth)}%`;
 
-                const decreaseRate = bar.rate * (elapsedMilliseconds / 1000);
-                currentBar = Math.max(0, currentBar - decreaseRate);
-
-                const barWidth = currentBar; // Use the percentage directly
-                barElement.style.width = `${barWidth}%`; // Set the width as a percentage
-                barElement.setAttribute('data-fill', currentBar);
-                percentage.innerText = `${Math.round(currentBar)}%`;
+                // Conditions for a story event
+                if (bar.id === 'food_bar' && Math.round(bar.currentValue) === 93 && storyMessages[0].message_shown === false) {
+                    console.log('story time! (mandatory)');
+                    setStoryStatus(true);
+                }
             });
-
-            // Conditions for a story event
-            const foodBar = bars.find((bar) => bar.id === 'food_bar');
-            if (Math.round(foodBar.rate) === 93 && storyMessages[0].message_shown === false) {
-                console.log('story time! (mandatory)');
-                setStoryStatus(true);
-            }
         }
 
         // Check if a story event needs to be called
@@ -64,6 +63,5 @@ function updateResourceBars() {
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
 }
-
 
 export { updateResourceBars };
