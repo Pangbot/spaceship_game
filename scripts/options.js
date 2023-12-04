@@ -74,6 +74,9 @@ function hideOptionsMenu() {
     popup.style.display = 'none';
 
     setUpdateStatus(true);
+
+    // Reset the isGamePaused flag when closing the options menu
+    isGamePaused = false;
 }
 
 export { showOptionsMenu, hideOptionsMenu };
