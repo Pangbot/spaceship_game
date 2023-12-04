@@ -26,30 +26,36 @@ function updateResourceBars() {
     function updateBars() {
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
-
+    
         if (!lastTimestamp) {
             lastTimestamp = now;
         }
-
+    
         if (!storyTime) {
+            // Calculate the decrease based on the time elapsed
+            const oxygenDecrease = oxygenDecreaseRate * (elapsedMilliseconds / 1000);
+            const foodDecrease = foodDecreaseRate * (elapsedMilliseconds / 1000);
+    
             // Update bars only if not in story mode
-            currentOxygen = Math.max(0, currentOxygen - oxygenDecreaseRate * (elapsedMilliseconds / 1000));
-            oxygenBar.style.width = `${currentOxygen}%`;
+            currentOxygen = Math.max(0, currentOxygen - oxygenDecrease);
+            const oxygenWidth = (currentOxygen / 100) * 100; // Directly calculate the visual width
+            oxygenBar.style.width = `${oxygenWidth}%`;
             oxygenBar.setAttribute('data-fill', currentOxygen);
             oxygenPercentage.innerText = `${Math.round(currentOxygen)}%`;
-
-            currentFood = Math.max(0, currentFood - foodDecreaseRate * (elapsedMilliseconds / 1000));
-            foodBar.style.width = `${currentFood}%`;
+    
+            currentFood = Math.max(0, currentFood - foodDecrease);
+            const foodWidth = (currentFood / 100) * 100; // Directly calculate the visual width
+            foodBar.style.width = `${foodWidth}%`;
             foodBar.setAttribute('data-fill', currentFood);
             foodPercentage.innerText = `${Math.round(currentFood)}%`;
-
+    
             // Conditions for a story event
             if (Math.round(currentFood) == 93 && storyMessages[0].message_shown == false) {
                 console.log('story time! (mandatory)');
                 setStoryStatus(true);
             }
         }
-
+    
         // Check if a story event needs to be called
         if (storyTime) {
             setUpdateStatus(false);
@@ -59,7 +65,7 @@ function updateResourceBars() {
             animationFrameId = requestAnimationFrame(updateBars);
             lastTimestamp = now;
         }
-    }
+    }    
 
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
