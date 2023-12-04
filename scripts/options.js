@@ -29,6 +29,9 @@ async function showOptionsMenu() {
         await pauseUntilButtonClick();
     } else if (currentMessageIndex === messages.length) {
         hideOptionsMenu();
+        
+        // Reattach the event listener for "p" key after hiding the options menu
+        document.addEventListener('keydown', handleKeyPress);
     }
 }
 
