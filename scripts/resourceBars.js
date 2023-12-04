@@ -25,7 +25,7 @@ function updateResourceBars() {
         bar.currentValue = parseFloat(bar.element.getAttribute('data-fill')) || 0;
     });
 
-    let updateThreshold = 500; // Set the threshold to 500 milliseconds (0.5 second)
+    let updateThreshold = 1000; // Set the threshold to some milliseconds
 
     function updateBars() {
         const now = performance.now();
@@ -57,12 +57,10 @@ function updateResourceBars() {
 
             // Conditions for a story event
             if (Math.round(bars[1].currentValue) === 93 && storyMessages[0].message_shown === false) {
-                console.log('story time! (mandatory)');
                 setStoryStatus(true);
             }
         }
 
-        console.log("story time: ",storyTime);
         // Check if a story event needs to be called
         if (storyTime) {
             setUpdateStatus(false);
