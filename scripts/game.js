@@ -14,6 +14,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Variable to track whether the story event is running
     let isStoryEventRunning = false;
 
+    // Add a variable to track the pause state
+    let isGamePaused = false;
+
+    // Add an event listener for the "keydown" event
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'p') {
+            // Toggle the pause state
+            isGamePaused = !isGamePaused;
+        }
+    });
+
     async function gameLoop() {
         if (isUpdateEnabled && !isStoryEventRunning && !isGamePaused) {
             // Call the continuous update function
@@ -36,18 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Use requestAnimationFrame to schedule the next iteration
         requestAnimationFrame(gameLoop);
     }
-
-    // Add a variable to track the pause state
-    let isGamePaused = false;
-
-    // Add an event listener for the "keydown" event
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'p') {
-            // Toggle the pause state
-            isGamePaused = !isGamePaused;
-        }
-    });
-
+    
     // Start the game loop
     gameLoop();
 });
