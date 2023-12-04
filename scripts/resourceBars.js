@@ -55,6 +55,7 @@ function updateResourceBars() {
             }
         }
 
+        console.log("story time: ",storyTime);
         // Check if a story event needs to be called
         if (storyTime) {
             setUpdateStatus(false);
