@@ -21,18 +21,9 @@ async function showOptionsMenu() {
     messageElement.innerText = messages[currentMessageIndex];
 
     // Add event listener for the "p" key
-    keyDownListener = handleKeyPress; // Store the reference to the event listener
-    document.addEventListener('keydown', keyDownListener);
+    document.addEventListener('keydown', handleKeyPress);
 
     if (currentMessageIndex < messages.length) {
-        const overlay = document.getElementById('overlay');
-        const popup = document.getElementById('popup');
-
-        overlay.style.display = 'block';
-        popup.style.display = 'block';
-        const messageElement = document.getElementById('message');
-        messageElement.innerText = messages[currentMessageIndex];
-
         setUpdateStatus(false);
         await pauseUntilButtonClick();
     } else if (currentMessageIndex === messages.length) {
@@ -40,26 +31,14 @@ async function showOptionsMenu() {
     }
 }
 
-function hideOptionsMenu() {
-    console.log("Hiding options menu.");
-
-    const overlay = document.getElementById('overlay');
-    const popup = document.getElementById('popup');
-    overlay.style.display = 'none';
-    popup.style.display = 'none';
-
-    setUpdateStatus(true);
-
-    // Set isGamePaused to false explicitly when hiding the options menu
-    setGamePause(false);
-}
-
 function handleKeyPress(event) {
     // Check if the pressed key is "p"
     if (event.key === 'p') {
+        document.removeEventListener('keydown', handleKeyPress); // Remove the event listener
         hideOptionsMenu();
     }
 }
+
 
 function pauseUntilButtonClick() {
     return new Promise(resolve => {
@@ -81,4 +60,4 @@ function pauseUntilButtonClick() {
     });
 }
 
-export { showOptionsMenu, hideOptionsMenu };
+export { showOptionsMenu };

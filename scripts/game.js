@@ -3,7 +3,7 @@ import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
 import { isUpdateEnabled, storyTime, isGamePaused, setGamePause } from './common.js';
 import { runStoryEvent } from './storyController.js';
-import { showOptionsMenu, hideOptionsMenu } from './options.js';
+import { showOptionsMenu } from './options.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
