@@ -43,17 +43,6 @@ function handleCloseButtonClick() {
     overlay.style.display = 'none';
     popup.style.display = 'none';
 
-    const container = document.getElementById('popup-container');
-    const messageList = document.createElement('ul');
-
-    messages.forEach((message, index) => {
-        const listItem = document.createElement('li');
-        listItem.innerText = `${index + 1}. ${message}`;
-        messageList.appendChild(listItem);
-    });
-
-    container.appendChild(messageList);
-
     setUpdateStatus(true);
     setStoryStatus(false);
     setLastMessageClicked(true);
