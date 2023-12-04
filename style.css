@@ -58,7 +58,7 @@ body {
     height: 48px;
     border: 1px solid #000;
     background-color: #ff0000;
-    transition: width 0.1s ease;
+    transition: width 0.4s ease;
     overflow: visible;
 }
 

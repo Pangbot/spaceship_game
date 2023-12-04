@@ -25,6 +25,8 @@ function updateResourceBars() {
         bar.currentValue = parseFloat(bar.element.getAttribute('data-fill')) || 0;
     });
 
+    let updateThreshold = 500; // Set the threshold to 500 milliseconds (0.5 second)
+
     function updateBars() {
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
@@ -36,16 +38,21 @@ function updateResourceBars() {
         if (!storyTime) {
             bars.forEach((bar) => {
                 const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
-            
+
                 // Calculate the decrease based on the time elapsed
                 const decrease = bar.rate * (elapsedMilliseconds / 1000);
-    
-                // Update bar only if not in story mode
-                bar.currentValue = Math.max(0, bar.currentValue - decrease);
-                const currentWidth = bar.currentValue; // Use the percentage directly
-                bar.element.style.width = `${currentWidth}%`; // Set the width as a percentage
-                bar.element.setAttribute('data-fill', currentWidth);
-                percentageElement.innerText = `${Math.round(currentWidth)}%`;
+
+                // Update bar only if not in story mode and if enough time has passed
+                if (elapsedMilliseconds > updateThreshold) {
+                    bar.currentValue = Math.max(0, bar.currentValue - decrease);
+                    const currentWidth = bar.currentValue;
+                    bar.element.style.width = `${currentWidth}%`;
+                    bar.element.setAttribute('data-fill', currentWidth);
+                    percentageElement.innerText = `${Math.round(currentWidth)}%`;
+
+                    // Update the last timestamp after the bars are updated
+                    lastTimestamp = now;
+                }
             });
 
             // Conditions for a story event
@@ -63,7 +70,6 @@ function updateResourceBars() {
         } else {
             // Use requestAnimationFrame for the next update
             animationFrameId = requestAnimationFrame(updateBars);
-            lastTimestamp = now;
         }
     }
 
