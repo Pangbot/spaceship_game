@@ -3,6 +3,7 @@
 import { setUpdateStatus } from './common.js';
 
 let currentMessageIndex = 0; // Declare currentMessageIndex in a scope accessible to both functions
+let keyDownListener; // Variable to store the event listener reference
 
 async function showOptionsMenu() {
     console.log("Showing options menu.");
@@ -17,7 +18,8 @@ async function showOptionsMenu() {
     messageElement.innerText = messages[currentMessageIndex];
 
     // Add event listener for the "p" key
-    document.addEventListener('keydown', handleKeyPress);
+    keyDownListener = handleKeyPress; // Store the reference to the event listener
+    document.addEventListener('keydown', keyDownListener);
 
     if (currentMessageIndex < messages.length) {
         const overlay = document.getElementById('overlay');
@@ -49,7 +51,9 @@ function pauseUntilButtonClick() {
         // Create a click handler function
         function clickHandler() {
             resolve();
-            // Remove the event listener after the button is clicked
+            // Remove the keydown event listener after the button is clicked
+            document.removeEventListener('keydown', keyDownListener);
+            // Remove the click event listener after the button is clicked
             popup.removeEventListener('click', clickHandler);
         }
 
@@ -70,4 +74,4 @@ function hideOptionsMenu() {
     setUpdateStatus(true);
 }
 
-export { showOptionsMenu, hideOptionsMenu}
+export { showOptionsMenu, hideOptionsMenu };
