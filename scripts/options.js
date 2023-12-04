@@ -20,7 +20,7 @@ async function showOptionsMenu() {
     // Check if close button already exists
     const closeButton = document.querySelector('.popup-button');
     if (!closeButton) {
-        const newCloseButton = createButton('Close', hideOptionsMenu());
+        const newCloseButton = createButton('Close', hideOptionsMenu);
         popup.appendChild(newCloseButton);
     }
 
@@ -36,7 +36,7 @@ async function showOptionsMenu() {
         // Check if close button already exists
         const closeButton = document.querySelector('.popup-button');
         if (!closeButton) {
-            const newCloseButton = createButton('Close', hideOptionsMenu());
+            const newCloseButton = createButton('Close', hideOptionsMenu);
             popup.appendChild(newCloseButton);
         }
         setUpdateStatus(false);
@@ -63,8 +63,8 @@ function pauseUntilButtonClick() {
 }
 
 function hideOptionsMenu() {
-    console.log("Hiding options menu.");
     console.log('Close button clicked');
+    console.log("Hiding options menu.");
 
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
