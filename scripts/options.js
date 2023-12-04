@@ -2,13 +2,12 @@
 // Stores info in, and manages, the options menu
 import { setUpdateStatus } from './common.js';
 
+let currentMessageIndex = 0; // Declare currentMessageIndex in a scope accessible to both functions
+
 async function showOptionsMenu() {
     console.log("Showing options menu.");
 
     const messages = ["This is the options menu!"];
-
-    currentMessageIndex = 0;
-
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
 
