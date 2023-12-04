@@ -8,6 +8,8 @@ async function showOptionsMenu() {
 
     const messages = ["This is the options menu!"];
 
+    let currentMessageIndex = 0;
+
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
 
