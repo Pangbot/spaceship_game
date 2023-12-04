@@ -8,17 +8,22 @@ function updateResourceBars() {
         {
             id: 'oxygen_bar',
             rate: 0.2,
-            currentValue: document.getElementById('oxygen_bar').style.width,
+            element: document.getElementById('oxygen_bar'),
         },
         {
             id: 'food_bar',
             rate: 1,
-            currentValue: document.getElementById('food_bar').style.width,
+            element: document.getElementById('food_bar'),
         },
     ];
 
     let animationFrameId;
     let lastTimestamp;
+
+    // Initialize the bars based on their current width in the HTML
+    bars.forEach((bar) => {
+        bar.currentValue = parseFloat(bar.element.getAttribute('data-fill')) || 0;
+    });
 
     function updateBars() {
         const now = performance.now();
@@ -30,8 +35,7 @@ function updateResourceBars() {
 
         if (!storyTime) {
             bars.forEach((bar) => {
-                const barElement = document.getElementById(bar.id);
-                const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
+                const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
             
                 // Calculate the decrease based on the time elapsed
                 const decrease = bar.rate * (elapsedMilliseconds / 1000);
@@ -39,8 +43,8 @@ function updateResourceBars() {
                 // Update bar only if not in story mode
                 bar.currentValue = Math.max(0, bar.currentValue - decrease);
                 const currentWidth = bar.currentValue; // Use the percentage directly
-                barElement.style.width = `${currentWidth}%`; // Set the width as a percentage
-                barElement.setAttribute('data-fill', currentWidth);
+                bar.element.style.width = `${currentWidth}%`; // Set the width as a percentage
+                bar.element.setAttribute('data-fill', currentWidth);
                 percentageElement.innerText = `${Math.round(currentWidth)}%`;
             });
 
