@@ -53,6 +53,7 @@ function updateResourceBars() {
         // Check if a story event needs to be called
         if (storyTime) {
             setUpdateStatus(false);
+            cancelAnimationFrame(animationFrameId);
         } else {
             // Use requestAnimationFrame for the next update
             animationFrameId = requestAnimationFrame(updateBars);
@@ -62,14 +63,6 @@ function updateResourceBars() {
 
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
-
-    // Function to pause the bars
-    function pauseBars() {
-        cancelAnimationFrame(animationFrameId);
-    }
-
-    // Expose the pause function
-    return pauseBars;
 }
 
 
