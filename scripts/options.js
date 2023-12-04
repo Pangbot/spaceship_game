@@ -5,7 +5,7 @@ import { setUpdateStatus, setGamePause } from './common.js';
 let currentMessageIndex = 0; // Declare currentMessageIndex in a scope accessible to both functions
 let keyDownListener; // Variable to store the event listener reference
 
-async function showOptionsMenu() {
+async function showOptionsMenu(callback) {
     console.log("Showing options menu.");
 
     const messages = ["This is the options menu!"];
@@ -21,7 +21,7 @@ async function showOptionsMenu() {
     messageElement.innerText = messages[currentMessageIndex];
 
     // Add event listener for the "p" key
-    let keyDownListener = handleKeyPress; // Assign the event listener to keyDownListener
+    keyDownListener = handleKeyPress; // Assign the event listener to keyDownListener
     document.addEventListener('keydown', keyDownListener);
 
     if (currentMessageIndex < messages.length) {
@@ -36,6 +36,10 @@ async function showOptionsMenu() {
                 showOptionsMenu(); // Show options menu again
             }
         });
+    }
+
+    if (typeof callback === 'function') {
+        callback();
     }
 }
 

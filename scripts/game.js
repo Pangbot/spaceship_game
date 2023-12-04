@@ -30,7 +30,15 @@ document.addEventListener('DOMContentLoaded', function () {
             isStoryEventRunning = true;
 
             // Run the story event and await its completion
-            await runStoryEvent();
+            await runStoryEvent(() => {
+                // Callback function to rebind the event listener after the story event is complete
+                document.addEventListener('keydown', function (event) {
+                    if (event.key === 'p') {
+                        setGamePause(true);
+                        showOptionsMenu(); // Show options menu again
+                    }
+                });
+            });
 
             // Reset the flag after the story event is complete
             isStoryEventRunning = false;
@@ -47,3 +55,5 @@ document.addEventListener('DOMContentLoaded', function () {
     // Start the game loop
     gameLoop();
 });
+
+export { runStoryEvent };
