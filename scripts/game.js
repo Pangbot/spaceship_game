@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', function (event) {
         if (event.key === 'p') {
             // Toggle the pause state
-            toggleGamePause();
+            toggleGamePause(true);
         }
     });
 

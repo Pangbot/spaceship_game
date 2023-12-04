@@ -42,8 +42,8 @@ let lastMessageClicked = false;
 
 let isGamePaused = false;
 
-function toggleGamePause() {
-    isGamePaused = !isGamePaused;
+function toggleGamePause(state) {
+    isGamePaused = state;
 }
 
 function setLastMessageClicked(state) {

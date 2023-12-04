@@ -37,6 +37,20 @@ async function showOptionsMenu() {
     }
 }
 
+function hideOptionsMenu() {
+    console.log("Hiding options menu.");
+
+    const overlay = document.getElementById('overlay');
+    const popup = document.getElementById('popup');
+    overlay.style.display = 'none';
+    popup.style.display = 'none';
+
+    setUpdateStatus(true);
+
+    // Set isGamePaused to false explicitly when hiding the options menu
+    toggleGamePause(false);
+}
+
 function handleKeyPress(event) {
     // Check if the pressed key is "p"
     if (event.key === 'p') {
@@ -62,21 +76,6 @@ function pauseUntilButtonClick() {
         // Add the click handler to the popup
         popup.addEventListener('click', clickHandler);
     });
-}
-
-
-function hideOptionsMenu() {
-    console.log("Hiding options menu.");
-
-    const overlay = document.getElementById('overlay');
-    const popup = document.getElementById('popup');
-    overlay.style.display = 'none';
-    popup.style.display = 'none';
-
-    setUpdateStatus(true);
-
-    // Reset the isGamePaused flag when closing the options menu
-    toggleGamePause();
 }
 
 export { showOptionsMenu, hideOptionsMenu };
