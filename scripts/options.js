@@ -47,14 +47,16 @@ function handleKeyPress(event) {
 function pauseUntilButtonClick() {
     return new Promise(resolve => {
         const popup = document.getElementById('popup');
-        
+
         // Create a click handler function
         function clickHandler() {
-            resolve();
+            // Remove the click event listener first
+            popup.removeEventListener('click', clickHandler);
             // Remove the keydown event listener after the button is clicked
             document.removeEventListener('keydown', keyDownListener);
-            // Remove the click event listener after the button is clicked
-            popup.removeEventListener('click', clickHandler);
+            
+            // Resolve the promise after cleaning up listeners
+            resolve();
         }
 
         // Add the click handler to the popup
@@ -62,8 +64,8 @@ function pauseUntilButtonClick() {
     });
 }
 
+
 function hideOptionsMenu() {
-    console.log('Close button clicked');
     console.log("Hiding options menu.");
 
     const overlay = document.getElementById('overlay');
