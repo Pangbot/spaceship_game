@@ -69,7 +69,7 @@ function hideOptionsMenu() {
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
     const closeButton = document.querySelector('.popup-button');
-    
+
     // Remove the button from the popup
     if (closeButton) {
         popup.removeChild(closeButton);
@@ -82,7 +82,12 @@ function hideOptionsMenu() {
     currentMessageIndex = 0;
 }
 
-
-
+function createButton(text, clickHandler) {
+    const button = document.createElement('button');
+    button.innerText = text;
+    button.className = 'popup-button';
+    button.addEventListener('click', clickHandler);
+    return button;
+}
 
 export { showOptionsMenu, hideOptionsMenu}
