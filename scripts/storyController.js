@@ -76,4 +76,4 @@ function pauseUntilButtonClick() {
     });
 }
 
-export { runStoryEvent, showPopup };
+export { runStoryEvent, showPopup, pauseUntilButtonClick, handleCloseButtonClick, createButton, displayMessage };
