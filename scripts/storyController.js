@@ -21,7 +21,6 @@ function showPopup() {
     }
 }
 
-
 function displayMessage() {
     const messageElement = document.getElementById('message');
     messageElement.innerText = messages[currentMessageIndex];
@@ -40,6 +39,13 @@ function handleCloseButtonClick() {
 
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
+    const closeButton = document.querySelector('.popup-button');
+
+    // Remove the button from the popup
+    if (closeButton) {
+        popup.removeChild(closeButton);
+    }
+
     overlay.style.display = 'none';
     popup.style.display = 'none';
 
@@ -48,6 +54,7 @@ function handleCloseButtonClick() {
     setLastMessageClicked(true);
     currentMessageIndex = 0;
 }
+
 
 async function runStoryEvent() {
     if (currentMessageIndex < messages.length) {

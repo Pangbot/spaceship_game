@@ -68,6 +68,13 @@ function hideOptionsMenu() {
 
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
+    const closeButton = document.querySelector('.popup-button');
+    
+    // Remove the button from the popup
+    if (closeButton) {
+        popup.removeChild(closeButton);
+    }
+
     overlay.style.display = 'none';
     popup.style.display = 'none';
 
