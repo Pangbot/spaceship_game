@@ -8,10 +8,12 @@ function updateResourceBars() {
         {
             id: 'oxygen_bar',
             rate: 0.2,
+            currentValue: 100, // Initialize with 100%
         },
         {
             id: 'food_bar',
             rate: 1,
+            currentValue: 100, // Initialize with 100%
         },
     ];
 
@@ -36,7 +38,7 @@ function updateResourceBars() {
     
                 // Update bar only if not in story mode
                 bar.currentValue = Math.max(0, bar.currentValue - decrease);
-                const currentWidth = bar.currentValue * 100; // Use the percentage directly
+                const currentWidth = bar.currentValue; // Use the percentage directly
                 barElement.style.width = `${currentWidth}%`; // Set the width as a percentage
                 barElement.setAttribute('data-fill', currentWidth);
                 percentageElement.innerText = `${Math.round(currentWidth)}%`;
