@@ -40,12 +40,19 @@ function updateResourceBars() {
             currentOxygen = Math.max(0, currentOxygen - oxygenDecrease);
             const oxygenWidth = currentOxygen; // Use the percentage directly
             oxygenBar.style.width = `${oxygenWidth}%`; // Set the width as a percentage
+            console.log('Current Oxygen:', currentOxygen);
+            console.log('Oxygen Width:', oxygenWidth);
+            console.log('Setting width to:', `${oxygenWidth}%`);
+
             oxygenBar.setAttribute('data-fill', currentOxygen);
             oxygenPercentage.innerText = `${Math.round(currentOxygen)}%`;
     
             currentFood = Math.max(0, currentFood - foodDecrease);
             const foodWidth = currentFood; // Use the percentage directly
             foodBar.style.width = `${foodWidth}%`; // Set the width as a percentage
+            console.log('Current Food:', currentFood);
+            console.log('Food Width:', foodWidth);
+            console.log('Setting width to:', `${foodWidth}%`);
             foodBar.setAttribute('data-fill', currentFood);
             foodPercentage.innerText = `${Math.round(currentFood)}%`;
     
@@ -60,7 +67,6 @@ function updateResourceBars() {
         if (storyTime) {
             setUpdateStatus(false);
         } else {
-            console.log('bar update...');
             // Use requestAnimationFrame for the next update
             animationFrameId = requestAnimationFrame(updateBars);
             lastTimestamp = now;
