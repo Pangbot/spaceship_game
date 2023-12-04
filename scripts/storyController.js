@@ -76,5 +76,4 @@ function pauseUntilButtonClick() {
     });
 }
 
-
-export { runStoryEvent };
+export { runStoryEvent, showPopup };

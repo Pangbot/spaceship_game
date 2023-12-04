@@ -3,6 +3,7 @@ import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
 import { isUpdateEnabled, storyTime } from './common.js';
 import { runStoryEvent } from './storyController.js';
+import { showOptionsMenu, hideOptionsMenu } from './options.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
@@ -14,10 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let isStoryEventRunning = false;
 
     async function gameLoop() {
-        if (isUpdateEnabled && !isStoryEventRunning) {
+        if (isUpdateEnabled && !isStoryEventRunning && !isGamePaused) {
             // Call the continuous update function
             updateGame();
-        } else if (storyTime && !isStoryEventRunning) {
+        } else if (storyTime && !isStoryEventRunning && !isGamePaused) {
             // Set the flag to prevent multiple story event runs
             isStoryEventRunning = true;
 
@@ -26,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Reset the flag after the story event is complete
             isStoryEventRunning = false;
+        } else if (isGamePaused) {
+            showOptionsMenu();
         } else {
             console.error("I DON'T KNOW WHAT TO DO");
         }
@@ -33,6 +36,17 @@ document.addEventListener('DOMContentLoaded', function () {
         // Use requestAnimationFrame to schedule the next iteration
         requestAnimationFrame(gameLoop);
     }
+
+    // Add a variable to track the pause state
+    let isGamePaused = false;
+
+    // Add an event listener for the "keydown" event
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'p') {
+            // Toggle the pause state
+            isGamePaused = !isGamePaused;
+        }
+    });
 
     // Start the game loop
     gameLoop();
