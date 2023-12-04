@@ -26,7 +26,7 @@ function updateResourceBars() {
     function updateBars() {
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
-        
+    
         if (!lastTimestamp) {
             lastTimestamp = now;
         }
@@ -38,14 +38,14 @@ function updateResourceBars() {
     
             // Update bars only if not in story mode
             currentOxygen = Math.max(0, currentOxygen - oxygenDecrease);
-            const oxygenWidth = (currentOxygen / 100) * oxygenContainer.clientWidth; // Use clientWidth to get the actual width in pixels
-            oxygenBar.style.width = `${oxygenWidth}px`; // Set the width in pixels
+            const oxygenWidth = currentOxygen; // Use the percentage directly
+            oxygenBar.style.width = `${oxygenWidth}%`; // Set the width as a percentage
             oxygenBar.setAttribute('data-fill', currentOxygen);
             oxygenPercentage.innerText = `${Math.round(currentOxygen)}%`;
     
             currentFood = Math.max(0, currentFood - foodDecrease);
-            const foodWidth = (currentFood / 100) * foodContainer.clientWidth; // Use clientWidth to get the actual width in pixels
-            foodBar.style.width = `${foodWidth}px`; // Set the width in pixels
+            const foodWidth = currentFood; // Use the percentage directly
+            foodBar.style.width = `${foodWidth}%`; // Set the width as a percentage
             foodBar.setAttribute('data-fill', currentFood);
             foodPercentage.innerText = `${Math.round(currentFood)}%`;
     
