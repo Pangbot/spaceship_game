@@ -1,11 +1,9 @@
 // options.js
-// Stores info in, and manages, the options menu
 import { setUpdateStatus, setGamePause } from './common.js';
 
-let currentMessageIndex = 0; // Declare currentMessageIndex in a scope accessible to both functions
 let keyDownListener; // Variable to store the event listener reference
 
-async function showOptionsMenu(callback) {
+async function showOptionsMenu() {
     console.log("Showing options menu.");
 
     const messages = ["This is the options menu!"];
@@ -13,7 +11,7 @@ async function showOptionsMenu(callback) {
     const popup = document.getElementById('popup');
 
     // Reset currentMessageIndex to 0
-    currentMessageIndex = 0;
+    let currentMessageIndex = 0;
 
     overlay.style.display = 'block';
     popup.style.display = 'block';
@@ -29,24 +27,13 @@ async function showOptionsMenu(callback) {
         await pauseUntilButtonClick();
     } else if (currentMessageIndex === messages.length) {
         hideOptionsMenu();
-        // Rebind the game loop event listener for the 'p' key
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'p') {
-                setGamePause(true);
-                showOptionsMenu(); // Show options menu again
-            }
-        });
-    }
-
-    if (typeof callback === 'function') {
-        callback();
     }
 }
 
 function handleKeyPress(event) {
     // Check if the pressed key is "p"
     if (event.key === 'p') {
-        document.removeEventListener('keydown', handleKeyPress); // Remove the event listener
+        document.removeEventListener('keydown', keyDownListener); // Remove the event listener
         hideOptionsMenu();
     }
 }
@@ -80,6 +67,14 @@ function hideOptionsMenu() {
     popup.style.display = 'none';
 
     setUpdateStatus(true);
+
+    // Rebind the game loop event listener for the 'p' key
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'p') {
+            setGamePause(true);
+            showOptionsMenu(); // Show options menu again
+        }
+    });
 }
 
 export { showOptionsMenu };

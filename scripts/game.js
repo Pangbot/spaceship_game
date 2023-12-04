@@ -30,20 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
             isStoryEventRunning = true;
 
             // Run the story event and await its completion
-            await runStoryEvent(() => {
-                // Callback function to rebind the event listener after the story event is complete
-                document.addEventListener('keydown', function (event) {
-                    if (event.key === 'p') {
-                        setGamePause(true);
-                        showOptionsMenu(); // Show options menu again
-                    }
-                });
-            });
-
+            await runStoryEvent()
             // Reset the flag after the story event is complete
             isStoryEventRunning = false;
         } else if (isGamePaused) {
             await showOptionsMenu();
+            // Add an event listener for the "keydown" event
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'p') {
+                    setGamePause(true);
+                }
+            });
         } else {
             console.error("I DON'T KNOW WHAT TO DO");
         }
