@@ -16,12 +16,8 @@ async function showOptionsMenu() {
     const messageElement = document.getElementById('message');
     messageElement.innerText = messages[currentMessageIndex];
 
-    // Check if close button already exists
-    const closeButton = document.querySelector('.popup-button');
-    if (!closeButton) {
-        const newCloseButton = createButton('Close', hideOptionsMenu);
-        popup.appendChild(newCloseButton);
-    }
+    // Add event listener for the "p" key
+    document.addEventListener('keydown', handleKeyPress);
 
     if (currentMessageIndex < messages.length) {
         const overlay = document.getElementById('overlay');
@@ -32,15 +28,16 @@ async function showOptionsMenu() {
         const messageElement = document.getElementById('message');
         messageElement.innerText = messages[currentMessageIndex];
 
-        // Check if close button already exists
-        const closeButton = document.querySelector('.popup-button');
-        if (!closeButton) {
-            const newCloseButton = createButton('Close', hideOptionsMenu);
-            popup.appendChild(newCloseButton);
-        }
         setUpdateStatus(false);
         await pauseUntilButtonClick();
     } else if (currentMessageIndex === messages.length) {
+        hideOptionsMenu();
+    }
+}
+
+function handleKeyPress(event) {
+    // Check if the pressed key is "p"
+    if (event.key === 'p') {
         hideOptionsMenu();
     }
 }
@@ -67,25 +64,10 @@ function hideOptionsMenu() {
 
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
-    const closeButton = document.querySelector('.popup-button');
-
-    // Remove the button from the popup
-    if (closeButton) {
-        popup.removeChild(closeButton);
-    }
-
     overlay.style.display = 'none';
     popup.style.display = 'none';
 
     setUpdateStatus(true);
-}
-
-function createButton(text, clickHandler) {
-    const button = document.createElement('button');
-    button.innerText = text;
-    button.className = 'popup-button';
-    button.addEventListener('click', clickHandler);
-    return button;
 }
 
 export { showOptionsMenu, hideOptionsMenu}
