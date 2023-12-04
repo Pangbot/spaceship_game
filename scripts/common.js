@@ -53,8 +53,8 @@ function setStoryStatus(state) {
 }
 
 let storyMessages = [
-    { message_shown: false, message_content: "1. Welcome to the game!" },
-    { message_shown: false, message_content: "1. I hate you." }
+    { message_shown: false, message_content: ["1. Welcome to the game!"] },
+    { message_shown: false, message_content: ["1. I hate you."] }
 ];
 
 export { currentRoom, doors, isUpdateEnabled, storyTime, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages };
