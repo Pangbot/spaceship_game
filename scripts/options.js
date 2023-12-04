@@ -7,7 +7,7 @@ async function showOptionsMenu() {
 
     const messages = ["This is the options menu!"];
 
-    let currentMessageIndex = 0;
+    currentMessageIndex = 0;
 
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
@@ -79,7 +79,6 @@ function hideOptionsMenu() {
     popup.style.display = 'none';
 
     setUpdateStatus(true);
-    currentMessageIndex = 0;
 }
 
 function createButton(text, clickHandler) {
