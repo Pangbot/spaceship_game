@@ -40,7 +40,7 @@ let storyTime = false;
 
 let lastMessageClicked = false;
 
-isGamePaused = false;
+let isGamePaused = false;
 
 function toggleGamePause() {
     isGamePaused = !isGamePaused;
