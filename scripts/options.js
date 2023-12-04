@@ -1,6 +1,6 @@
 // options.js
 // Stores info in, and manages, the options menu
-import { setUpdateStatus, toggleGamePause } from './common.js';
+import { setUpdateStatus, setGamePause } from './common.js';
 
 let currentMessageIndex = 0; // Declare currentMessageIndex in a scope accessible to both functions
 let keyDownListener; // Variable to store the event listener reference
@@ -11,6 +11,9 @@ async function showOptionsMenu() {
     const messages = ["This is the options menu!"];
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
+
+    // Reset currentMessageIndex to 0
+    currentMessageIndex = 0;
 
     overlay.style.display = 'block';
     popup.style.display = 'block';
@@ -48,7 +51,7 @@ function hideOptionsMenu() {
     setUpdateStatus(true);
 
     // Set isGamePaused to false explicitly when hiding the options menu
-    toggleGamePause(false);
+    setGamePause(false);
 }
 
 function handleKeyPress(event) {

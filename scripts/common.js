@@ -42,7 +42,7 @@ let lastMessageClicked = false;
 
 let isGamePaused = false;
 
-function toggleGamePause(state) {
+function setGamePause(state) {
     isGamePaused = state;
 }
 
@@ -63,4 +63,4 @@ let storyMessages = [
     { message_shown: false, message_content: ["I hate you."] }
 ];
 
-export { currentRoom, doors, isUpdateEnabled, storyTime, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages, isGamePaused, toggleGamePause };
+export { currentRoom, doors, isUpdateEnabled, storyTime, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages, isGamePaused, setGamePause };

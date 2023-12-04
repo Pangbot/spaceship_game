@@ -1,7 +1,7 @@
 // game.js
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
-import { isUpdateEnabled, storyTime, isGamePaused, toggleGamePause } from './common.js';
+import { isUpdateEnabled, storyTime, isGamePaused, setGamePause } from './common.js';
 import { runStoryEvent } from './storyController.js';
 import { showOptionsMenu, hideOptionsMenu } from './options.js';
 
@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add an event listener for the "keydown" event
     document.addEventListener('keydown', function (event) {
         if (event.key === 'p') {
-            // Toggle the pause state
-            toggleGamePause(true);
+            setGamePause(true);
         }
     });
 
