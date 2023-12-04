@@ -21,7 +21,7 @@ async function showOptionsMenu() {
     messageElement.innerText = messages[currentMessageIndex];
 
     // Add event listener for the "p" key
-    keyDownListener = handleKeyPress; // Assign the event listener to keyDownListener
+    let keyDownListener = handleKeyPress; // Assign the event listener to keyDownListener
     document.addEventListener('keydown', keyDownListener);
 
     if (currentMessageIndex < messages.length) {
@@ -29,9 +29,13 @@ async function showOptionsMenu() {
         await pauseUntilButtonClick();
     } else if (currentMessageIndex === messages.length) {
         hideOptionsMenu();
-        
-        // Reattach the event listener for "p" key after hiding the options menu
-        document.addEventListener('keydown', handleKeyPress);
+        // Rebind the game loop event listener for the 'p' key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'p') {
+                setGamePause(true);
+                showOptionsMenu(); // Show options menu again
+            }
+        });
     }
 }
 
