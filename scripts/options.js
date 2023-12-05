@@ -18,20 +18,11 @@ async function showOptionsMenu() {
     const messageElement = document.getElementById('message');
     messageElement.innerText = messages[currentMessageIndex];
 
-    // Use a promise to wait for the 'p' key to be pressed
-    await new Promise(resolve => {
-        keyDownListener = function handleKeyPress(event) {
-            if (event.key === 'p') {
-                document.removeEventListener('keydown', keyDownListener); // Remove the event listener
-                resolve();
-            }
-        };
-
-        // Add an event listener for the 'p' key
-        document.addEventListener('keydown', keyDownListener);
-    });
-
-    hideOptionsMenu();
+    if (currentMessageIndex < messages.length) {
+        setUpdateStatus(false);
+    } else if (currentMessageIndex === messages.length) {
+        hideOptionsMenu();
+    }
 }
 
 function hideOptionsMenu() {
@@ -43,18 +34,6 @@ function hideOptionsMenu() {
     popup.style.display = 'none';
 
     setUpdateStatus(true);
-
-    // Rebind the game loop event listener for the 'p' key
-    document.addEventListener('keydown', handleGameLoopKeyPress);
 }
 
-function handleGameLoopKeyPress(event) {
-    // Check if the pressed key is "p"
-    if (event.key === 'p') {
-        setGamePause(true);
-        document.removeEventListener('keydown', handleGameLoopKeyPress); // Remove the event listener
-        showOptionsMenu(); // Show options menu again
-    }
-}
-
-export { showOptionsMenu };
+export { showOptionsMenu, hideOptionsMenu };

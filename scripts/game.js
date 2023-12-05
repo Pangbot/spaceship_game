@@ -3,7 +3,7 @@ import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
 import { isUpdateEnabled, storyTime, isGamePaused, setGamePause } from './common.js';
 import { runStoryEvent } from './storyController.js';
-import { showOptionsMenu } from './options.js';
+import { showOptionsMenu, hideOptionsMenu } from './options.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
@@ -14,13 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Variable to track whether the story event is running
     let isStoryEventRunning = false;
 
-    // Add an event listener for the 'p' key
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'p') {
-            setGamePause(true);
-            showOptionsMenu();
-        }
-    });
+    // Add an event listener for the 'p' key to open the options menu
+    document.addEventListener('keydown', handleMenuOpen);
+
+    // Add an event listener for the 'p' key to close the options menu
+    document.addEventListener('keydown', handleMenuClose);
 
     async function gameLoop() {
         if (isUpdateEnabled && !isStoryEventRunning && !isGamePaused) {
@@ -31,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
             isStoryEventRunning = true;
 
             // Run the story event and await its completion
-            await runStoryEvent()
+            await runStoryEvent();
+
             // Reset the flag after the story event is complete
             isStoryEventRunning = false;
         } else if (isGamePaused) {
@@ -47,3 +46,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Start the game loop
     gameLoop();
 });
+
+function handleMenuOpen(event) {
+    // Check if the pressed key is "p"
+    if (event.key === 'p' && !isGamePaused) {
+        setGamePause(true);
+        showOptionsMenu();
+    }
+}
+
+function handleMenuClose(event) {
+    // Check if the pressed key is "esc"
+    if (event.key === 'p' && isGamePaused) {
+        setGamePause(false);
+        hideOptionsMenu();
+    }
+}
