@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             showOptionsMenu();
 
-            new Promise((resolve) => {
+            await new Promise((resolve) => {
                 // Add a delay to ensure the menu display animation completes
                 setTimeout(resolve, 500); // Adjust the delay as needed
             });
