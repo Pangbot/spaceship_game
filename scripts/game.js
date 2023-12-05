@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', handleMenuOpen);
 
     async function gameLoop() {
+        console.log(isGamePaused);
         if (!isGamePaused) {
+            console.log(isGamePaused);
             if (checkForNextStoryEvent()) {
                 // Set the flag to prevent multiple story event runs
                 isStoryEventRunning = true;
