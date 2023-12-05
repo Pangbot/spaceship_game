@@ -54,7 +54,17 @@ document.addEventListener('DOMContentLoaded', function () {
             // Add an event listener for the 'p' key to close the options menu
             document.addEventListener('keydown', handleMenuClose);
             
-            await showOptionsMenu();
+            showOptionsMenu();
+            return new Promise(resolve => {
+                function handleKeyPress(event) {
+                    if (event.key === 'p') {
+                        document.removeEventListener('keydown', handleKeyPress); // Remove the event listener
+                        resolve(); // Resolve the Promise when 'p' is pressed
+                    }
+                }
+        
+                document.addEventListener('keydown', handleKeyPress);
+            });
         }
     }
 

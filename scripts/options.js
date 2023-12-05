@@ -1,7 +1,7 @@
 // options.js
 import { setGamePause } from './common.js';
 
-async function showOptionsMenu() {
+function showOptionsMenu() {
     console.log("Showing options menu.");
 
     const messages = ["This is the options menu!"];
@@ -15,17 +15,6 @@ async function showOptionsMenu() {
     popup.style.display = 'block';
     const messageElement = document.getElementById('message');
     messageElement.innerText = messages[currentMessageIndex];
-
-    return new Promise(resolve => {
-        function handleKeyPress(event) {
-            if (event.key === 'p') {
-                document.removeEventListener('keydown', handleKeyPress); // Remove the event listener
-                resolve(); // Resolve the Promise when 'p' is pressed
-            }
-        }
-
-        document.addEventListener('keydown', handleKeyPress);
-    });
 }
 
 function hideOptionsMenu() {
