@@ -1,6 +1,6 @@
 // roomHighlighting.js
 // Contains the logic for highlighting rooms on the ship map.
-import {doors} from './common.js';
+import {doors, isGamePaused} from './common.js';
 
 // Function to check if a door exists between two rooms
 function hasOpenDoor(currentRoom, clickedRoom, doors) {
@@ -14,6 +14,10 @@ function hasClosedDoor(currentRoom, clickedRoom, doors) {
 }
 
 function highlightAdjacentRooms(currentRoom) {
+    if (isGamePaused) {
+        return;
+    }
+    
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
     // First clear all highlights
