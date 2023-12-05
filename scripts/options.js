@@ -22,11 +22,20 @@ async function showOptionsMenu() {
     keyDownListener = handleKeyPress; // Assign the event listener to keyDownListener
     document.addEventListener('keydown', keyDownListener);
 
-    if (currentMessageIndex < messages.length) {
-        setUpdateStatus(false);
-    } else if (currentMessageIndex === messages.length) {
-        hideOptionsMenu();
-    }
+    // Use a promise to wait for the 'p' key to be pressed
+    await new Promise(resolve => {
+        function resolveOnKeyPress(event) {
+            if (event.key === 'p') {
+                document.removeEventListener('keydown', resolveOnKeyPress); // Remove the event listener
+                resolve();
+            }
+        }
+
+        // Add an additional event listener to resolve the promise on 'p' key press
+        document.addEventListener('keydown', resolveOnKeyPress);
+    });
+
+    hideOptionsMenu();
 }
 
 function handleKeyPress(event) {
