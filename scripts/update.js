@@ -6,6 +6,10 @@ import { updateButtonDescriptions } from './buttons.js';
 import { currentRoom, doors, lastMessageClicked, setLastMessageClicked } from './common.js';
 
 export function updateGame() {
+    if (isGamePaused) {
+        return;
+    }
+
     if(lastMessageClicked) {
         console.log('restarting the bars...');
         updateResourceBars();
