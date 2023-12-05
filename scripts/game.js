@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.addEventListener('keydown', handleMenuClose);
             
             showOptionsMenu();
-            return new Promise(resolve => {
+            await new Promise(resolve => {
                 function handleKeyPress(event) {
                     if (event.key === 'p') {
                         document.removeEventListener('keydown', handleKeyPress); // Remove the event listener
