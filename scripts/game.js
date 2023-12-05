@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Menu toggle!");
             console.log("Game paused before? ", isGamePaused);
             setGamePause(!isGamePaused);
-            console.log("Game paused now? ", !isGamePaused);
+            console.log("Game paused now? ", isGamePaused);
             if (!isGamePaused) {
                 showOptionsMenu();
             } else {
