@@ -15,13 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Variable to track whether the story event is running
     let isStoryEventRunning = false;
 
-    // Add an event listener for the 'p' key to open the options menu
-    document.addEventListener('keydown', handleMenuOpen);
+    // Add an event listener for the 'p' key to open/close the options menu
+    document.addEventListener('keydown', handleMenuToggle);
 
     async function gameLoop() {
-        console.log(isGamePaused);
         if (!isGamePaused) {
-            console.log(isGamePaused);
             if (checkForNextStoryEvent()) {
                 // Set the flag to prevent multiple story event runs
                 isStoryEventRunning = true;
@@ -37,44 +35,31 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 console.error("I DON'T KNOW WHAT TO DO");
             }
-
-            // Use requestAnimationFrame to schedule the next iteration
-            requestAnimationFrame(gameLoop);
         }
-    }
 
-    async function handleMenuOpen(event) {
-        // Check if the pressed key is "p"
-        if (event.key === 'p' && !isGamePaused && !isStoryEventRunning) {
-            setGamePause(true);
-
-            document.removeEventListener('keydown', handleMenuOpen);
-
-            // Add an event listener for the 'p' key to close the options menu
-            document.addEventListener('keydown', handleMenuClose);
-
-            showOptionsMenu();
-
-            await new Promise((resolve) => {
-                // Add a delay to ensure the menu display animation completes
-                setTimeout(resolve, 500); // Adjust the delay as needed
-            });
-            
-        }
-    }
-
-    async function handleMenuClose(event) {
-        if (event.key === 'p' && isGamePaused && !isStoryEventRunning) {
-            document.removeEventListener('keydown', handleMenuClose);
-            document.addEventListener('keydown', handleMenuOpen);
-
-            hideOptionsMenu();
-            console.log('restarting the bars and game...');
-            updateResourceBars();
-            gameLoop();
-        }
+        // Use requestAnimationFrame to schedule the next iteration
+        requestAnimationFrame(gameLoop);
     }
 
     // Start the game loop
     gameLoop();
+
+    function handleMenuToggle(event) {
+        // Check if the pressed key is "p"
+        if (event.key === 'p' && !isStoryEventRunning) {
+            setGamePause(!isGamePaused);
+
+            if (isGamePaused) {
+                // Add an event listener for the 'p' key to resume the game
+                document.addEventListener('keydown', handleMenuToggle);
+                showOptionsMenu();
+            } else {
+                // Remove the event listener for the 'p' key
+                document.removeEventListener('keydown', handleMenuToggle);
+                hideOptionsMenu();
+                console.log('restarting the bars and game...');
+                updateResourceBars();
+            }
+        }
+    }
 });
