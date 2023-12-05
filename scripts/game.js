@@ -59,5 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateResourceBars();
             }
         }
+        console.log("Listener function end.")
     }
 });
