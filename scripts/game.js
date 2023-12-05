@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     gameLoop();
 
     function handleMenuToggle(event) {
-        console.log("Listener trigger.");
+        console.log("Listener trigger.", event.key);
         // Check if the pressed key is "p"
         if (event.key === 'p' && !isStoryEventRunning) {
             console.log("Menu toggle!");
@@ -65,6 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
         console.log("Listener function end.");
-    }
+    }    
     
 });
