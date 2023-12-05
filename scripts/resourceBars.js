@@ -62,7 +62,7 @@ function updateResourceBars() {
         }
 
         // Check if a story event needs to be called
-        if (storyTime) {
+        if (storyTime || isGamePaused) {
             setUpdateStatus(false);
             cancelAnimationFrame(animationFrameId);
         } else {

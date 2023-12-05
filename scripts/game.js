@@ -4,6 +4,7 @@ import { updateGame } from './update.js';
 import { isUpdateEnabled, storyTime, isGamePaused, setGamePause } from './common.js';
 import { runStoryEvent } from './storyController.js';
 import { showOptionsMenu, hideOptionsMenu } from './options.js';
+import { updateResourceBars } from './resourceBars.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
@@ -66,5 +67,7 @@ function handleMenuClose(event) {
         document.addEventListener('keydown', handleMenuOpen);
 
         hideOptionsMenu();
+        console.log('restarting the bars...');
+        updateResourceBars();
     }
 }
