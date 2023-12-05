@@ -47,5 +47,3 @@ document.addEventListener('DOMContentLoaded', function () {
     // Start the game loop
     gameLoop();
 });
-
-export { runStoryEvent };
