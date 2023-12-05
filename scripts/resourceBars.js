@@ -1,7 +1,7 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { setStoryStatus, setUpdateStatus, storyTime, storyMessages, isGamePaused } from "./common.js";
+import { isGamePaused, setGamePause } from "./common.js";
 
 function updateResourceBars() {
     const bars = [
@@ -35,7 +35,7 @@ function updateResourceBars() {
             lastTimestamp = now;
         }
 
-        if (!storyTime && !isGamePaused) {
+        if (!isGamePaused) {
             bars.forEach((bar) => {
                 const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
 
@@ -54,16 +54,11 @@ function updateResourceBars() {
                     lastTimestamp = now;
                 }
             });
-
-            // Conditions for a story event
-            if (Math.round(bars[1].currentValue) === 93 && storyMessages[0].message_shown === false) {
-                setStoryStatus(true);
-            }
         }
 
         // Check if a story event needs to be called
-        if (storyTime || isGamePaused) {
-            setUpdateStatus(false);
+        if (isGamePaused) {
+            setGamePause(false);
             cancelAnimationFrame(animationFrameId);
         } else {
             // Use requestAnimationFrame for the next update

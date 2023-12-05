@@ -1,8 +1,8 @@
 // game.js
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
-import { isUpdateEnabled, storyTime, isGamePaused, setGamePause } from './common.js';
-import { runStoryEvent } from './storyController.js';
+import { isGamePaused, setGamePause } from './common.js';
+import { runStoryEvent, checkForNextStoryEvent } from './storyController.js';
 import { showOptionsMenu, hideOptionsMenu } from './options.js';
 import { updateResourceBars } from './resourceBars.js';
 
@@ -20,10 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function gameLoop() {
         if (!isGamePaused) {
-            if (isUpdateEnabled && !isStoryEventRunning) {
-                // Call the continuous update function
-                updateGame();
-            } else if (storyTime && !isStoryEventRunning) {
+            if (checkForNextStoryEvent()) {
                 // Set the flag to prevent multiple story event runs
                 isStoryEventRunning = true;
     
@@ -32,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 // Reset the flag after the story event is complete
                 isStoryEventRunning = false;
+            } else if (!isStoryEventRunning) {
+                // Call the continuous update function
+                updateGame();
             } else {
                 console.error("I DON'T KNOW WHAT TO DO");
             }

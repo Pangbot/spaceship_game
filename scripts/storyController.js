@@ -1,5 +1,5 @@
 // storyController.js
-import { setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages } from './common.js';
+import { setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages, setGamePause } from './common.js';
 
 const messages = storyMessages[0].message_content;
 
@@ -49,8 +49,7 @@ function handleCloseButtonClick() {
     overlay.style.display = 'none';
     popup.style.display = 'none';
 
-    setUpdateStatus(true);
-    setStoryStatus(false);
+    setGamePause(false);
     setLastMessageClicked(true);
     currentMessageIndex = 0;
 }
@@ -59,7 +58,7 @@ function handleCloseButtonClick() {
 async function runStoryEvent() {
     if (currentMessageIndex < messages.length) {
         showPopup();
-        setUpdateStatus(false);
+        setGamePause(true);
         await pauseUntilButtonClick();
     } else if (currentMessageIndex === messages.length) {
         handleCloseButtonClick();
@@ -83,4 +82,11 @@ function pauseUntilButtonClick() {
     });
 }
 
-export { runStoryEvent };
+function checkForNextStoryEvent() {
+    // Conditions for a story event
+    if (Math.round(document.getElementById('food_bar').currentValue) === 93 && storyMessages[0].message_shown === false) {
+        return true;
+    }
+}
+
+export { runStoryEvent, checkForNextStoryEvent };

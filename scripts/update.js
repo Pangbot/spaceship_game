@@ -3,7 +3,7 @@
 import { updateResourceBars } from './resourceBars.js';
 import { highlightAdjacentRooms, hasOpenDoor } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
-import { currentRoom, doors, lastMessageClicked, setLastMessageClicked } from './common.js';
+import { currentRoom, doors, lastMessageClicked, setLastMessageClicked, isGamePaused } from './common.js';
 
 export function updateGame() {
     if (isGamePaused) {

@@ -34,10 +34,6 @@ let doors = [
     { roomId: "engine", targetRoomId: "storage", status: "closed" },
 ];
 
-let isUpdateEnabled = true;
-
-let storyTime = false;
-
 let lastMessageClicked = false;
 
 let isGamePaused = false;
@@ -50,17 +46,9 @@ function setLastMessageClicked(state) {
     lastMessageClicked = state;
 }
 
-function setUpdateStatus(state) {
-    isUpdateEnabled = state;
-}
-
-function setStoryStatus(state) {
-    storyTime = state;
-}
-
 let storyMessages = [
     { message_shown: false, message_content: ["Welcome to the game!"] },
     { message_shown: false, message_content: ["I hate you."] }
 ];
 
-export { currentRoom, doors, isUpdateEnabled, storyTime, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages, isGamePaused, setGamePause };
+export { currentRoom, doors, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages, isGamePaused, setGamePause };

@@ -1,5 +1,5 @@
 // options.js
-import { setUpdateStatus, setGamePause } from './common.js';
+import { setGamePause } from './common.js';
 
 async function showOptionsMenu() {
     console.log("Showing options menu.");
@@ -36,7 +36,7 @@ function hideOptionsMenu() {
     overlay.style.display = 'none';
     popup.style.display = 'none';
 
-    setUpdateStatus(true);
+    setGamePause(false);
 }
 
 export { showOptionsMenu, hideOptionsMenu };
