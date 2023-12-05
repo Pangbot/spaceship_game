@@ -1,5 +1,5 @@
 // options.js
-import { setGamePause } from './common.js';
+import { isGamePaused, setGamePause } from './common.js';
 
 function showOptionsMenu() {
     console.log("Showing options menu.");
