@@ -50,6 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check if the pressed key is "p"
         if (event.key === 'p' && !isGamePaused && !isStoryEventRunning) {
             setGamePause(true);
+            
+            new Promise((resolve) => {
+                // Add a delay to ensure the menu display animation completes
+                setTimeout(resolve, 500); // Adjust the delay as needed
+            }),
 
             document.removeEventListener('keydown', handleMenuOpen);
 
