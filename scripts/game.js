@@ -48,17 +48,18 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.key === 'p' && !isGamePaused && !isStoryEventRunning) {
             setGamePause(true);
 
-            new Promise((resolve) => {
-                // Add a delay to ensure the menu display animation completes
-                setTimeout(resolve, 500); // Adjust the delay as needed
-            }),
-
             document.removeEventListener('keydown', handleMenuOpen);
 
             // Add an event listener for the 'p' key to close the options menu
             document.addEventListener('keydown', handleMenuClose);
 
             showOptionsMenu();
+
+            new Promise((resolve) => {
+                // Add a delay to ensure the menu display animation completes
+                setTimeout(resolve, 500); // Adjust the delay as needed
+            });
+            
         }
     }
 
