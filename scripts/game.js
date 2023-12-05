@@ -58,11 +58,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 requestAnimationFrame(() => {
                     hideOptionsMenu();
                     console.log('restarting the bars and game...');
-                    updateResourceBars();
+                    // Use another requestAnimationFrame for the next update
+                    requestAnimationFrame(() => {
+                        updateResourceBars();
+                    });
                 });
             }
         }
         console.log("Listener function end.");
-    }    
+    }
+    
     
 });
