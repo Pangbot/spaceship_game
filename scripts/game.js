@@ -43,14 +43,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Start the game loop
-    gameLoop();
-
     async function handleMenuOpen(event) {
         // Check if the pressed key is "p"
         if (event.key === 'p' && !isGamePaused && !isStoryEventRunning) {
             setGamePause(true);
-            
+
             new Promise((resolve) => {
                 // Add a delay to ensure the menu display animation completes
                 setTimeout(resolve, 500); // Adjust the delay as needed
@@ -65,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function handleMenuClose(event) {
+    async function handleMenuClose(event) {
         if (event.key === 'p' && isGamePaused && !isStoryEventRunning) {
             document.removeEventListener('keydown', handleMenuClose);
             document.addEventListener('keydown', handleMenuOpen);
@@ -76,4 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
             gameLoop();
         }
     }
+
+    // Start the game loop
+    gameLoop();
 });
