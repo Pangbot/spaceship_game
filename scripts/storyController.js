@@ -1,93 +1,65 @@
-// storyController.js
-import { setLastMessageClicked, storyMessages, setGamePause } from './common.js';
+// game.js
+import { initialiseGame } from './init.js';
+import { updateGame } from './update.js';
+import { isGamePaused, setGamePause } from './common.js';
+import { runStoryEvent, checkForNextStoryEvent } from './storyController.js';
+import { showOptionsMenu, hideOptionsMenu } from './options.js';
+import { updateResourceBars } from './resourceBars.js';
 
-const messages = storyMessages[0].message_content;
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("Game script loaded!");
 
-let currentMessageIndex = 0;
+    // Initialise the game
+    initialiseGame();
 
-function showPopup() {
-    const overlay = document.getElementById('overlay');
-    const popup = document.getElementById('popup');
+    // Variable to track whether the story event is running
+    let isStoryEventRunning = false;
 
-    overlay.style.display = 'block';
-    popup.style.display = 'block';
-    displayMessage();
+    // Add an event listener for the 'p' key to open/close the options menu
+    document.addEventListener('keydown', handleMenuToggle);
 
-    // Check if close button already exists
-    const closeButton = document.querySelector('.popup-button');
-    if (!closeButton) {
-        const newCloseButton = createButton('Close', handleCloseButtonClick);
-        popup.appendChild(newCloseButton);
-    }
-}
+    async function gameLoop() {
+        if (!isGamePaused) {
+            if (checkForNextStoryEvent()) {
+                // Set the flag to prevent multiple story event runs
+                isStoryEventRunning = true;
 
-function displayMessage() {
-    const messageElement = document.getElementById('message');
-    messageElement.innerText = messages[currentMessageIndex];
-}
+                // Run the story event and await its completion
+                await runStoryEvent();
 
-function createButton(text, clickHandler) {
-    const button = document.createElement('button');
-    button.innerText = text;
-    button.className = 'popup-button';
-    button.addEventListener('click', clickHandler);
-    return button;
-}
-
-function handleCloseButtonClick() {
-    console.log('Close button clicked');
-
-    const overlay = document.getElementById('overlay');
-    const popup = document.getElementById('popup');
-    const closeButton = document.querySelector('.popup-button');
-
-    // Remove the button from the popup
-    if (closeButton) {
-        popup.removeChild(closeButton);
-    }
-
-    overlay.style.display = 'none';
-    popup.style.display = 'none';
-
-    setGamePause(false);
-    setLastMessageClicked(true);
-    currentMessageIndex = 0;
-}
-
-
-async function runStoryEvent() {
-    if (currentMessageIndex < messages.length) {
-        showPopup();
-        setGamePause(true);
-        await pauseUntilButtonClick();
-    } else if (currentMessageIndex === messages.length) {
-        handleCloseButtonClick();
-    }
-}
-
-function pauseUntilButtonClick() {
-    return new Promise(resolve => {
-        const popup = document.getElementById('popup');
-        
-        // Create a click handler function
-        function clickHandler() {
-            resolve();
-            // Remove the event listener after the button is clicked
-            popup.removeEventListener('click', clickHandler);
-            storyMessages[0].message_shown = true;
+                // Reset the flag after the story event is complete
+                isStoryEventRunning = false;
+            } else if (!isStoryEventRunning) {
+                // Call the continuous update function
+                updateGame();
+            } else {
+                console.error("I DON'T KNOW WHAT TO DO");
+            }
         }
 
-        // Add the click handler to the popup
-        popup.addEventListener('click', clickHandler);
-    });
-}
-
-function checkForNextStoryEvent() {
-    // Conditions for a story event
-    console.log(Math.round(parseFloat(document.getElementById('food_bar').getAttribute('data-fill'))));
-    if (Math.round(parseFloat(document.getElementById('food_bar').getAttribute('data-fill'))) === 93 && storyMessages[0].message_shown === false) {
-        return true;
+        // Use requestAnimationFrame to schedule the next iteration
+        requestAnimationFrame(gameLoop);
     }
-}
 
-export { runStoryEvent, checkForNextStoryEvent };
+    // Start the game loop
+    gameLoop();
+
+    function handleMenuToggle(event) {
+        // Check if the pressed key is "p"
+        if (event.key === 'p' && !isStoryEventRunning) {
+            setGamePause(!isGamePaused);
+
+            if (isGamePaused) {
+                // Add an event listener for the 'p' key to resume the game
+                document.addEventListener('keydown', handleMenuToggle);
+                showOptionsMenu();
+            } else {
+                // Remove the event listener for the 'p' key
+                document.removeEventListener('keydown', handleMenuToggle);
+                hideOptionsMenu();
+                console.log('restarting the bars and game...');
+                updateResourceBars();
+            }
+        }
+    }
+});
