@@ -17,9 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add an event listener for the 'p' key to open the options menu
     document.addEventListener('keydown', handleMenuOpen);
 
-    // Add an event listener for the 'p' key to close the options menu
-    document.addEventListener('keydown', handleMenuClose);
-
     async function gameLoop() {
         if (isUpdateEnabled && !isStoryEventRunning) {
             // Call the continuous update function
@@ -49,6 +46,12 @@ async function handleMenuOpen(event) {
     // Check if the pressed key is "p"
     if (event.key === 'p' && !isGamePaused) {
         setGamePause(true);
+
+        document.removeEventListener('keydown', handleMenuOpen);
+
+        // Add an event listener for the 'p' key to close the options menu
+        document.addEventListener('keydown', handleMenuClose);
+        
         await showOptionsMenu();
     }
 }
@@ -57,6 +60,11 @@ function handleMenuClose(event) {
     // Check if the pressed key is "esc"
     if (event.key === 'p' && isGamePaused) {
         setGamePause(false);
+
+        document.removeEventListener('keydown', handleMenuClose);
+
+        document.addEventListener('keydown', handleMenuOpen);
+
         hideOptionsMenu();
     }
 }
