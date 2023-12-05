@@ -1,5 +1,5 @@
 // storyController.js
-import { setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages, setGamePause } from './common.js';
+import { setLastMessageClicked, storyMessages, setGamePause } from './common.js';
 
 const messages = storyMessages[0].message_content;
 
