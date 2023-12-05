@@ -1,7 +1,7 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { setStoryStatus, setUpdateStatus, storyTime, storyMessages } from "./common.js";
+import { setStoryStatus, setUpdateStatus, storyTime, storyMessages, isGamePaused } from "./common.js";
 
 function updateResourceBars() {
     const bars = [
@@ -35,7 +35,7 @@ function updateResourceBars() {
             lastTimestamp = now;
         }
 
-        if (!storyTime) {
+        if (!storyTime && !isGamePaused) {
             bars.forEach((bar) => {
                 const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
 
