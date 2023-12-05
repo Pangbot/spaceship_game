@@ -43,33 +43,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Start the game loop
     gameLoop();
+
+    async function handleMenuOpen(event) {
+        // Check if the pressed key is "p"
+        if (event.key === 'p' && !isGamePaused && !isStoryEventRunning) {
+            setGamePause(true);
+
+            document.removeEventListener('keydown', handleMenuOpen);
+
+            // Add an event listener for the 'p' key to close the options menu
+            document.addEventListener('keydown', handleMenuClose);
+            
+            await showOptionsMenu();
+        }
+    }
+
+    function handleMenuClose(event) {
+        // Check if the pressed key is "esc"
+        if (event.key === 'p' && isGamePaused && !isStoryEventRunning) {
+            setGamePause(false);
+
+            document.removeEventListener('keydown', handleMenuClose);
+
+            document.addEventListener('keydown', handleMenuOpen);
+
+            hideOptionsMenu();
+            console.log('restarting the bars...');
+            updateResourceBars();
+        }
+    }
 });
-
-async function handleMenuOpen(event) {
-    // Check if the pressed key is "p"
-    if (event.key === 'p' && !isGamePaused && !isStoryEventRunning) {
-        setGamePause(true);
-
-        document.removeEventListener('keydown', handleMenuOpen);
-
-        // Add an event listener for the 'p' key to close the options menu
-        document.addEventListener('keydown', handleMenuClose);
-        
-        await showOptionsMenu();
-    }
-}
-
-function handleMenuClose(event) {
-    // Check if the pressed key is "esc"
-    if (event.key === 'p' && isGamePaused && !isStoryEventRunning) {
-        setGamePause(false);
-
-        document.removeEventListener('keydown', handleMenuClose);
-
-        document.addEventListener('keydown', handleMenuOpen);
-
-        hideOptionsMenu();
-        console.log('restarting the bars...');
-        updateResourceBars();
-    }
-}
