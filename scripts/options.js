@@ -24,7 +24,6 @@ async function showOptionsMenu() {
 
     if (currentMessageIndex < messages.length) {
         setUpdateStatus(false);
-        await pauseUntilButtonClick();
     } else if (currentMessageIndex === messages.length) {
         hideOptionsMenu();
     }
@@ -36,26 +35,6 @@ function handleKeyPress(event) {
         document.removeEventListener('keydown', keyDownListener); // Remove the event listener
         hideOptionsMenu();
     }
-}
-
-function pauseUntilButtonClick() {
-    return new Promise(resolve => {
-        const popup = document.getElementById('popup');
-
-        // Create a click handler function
-        function clickHandler() {
-            // Remove the click event listener first
-            popup.removeEventListener('click', clickHandler);
-            // Remove the keydown event listener after the button is clicked
-            document.removeEventListener('keydown', keyDownListener);
-
-            // Resolve the promise after cleaning up listeners
-            resolve();
-        }
-
-        // Add the click handler to the popup
-        popup.addEventListener('click', clickHandler);
-    });
 }
 
 function hideOptionsMenu() {
