@@ -1,13 +1,6 @@
 // options.js
 import { isGamePaused, setGamePause } from './common.js';
 
-function handleMenuClose(event) {
-    // Check if the pressed key is "p"
-    if (event.key === 'p' && isGamePaused) {
-        hideOptionsMenu();
-    }
-}
-
 function showOptionsMenu() {
     console.log("Showing options menu.");
 
@@ -22,9 +15,6 @@ function showOptionsMenu() {
     popup.style.display = 'block';
     const messageElement = document.getElementById('message');
     messageElement.innerText = messages[currentMessageIndex];
-
-    // Add an event listener for the 'p' key to close the options menu
-    document.addEventListener('keydown', handleMenuClose);
 }
 
 function hideOptionsMenu() {
@@ -39,9 +29,6 @@ function hideOptionsMenu() {
     if (isGamePaused) {
         setGamePause(false);
     }
-
-    // Remove the event listener for the 'p' key
-    document.removeEventListener('keydown', handleMenuClose);
 }
 
 export { showOptionsMenu, hideOptionsMenu };

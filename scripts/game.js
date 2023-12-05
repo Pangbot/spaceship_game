@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 console.error("I DON'T KNOW WHAT TO DO");
             }
-        }
 
-        // Use requestAnimationFrame to schedule the next iteration
-        requestAnimationFrame(gameLoop);
+            // Use requestAnimationFrame to schedule the next iteration
+            requestAnimationFrame(gameLoop);
+        }
     }
 
     // Start the game loop
@@ -64,8 +64,9 @@ document.addEventListener('DOMContentLoaded', function () {
             document.addEventListener('keydown', handleMenuOpen);
 
             hideOptionsMenu();
-            console.log('restarting the bars...');
+            console.log('restarting the bars and game...');
             updateResourceBars();
+            gameLoop();
         }
     }
 });
