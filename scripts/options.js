@@ -56,16 +56,17 @@ function hideOptionsMenu() {
 
     setUpdateStatus(true);
 
-    // Remove the previous event listener for the 'p' key
-    document.removeEventListener('keydown', handleKeyPress);
-
     // Rebind the game loop event listener for the 'p' key
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'p') {
-            setGamePause(true);
-            showOptionsMenu(); // Show options menu again
-        }
-    });
+    document.addEventListener('keydown', handleGameLoopKeyPress);
+}
+
+function handleGameLoopKeyPress(event) {
+    // Check if the pressed key is "p"
+    if (event.key === 'p') {
+        setGamePause(true);
+        document.removeEventListener('keydown', handleGameLoopKeyPress); // Remove the event listener
+        showOptionsMenu(); // Show options menu again
+    }
 }
 
 export { showOptionsMenu };
