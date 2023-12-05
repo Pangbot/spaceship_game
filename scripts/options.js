@@ -1,8 +1,6 @@
 // options.js
 import { setUpdateStatus, setGamePause } from './common.js';
 
-let keyDownListener; // Variable to store the event listener reference
-
 async function showOptionsMenu() {
     console.log("Showing options menu.");
 
@@ -18,11 +16,16 @@ async function showOptionsMenu() {
     const messageElement = document.getElementById('message');
     messageElement.innerText = messages[currentMessageIndex];
 
-    if (currentMessageIndex < messages.length) {
-        setUpdateStatus(false);
-    } else if (currentMessageIndex === messages.length) {
-        hideOptionsMenu();
-    }
+    return new Promise(resolve => {
+        function handleKeyPress(event) {
+            if (event.key === 'p') {
+                document.removeEventListener('keydown', handleKeyPress); // Remove the event listener
+                resolve(); // Resolve the Promise when 'p' is pressed
+            }
+        }
+
+        document.addEventListener('keydown', handleKeyPress);
+    });
 }
 
 function hideOptionsMenu() {
