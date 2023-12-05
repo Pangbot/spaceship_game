@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Game paused before? ", isGamePaused);
             setGamePause(!isGamePaused);
             console.log("Game paused now? ", isGamePaused);
-            if (!isGamePaused) {
+            if (isGamePaused) {
                 showOptionsMenu();
             } else {
                 hideOptionsMenu();
