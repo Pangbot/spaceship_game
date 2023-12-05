@@ -1,5 +1,5 @@
 // storyController.js
-import { setLastMessageClicked, storyMessages, setGamePause } from './common.js';
+import { setLastMessageClicked, storyMessages, setGamePause, storyConditions } from './common.js';
 
 const messages = storyMessages[0].message_content;
 
@@ -82,11 +82,9 @@ function pauseUntilButtonClick() {
     });
 }
 
-function checkForNextStoryEvent() {
+function checkForNextStoryEvent(i) {
     // Conditions for a story event
-    if (Math.round(parseFloat(document.getElementById('food_bar').getAttribute('data-fill'))) === 93 && storyMessages[0].message_shown === false) {
-        return true;
-    }
+    return storyConditions[i];
 }
 
 export { runStoryEvent, checkForNextStoryEvent };

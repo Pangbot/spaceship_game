@@ -51,4 +51,9 @@ let storyMessages = [
     { message_shown: false, message_content: ["I hate you."] }
 ];
 
-export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause };
+const storyConditions = [
+    Math.round(parseFloat(document.getElementById('food_bar').getAttribute('data-fill'))) === 93 && storyMessages[0].message_shown === false,
+    false,
+];
+
+export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, storyConditions };

@@ -15,12 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Variable to track whether the story event is running
     let isStoryEventRunning = false;
 
+    let storyIndex = 0;
+
     // Add an event listener for the 'p' key to open/close the options menu
     document.addEventListener('keydown', handleMenuToggle);
 
     async function gameLoop() {
         if (!isGamePaused) {
-            if (checkForNextStoryEvent()) {
+            if (checkForNextStoryEvent(storyIndex)) {
                 // Set the flag to prevent multiple story event runs
                 isStoryEventRunning = true;
 
@@ -29,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Reset the flag after the story event is complete
                 isStoryEventRunning = false;
+
+                storyIndex++;
             } else if (!isStoryEventRunning) {
                 // Call the continuous update function
                 updateGame();
@@ -45,22 +49,16 @@ document.addEventListener('DOMContentLoaded', function () {
     gameLoop();
 
     function handleMenuToggle(event) {
-        console.log("Listener trigger.", event.key);
         // Check if the pressed key is "p"
         if (event.key === 'p' && !isStoryEventRunning) {
-            console.log("Menu toggle!");
-            console.log("Game paused before? ", isGamePaused);
             setGamePause(!isGamePaused);
-            console.log("Game paused now? ", isGamePaused);
             if (isGamePaused) {
                 showOptionsMenu();
             } else {
                 hideOptionsMenu();
-                console.log('restarting the bars and game...');
                 updateResourceBars()
             }
         }
-        console.log("Listener function end.");
     }    
     
 });
