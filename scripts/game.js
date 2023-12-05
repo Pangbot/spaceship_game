@@ -19,22 +19,24 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', handleMenuOpen);
 
     async function gameLoop() {
-        if (isUpdateEnabled && !isStoryEventRunning) {
-            // Call the continuous update function
-            updateGame();
-        } else if (storyTime && !isStoryEventRunning) {
-            // Set the flag to prevent multiple story event runs
-            isStoryEventRunning = true;
-
-            // Run the story event and await its completion
-            await runStoryEvent();
-
-            // Reset the flag after the story event is complete
-            isStoryEventRunning = false;
-        } else {
-            console.error("I DON'T KNOW WHAT TO DO");
+        if (!isGamePaused) {
+            if (isUpdateEnabled && !isStoryEventRunning) {
+                // Call the continuous update function
+                updateGame();
+            } else if (storyTime && !isStoryEventRunning) {
+                // Set the flag to prevent multiple story event runs
+                isStoryEventRunning = true;
+    
+                // Run the story event and await its completion
+                await runStoryEvent();
+    
+                // Reset the flag after the story event is complete
+                isStoryEventRunning = false;
+            } else {
+                console.error("I DON'T KNOW WHAT TO DO");
+            }
         }
-
+    
         // Use requestAnimationFrame to schedule the next iteration
         requestAnimationFrame(gameLoop);
     }
