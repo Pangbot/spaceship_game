@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (isGamePaused) {
                 showOptionsMenu();
             } else {
-                // Delay the execution to allow the DOM to update
-                setTimeout(() => {
+                // Use requestAnimationFrame to ensure DOM updates
+                requestAnimationFrame(() => {
                     hideOptionsMenu();
                     console.log('restarting the bars and game...');
                     updateResourceBars();
-                }, 0);
+                });
             }
         }
         console.log("Listener function end.");
