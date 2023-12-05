@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Start the game loop
     gameLoop();
 
-    async function handleMenuToggle(event) {
+    function handleMenuToggle(event) {
         console.log("Listener trigger.");
         // Check if the pressed key is "p"
         if (event.key === 'p' && !isStoryEventRunning) {
@@ -54,19 +54,15 @@ document.addEventListener('DOMContentLoaded', function () {
             if (isGamePaused) {
                 showOptionsMenu();
             } else {
-                await hideOptionsMenuAsync();
-                console.log('restarting the bars and game...');
-                updateResourceBars();
+                // Delay the execution to allow the DOM to update
+                setTimeout(() => {
+                    hideOptionsMenu();
+                    console.log('restarting the bars and game...');
+                    updateResourceBars();
+                }, 0);
             }
         }
         console.log("Listener function end.");
-    }
-    
-    async function hideOptionsMenuAsync() {
-        return new Promise(resolve => {
-            hideOptionsMenu();
-            resolve();
-        });
-    }
+    }    
     
 });
