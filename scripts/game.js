@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', handleMenuClose);
 
     async function gameLoop() {
-        if (isUpdateEnabled && !isStoryEventRunning && !isGamePaused) {
+        if (isUpdateEnabled && !isStoryEventRunning) {
             // Call the continuous update function
             updateGame();
-        } else if (storyTime && !isStoryEventRunning && !isGamePaused) {
+        } else if (storyTime && !isStoryEventRunning) {
             // Set the flag to prevent multiple story event runs
             isStoryEventRunning = true;
 
@@ -33,8 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Reset the flag after the story event is complete
             isStoryEventRunning = false;
-        } else if (isGamePaused) {
-            await showOptionsMenu();
         } else {
             console.error("I DON'T KNOW WHAT TO DO");
         }
@@ -47,11 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
     gameLoop();
 });
 
-function handleMenuOpen(event) {
+async function handleMenuOpen(event) {
     // Check if the pressed key is "p"
     if (event.key === 'p' && !isGamePaused) {
         setGamePause(true);
-        showOptionsMenu();
+        await showOptionsMenu();
     }
 }
 
