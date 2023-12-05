@@ -49,20 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check if the pressed key is "p"
         if (event.key === 'p' && !isStoryEventRunning) {
             console.log("Menu toggle!");
-            setGamePause(isGamePaused => {
-                console.log("Game paused now? ", !isGamePaused);
-                if (!isGamePaused) {
-                    showOptionsMenu();
-                } else {
-                    hideOptionsMenu();
-                    console.log('restarting the bars and game...');
-                    // Use setTimeout to ensure DOM updates
-                    setTimeout(() => {
-                        updateResourceBars();
-                    });
-                }
-                return !isGamePaused;
-            });
+            setGamePause(!isGamePaused);
+            console.log("Game paused now? ", !isGamePaused);
+            if (!isGamePaused) {
+                showOptionsMenu();
+            } else {
+                hideOptionsMenu();
+                console.log('restarting the bars and game...');
+                updateResourceBars()
+            }
         }
         console.log("Listener function end.");
     }    
