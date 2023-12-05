@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function handleMenuOpen(event) {
     // Check if the pressed key is "p"
-    if (event.key === 'p' && !isGamePaused) {
+    if (event.key === 'p' && !isGamePaused && !isStoryEventRunning) {
         setGamePause(true);
 
         document.removeEventListener('keydown', handleMenuOpen);
@@ -61,7 +61,7 @@ async function handleMenuOpen(event) {
 
 function handleMenuClose(event) {
     // Check if the pressed key is "esc"
-    if (event.key === 'p' && isGamePaused) {
+    if (event.key === 'p' && isGamePaused && !isStoryEventRunning) {
         setGamePause(false);
 
         document.removeEventListener('keydown', handleMenuClose);
