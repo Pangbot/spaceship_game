@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check if the pressed key is "p"
         if (event.key === 'p' && !isStoryEventRunning) {
             console.log("Menu toggle!");
+            console.log("Game paused before? ", isGamePaused);
             setGamePause(!isGamePaused);
             console.log("Game paused now? ", !isGamePaused);
             if (!isGamePaused) {
