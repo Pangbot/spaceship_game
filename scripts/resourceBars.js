@@ -30,41 +30,37 @@ function updateResourceBars() {
     function updateBars() {
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
-
+    
         if (!lastTimestamp) {
             lastTimestamp = now;
         }
-
-        if (!isGamePaused) {
-            bars.forEach((bar) => {
-                const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
-
-                // Calculate the decrease based on the time elapsed
-                const decrease = bar.rate * (elapsedMilliseconds / 1000);
-
-                // Update bar only if not in story mode and if enough time has passed
-                if (elapsedMilliseconds > updateThreshold) {
-                    bar.currentValue = Math.max(0, bar.currentValue - decrease);
-                    const currentWidth = bar.currentValue;
-                    bar.element.style.width = `${currentWidth}%`;
-                    bar.element.setAttribute('data-fill', currentWidth);
-                    percentageElement.innerText = `${Math.round(currentWidth)}%`;
-
-                    // Update the last timestamp after the bars are updated
-                    lastTimestamp = now;
-                }
-            });
-        }
-
+    
+        bars.forEach((bar) => {
+            const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
+    
+            // Calculate the decrease based on the time elapsed
+            const decrease = bar.rate * (elapsedMilliseconds / 1000);
+    
+            // Update bar only if not in story mode and if enough time has passed
+            if (!isGamePaused && elapsedMilliseconds > updateThreshold) {
+                bar.currentValue = Math.max(0, bar.currentValue - decrease);
+                const currentWidth = bar.currentValue;
+                bar.element.style.width = `${currentWidth}%`;
+                bar.element.setAttribute('data-fill', currentWidth);
+                percentageElement.innerText = `${Math.round(currentWidth)}%`;
+    
+                // Update the last timestamp after the bars are updated
+                lastTimestamp = now;
+            }
+        });
+    
         // Check if a story event needs to be called
-        if (isGamePaused) {
-            setGamePause(false);
-            cancelAnimationFrame(animationFrameId);
-        } else {
+        if (!isGamePaused) {
             // Use requestAnimationFrame for the next update
             animationFrameId = requestAnimationFrame(updateBars);
         }
     }
+    
 
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
