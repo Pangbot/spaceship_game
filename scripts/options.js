@@ -25,7 +25,10 @@ function hideOptionsMenu() {
     overlay.style.display = 'none';
     popup.style.display = 'none';
 
-    setGamePause(false);
+    // Only unpause if the game was previously paused
+    if (isGamePaused) {
+        setGamePause(false);
+    }
 }
 
 export { showOptionsMenu, hideOptionsMenu };

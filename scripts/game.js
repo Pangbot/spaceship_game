@@ -69,14 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function handleMenuClose(event) {
-        // Check if the pressed key is "esc"
         if (event.key === 'p' && isGamePaused && !isStoryEventRunning) {
-            setGamePause(false);
-
             document.removeEventListener('keydown', handleMenuClose);
-
             document.addEventListener('keydown', handleMenuOpen);
-
+    
             hideOptionsMenu();
             console.log('restarting the bars...');
             updateResourceBars();
