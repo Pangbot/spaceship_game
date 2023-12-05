@@ -84,6 +84,7 @@ function pauseUntilButtonClick() {
 
 function checkForNextStoryEvent() {
     // Conditions for a story event
+    console.log(Math.round(document.getElementById('food_bar').currentValue));
     if (Math.round(document.getElementById('food_bar').currentValue) === 93 && storyMessages[0].message_shown === false) {
         return true;
     }
