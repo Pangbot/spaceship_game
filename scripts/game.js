@@ -14,10 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Variable to track whether the story event is running
     let isStoryEventRunning = false;
 
-    // Add an event listener for the "keydown" event
+    // Add an event listener for the 'p' key
     document.addEventListener('keydown', function (event) {
         if (event.key === 'p') {
             setGamePause(true);
+            showOptionsMenu();
         }
     });
 
@@ -35,12 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
             isStoryEventRunning = false;
         } else if (isGamePaused) {
             await showOptionsMenu();
-            // Add an event listener for the "keydown" event
-            document.addEventListener('keydown', function (event) {
-                if (event.key === 'p') {
-                    setGamePause(true);
-                }
-            });
         } else {
             console.error("I DON'T KNOW WHAT TO DO");
         }
