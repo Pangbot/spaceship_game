@@ -49,24 +49,22 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check if the pressed key is "p"
         if (event.key === 'p' && !isStoryEventRunning) {
             console.log("Menu toggle!");
-            setGamePause(!isGamePaused);
-            console.log("Game paused now? ", isGamePaused);
-            if (isGamePaused) {
-                showOptionsMenu();
-            } else {
-                // Use requestAnimationFrame to ensure DOM updates
-                requestAnimationFrame(() => {
+            setGamePause(isGamePaused => {
+                console.log("Game paused now? ", !isGamePaused);
+                if (!isGamePaused) {
+                    showOptionsMenu();
+                } else {
                     hideOptionsMenu();
                     console.log('restarting the bars and game...');
-                    // Use another requestAnimationFrame for the next update
-                    requestAnimationFrame(() => {
+                    // Use setTimeout to ensure DOM updates
+                    setTimeout(() => {
                         updateResourceBars();
                     });
-                });
-            }
+                }
+                return !isGamePaused;
+            });
         }
         console.log("Listener function end.");
     }
-    
     
 });
