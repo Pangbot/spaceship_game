@@ -50,12 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
             setGamePause(!isGamePaused);
 
             if (isGamePaused) {
-                // Add an event listener for the 'p' key to resume the game
-                document.addEventListener('keydown', handleMenuToggle);
                 showOptionsMenu();
             } else {
-                // Remove the event listener for the 'p' key
-                document.removeEventListener('keydown', handleMenuToggle);
                 hideOptionsMenu();
                 console.log('restarting the bars and game...');
                 updateResourceBars();
