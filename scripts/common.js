@@ -51,4 +51,4 @@ let storyMessages = [
     { message_shown: false, message_content: ["I hate you."] }
 ];
 
-export { currentRoom, doors, lastMessageClicked, setUpdateStatus, setStoryStatus, setLastMessageClicked, storyMessages, isGamePaused, setGamePause };
+export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause };
