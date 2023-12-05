@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
             if (checkForNextStoryEvent()) {
                 // Set the flag to prevent multiple story event runs
                 isStoryEventRunning = true;
-    
+
                 // Run the story event and await its completion
                 await runStoryEvent();
-    
+
                 // Reset the flag after the story event is complete
                 isStoryEventRunning = false;
             } else if (!isStoryEventRunning) {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error("I DON'T KNOW WHAT TO DO");
             }
         }
-    
+
         // Use requestAnimationFrame to schedule the next iteration
         requestAnimationFrame(gameLoop);
     }
@@ -53,18 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Add an event listener for the 'p' key to close the options menu
             document.addEventListener('keydown', handleMenuClose);
-            
+
             showOptionsMenu();
-            await new Promise(resolve => {
-                function handleKeyPress(event) {
-                    if (event.key === 'p') {
-                        document.removeEventListener('keydown', handleKeyPress); // Remove the event listener
-                        resolve(); // Resolve the Promise when 'p' is pressed
-                    }
-                }
-        
-                document.addEventListener('keydown', handleKeyPress);
-            });
         }
     }
 
@@ -72,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.key === 'p' && isGamePaused && !isStoryEventRunning) {
             document.removeEventListener('keydown', handleMenuClose);
             document.addEventListener('keydown', handleMenuOpen);
-    
+
             hideOptionsMenu();
             console.log('restarting the bars...');
             updateResourceBars();
