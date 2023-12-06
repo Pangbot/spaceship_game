@@ -17,6 +17,9 @@ export function initialiseGame() {
         e.preventDefault();
     });
 
+    // Make tab 1 active
+    changeTab(0);
+
     // Initial Highlighting
     highlightAdjacentRooms(currentRoom);
 
