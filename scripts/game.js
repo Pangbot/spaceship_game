@@ -59,6 +59,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateResourceBars()
             }
         }
-    }    
+    }
+
+    function changeTab(index) {
+        const tabs = document.querySelectorAll('.tab');
+        const content = document.getElementById('content');
+    
+        tabs.forEach((tab, i) => {
+          if (i === index) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        });
+    
+        const tabContent = [
+          'This is the content of Tab 1.',
+          'This is the content of Tab 2.',
+          'This is the content of Tab 3.',
+          'This is the content of Tab 4.'
+        ];
+    
+        content.innerHTML = `<p>${tabContent[index]}</p>`;
+      }
     
 });

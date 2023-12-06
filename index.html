@@ -16,12 +16,26 @@
 </head>
 <body>
     <div id="overlay"></div>
-
-    <div id="popup">
-    <p id="message">This is a popup message.</p>
+    <div id="popup-container">
+        <div id="popup">
+        <p id="message">This is a popup message.</p>
+        </div>
     </div>
 
-    <div id="popup-container"></div>
+    <div id="options-container">
+        <div id="options">
+            <div class="tabs" id="tabs">
+                <div class="tab" onclick="changeTab(0)">Tab 1</div>
+                <div class="tab" onclick="changeTab(1)">Tab 2</div>
+                <div class="tab" onclick="changeTab(2)">Tab 3</div>
+                <div class="tab" onclick="changeTab(3)">Tab 4</div>
+            </div>
+            
+            <div class="content" id="content">
+                <p>This is the content of Tab 1.</p>
+            </div>
+        </div>
+    </div>
     <div id="game-container">
         <!-- Ship Map -->
         <div id="shipMap">
