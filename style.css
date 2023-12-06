@@ -227,6 +227,7 @@ button:disabled {
     user-select: none;
 }
 
-.content {
-    padding: 20px;
+.tab.active {
+    background-color: #3498db; /* Change this to the desired background color for the active tab */
+    color: #ffffff; /* Change this to the desired text color for the active tab */
 }
