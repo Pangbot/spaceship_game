@@ -19,10 +19,10 @@ function changeTab(index) {
     });
 
     const tabContent = [
-        'This is the content of Statistics.\n\nBitches: 0',
-        'This is the content of Tasks.\n\nTask 1: Get some bitches.',
-        'This is the content of Sound.\n\nThere is no sound. :(',
-        'This is the content of Options.\n\nSave/Load/Reset game I guess?'
+        'This is the content of Statistics.<br><br>Bitches: 0',
+        'This is the content of Tasks.<br><br>Task 1: Get some bitches.',
+        'This is the content of Sound.<br><br>There is no sound. :(',
+        'This is the content of Options.<br><br>Save/Load/Reset game I guess?'
     ];
 
     content.innerHTML = `<p>${tabContent[index]}</p>`;
