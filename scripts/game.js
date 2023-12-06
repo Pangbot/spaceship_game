@@ -28,6 +28,8 @@ function changeTab(index) {
     content.innerHTML = `<p>${tabContent[index]}</p>`;
 }
 
+window.changeTab = changeTab;
+
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
 
