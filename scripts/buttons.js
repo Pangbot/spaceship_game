@@ -41,7 +41,7 @@ const buttonDescriptions = {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Scanners clicked");
                 changeBarLevels(-20,-10);
-                openDoor("clone_bay","scanners");
+                unlockDoor("clone_bay","scanners");
             },
         },
         wrench2: {
@@ -51,7 +51,7 @@ const buttonDescriptions = {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Shields clicked");
                 changeBarLevels(-20,-10);
-                openDoor("clone_bay","scanners");
+                unlockDoor("clone_bay","scanners");
             },
         },
         wrench3: {
@@ -61,7 +61,7 @@ const buttonDescriptions = {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Fabrication clicked");
                 changeBarLevels(-20,-10);
-                openDoor("clone_bay","scanners");
+                unlockDoor("clone_bay","scanners");
             },
         },
         suicide: {

@@ -34,23 +34,23 @@ let doors = [
     { roomId: "engine", targetRoomId: "storage", status: "closed" },
 ];
 
-function openDoor(roomId, targetRoomId) {
+function unlockDoor(currentRoom, targetRoomId) {
     const forwardDoorIndex = doors.findIndex(
-        (door) => door.roomId === roomId && door.targetRoomId === targetRoomId
+        (door) => door.currentRoom === currentRoom && door.targetRoomId === targetRoomId
     );
 
     const backwardDoorIndex = doors.findIndex(
-        (door) => door.roomId === targetRoomId && door.targetRoomId === roomId
+        (door) => door.currentRoom === targetRoomId && door.targetRoomId === currentRoom
     );
 
     if (forwardDoorIndex !== -1) {
         doors[forwardDoorIndex].status = "open";
-        console.log(`Door between ${roomId} and ${targetRoomId} is now open.`);
+        console.log(`Door between ${currentRoom} and ${targetRoomId} is now open.`);
     } else if (backwardDoorIndex !== -1) {
         doors[backwardDoorIndex].status = "open";
-        console.log(`Door between ${targetRoomId} and ${roomId} is now open.`);
+        console.log(`Door between ${targetRoomId} and ${currentRoom} is now open.`);
     } else {
-        console.log(`Door between ${roomId} and ${targetRoomId} not found.`);
+        console.log(`Door between ${currentRoom} and ${targetRoomId} not found.`);
     }
     highlightAdjacentRooms();
 }
@@ -79,4 +79,4 @@ let tabContent = [
     'This is the content of Options.<br><br>Save/Load/Reset game I guess?'
 ];
 
-export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, tabContent, openDoor };
+export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, tabContent, unlockDoor };
