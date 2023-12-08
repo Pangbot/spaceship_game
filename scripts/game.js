@@ -3,7 +3,7 @@ import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
 import { isGamePaused, setGamePause } from './common.js';
 import { runStoryEvent, checkForNextStoryEvent } from './storyController.js';
-import { showOptionsMenu, hideOptionsMenu } from './options.js';
+import { showOptionsMenu, hideOptionsMenu, tabContent } from './options.js';
 import { updateResourceBars } from './resourceBars.js';
 
 function changeTab(index) {
@@ -17,13 +17,6 @@ function changeTab(index) {
         tab.classList.remove('active');
         }
     });
-
-    const tabContent = [
-        'This is the content of Statistics.<br><br>Bitches: 0',
-        'This is the content of Tasks.<br><br>Task 1: Get some bitches.',
-        'This is the content of Sound.<br><br>There is no sound. :(',
-        'This is the content of Options.<br><br>Save/Load/Reset game I guess?'
-    ];
 
     content.innerHTML = `<p>${tabContent[index]}</p>`;
 }

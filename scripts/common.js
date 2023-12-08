@@ -51,4 +51,11 @@ let storyMessages = [
     { message_shown: false, message_content: ["I hate you."] }
 ];
 
-export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause };
+let tabContent = [
+    'This is the content of Statistics.<br><br>Bitches: 0',
+    'This is the content of Tasks.<br><br>Task 1: Get some bitches.',
+    'This is the content of Sound.<br><br>There is no sound. :(',
+    'This is the content of Options.<br><br>Save/Load/Reset game I guess?'
+];
+
+export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, tabContent };
