@@ -52,6 +52,7 @@ function unlockDoor(roomId, targetRoomId) {
     } else {
         console.log(`Door between ${roomId} and ${targetRoomId} not found.`);
     }
+    console.log(doors);
     highlightAdjacentRooms(roomId);
 }
 
