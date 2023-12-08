@@ -38,7 +38,6 @@ const buttonDescriptions = {
             label: "Wrench open door to Scanners (-20 food, -10 oxygen)",
             unlockCondition: () => isActionUnlockConditionMet("wrench1"), // Add your unlock condition function
             onClick: () => {
-                // Add your action-specific logic here
                 console.log("Wrench open door to Scanners clicked");
                 changeBarLevels(-20,-10);
                 unlockDoor("clone_bay","scanners");

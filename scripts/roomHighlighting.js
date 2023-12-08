@@ -13,7 +13,7 @@ function hasClosedDoor(currentRoom, clickedRoom, doors) {
                                           (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status === "closed"));
 }
 
-function highlightAdjacentRooms(currentRoom) {
+function highlightAdjacentRooms(currentRoomId) {
     if (isGamePaused) {
         return;
     }
@@ -38,13 +38,13 @@ function highlightAdjacentRooms(currentRoom) {
         };
 
         console.log("Checking room:", room);
-        console.log("hasOpenDoor:", hasOpenDoor(currentRoom, room, doors));
-        console.log("hasClosedDoor:", hasClosedDoor(currentRoom, room, doors));
+        console.log("hasOpenDoor:", hasOpenDoor(currentRoomId, room.id, doors));
+        console.log("hasClosedDoor:", hasClosedDoor(currentRoomId, room.id, doors));
 
         // Add highlighting to adjacent rooms
-        if (hasOpenDoor(currentRoom, room, doors)) {
+        if (hasOpenDoor(currentRoomId, room.id, doors)) {
             highlight.classList.add('available');
-        } else if (hasClosedDoor(currentRoom, room, doors)) {
+        } else if (hasClosedDoor(currentRoomId, room.id, doors)) {
             highlight.classList.add('adjacent');
         } else {
             highlight.classList.remove('adjacent');
@@ -52,7 +52,7 @@ function highlightAdjacentRooms(currentRoom) {
         }
 
         // Add highlighting to the current room
-        if (currentRoom.id === room.id) {
+        if (currentRoomId === room.id) {
             highlight.classList.add('highlighted');
         }
     });
