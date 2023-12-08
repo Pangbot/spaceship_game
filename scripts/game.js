@@ -1,9 +1,9 @@
 // game.js
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
-import { isGamePaused, setGamePause } from './common.js';
+import { isGamePaused, setGamePause, tabContent } from './common.js';
 import { runStoryEvent, checkForNextStoryEvent } from './storyController.js';
-import { showOptionsMenu, hideOptionsMenu, tabContent } from './options.js';
+import { showOptionsMenu, hideOptionsMenu } from './options.js';
 import { updateResourceBars } from './resourceBars.js';
 
 function changeTab(index) {
