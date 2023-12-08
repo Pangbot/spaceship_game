@@ -47,7 +47,7 @@ const buttonDescriptions = {
         },
         wrench2: {
             label: "Wrench open door to Shields (-20 food, -10 oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench1"), // Add your unlock condition function
+            unlockCondition: () => isActionUnlockConditionMet("wrench2"), // Add your unlock condition function
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Shields clicked");
@@ -57,7 +57,7 @@ const buttonDescriptions = {
         },
         wrench3: {
             label: "Wrench open door to Fabrication (-20 food, -10 oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench1"), // Add your unlock condition function
+            unlockCondition: () => isActionUnlockConditionMet("wrench3"), // Add your unlock condition function
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Fabrication clicked");
@@ -67,7 +67,7 @@ const buttonDescriptions = {
         },
         suicide: {
             label: "Wrench yourself (-100 food, -100 oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench1"), // Add your unlock condition function
+            unlockCondition: () => isActionUnlockConditionMet("suicide"), // Add your unlock condition function
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Suicide button clicked :(");
