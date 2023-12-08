@@ -34,13 +34,20 @@ let doors = [
 ];
 
 function openDoor(roomId, targetRoomId) {
-    const doorIndex = doors.findIndex(
+    const forwardDoorIndex = doors.findIndex(
         (door) => door.roomId === roomId && door.targetRoomId === targetRoomId
     );
 
-    if (doorIndex !== -1) {
-        doors[doorIndex].status = "open";
+    const backwardDoorIndex = doors.findIndex(
+        (door) => door.roomId === targetRoomId && door.targetRoomId === roomId
+    );
+
+    if (forwardDoorIndex !== -1) {
+        doors[forwardDoorIndex].status = "open";
         console.log(`Door between ${roomId} and ${targetRoomId} is now open.`);
+    } else if (backwardDoorIndex !== -1) {
+        doors[backwardDoorIndex].status = "open";
+        console.log(`Door between ${targetRoomId} and ${roomId} is now open.`);
     } else {
         console.log(`Door between ${roomId} and ${targetRoomId} not found.`);
     }
