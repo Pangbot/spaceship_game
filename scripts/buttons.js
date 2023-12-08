@@ -1,6 +1,7 @@
 // buttons.js
 // Handles the logic surrounding creating and (un)locking buttons.
 import { unlockDoor } from './common.js';
+import { highlightAdjacentRooms } from './roomHighlighting.js';
 
 // Button Descriptions
 const buttonDescriptions = {
@@ -41,6 +42,7 @@ const buttonDescriptions = {
                 console.log("Wrench open door to Scanners clicked");
                 changeBarLevels(-20,-10);
                 unlockDoor("clone_bay","scanners");
+                highlightAdjacentRooms("clone_bay");
             },
         },
         wrench2: {
