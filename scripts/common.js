@@ -34,25 +34,25 @@ let doors = [
     { roomId: "engine", targetRoomId: "storage", status: "closed" },
 ];
 
-function unlockDoor(currentRoom, targetRoomId) {
+function unlockDoor(roomId, targetRoomId) {
     const forwardDoorIndex = doors.findIndex(
-        (door) => door.currentRoom === currentRoom && door.targetRoomId === targetRoomId
+        (door) => door.roomId === roomId && door.targetRoomId === targetRoomId
     );
 
     const backwardDoorIndex = doors.findIndex(
-        (door) => door.currentRoom === targetRoomId && door.targetRoomId === currentRoom
+        (door) => door.roomId === targetRoomId && door.targetRoomId === roomId
     );
 
     if (forwardDoorIndex !== -1) {
         doors[forwardDoorIndex].status = "open";
-        console.log(`Door between ${currentRoom} and ${targetRoomId} is now open.`);
+        console.log(`Door between ${roomId} and ${targetRoomId} is now open.`);
     } else if (backwardDoorIndex !== -1) {
         doors[backwardDoorIndex].status = "open";
-        console.log(`Door between ${targetRoomId} and ${currentRoom} is now open.`);
+        console.log(`Door between ${targetRoomId} and ${roomId} is now open.`);
     } else {
-        console.log(`Door between ${currentRoom} and ${targetRoomId} not found.`);
+        console.log(`Door between ${roomId} and ${targetRoomId} not found.`);
     }
-    highlightAdjacentRooms();
+    highlightAdjacentRooms(roomId);
 }
 
 let lastMessageClicked = false;
