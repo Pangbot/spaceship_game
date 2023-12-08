@@ -12,26 +12,39 @@ let currentRoom = {
 // Container for status of all doors
 let doors = [
     { roomId: "piloting", targetRoomId: "kitchen", status: "closed" },
-    { roomId: "kitchen", targetRoomId: "scanners", status: "open" },
-    { roomId: "kitchen", targetRoomId: "doors", status: "open" },
-    { roomId: "scanners", targetRoomId: "clone_bay", status: "open" },
-    { roomId: "doors", targetRoomId: "shields", status: "open" },
-    { roomId: "clone_bay", targetRoomId: "shields", status: "open" },
-    { roomId: "clone_bay", targetRoomId: "fabrication", status: "open" },
-    { roomId: "shields", targetRoomId: "weapons", status: "open" },
-    { roomId: "fabrication", targetRoomId: "escape_pods_L", status: "open" },
-    { roomId: "fabrication", targetRoomId: "weapons", status: "open" },
-    { roomId: "fabrication", targetRoomId: "electrics", status: "open" },
-    { roomId: "weapons", targetRoomId: "escape_pods_R", status: "open" },
-    { roomId: "weapons", targetRoomId: "electrics", status: "open" },
-    { roomId: "electrics", targetRoomId: "oxygen", status: "open" },
-    { roomId: "electrics", targetRoomId: "water", status: "open" },
-    { roomId: "water", targetRoomId: "security", status: "open" },
-    { roomId: "oxygen", targetRoomId: "recycling", status: "open" },
-    { roomId: "engine", targetRoomId: "recycling", status: "open" },
-    { roomId: "engine", targetRoomId: "security", status: "open" },
+    { roomId: "kitchen", targetRoomId: "scanners", status: "closed" },
+    { roomId: "kitchen", targetRoomId: "doors", status: "closed" },
+    { roomId: "scanners", targetRoomId: "clone_bay", status: "closed" },
+    { roomId: "doors", targetRoomId: "shields", status: "closed" },
+    { roomId: "clone_bay", targetRoomId: "shields", status: "closed" },
+    { roomId: "clone_bay", targetRoomId: "fabrication", status: "closed" },
+    { roomId: "shields", targetRoomId: "weapons", status: "closed" },
+    { roomId: "fabrication", targetRoomId: "escape_pods_L", status: "closed" },
+    { roomId: "fabrication", targetRoomId: "weapons", status: "closed" },
+    { roomId: "fabrication", targetRoomId: "electrics", status: "closed" },
+    { roomId: "weapons", targetRoomId: "escape_pods_R", status: "closed" },
+    { roomId: "weapons", targetRoomId: "electrics", status: "closed" },
+    { roomId: "electrics", targetRoomId: "oxygen", status: "closed" },
+    { roomId: "electrics", targetRoomId: "water", status: "closed" },
+    { roomId: "water", targetRoomId: "security", status: "closed" },
+    { roomId: "oxygen", targetRoomId: "recycling", status: "closed" },
+    { roomId: "engine", targetRoomId: "recycling", status: "closed" },
+    { roomId: "engine", targetRoomId: "security", status: "closed" },
     { roomId: "engine", targetRoomId: "storage", status: "closed" },
 ];
+
+function openDoor(roomId, targetRoomId) {
+    const doorIndex = doors.findIndex(
+        (door) => door.roomId === roomId && door.targetRoomId === targetRoomId
+    );
+
+    if (doorIndex !== -1) {
+        doors[doorIndex].status = "open";
+        console.log(`Door between ${roomId} and ${targetRoomId} is now open.`);
+    } else {
+        console.log(`Door between ${roomId} and ${targetRoomId} not found.`);
+    }
+}
 
 let lastMessageClicked = false;
 
@@ -57,4 +70,4 @@ let tabContent = [
     'This is the content of Options.<br><br>Save/Load/Reset game I guess?'
 ];
 
-export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, tabContent };
+export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, tabContent, openDoor };
