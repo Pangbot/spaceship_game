@@ -1,5 +1,6 @@
 // common.js
 // A place for common variables
+import { highlightAdjacentRooms } from './roomHighlighting.js';
 
 let currentRoom = {
     id: "clone_bay",
@@ -51,6 +52,7 @@ function openDoor(roomId, targetRoomId) {
     } else {
         console.log(`Door between ${roomId} and ${targetRoomId} not found.`);
     }
+    highlightAdjacentRooms();
 }
 
 let lastMessageClicked = false;
