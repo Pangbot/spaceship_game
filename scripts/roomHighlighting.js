@@ -42,9 +42,9 @@ function highlightAdjacentRooms(currentRoomId) {
         console.log("hasClosedDoor:", hasClosedDoor(currentRoomId, room.id, doors));
 
         // Add highlighting to adjacent rooms
-        if (hasOpenDoor(currentRoomId, room.id, doors)) {
+        if (hasOpenDoor(currentRoom, room, doors)) {
             highlight.classList.add('available');
-        } else if (hasClosedDoor(currentRoomId, room.id, doors)) {
+        } else if (hasClosedDoor(currentRoom, room, doors)) {
             highlight.classList.add('adjacent');
         } else {
             highlight.classList.remove('adjacent');
