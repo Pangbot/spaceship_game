@@ -1,7 +1,6 @@
 // common.js
 // A place for common variables
 
-// Set to the inital value, "let" so it can be dynamically adjusted
 let currentRoom = {
     id: "clone_bay",
     top: 251,
