@@ -1,7 +1,6 @@
 // buttons.js
 // Handles the logic surrounding creating and (un)locking buttons.
-import { openDoor } from './common.js';
-import { highlightAdjacentRooms } from './roomHighlighting.js';
+import { unlockDoor } from './common.js';
 
 // Button Descriptions
 const buttonDescriptions = {
