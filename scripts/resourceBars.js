@@ -46,17 +46,6 @@ function updateResourceBars() {
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
 
-        if (elapsedMilliseconds >= 1000) {
-            // Calculate FPS and output to the console
-            const fps = 1000 * frames / elapsedMilliseconds;
-            console.log(`FPS: ${fps.toFixed(2)}`);
-
-            // Reset counters for the next second
-            frames = 0;
-            fpsTimestamp = now;
-        }
-
-
         if (!lastTimestamp) {
             lastTimestamp = now;
         }
@@ -90,6 +79,12 @@ function updateResourceBars() {
                     bar.element.setAttribute('data-fill', currentWidth);
                     percentageElement.innerText = `${Math.round(currentWidth)}%`;
                 }
+                // Calculate FPS and output to the console
+                const fps = updateThreshold * frames / elapsedMilliseconds;
+                console.log(`FPS: ${fps.toFixed(2)}`);
+
+                // Reset counters for the next second
+                frames = 0;
                 // Update the last timestamp after the bars are updated
                 lastTimestamp = now;
             }
