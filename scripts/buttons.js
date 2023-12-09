@@ -4,10 +4,10 @@ import { unlockDoor } from './common.js';
 import { highlightAdjacentRooms } from './roomHighlighting.js';
 
 // Bar change amounts
-wrenchFoodLoss = -20;
-wrenchOxygenLoss = -10;
-suicideFood = 0;
-suicideOxygen = 0;
+const wrenchFoodLoss = -20;
+const wrenchOxygenLoss = -10;
+const suicideFood = 0;
+const suicideOxygen = 0;
 
 // Button Descriptions
 const buttonDescriptions = {
