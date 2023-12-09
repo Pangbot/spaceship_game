@@ -9,6 +9,13 @@ const wrenchOxygenLoss = -10;
 const suicideFood = 0;
 const suicideOxygen = 0;
 
+// Function to open a door by wrenching it
+function wrenchOpen(roomFrom,roomTo) {
+    changeBarLevels(wrenchFoodLoss,wrenchOxygenLoss);
+    unlockDoor(roomFrom,roomTo);
+    highlightAdjacentRooms(roomFrom);
+}
+
 // Button Descriptions
 const buttonDescriptions = {
     piloting: {
@@ -40,40 +47,34 @@ const buttonDescriptions = {
         },
     },
     clone_bay: {
-        wrench1: {
-            label: "Wrench open door to Scanners (-20 food, -10 oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench1"), // Add your unlock condition function
+        clone_bay_to_scanners: {
+            label: "Wrench open door to Scanners (-20% food, -10% oxygen)",
+            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), // Add your unlock condition function
             onClick: () => {
                 console.log("Wrench open door to Scanners clicked");
-                changeBarLevels(wrenchFoodLoss,wrenchOxygenLoss);
-                unlockDoor("clone_bay", "scanners");
-                highlightAdjacentRooms("clone_bay");
+                wrenchOpen("clone_bay", "scanners");
             },
         },
-        wrench2: {
-            label: "Wrench open door to Shields (-20 food, -10 oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench2"), // Add your unlock condition function
+        clone_bay_to_shields: {
+            label: "Wrench open door to Shields (-20% food, -10% oxygen)",
+            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), // Add your unlock condition function
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Shields clicked");
-                changeBarLevels(wrenchFoodLoss,wrenchOxygenLoss);
-                unlockDoor("clone_bay","shields");
-                highlightAdjacentRooms("clone_bay");
+                wrenchOpen("clone_bay", "shields");
             },
         },
-        wrench3: {
-            label: "Wrench open door to Fabrication (-20 food, -10 oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench3"), // Add your unlock condition function
+        clone_bay_to_fabrication: {
+            label: "Wrench open door to Fabrication (-20% food, -10% oxygen)",
+            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), // Add your unlock condition function
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Fabrication clicked");
-                changeBarLevels(wrenchFoodLoss,wrenchOxygenLoss);
-                unlockDoor("clone_bay","fabrication");
-                highlightAdjacentRooms("clone_bay");
+                wrenchOpen("clone_bay", "fabrication");
             },
         },
         suicide: {
-            label: "Wrench yourself (-100 food, -100 oxygen)",
+            label: "Wrench yourself (-100% food, -100% oxygen)",
             unlockCondition: () => isActionUnlockConditionMet("suicide"), // Add your unlock condition function
             onClick: () => {
                 // Add your action-specific logic here
@@ -99,25 +100,30 @@ const buttonDescriptions = {
                 console.log("Action 2 in Scanners clicked");
             },
         },
-    }
+    },
     // ... Add descriptions for other rooms
 };
 
 // Function to create and update buttons based on the current room
-function updateButtonDescriptions(roomId) {
+async function updateButtonDescriptions(roomId) {
     const roomButtons = buttonDescriptions[roomId] || {};
     const containerButtons = document.querySelector('.container-buttons');
     containerButtons.innerHTML = ''; // Clear previous buttons
 
-    Object.keys(roomButtons).forEach((action, i) => {
-        const { label, unlockCondition, onClick } = roomButtons[action];
-
+    for (const [action, { label, unlockCondition, onClick }] of Object.entries(roomButtons)) {
         const buttonWrapper = document.createElement('div');
         buttonWrapper.classList.add('button-wrapper');
 
         const button = document.createElement('button');
         button.textContent = `Action ${i + 1}`;
-        button.disabled = !unlockCondition();
+
+        try {
+            // Use async/await to wait for the unlock condition
+            button.disabled = !(await unlockCondition());
+        } catch (error) {
+            console.error(`Error checking unlock condition for ${action}: ${error}`);
+            button.disabled = true;
+        }
 
         buttonWrapper.appendChild(button);
 
@@ -129,21 +135,25 @@ function updateButtonDescriptions(roomId) {
         containerButtons.appendChild(buttonWrapper);
 
         button.addEventListener('click', onClick);
-    });
+    }
 }
 
 // Example unlock condition (adjust as needed)
-function isActionUnlockConditionMet(action) {
+async function isActionUnlockConditionMet(action) {
     const foodBar = document.getElementById('food_bar');
     const currentFood = parseFloat(foodBar.getAttribute('data-fill'));
     const oxygenBar = document.getElementById('oxygen_bar');
     const currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
 
-    // Add your unlock condition logic here
-    if (currentFood < 20 || currentOxygen < 10) {
-        return false;
-    }
-    return true;
+    return new Promise((resolve) => {
+        if(action === "suicide" && currentFood > 0 && currentOxygen > 0) {
+            resolve(true);
+        }
+        else if(action === "wrench_door" && currentFood > 20 && currentOxygen > 10) {
+            resolve(true);
+        }
+        resolve(false);
+    });
 }
 
 export { updateButtonDescriptions };
