@@ -60,10 +60,57 @@ function updateResourceBars() {
             animationFrameId = requestAnimationFrame(updateBars);
         }
     }
+
+    function setBarLevels(foodNum, oxygenNum) {
+        const bars = [
+            {
+                id: 'oxygen_bar',
+            },
+            {
+                id: 'food_bar',
+            },
+        ];
+    
+        bars.forEach((bar) => {
+            const barElement = document.getElementById(bar.id);
+            const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
+    
+            // Set bar to the specified level
+            const newWidth = Math.max(0, Math.min(100, parseFloat(foodNum)));
+            barElement.style.width = `${newWidth}%`;
+            barElement.setAttribute('data-fill', newWidth);
+            percentageElement.innerText = `${Math.round(newWidth)}%`;
+        });
+    }
+
+    function changeBarLevels(foodAdjust, oxygenAdjust) {
+        const bars = [
+            {
+                id: 'oxygen_bar',
+            },
+            {
+                id: 'food_bar',
+            },
+        ];
+    
+        bars.forEach((bar) => {
+            const barElement = document.getElementById(bar.id);
+            const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
+    
+            // Update bar by the set amount
+            bar.currentValue = Math.max(0, parseFloat(barElement.getAttribute('data-fill')) + (bar.id === 'oxygen_bar' ? oxygenAdjust : foodAdjust));
+            const currentWidth = bar.currentValue;
+            barElement.style.width = `${currentWidth}%`;
+            barElement.setAttribute('data-fill', currentWidth);
+            percentageElement.innerText = `${Math.round(currentWidth)}%`;
+        });
+    }
     
 
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
 }
 
-export { updateResourceBars };
+
+
+export { updateResourceBars, setBarLevels, changeBarLevels };

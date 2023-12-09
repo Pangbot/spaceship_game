@@ -2,6 +2,7 @@
 // Handles the logic surrounding creating and (un)locking buttons.
 import { unlockDoor } from './common.js';
 import { highlightAdjacentRooms } from './roomHighlighting.js';
+import { setBarLevels, changeBarLevels } from './resourceBars.js';
 
 // Bar change amounts
 const wrenchFoodLoss = -20;
@@ -144,51 +145,6 @@ function isActionUnlockConditionMet(action) {
         return false;
     }
     return true;
-}
-
-function changeBarLevels(foodAdjust, oxygenAdjust) {
-    const bars = [
-        {
-            id: 'oxygen_bar',
-        },
-        {
-            id: 'food_bar',
-        },
-    ];
-
-    bars.forEach((bar) => {
-        const barElement = document.getElementById(bar.id);
-        const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
-
-        // Update bar by the set amount
-        bar.currentValue = Math.max(0, parseFloat(barElement.getAttribute('data-fill')) - (bar.id === 'oxygen_bar' ? oxygenAdjust : foodAdjust));
-        const currentWidth = bar.currentValue;
-        barElement.style.width = `${currentWidth}%`;
-        barElement.setAttribute('data-fill', currentWidth);
-        percentageElement.innerText = `${Math.round(currentWidth)}%`;
-    });
-}
-
-function setBarLevels(foodNum, oxygenNum) {
-    const bars = [
-        {
-            id: 'oxygen_bar',
-        },
-        {
-            id: 'food_bar',
-        },
-    ];
-
-    bars.forEach((bar) => {
-        const barElement = document.getElementById(bar.id);
-        const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
-
-        // Set bar to the specified level
-        const newWidth = Math.max(0, Math.min(100, parseFloat(foodNum)));
-        barElement.style.width = `${newWidth}%`;
-        barElement.setAttribute('data-fill', newWidth);
-        percentageElement.innerText = `${Math.round(newWidth)}%`;
-    });
 }
 
 export { updateButtonDescriptions };
