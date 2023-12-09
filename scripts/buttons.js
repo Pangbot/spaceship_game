@@ -139,6 +139,25 @@ function updateButtonDescriptions(roomId) {
     }
 }
 
+// Function to update button states based on current unlock conditions
+function updateButtonChecks(roomId) {
+    const roomButtons = buttonDescriptions[roomId] || {};
+    const containerButtons = document.querySelector('.container-buttons');
+
+    for (const [action, { unlockCondition }] of Object.entries(roomButtons)) {
+        const button = containerButtons.querySelector(`button[data-action="${action}"]`);
+
+        if (button) {
+            try {
+                button.disabled = !unlockCondition();
+            } catch (error) {
+                console.error(`Error checking unlock condition for ${action}: ${error}`);
+                button.disabled = true;
+            }
+        }
+    }
+}
+
 // Example unlock condition (adjust as needed)
 function isActionUnlockConditionMet(action) {
     const foodBar = document.getElementById('food_bar');
@@ -156,4 +175,4 @@ function isActionUnlockConditionMet(action) {
     return false;
 }
 
-export { updateButtonDescriptions };
+export { updateButtonDescriptions, updateButtonChecks };

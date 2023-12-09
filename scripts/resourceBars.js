@@ -2,7 +2,7 @@
 // Handles the logic surrounding the oxygen/food bars.
 
 import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenAdjust, resetManualTime, currentRoom } from "./common.js";
-import { updateButtonDescriptions } from './buttons.js';
+import { updateButtonChecks } from './buttons.js';
 
 function updateResourceBars() {
 
@@ -89,7 +89,7 @@ function updateResourceBars() {
         if (!isGamePaused) {
             // Use requestAnimationFrame for the next update
             animationFrameId = requestAnimationFrame(updateBars);
-            updateButtonDescriptions(currentRoom.id);
+            updateButtonChecks(currentRoom.id);
         }
     }
 
