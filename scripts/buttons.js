@@ -45,7 +45,7 @@ const buttonDescriptions = {
             unlockCondition: () => isActionUnlockConditionMet("wrench1"), // Add your unlock condition function
             onClick: () => {
                 console.log("Wrench open door to Scanners clicked");
-                changeBarLevels(wrenchFoodLoss.toString(),wrenchOxygenLoss.toString());
+                changeBarLevels(wrenchFoodLoss,wrenchOxygenLoss);
                 unlockDoor("clone_bay", "scanners");
                 highlightAdjacentRooms("clone_bay");
             },
@@ -56,8 +56,9 @@ const buttonDescriptions = {
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Shields clicked");
-                changeBarLevels(wrenchFoodLoss.toString(),wrenchOxygenLoss.toString());
+                changeBarLevels(wrenchFoodLoss,wrenchOxygenLoss);
                 unlockDoor("clone_bay","shields");
+                highlightAdjacentRooms("clone_bay");
             },
         },
         wrench3: {
@@ -66,8 +67,9 @@ const buttonDescriptions = {
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Fabrication clicked");
-                changeBarLevels(wrenchFoodLoss.toString(),wrenchOxygenLoss.toString());
+                changeBarLevels(wrenchFoodLoss,wrenchOxygenLoss);
                 unlockDoor("clone_bay","fabrication");
+                highlightAdjacentRooms("clone_bay");
             },
         },
         suicide: {
@@ -76,7 +78,7 @@ const buttonDescriptions = {
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Suicide button clicked :(");
-                setBarLevels(suicideFood.toString(),suicideOxygen.toString());
+                setBarLevels(suicideFood,suicideOxygen);
             },
         }
     },
@@ -144,25 +146,47 @@ function isActionUnlockConditionMet(action) {
     return true;
 }
 
-function changeBarLevels(foodAdjust,oxygenAdjust) {
-    const foodBar = document.getElementById('food_bar');
-    const currentFood = parseFloat(foodBar.getAttribute('data-fill'));
-    const oxygenBar = document.getElementById('oxygen_bar');
-    const currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
-
-    const newFood = currentFood + foodAdjust;
-    const newOxygen = currentOxygen + oxygenAdjust;
-
-    foodBar.setAttribute('data-fill', newFood);
-    oxygenBar.setAttribute('data-fill', newOxygen);
+function changeBarLevels(foodAdjust, oxygenAdjust) {
+    updateBar('food_bar', foodAdjust);
+    updateBar('oxygen_bar', oxygenAdjust);
 }
 
-function setBarLevels(foodNum,oxygenNum) {
-    const foodBar = document.getElementById('food_bar');
-    const oxygenBar = document.getElementById('oxygen_bar');
+function updateBar(barId, adjustment) {
+    const bar = document.getElementById(barId);
+    const currentFill = parseFloat(bar.getAttribute('data-fill'));
+    const newFill = Math.max(currentFill + adjustment, 0);
 
-    foodBar.setAttribute('data-fill', foodNum);
-    oxygenBar.setAttribute('data-fill', oxygenNum);
+    // Update the data-fill attribute
+    bar.setAttribute('data-fill', newFill);
+
+    // Update the displayed percentage
+    const percentageContainer = bar.parentElement.querySelector('.percentage');
+    percentageContainer.textContent = `${newFill}%`;
+
+    // Adjust the width of the fill div
+    const fillDiv = bar.querySelector('.resource-fill');
+    fillDiv.style.width = `${newFill}%`;
+}
+
+function setBarLevels(foodNum, oxygenNum) {
+    setBarLevel('food_bar', foodNum);
+    setBarLevel('oxygen_bar', oxygenNum);
+}
+
+function setBarLevel(barId, level) {
+    const bar = document.getElementById(barId);
+    const newLevel = Math.max(Math.min(level, 100), 0); // Ensure the level is between 0 and 100
+
+    // Update the data-fill attribute
+    bar.setAttribute('data-fill', newLevel);
+
+    // Update the displayed percentage
+    const percentageContainer = bar.parentElement.querySelector('.percentage');
+    percentageContainer.textContent = `${newLevel}%`;
+
+    // Adjust the width of the fill div
+    const fillDiv = bar.querySelector('.resource-fill');
+    fillDiv.style.width = `${newLevel}%`;
 }
 
 export { updateButtonDescriptions };
