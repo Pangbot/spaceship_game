@@ -46,7 +46,7 @@ function updateResourceBars() {
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
 
-        if (elapsedSeconds >= 1) {
+        if (elapsedMilliseconds >= 1000) {
             // Calculate FPS and output to the console
             const fps = 1000 * frames / elapsedMilliseconds;
             console.log(`FPS: ${fps.toFixed(2)}`);
