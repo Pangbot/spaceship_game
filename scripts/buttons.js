@@ -6,8 +6,8 @@ import { highlightAdjacentRooms } from './roomHighlighting.js';
 // Bar change amounts
 const wrenchFoodLoss = -20;
 const wrenchOxygenLoss = -10;
-const suicideFood = 0.1;
-const suicideOxygen = 0.1;
+const suicideFood = 0;
+const suicideOxygen = 0;
 
 // Button Descriptions
 const buttonDescriptions = {
