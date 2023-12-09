@@ -159,9 +159,11 @@ function updateBar(barId, adjustment) {
     // Update the data-fill attribute
     bar.setAttribute('data-fill', newFill);
 
-    // Update the displayed percentage
+    // Update the displayed percentage if available
     const percentageContainer = bar.parentElement.querySelector('.percentage');
-    percentageContainer.textContent = `${newFill}%`;
+    if (percentageContainer) {
+        percentageContainer.textContent = `${newLevel}%`;
+    }
 
     // Adjust the width of the fill div
     const fillDiv = bar.querySelector('.resource-fill');
@@ -180,9 +182,11 @@ function setBarLevel(barId, level) {
     // Update the data-fill attribute
     bar.setAttribute('data-fill', newLevel);
 
-    // Update the displayed percentage
+    // Update the displayed percentage if available
     const percentageContainer = bar.parentElement.querySelector('.percentage');
-    percentageContainer.textContent = `${newLevel}%`;
+    if (percentageContainer) {
+        percentageContainer.textContent = `${newLevel}%`;
+    }
 
     // Adjust the width of the fill div
     const fillDiv = bar.querySelector('.resource-fill');
