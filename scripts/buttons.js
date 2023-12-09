@@ -38,7 +38,7 @@ const buttonDescriptions = {
         },
     },
     kitchen: {
-        eat_food: {
+        action1: {
             label: "Eat some food (+50% food)",
             unlockCondition: () => isActionUnlockConditionMet("eat_food"), 
             onClick: () => {
@@ -49,7 +49,7 @@ const buttonDescriptions = {
         },
     },
     clone_bay: {
-        clone_bay_to_scanners: {
+        action1: {
             label: "Wrench open door to Scanners (-20% food, -10% oxygen)",
             unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
@@ -57,7 +57,7 @@ const buttonDescriptions = {
                 wrenchOpen("clone_bay", "scanners");
             },
         },
-        clone_bay_to_shields: {
+        action2: {
             label: "Wrench open door to Shields (-20% food, -10% oxygen)",
             unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
@@ -66,7 +66,7 @@ const buttonDescriptions = {
                 wrenchOpen("clone_bay", "shields");
             },
         },
-        clone_bay_to_fabrication: {
+        action3: {
             label: "Wrench open door to Fabrication (-20% food, -10% oxygen)",
             unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
@@ -75,7 +75,7 @@ const buttonDescriptions = {
                 wrenchOpen("clone_bay", "fabrication");
             },
         },
-        suicide: {
+        action4: {
             label: "Wrench yourself (-100% food, -100% oxygen)",
             unlockCondition: () => isActionUnlockConditionMet("suicide"), 
             onClick: () => {
@@ -86,7 +86,7 @@ const buttonDescriptions = {
         }
     },
     scanners: {
-        scanners_to_kitchen: {
+        action1: {
             label: "Wrench open door to Kitchen (-20% food, -10% oxygen)",
             unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
@@ -149,15 +149,17 @@ function updateButtonChecks(roomId) {
 
     for (const [action, { unlockCondition }] of Object.entries(roomButtons)) {
         try {
-            const button = document.createElement('button');
-            button.setAttribute('data-action', action);
-            button.textContent = action; // You can set the button label as needed
-            containerButtons.appendChild(button);
+            // Assuming your buttons have an ID that matches the action
+            const button = containerButtons.querySelector(`#${action}`);
 
-            button.disabled = !unlockCondition();
-            console.log(`${action} button is disabled: ${!unlockCondition()}`);
+            if (button) {
+                button.disabled = !unlockCondition();
+                console.log(`${action} button is disabled: ${!unlockCondition()}`);
+            } else {
+                console.error(`Button with ID "${action}" not found.`);
+            }
         } catch (error) {
-            console.error(`Error creating button or checking unlock condition for ${action}: ${error}`);
+            console.error(`Error checking unlock condition for ${action}: ${error}`);
         }
     }
 }
