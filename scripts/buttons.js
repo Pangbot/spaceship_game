@@ -40,7 +40,7 @@ const buttonDescriptions = {
             onClick: () => {
                 console.log("Wrench open door to Scanners clicked");
                 changeBarLevels(-20,-10);
-                unlockDoor("clone_bay","scanners");
+                unlockDoor("clone_bay", "scanners");
                 highlightAdjacentRooms("clone_bay");
             },
         },
