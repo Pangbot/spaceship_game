@@ -146,7 +146,7 @@ function isActionUnlockConditionMet(action) {
     const oxygenBar = document.getElementById('oxygen_bar');
     const currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
 
-    console.log(action);
+    console.log(action === "suicide");
     if (action === "suicide" && currentFood > 0 && currentOxygen > 0) {
         return true;
     } else if (action === "wrench_door" && currentFood > 20 && currentOxygen > 10) {
