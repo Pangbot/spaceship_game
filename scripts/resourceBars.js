@@ -55,7 +55,8 @@ function updateResourceBars() {
             if (!isGamePaused && elapsedMilliseconds > updateThreshold) {
                 if (manualTime > 1) {
                     console.log("Setting...");
-                    const currentWidth = bar.manual;
+                    bar.currentValue = bar.manual;
+                    const currentWidth = bar.currentValue;
                     bar.element.style.width = `${currentWidth}%`;
                     bar.element.setAttribute('data-fill', currentWidth);
                     percentageElement.innerText = `${Math.round(currentWidth)}%`;
@@ -93,7 +94,5 @@ function updateResourceBars() {
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
 }
-
-
 
 export { updateResourceBars };
