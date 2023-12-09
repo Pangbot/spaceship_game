@@ -1,8 +1,7 @@
 // buttons.js
 // Handles the logic surrounding creating and (un)locking buttons.
-import { unlockDoor } from './common.js';
+import { unlockDoor, changeBarLevels, setBarLevels } from './common.js';
 import { highlightAdjacentRooms } from './roomHighlighting.js';
-import { setBarLevels, changeBarLevels } from './resourceBars.js';
 
 // Bar change amounts
 const wrenchFoodLoss = -20;

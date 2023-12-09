@@ -1,13 +1,7 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { isGamePaused } from "./common.js";
-
-let manualTime = 0;
-let manualFood = 100;
-let manualOxygen = 100;
-let foodAdjust = 0;
-let oxygenAdjust = 0;
+import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenAdjust, resetManualTime } from "./common.js";
 
 function updateResourceBars() {
     const bars = [
@@ -79,7 +73,7 @@ function updateResourceBars() {
                 lastTimestamp = now;
             }
         });
-        manualTime = 0;
+        resetManualTime();
     
         // Check if a story event needs to be called
         if (!isGamePaused) {
@@ -92,18 +86,4 @@ function updateResourceBars() {
     animationFrameId = requestAnimationFrame(updateBars);
 }
 
-function setBarLevels(foodNum, oxygenNum) {
-    console.log("Set function called");
-    manualTime = 2;
-    manualFood = foodNum;
-    manualOxygen = oxygenNum;
-}
-
-function changeBarLevels(foodAdj, oxygenAdj) {
-    console.log("Change function called");
-    manualTime = 1;
-    foodAdjust = foodAdj;
-    oxygenAdjust = oxygenAdj;
-}
-
-export { updateResourceBars, setBarLevels, changeBarLevels };
+export { updateResourceBars };

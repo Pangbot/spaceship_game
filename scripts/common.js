@@ -58,6 +58,30 @@ let lastMessageClicked = false;
 
 let isGamePaused = false;
 
+let manualTime = 0;
+let manualFood = 100;
+let manualOxygen = 100;
+let foodAdjust = 0;
+let oxygenAdjust = 0;
+
+function resetManualTime() {
+    manualTime = 0;
+}
+
+function setBarLevels(foodNum, oxygenNum) {
+    console.log("Set function called");
+    manualTime = 2;
+    manualFood = foodNum;
+    manualOxygen = oxygenNum;
+}
+
+function changeBarLevels(foodAdj, oxygenAdj) {
+    console.log("Change function called");
+    manualTime = 1;
+    foodAdjust = foodAdj;
+    oxygenAdjust = oxygenAdj;
+}
+
 function setGamePause(state) {
     isGamePaused = state;
 }
@@ -78,4 +102,5 @@ let tabContent = [
     'This is the content of Options.<br><br>Save/Load/Reset game I guess?'
 ];
 
-export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, tabContent, unlockDoor };
+export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, tabContent, unlockDoor, manualTime, manualFood, 
+    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime };
