@@ -1,7 +1,13 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { isGamePaused, setGamePause } from "./common.js";
+import { isGamePaused } from "./common.js";
+
+let manualTime = 0;
+let manualFood = 100;
+let manualOxygen = 100;
+let foodAdjust = 0;
+let oxygenAdjust = 0;
 
 function updateResourceBars() {
     const bars = [
@@ -9,11 +15,15 @@ function updateResourceBars() {
             id: 'oxygen_bar',
             rate: 0.2,
             element: document.getElementById('oxygen_bar'),
+            manual: manualOxygen,
+            adjust: oxygenAdjust,
         },
         {
             id: 'food_bar',
             rate: 1,
             element: document.getElementById('food_bar'),
+            manual: manualFood,
+            adjust: foodAdjust,
         },
     ];
 
@@ -43,16 +53,31 @@ function updateResourceBars() {
     
             // Update bar only if not in story mode and if enough time has passed
             if (!isGamePaused && elapsedMilliseconds > updateThreshold) {
-                bar.currentValue = Math.max(0, bar.currentValue - decrease);
-                const currentWidth = bar.currentValue;
-                bar.element.style.width = `${currentWidth}%`;
-                bar.element.setAttribute('data-fill', currentWidth);
-                percentageElement.innerText = `${Math.round(currentWidth)}%`;
-    
+                if (manualTime > 1) {
+                    const currentWidth = bar.manual;
+                    bar.element.style.width = `${currentWidth}%`;
+                    bar.element.setAttribute('data-fill', currentWidth);
+                    percentageElement.innerText = `${Math.round(currentWidth)}%`;
+            
+                } else if (manualTime > 0) {
+                    bar.currentValue = Math.max(0, bar.currentValue + bar.adjust);
+                    const currentWidth = bar.currentValue;
+                    bar.element.style.width = `${currentWidth}%`;
+                    bar.element.setAttribute('data-fill', currentWidth);
+                    percentageElement.innerText = `${Math.round(currentWidth)}%`;
+                }
+                else {
+                    bar.currentValue = Math.max(0, bar.currentValue - decrease);
+                    const currentWidth = bar.currentValue;
+                    bar.element.style.width = `${currentWidth}%`;
+                    bar.element.setAttribute('data-fill', currentWidth);
+                    percentageElement.innerText = `${Math.round(currentWidth)}%`;
+                }
                 // Update the last timestamp after the bars are updated
                 lastTimestamp = now;
             }
         });
+        manualTime = 0;
     
         // Check if a story event needs to be called
         if (!isGamePaused) {
@@ -61,56 +86,20 @@ function updateResourceBars() {
         }
     }
 
-    function setBarLevels(foodNum, oxygenNum) {
-        const bars = [
-            {
-                id: 'oxygen_bar',
-            },
-            {
-                id: 'food_bar',
-            },
-        ];
-    
-        bars.forEach((bar) => {
-            const barElement = document.getElementById(bar.id);
-            const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
-    
-            // Set bar to the specified level
-            const newWidth = Math.max(0, Math.min(100, parseFloat(foodNum)));
-            barElement.style.width = `${newWidth}%`;
-            barElement.setAttribute('data-fill', newWidth);
-            percentageElement.innerText = `${Math.round(newWidth)}%`;
-        });
-    }
-
-    function changeBarLevels(foodAdjust, oxygenAdjust) {
-        const bars = [
-            {
-                id: 'oxygen_bar',
-            },
-            {
-                id: 'food_bar',
-            },
-        ];
-    
-        bars.forEach((bar) => {
-            const barElement = document.getElementById(bar.id);
-            const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
-    
-            // Update bar by the set amount
-            bar.currentValue = Math.max(0, parseFloat(barElement.getAttribute('data-fill')) + (bar.id === 'oxygen_bar' ? oxygenAdjust : foodAdjust));
-            const currentWidth = bar.currentValue;
-            barElement.style.width = `${currentWidth}%`;
-            barElement.setAttribute('data-fill', currentWidth);
-            percentageElement.innerText = `${Math.round(currentWidth)}%`;
-        });
-    }
-    
-
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
 }
 
+function setBarLevels(foodNum, oxygenNum) {
+    manualTime = 2;
+    manualFood = foodNum;
+    manualOxygen = oxygenNum;
+}
 
+function changeBarLevels(foodAdj, oxygenAdj) {
+    manualTime = 1;
+    foodAdjust = foodAdj;
+    oxygenAdjust = oxygenAdj;
+}
 
 export { updateResourceBars, setBarLevels, changeBarLevels };
