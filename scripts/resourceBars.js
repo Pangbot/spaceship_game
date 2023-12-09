@@ -1,9 +1,11 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenAdjust, resetManualTime } from "./common.js";
+import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenAdjust, resetManualTime, startValueUpdateLoop } from "./common.js";
 
 function updateResourceBars() {
+    console.log(manualTime);
+    
     const bars = [
         {
             id: 'oxygen_bar',
@@ -85,5 +87,7 @@ function updateResourceBars() {
     // Initial call to start the recursive process
     animationFrameId = requestAnimationFrame(updateBars);
 }
+
+startValueUpdateLoop(updateResourceBars);
 
 export { updateResourceBars };
