@@ -5,7 +5,7 @@ import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenA
 
 function updateResourceBars() {
 
-    const bars = [
+    let bars = [
         {
             id: 'oxygen_bar',
             rate: 0.2,
@@ -33,8 +33,11 @@ function updateResourceBars() {
     let updateThreshold = 1000; // Set the threshold to some milliseconds
 
     function updateBars() {
-        console.log(manualTime);
-        
+        bars[0].manual = manualOxygen;
+        bars[0].adjust = oxygenAdjust;
+        bars[1].manual = manualFood;
+        bars[1].adjust = foodAdjust;
+
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
     
