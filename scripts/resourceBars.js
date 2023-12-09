@@ -5,7 +5,6 @@ import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenA
 import { updateButtonChecks } from './buttons.js';
 
 function updateResourceBars() {
-
     let bars = [
         {
             id: 'oxygen_bar',
@@ -32,12 +31,9 @@ function updateResourceBars() {
     });
 
     let updateThreshold = 250; // Set the threshold to some milliseconds
-    let frames = 0;
-    let fpsTimestamp = performance.now();
+    let extraTimes = [];
 
     function updateBars() {
-        frames++;
-        
         bars[0].manual = manualOxygen;
         bars[0].adjust = oxygenAdjust;
         bars[1].manual = manualFood;
@@ -80,8 +76,9 @@ function updateResourceBars() {
                     percentageElement.innerText = `${Math.round(currentWidth)}%`;
                 }
                 // Calculate FPS and output to the console
-                const fps = updateThreshold * frames / elapsedMilliseconds;
-                console.log(`FPS: ${fps.toFixed(2)}`);
+                const extraTime = elapsedMilliseconds - updateThreshold;
+                extraTimes.push(extraTime);
+                console.log(`Last extra time: ${extraTime}. Average extra time: ${sum(extraTimes)/extraTimes.length}`);
 
                 // Reset counters for the next second
                 frames = 0;
