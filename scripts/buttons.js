@@ -109,6 +109,7 @@ async function updateButtonDescriptions(roomId) {
     const roomButtons = buttonDescriptions[roomId] || {};
     const containerButtons = document.querySelector('.container-buttons');
     containerButtons.innerHTML = ''; // Clear previous buttons
+    let i = 0;
 
     for (const [action, { label, unlockCondition, onClick }] of Object.entries(roomButtons)) {
         const buttonWrapper = document.createElement('div');
@@ -116,6 +117,7 @@ async function updateButtonDescriptions(roomId) {
 
         const button = document.createElement('button');
         button.textContent = `Action ${i + 1}`;
+        i = i + 1;
 
         try {
             // Use async/await to wait for the unlock condition
