@@ -10,9 +10,9 @@ const suicideFood = 0;
 const suicideOxygen = 0;
 
 // Function to open a door by wrenching it
-function wrenchOpen(roomFrom,roomTo) {
-    changeBarLevels(wrenchFoodLoss,wrenchOxygenLoss);
-    unlockDoor(roomFrom,roomTo);
+function wrenchOpen(roomFrom, roomTo) {
+    changeBarLevels(wrenchFoodLoss, wrenchOxygenLoss);
+    unlockDoor(roomFrom, roomTo);
     highlightAdjacentRooms(roomFrom);
 }
 
@@ -79,7 +79,7 @@ const buttonDescriptions = {
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Suicide button clicked :(");
-                setBarLevels(suicideFood,suicideOxygen);
+                setBarLevels(suicideFood, suicideOxygen);
             },
         }
     },
@@ -105,11 +105,10 @@ const buttonDescriptions = {
 };
 
 // Function to create and update buttons based on the current room
-async function updateButtonDescriptions(roomId) {
+function updateButtonDescriptions(roomId) {
     const roomButtons = buttonDescriptions[roomId] || {};
     const containerButtons = document.querySelector('.container-buttons');
     containerButtons.innerHTML = ''; // Clear previous buttons
-    let i = 0;
 
     for (const [action, { label, unlockCondition, onClick }] of Object.entries(roomButtons)) {
         const buttonWrapper = document.createElement('div');
@@ -117,11 +116,9 @@ async function updateButtonDescriptions(roomId) {
 
         const button = document.createElement('button');
         button.textContent = `Action ${i + 1}`;
-        i = i + 1;
 
         try {
-            // Use async/await to wait for the unlock condition
-            button.disabled = !(await unlockCondition());
+            button.disabled = !unlockCondition();
         } catch (error) {
             console.error(`Error checking unlock condition for ${action}: ${error}`);
             button.disabled = true;
@@ -141,21 +138,19 @@ async function updateButtonDescriptions(roomId) {
 }
 
 // Example unlock condition (adjust as needed)
-async function isActionUnlockConditionMet(action) {
+function isActionUnlockConditionMet(action) {
     const foodBar = document.getElementById('food_bar');
     const currentFood = parseFloat(foodBar.getAttribute('data-fill'));
     const oxygenBar = document.getElementById('oxygen_bar');
     const currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
 
-    return new Promise((resolve) => {
-        if(action === "suicide" && currentFood > 0 && currentOxygen > 0) {
-            resolve(true);
-        }
-        else if(action === "wrench_door" && currentFood > 20 && currentOxygen > 10) {
-            resolve(true);
-        }
-        resolve(false);
-    });
+    if (action === "suicide" && currentFood > 0 && currentOxygen > 0) {
+        return true;
+    } else if (action === "wrench_door" && currentFood > 20 && currentOxygen > 10) {
+        return true;
+    }
+
+    return false;
 }
 
 export { updateButtonDescriptions };
