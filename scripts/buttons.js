@@ -149,18 +149,14 @@ function updateButtonChecks(roomId) {
 
     for (const [action, { unlockCondition }] of Object.entries(roomButtons)) {
         try {
-            // Assuming your buttons have an ID that matches the action
-            const button = containerButtons.querySelector(`#${action}`);
-
-            const buttons = containerButtons.querySelectorAll('button');
-            console.log(buttons);
-            debugger;
+            const button = Array.from(containerButtons.querySelectorAll('.button-wrapper button'))
+                .find(btn => btn.textContent.trim() === action);
 
             if (button) {
                 button.disabled = !unlockCondition();
                 console.log(`${action} button is disabled: ${!unlockCondition()}`);
             } else {
-                console.error(`Button with ID "${action}" not found.`);
+                console.error(`Button with text "${action}" not found.`);
             }
         } catch (error) {
             console.error(`Error checking unlock condition for ${action}: ${error}`);
