@@ -3,14 +3,18 @@
 import {doors, isGamePaused} from './common.js';
 
 // Function to check if a door exists between two rooms
-function hasOpenDoor(currentRoom, clickedRoom, doors) {
-    return doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status === "open") ||
-                                      (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status === "open"));
+function hasOpenDoor(currentRoomId, clickedRoomId, doors) {
+    return doors.some(door =>
+        (door.roomId === currentRoomId && door.targetRoomId === clickedRoomId && door.status === "open") ||
+        (door.roomId === clickedRoomId && door.targetRoomId === currentRoomId && door.status === "open")
+    );
 }
 
-function hasClosedDoor(currentRoom, clickedRoom, doors) {
-    return doors.some(door => (door.roomId === currentRoom.id && door.targetRoomId === clickedRoom.id && door.status === "closed") ||
-                                          (door.roomId === clickedRoom.id && door.targetRoomId === currentRoom.id && door.status === "closed"));
+function hasClosedDoor(currentRoomId, clickedRoomId, doors) {
+    return doors.some(door =>
+        (door.roomId === currentRoomId && door.targetRoomId === clickedRoomId && door.status === "closed") ||
+        (door.roomId === clickedRoomId && door.targetRoomId === currentRoomId && door.status === "closed")
+    );
 }
 
 function highlightAdjacentRooms(currentRoomId) {
@@ -42,9 +46,9 @@ function highlightAdjacentRooms(currentRoomId) {
         console.log("hasClosedDoor:", hasClosedDoor(currentRoomId, room.id, doors));
 
         // Add highlighting to adjacent rooms
-        if (hasOpenDoor(currentRoom, room, doors)) {
+        if (hasOpenDoor(currentRoomId, room.id, doors)) {
             highlight.classList.add('available');
-        } else if (hasClosedDoor(currentRoom, room, doors)) {
+        } else if (hasClosedDoor(currentRoomId, room.id, doors)) {
             highlight.classList.add('adjacent');
         } else {
             highlight.classList.remove('adjacent');

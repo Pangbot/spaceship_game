@@ -16,24 +16,17 @@ export function updateGame() {
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
-    // Add click event listeners
     allRoomHighlights.forEach(highlight => {
         highlight.addEventListener('click', function (event) {
-            const clickedRoom = {
-                id: highlight.getAttribute('data-room-id'),
-                top: parseInt(highlight.style.top),
-                left: parseInt(highlight.style.left),
-                width: parseInt(highlight.getAttribute('data-room-width')) * 50,
-                height: parseInt(highlight.getAttribute('data-room-height')) * 50,
-            };
+            const clickedRoomId = highlight.getAttribute('data-room-id');
 
-            if (hasOpenDoor(currentRoom, clickedRoom, doors)) {
+            if (hasOpenDoor(currentRoom.id, clickedRoomId, doors)) {
                 // Transition to the target room
-                currentRoom.id = clickedRoom.id;
-                currentRoom.top = clickedRoom.top;
-                currentRoom.left = clickedRoom.left;
-                currentRoom.width = clickedRoom.width;
-                currentRoom.height = clickedRoom.height;
+                currentRoom.id = clickedRoomId;
+                currentRoom.top = parseInt(highlight.style.top);
+                currentRoom.left = parseInt(highlight.style.left);
+                currentRoom.width = parseInt(highlight.getAttribute('data-room-width')) * 50;
+                currentRoom.height = parseInt(highlight.getAttribute('data-room-height')) * 50;
 
                 // Update room highlights
                 highlightAdjacentRooms(currentRoom.id);
