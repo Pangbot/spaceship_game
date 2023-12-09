@@ -144,7 +144,6 @@ function updateButtonDescriptions(roomId) {
 
 // Function to update button states based on current unlock conditions
 function updateButtonChecks(roomId) {
-    console.log("updating buttons in ",roomId);
     const roomButtons = buttonDescriptions[roomId] || {};
     const containerButtons = document.querySelector('.container-buttons');
 
@@ -154,6 +153,7 @@ function updateButtonChecks(roomId) {
         if (button) {
             try {
                 button.disabled = !unlockCondition();
+                console.log(button,"is disabled:",!unlockCondition());
             } catch (error) {
                 console.error(`Error checking unlock condition for ${action}: ${error}`);
                 button.disabled = true;
