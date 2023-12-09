@@ -35,8 +35,6 @@ function createButton(text, clickHandler) {
 }
 
 function handleCloseButtonClick() {
-    console.log('Close button clicked');
-
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
     const closeButton = document.querySelector('.popup-button');

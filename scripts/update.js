@@ -8,7 +8,6 @@ import { currentRoom, doors, lastMessageClicked, setLastMessageClicked, isGamePa
 export function updateGame() {
     
     if(lastMessageClicked) {
-        console.log('restarting the bars...');
         updateResourceBars();
         setLastMessageClicked(false);
     }

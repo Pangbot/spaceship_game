@@ -55,7 +55,6 @@ function updateResourceBars() {
             // Update bar only if not in story mode and if enough time has passed
             if (!isGamePaused && elapsedMilliseconds > updateThreshold) {
                 if (manualTime > 1) {
-                    console.log("Setting...");
                     bar.currentValue = bar.manual;
                     const currentWidth = bar.currentValue;
                     bar.element.style.width = `${currentWidth}%`;
@@ -63,7 +62,6 @@ function updateResourceBars() {
                     percentageElement.innerText = `${Math.round(currentWidth)}%`;
             
                 } else if (manualTime > 0) {
-                    console.log("Changing...");
                     bar.currentValue = Math.min(100, Math.max(0, bar.currentValue + bar.adjust));
                     const currentWidth = bar.currentValue;
                     bar.element.style.width = `${currentWidth}%`;

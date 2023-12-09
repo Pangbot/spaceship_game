@@ -43,7 +43,6 @@ const buttonDescriptions = {
             unlockCondition: () => isActionUnlockConditionMet("eat_food"), 
             onClick: () => {
                 // Add your action-specific logic here
-                console.log("Action 1 in Kitchen clicked");
                 changeBarLevels(eatFoodGain, 0);
             },
         },
@@ -53,7 +52,6 @@ const buttonDescriptions = {
             label: "Wrench open door to Scanners (-20% food, -10% oxygen)",
             unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
-                console.log("Wrench open door to Scanners clicked");
                 wrenchOpen("clone_bay", "scanners");
             },
         },
@@ -62,7 +60,6 @@ const buttonDescriptions = {
             unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
                 // Add your action-specific logic here
-                console.log("Wrench open door to Shields clicked");
                 wrenchOpen("clone_bay", "shields");
             },
         },
@@ -71,7 +68,6 @@ const buttonDescriptions = {
             unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
                 // Add your action-specific logic here
-                console.log("Wrench open door to Fabrication clicked");
                 wrenchOpen("clone_bay", "fabrication");
             },
         },
@@ -80,7 +76,6 @@ const buttonDescriptions = {
             unlockCondition: () => isActionUnlockConditionMet("suicide"), 
             onClick: () => {
                 // Add your action-specific logic here
-                console.log("Suicide button clicked :(");
                 setBarLevels(suicideFood, suicideOxygen);
             },
         }
@@ -91,7 +86,6 @@ const buttonDescriptions = {
             unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
                 // Add your action-specific logic here
-                console.log("Wrench open door to Kitchen clicked");
                 wrenchOpen("scanners", "kitchen");
             },
         },
@@ -155,7 +149,6 @@ function updateButtonChecks(roomId) {
 
             if (button) {
                 button.disabled = !unlockCondition();
-                console.log(`${action} button is disabled: ${!unlockCondition()}`);
             } else {
                 console.error(`Button with text "${action}" not found.`);
             }
@@ -172,7 +165,6 @@ function isActionUnlockConditionMet(action) {
     const oxygenBar = document.getElementById('oxygen_bar');
     const currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
 
-    console.log(action === "suicide");
     if (action === "suicide" && currentFood > 0 && currentOxygen > 0) {
         return true;
     } else if (action === "wrench_door" && currentFood > 20 && currentOxygen > 10) {

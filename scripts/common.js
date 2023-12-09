@@ -45,10 +45,8 @@ function unlockDoor(roomId, targetRoomId) {
 
     if (forwardDoorIndex !== -1) {
         doors[forwardDoorIndex].status = "open";
-        console.log(`Door between ${roomId} and ${targetRoomId} is now open.`);
     } else if (backwardDoorIndex !== -1) {
         doors[backwardDoorIndex].status = "open";
-        console.log(`Door between ${targetRoomId} and ${roomId} is now open.`);
     } else {
         console.log(`Door between ${roomId} and ${targetRoomId} not found.`);
     }
@@ -69,14 +67,12 @@ function resetManualTime() {
 }
 
 function setBarLevels(foodNum, oxygenNum) {
-    console.log("Set function called");
     manualTime = 2;
     manualFood = foodNum;
     manualOxygen = oxygenNum;
 }
 
 function changeBarLevels(foodAdj, oxygenAdj) {
-    console.log("Change function called");
     manualTime = 1;
     foodAdjust = foodAdj;
     oxygenAdjust = oxygenAdj;

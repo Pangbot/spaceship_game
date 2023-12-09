@@ -1,7 +1,5 @@
 // options.js
 function showOptionsMenu() {
-    console.log("Showing options menu.");
-
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('options');
 
@@ -10,8 +8,6 @@ function showOptionsMenu() {
 }
 
 function hideOptionsMenu() {
-    console.log("Hiding options menu.");
-
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('options');
     overlay.style.display = 'none';
