@@ -148,16 +148,16 @@ function updateButtonChecks(roomId) {
     const containerButtons = document.querySelector('.container-buttons');
 
     for (const [action, { unlockCondition }] of Object.entries(roomButtons)) {
-        const button = containerButtons.querySelector(`button[data-action="${action}"]`);
+        try {
+            const button = document.createElement('button');
+            button.setAttribute('data-action', action);
+            button.textContent = action; // You can set the button label as needed
+            containerButtons.appendChild(button);
 
-        if (button) {
-            try {
-                button.disabled = !unlockCondition();
-                console.log(button,"is disabled:",!unlockCondition());
-            } catch (error) {
-                console.error(`Error checking unlock condition for ${action}: ${error}`);
-                button.disabled = true;
-            }
+            button.disabled = !unlockCondition();
+            console.log(`${action} button is disabled: ${!unlockCondition()}`);
+        } catch (error) {
+            console.error(`Error creating button or checking unlock condition for ${action}: ${error}`);
         }
     }
 }
