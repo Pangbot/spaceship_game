@@ -86,12 +86,13 @@ const buttonDescriptions = {
         }
     },
     scanners: {
-        action1: {
-            label: "Action 1 in Scanners",
-            unlockCondition: () => true, 
+        scanners_to_kitchen: {
+            label: "Wrench open door to Kitchen (-20% food, -10% oxygen)",
+            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
                 // Add your action-specific logic here
-                console.log("Action 1 in Scanners clicked");
+                console.log("Wrench open door to Kitchen clicked");
+                wrenchOpen("scanners", "kitchen");
             },
         },
         action2: {
