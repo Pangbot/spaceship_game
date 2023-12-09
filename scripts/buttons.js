@@ -3,6 +3,12 @@
 import { unlockDoor } from './common.js';
 import { highlightAdjacentRooms } from './roomHighlighting.js';
 
+// Bar change amounts
+wrenchFoodLoss = -20;
+wrenchOxygenLoss = -10;
+suicideFood = 0;
+suicideOxygen = 0;
+
 // Button Descriptions
 const buttonDescriptions = {
     piloting: {
@@ -39,7 +45,7 @@ const buttonDescriptions = {
             unlockCondition: () => isActionUnlockConditionMet("wrench1"), // Add your unlock condition function
             onClick: () => {
                 console.log("Wrench open door to Scanners clicked");
-                changeBarLevels(-20,-10);
+                changeBarLevels(wrenchFoodLoss.toString(),wrenchOxygenLoss.toString());
                 unlockDoor("clone_bay", "scanners");
                 highlightAdjacentRooms("clone_bay");
             },
@@ -50,8 +56,8 @@ const buttonDescriptions = {
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Shields clicked");
-                changeBarLevels(-20,-10);
-                unlockDoor("clone_bay","scanners");
+                changeBarLevels(wrenchFoodLoss.toString(),wrenchOxygenLoss.toString());
+                unlockDoor("clone_bay","shields");
             },
         },
         wrench3: {
@@ -60,8 +66,8 @@ const buttonDescriptions = {
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Fabrication clicked");
-                changeBarLevels(-20,-10);
-                unlockDoor("clone_bay","scanners");
+                changeBarLevels(wrenchFoodLoss.toString(),wrenchOxygenLoss.toString());
+                unlockDoor("clone_bay","fabrication");
             },
         },
         suicide: {
@@ -70,7 +76,7 @@ const buttonDescriptions = {
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Suicide button clicked :(");
-                setBarLevels(0,0);
+                setBarLevels(suicideFood.toString(),suicideOxygen.toString());
             },
         }
     },
