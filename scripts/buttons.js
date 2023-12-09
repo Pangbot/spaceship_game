@@ -140,16 +140,16 @@ function updateButtonDescriptions(roomId) {
 }
 
 // Example unlock condition (adjust as needed)
-function isActionUnlockConditionMet(action) {
+function isActionUnlockConditionMet(actionName) {
     const foodBar = document.getElementById('food_bar');
     const currentFood = parseFloat(foodBar.getAttribute('data-fill'));
     const oxygenBar = document.getElementById('oxygen_bar');
     const currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
 
-    print(action)
-    if (action === "suicide" && currentFood > 0 && currentOxygen > 0) {
+    print(actionName)
+    if (actionName === "suicide" && currentFood > 0 && currentOxygen > 0) {
         return true;
-    } else if (action === "wrench_door" && currentFood > 20 && currentOxygen > 10) {
+    } else if (actionName === "wrench_door" && currentFood > 20 && currentOxygen > 10) {
         return true;
     }
 
