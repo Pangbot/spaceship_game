@@ -31,7 +31,7 @@ function updateResourceBars() {
         bar.currentValue = parseFloat(bar.element.getAttribute('data-fill')) || 0;
     });
 
-    let updateThreshold = 500; // Set the threshold to some milliseconds
+    let updateThreshold = 250; // Set the threshold to some milliseconds
 
     function updateBars() {
         bars[0].manual = manualOxygen;
