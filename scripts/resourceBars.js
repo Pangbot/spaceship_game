@@ -32,8 +32,12 @@ function updateResourceBars() {
     });
 
     let updateThreshold = 250; // Set the threshold to some milliseconds
+    let frames = 0;
+    let fpsTimestamp = performance.now();
 
     function updateBars() {
+        frames++;
+        
         bars[0].manual = manualOxygen;
         bars[0].adjust = oxygenAdjust;
         bars[1].manual = manualFood;
@@ -41,7 +45,18 @@ function updateResourceBars() {
 
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
-    
+
+        if (elapsedSeconds >= 1) {
+            // Calculate FPS and output to the console
+            const fps = 1000 * frames / elapsedMilliseconds;
+            console.log(`FPS: ${fps.toFixed(2)}`);
+
+            // Reset counters for the next second
+            frames = 0;
+            fpsTimestamp = now;
+        }
+
+
         if (!lastTimestamp) {
             lastTimestamp = now;
         }

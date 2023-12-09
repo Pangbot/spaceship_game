@@ -64,9 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
         requestAnimationFrame(gameLoop);
     }
 
-    // Start monitoring FPS when your game starts
-    startFPSMonitoring();
-    
     // Start the game loop
     gameLoop();
 
@@ -81,26 +78,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateResourceBars()
             }
         }
-    }
-
-    function updateFPS() {
-        const now = performance.now();
-        const elapsed = now - (updateFPS.lastTime || now);
-        updateFPS.lastTime = now;
-
-        fps = 1000 / elapsed;
-    }
-
-    function displayFPS() {
-        console.log(`Current FPS: ${fps.toFixed(2)}`);
-        // You can update your game UI or perform other actions based on the FPS value
-    }
-
-    function startFPSMonitoring() {
-        setInterval(() => {
-            updateFPS();
-            displayFPS();
-        }, 1000); // Update FPS every second
     }
 });
 
