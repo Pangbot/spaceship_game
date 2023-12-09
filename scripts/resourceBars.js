@@ -4,8 +4,7 @@
 import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenAdjust, resetManualTime, startValueUpdateLoop } from "./common.js";
 
 function updateResourceBars() {
-    console.log(manualTime);
-    
+
     const bars = [
         {
             id: 'oxygen_bar',
@@ -34,6 +33,8 @@ function updateResourceBars() {
     let updateThreshold = 1000; // Set the threshold to some milliseconds
 
     function updateBars() {
+        console.log(manualTime);
+        
         const now = performance.now();
         const elapsedMilliseconds = now - (lastTimestamp || now);
     
@@ -88,6 +89,6 @@ function updateResourceBars() {
     animationFrameId = requestAnimationFrame(updateBars);
 }
 
-startValueUpdateLoop(updateResourceBars);
+
 
 export { updateResourceBars };
