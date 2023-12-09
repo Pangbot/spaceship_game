@@ -8,6 +8,7 @@ const wrenchFoodLoss = -20;
 const wrenchOxygenLoss = -10;
 const suicideFood = 0;
 const suicideOxygen = 0;
+const eatFoodGain = 50;
 
 // Function to open a door by wrenching it
 function wrenchOpen(roomFrom, roomTo) {
@@ -21,7 +22,7 @@ const buttonDescriptions = {
     piloting: {
         action1: {
             label: "Action 1 in Piloting",
-            unlockCondition: () => true, // Add your unlock condition function
+            unlockCondition: () => true, 
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Action 1 in Piloting clicked");
@@ -29,7 +30,7 @@ const buttonDescriptions = {
         },
         action2: {
             label: "Action 2 in Piloting",
-            unlockCondition: () => true, // Add your unlock condition function
+            unlockCondition: () => true, 
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Action 2 in Piloting clicked");
@@ -37,19 +38,20 @@ const buttonDescriptions = {
         },
     },
     kitchen: {
-        action1: {
-            label: "Action 1 in Kitchen",
-            unlockCondition: () => true, // Add your unlock condition function
+        eat_food: {
+            label: "Eat some food (+50% food)",
+            unlockCondition: () => isActionUnlockConditionMet("eat_food"), 
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Action 1 in Kitchen clicked");
+                changeBarLevels(eatFoodGain, 0);
             },
         },
     },
     clone_bay: {
         clone_bay_to_scanners: {
             label: "Wrench open door to Scanners (-20% food, -10% oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), // Add your unlock condition function
+            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
                 console.log("Wrench open door to Scanners clicked");
                 wrenchOpen("clone_bay", "scanners");
@@ -57,7 +59,7 @@ const buttonDescriptions = {
         },
         clone_bay_to_shields: {
             label: "Wrench open door to Shields (-20% food, -10% oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), // Add your unlock condition function
+            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Shields clicked");
@@ -66,7 +68,7 @@ const buttonDescriptions = {
         },
         clone_bay_to_fabrication: {
             label: "Wrench open door to Fabrication (-20% food, -10% oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), // Add your unlock condition function
+            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Wrench open door to Fabrication clicked");
@@ -75,7 +77,7 @@ const buttonDescriptions = {
         },
         suicide: {
             label: "Wrench yourself (-100% food, -100% oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("suicide"), // Add your unlock condition function
+            unlockCondition: () => isActionUnlockConditionMet("suicide"), 
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Suicide button clicked :(");
@@ -86,7 +88,7 @@ const buttonDescriptions = {
     scanners: {
         action1: {
             label: "Action 1 in Scanners",
-            unlockCondition: () => true, // Add your unlock condition function
+            unlockCondition: () => true, 
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Action 1 in Scanners clicked");
@@ -94,7 +96,7 @@ const buttonDescriptions = {
         },
         action2: {
             label: "Action 2 in Scanners",
-            unlockCondition: () => true, // Add your unlock condition function
+            unlockCondition: () => true, 
             onClick: () => {
                 // Add your action-specific logic here
                 console.log("Action 2 in Scanners clicked");
@@ -169,6 +171,8 @@ function isActionUnlockConditionMet(action) {
     if (action === "suicide" && currentFood > 0 && currentOxygen > 0) {
         return true;
     } else if (action === "wrench_door" && currentFood > 20 && currentOxygen > 10) {
+        return true;
+    } else if (action === "eat_food") {
         return true;
     }
 
