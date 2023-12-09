@@ -147,50 +147,48 @@ function isActionUnlockConditionMet(action) {
 }
 
 function changeBarLevels(foodAdjust, oxygenAdjust) {
-    updateBar('food_bar', foodAdjust);
-    updateBar('oxygen_bar', oxygenAdjust);
-}
+    const bars = [
+        {
+            id: 'oxygen_bar',
+        },
+        {
+            id: 'food_bar',
+        },
+    ];
 
-function updateBar(barId, adjustment) {
-    const bar = document.getElementById(barId);
-    const currentFill = parseFloat(bar.getAttribute('data-fill'));
-    const newFill = Math.max(currentFill + adjustment, 0);
+    bars.forEach((bar) => {
+        const barElement = document.getElementById(bar.id);
+        const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
 
-    // Update the data-fill attribute
-    bar.setAttribute('data-fill', newFill);
-
-    // Update the displayed percentage if available
-    const percentageContainer = bar.parentElement.querySelector('.percentage');
-    if (percentageContainer) {
-        percentageContainer.textContent = `${newLevel}%`;
-    }
-
-    // Adjust the width of the fill div
-    const fillDiv = bar.querySelector('.resource-fill');
-    fillDiv.style.width = `${newFill}%`;
+        // Update bar by the set amount
+        bar.currentValue = Math.max(0, parseFloat(barElement.getAttribute('data-fill')) - (bar.id === 'oxygen_bar' ? oxygenAdjust : foodAdjust));
+        const currentWidth = bar.currentValue;
+        barElement.style.width = `${currentWidth}%`;
+        barElement.setAttribute('data-fill', currentWidth);
+        percentageElement.innerText = `${Math.round(currentWidth)}%`;
+    });
 }
 
 function setBarLevels(foodNum, oxygenNum) {
-    setBarLevel('food_bar', foodNum);
-    setBarLevel('oxygen_bar', oxygenNum);
-}
+    const bars = [
+        {
+            id: 'oxygen_bar',
+        },
+        {
+            id: 'food_bar',
+        },
+    ];
 
-function setBarLevel(barId, level) {
-    const bar = document.getElementById(barId);
-    const newLevel = Math.max(Math.min(level, 100), 0); // Ensure the level is between 0 and 100
+    bars.forEach((bar) => {
+        const barElement = document.getElementById(bar.id);
+        const percentageElement = barElement.closest('.resource-bar-container').querySelector('.percentage');
 
-    // Update the data-fill attribute
-    bar.setAttribute('data-fill', newLevel);
-
-    // Update the displayed percentage if available
-    const percentageContainer = bar.parentElement.querySelector('.percentage');
-    if (percentageContainer) {
-        percentageContainer.textContent = `${newLevel}%`;
-    }
-
-    // Adjust the width of the fill div
-    const fillDiv = bar.querySelector('.resource-fill');
-    fillDiv.style.width = `${newLevel}%`;
+        // Set bar to the specified level
+        const newWidth = Math.max(0, Math.min(100, parseFloat(foodNum)));
+        barElement.style.width = `${newWidth}%`;
+        barElement.setAttribute('data-fill', newWidth);
+        percentageElement.innerText = `${Math.round(newWidth)}%`;
+    });
 }
 
 export { updateButtonDescriptions };
