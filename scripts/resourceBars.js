@@ -64,7 +64,7 @@ function updateResourceBars() {
             
                 } else if (manualTime > 0) {
                     console.log("Changing...");
-                    bar.currentValue = Math.max(0, bar.currentValue + bar.adjust);
+                    bar.currentValue = Math.min(100, Math.max(0, bar.currentValue + bar.adjust));
                     const currentWidth = bar.currentValue;
                     bar.element.style.width = `${currentWidth}%`;
                     bar.element.setAttribute('data-fill', currentWidth);
