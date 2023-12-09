@@ -150,7 +150,7 @@ function updateButtonChecks(roomId) {
     for (const [action, { unlockCondition }] of Object.entries(roomButtons)) {
         try {
             const button = Array.from(containerButtons.querySelectorAll('.button-wrapper button'))
-                .find(btn => btn.textContent.trim() === action);
+                .find(btn => btn.textContent.trim().toLowerCase() === action.toLowerCase());
 
             if (button) {
                 button.disabled = !unlockCondition();
