@@ -86,7 +86,7 @@ function checkForNextStoryEvent(i) {
     // Conditions for a story event
     switch (i) {
         case 0:
-        return Math.round(parseFloat(document.getElementById('food_bar').getAttribute('data-fill'))) === 93 && storyMessages[0].message_shown === false;
+        return Math.round(parseFloat(document.getElementById('food_bar').getAttribute('data-fill'))) === 100 && storyMessages[0].message_shown === false;
         case 1:
         return false;
         case 2:
