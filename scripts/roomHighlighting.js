@@ -21,7 +21,6 @@ function highlightAdjacentRooms(currentRoomId) {
     if (isGamePaused) {
         return;
     }
-    console.log(doors);
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
     // First clear all highlights

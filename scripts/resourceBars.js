@@ -93,12 +93,14 @@ function updateResourceBars() {
 }
 
 function setBarLevels(foodNum, oxygenNum) {
+    console.log("Set function called");
     manualTime = 2;
     manualFood = foodNum;
     manualOxygen = oxygenNum;
 }
 
 function changeBarLevels(foodAdj, oxygenAdj) {
+    console.log("Change function called");
     manualTime = 1;
     foodAdjust = foodAdj;
     oxygenAdjust = oxygenAdj;
