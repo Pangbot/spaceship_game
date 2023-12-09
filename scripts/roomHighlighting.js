@@ -41,10 +41,6 @@ function highlightAdjacentRooms(currentRoomId) {
             height: parseInt(highlight.getAttribute('data-room-height')) * 50,
         };
 
-        console.log("Checking room:", room);
-        console.log("hasOpenDoor:", hasOpenDoor(currentRoomId, room.id, doors));
-        console.log("hasClosedDoor:", hasClosedDoor(currentRoomId, room.id, doors));
-
         // Add highlighting to adjacent rooms
         if (hasOpenDoor(currentRoomId, room.id, doors)) {
             highlight.classList.add('available');
