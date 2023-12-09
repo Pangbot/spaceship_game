@@ -149,8 +149,9 @@ function updateButtonChecks(roomId) {
 
     for (const [action, { unlockCondition }] of Object.entries(roomButtons)) {
         try {
+            // Use a case-insensitive selector for buttons with text content matching the action
             const button = Array.from(containerButtons.querySelectorAll('.button-wrapper button'))
-                .find(btn => btn.textContent.trim().toLowerCase() === action.toLowerCase());
+                .find(btn => btn.textContent.trim().toLowerCase() === `action ${action.slice(-1)}`.toLowerCase());
 
             if (button) {
                 button.disabled = !unlockCondition();
