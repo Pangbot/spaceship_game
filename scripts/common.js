@@ -68,13 +68,6 @@ function resetManualTime() {
     manualTime = 0;
 }
 
-function startValueUpdateLoop(callback) {
-    setInterval(() => {
-        // Call the provided callback function with the latest values
-        callback(manualTime);
-    }, 1000); // Adjust the interval as needed (e.g., every second)
-}
-
 function setBarLevels(foodNum, oxygenNum) {
     console.log("Set function called");
     manualTime = 2;

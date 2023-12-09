@@ -1,7 +1,7 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenAdjust, resetManualTime, startValueUpdateLoop } from "./common.js";
+import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenAdjust, resetManualTime } from "./common.js";
 
 function updateResourceBars() {
 
@@ -24,6 +24,7 @@ function updateResourceBars() {
 
     let animationFrameId;
     let lastTimestamp;
+    let latestTimestamp;
 
     // Initialize the bars based on their current width in the HTML
     bars.forEach((bar) => {
@@ -75,11 +76,14 @@ function updateResourceBars() {
                     bar.element.setAttribute('data-fill', currentWidth);
                     percentageElement.innerText = `${Math.round(currentWidth)}%`;
                 }
+                latestTimestamp = lastTimestamp;
                 // Update the last timestamp after the bars are updated
                 lastTimestamp = now;
             }
         });
-        resetManualTime();
+        if(latestTimestamp != lastTimestamp) {
+            resetManualTime();
+        }
     
         // Check if a story event needs to be called
         if (!isGamePaused) {
