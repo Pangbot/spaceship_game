@@ -24,7 +24,6 @@ function updateResourceBars() {
 
     let animationFrameId;
     let lastTimestamp;
-    let latestTimestamp;
 
     // Initialize the bars based on their current width in the HTML
     bars.forEach((bar) => {
@@ -76,12 +75,11 @@ function updateResourceBars() {
                     bar.element.setAttribute('data-fill', currentWidth);
                     percentageElement.innerText = `${Math.round(currentWidth)}%`;
                 }
-                latestTimestamp = lastTimestamp;
                 // Update the last timestamp after the bars are updated
                 lastTimestamp = now;
             }
         });
-        if(latestTimestamp != lastTimestamp) {
+        if(elapsedMilliseconds > updateThreshold) {
             resetManualTime();
         }
     
