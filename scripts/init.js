@@ -21,7 +21,7 @@ export function initialiseGame() {
     changeTab(0);
 
     // Initial Highlighting
-    highlightAdjacentRooms(currentRoom);
+    highlightAdjacentRooms(currentRoom.id);
 
     // Get initial buttons
     updateButtonDescriptions(currentRoom.id);
