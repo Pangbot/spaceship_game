@@ -144,6 +144,7 @@ function updateButtonDescriptions(roomId) {
 
 // Function to update button states based on current unlock conditions
 function updateButtonChecks(roomId) {
+    console.log("updating buttons in ",roomId);
     const roomButtons = buttonDescriptions[roomId] || {};
     const containerButtons = document.querySelector('.container-buttons');
 
