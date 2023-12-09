@@ -56,7 +56,6 @@ function updateResourceBars() {
                 if (manualTime > 1) {
                     console.log("Setting...");
                     const currentWidth = bar.manual;
-                    console.log(currentWidth);
                     bar.element.style.width = `${currentWidth}%`;
                     bar.element.setAttribute('data-fill', currentWidth);
                     percentageElement.innerText = `${Math.round(currentWidth)}%`;
