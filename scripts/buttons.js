@@ -152,6 +152,10 @@ function updateButtonChecks(roomId) {
             // Assuming your buttons have an ID that matches the action
             const button = containerButtons.querySelector(`#${action}`);
 
+            const buttons = containerButtons.querySelectorAll('button');
+            console.log(buttons);
+            debugger;
+
             if (button) {
                 button.disabled = !unlockCondition();
                 console.log(`${action} button is disabled: ${!unlockCondition()}`);
