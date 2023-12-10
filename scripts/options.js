@@ -18,6 +18,8 @@ function showOptionsMenu() {
 
     overlay.style.display = 'block';
     popup.style.display = 'block';
+
+    document.getElementById('content').innerHTML = `<p>${tabContent[index]}</p>`;
 }
 
 function hideOptionsMenu() {
