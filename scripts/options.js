@@ -11,6 +11,7 @@ const initialTabContent = [
 let tabContent = initialTabContent;
 
 function showOptionsMenu() {
+    tabContent = initialTabContent;
     updateTabContent();
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('options');
