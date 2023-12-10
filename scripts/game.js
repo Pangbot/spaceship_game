@@ -1,7 +1,7 @@
 // game.js
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
-import { isGamePaused, setGamePause } from './common.js';
+import { isGamePaused, setGamePause, currentTabNumber, changeCurrentTabNumber } from './common.js';
 import { tabContent } from './options.js';
 import { runStoryEvent, checkForNextStoryEvent } from './storyController.js';
 import { showOptionsMenu, hideOptionsMenu } from './options.js';
@@ -20,6 +20,8 @@ function changeTab(index) {
     });
 
     content.innerHTML = `<p>${tabContent[index]}</p>`;
+
+    changeCurrentTabNumber(index);
 }
 
 window.changeTab = changeTab;
@@ -71,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.key === 'p' && !isStoryEventRunning) {
             setGamePause(!isGamePaused);
             if (isGamePaused) {
-                showOptionsMenu();
+                showOptionsMenu(currentTabNumber);
             } else {
                 hideOptionsMenu();
                 updateResourceBars()

@@ -96,5 +96,11 @@ let storyMessages = [
     { message_shown: false, message_content: ["I hate you."] }
 ];
 
-export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, 
+let currentTabNumber = 0;
+
+function changeCurrentTabNumber(index) {
+    currentTabNumber = index;
+}
+
+export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, changeCurrentTabNumber, 
     manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, isEventListenerActive, changeEventListenerActive, oxygenRate, foodRate };

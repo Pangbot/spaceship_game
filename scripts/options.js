@@ -10,7 +10,8 @@ const initialTabContent = [
 
 let tabContent = initialTabContent.slice();
 
-function showOptionsMenu() {
+function showOptionsMenu(tabNumber) {
+    window.changeTab(tabNumber);
     updateTabContent();
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('options');
