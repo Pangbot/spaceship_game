@@ -58,14 +58,14 @@ function updateTabNumber(index) {
 function getBarsStatus() {
     let barsStatus = '';
 
-    let oxygenValue = document.getElementById('oxygen_bar').getAttribute('data-fill');
-    let foodValue = document.getElementById('food_bar').getAttribute('data-fill');
+    let oxygenValue = parseFloat(document.getElementById('oxygen_bar').getAttribute('data-fill'));
+    let foodValue = parseFloat(document.getElementById('food_bar').getAttribute('data-fill'));
 
-    let remainingTimeOxygen = (oxygenValue / oxygenRate).toFixed(1);
-    let remainingTimeFood = (foodValue / foodRate).toFixed(1);
+    let remainingTimeOxygen = (oxygenValue / oxygenRate).toFixed(2);
+    let remainingTimeFood = (foodValue / foodRate).toFixed(2);
 
-    barsStatus += `Oxygen bar is ${oxygenValue}% full. Remaining time: ${remainingTimeOxygen} seconds.<br>`;
-    barsStatus += `Food bar is ${foodValue}% full. Remaining time: ${remainingTimeFood} seconds.<br>`;
+    barsStatus += `Oxygen bar is ${oxygenValue.toFixed(2)}% full. Remaining time: ${remainingTimeOxygen} seconds.<br>`;
+    barsStatus += `Food bar is ${foodValue.toFixed(2)}% full. Remaining time: ${remainingTimeFood} seconds.<br>`;
 
     barsStatus += '<br>';
 
