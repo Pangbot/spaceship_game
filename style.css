@@ -245,3 +245,11 @@ button:disabled {
     text-align: center;
     width: 100px; /* Adjust the width as needed */
 }
+
+.openStatus {
+    color: green;
+  }
+  
+  .closedStatus {
+    color: red;
+  }
