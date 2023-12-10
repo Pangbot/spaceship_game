@@ -53,7 +53,10 @@ function unlockDoor(roomId, targetRoomId) {
 }
 
 let lastMessageClicked = false;
-
+let isEventListenerActive = true;
+function changeEventListenerActive() {
+    isEventListenerActive = true;
+}
 let isGamePaused = false;
 
 let manualTime = 0;
@@ -99,4 +102,4 @@ let tabContent = [
 ];
 
 export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, tabContent, unlockDoor, manualTime, manualFood, 
-    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime };
+    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, isEventListenerActive, changeEventListenerActive };

@@ -1,6 +1,6 @@
 // buttons.js
 // Handles the logic surrounding creating and (un)locking buttons.
-import { unlockDoor, changeBarLevels, setBarLevels } from './common.js';
+import { unlockDoor, changeBarLevels, setBarLevels, changeEventListenerActive } from './common.js';
 import { highlightAdjacentRooms } from './roomHighlighting.js';
 
 // Bar change amounts
@@ -15,6 +15,7 @@ function wrenchOpen(roomFrom, roomTo) {
     changeBarLevels(wrenchFoodLoss, wrenchOxygenLoss);
     unlockDoor(roomFrom, roomTo);
     highlightAdjacentRooms(roomFrom);
+    changeEventListenerActive();
 }
 
 // Button Descriptions

@@ -3,35 +3,37 @@
 import { updateResourceBars } from './resourceBars.js';
 import { highlightAdjacentRooms, hasOpenDoor } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
-import { currentRoom, doors, lastMessageClicked, setLastMessageClicked, isGamePaused } from './common.js';
+import { currentRoom, doors, lastMessageClicked, setLastMessageClicked, isEventListenerActive } from './common.js';
 
 export function updateGame() {
     if (lastMessageClicked) {
         updateResourceBars();
         setLastMessageClicked(false);
     }
-
-    // Add or update click event listeners on room highlights
+    
+    // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
     allRoomHighlights.forEach(highlight => {
-        // Remove previous click event listener if exists
-        highlight.removeEventListener('click', roomHighlightClickHandler);
-
-        // Add a new click event listener
-        highlight.addEventListener('click', roomHighlightClickHandler);
+        highlight.addEventListener('click', handleRoomHighlightClick);
     });
 
-    function roomHighlightClickHandler(event) {
-        const clickedRoomId = event.currentTarget.getAttribute('data-room-id');
+    function handleRoomHighlightClick(event) {
+        if (!isEventListenerActive) {
+            return;
+        }
+
+        const highlight = event.currentTarget; // Use 'currentTarget' to get the element to which the event listener is attached
+
+        const clickedRoomId = highlight.getAttribute('data-room-id');
 
         if (hasOpenDoor(currentRoom.id, clickedRoomId, doors)) {
             // Transition to the target room
             currentRoom.id = clickedRoomId;
-            currentRoom.top = parseInt(event.currentTarget.style.top);
-            currentRoom.left = parseInt(event.currentTarget.style.left);
-            currentRoom.width = parseInt(event.currentTarget.getAttribute('data-room-width')) * 50;
-            currentRoom.height = parseInt(event.currentTarget.getAttribute('data-room-height')) * 50;
+            currentRoom.top = parseInt(highlight.style.top);
+            currentRoom.left = parseInt(highlight.style.left);
+            currentRoom.width = parseInt(highlight.getAttribute('data-room-width')) * 50;
+            currentRoom.height = parseInt(highlight.getAttribute('data-room-height')) * 50;
 
             // Update room highlights
             highlightAdjacentRooms(currentRoom.id);
@@ -40,5 +42,7 @@ export function updateGame() {
             updateButtonDescriptions(currentRoom.id);
         }
     }
-}
 
+    // Disable the event listener flag after the first click
+    isEventListenerActive = false;
+}
