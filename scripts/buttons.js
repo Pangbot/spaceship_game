@@ -1,7 +1,7 @@
 // buttons.js
 // Handles the logic surrounding creating and (un)locking buttons.
 import { unlockDoor, changeBarLevels, setBarLevels, changeEventListenerActive } from './common.js';
-import { highlightAdjacentRooms } from './roomHighlighting.js';
+import { highlightAdjacentRooms, hasClosedDoor } from './roomHighlighting.js';
 
 // Bar change amounts
 const wrenchFoodLoss = -20;
@@ -43,7 +43,6 @@ const buttonDescriptions = {
             label: "Eat some food (+50% food)",
             unlockCondition: () => isActionUnlockConditionMet("eat_food"), 
             onClick: () => {
-                // Add your action-specific logic here
                 changeBarLevels(eatFoodGain, 0);
             },
         },
@@ -51,24 +50,22 @@ const buttonDescriptions = {
     clone_bay: {
         action1: {
             label: "Wrench open door to Scanners (-20% food, -10% oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
+            unlockCondition: () => {if(hasClosedDoor("clone_bay", "scanners")) {isActionUnlockConditionMet("wrench_door")}}, 
             onClick: () => {
                 wrenchOpen("clone_bay", "scanners");
             },
         },
         action2: {
             label: "Wrench open door to Shields (-20% food, -10% oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
+            unlockCondition: () => {if(hasClosedDoor("clone_bay", "shields")) {isActionUnlockConditionMet("wrench_door")}}, 
             onClick: () => {
-                // Add your action-specific logic here
                 wrenchOpen("clone_bay", "shields");
             },
         },
         action3: {
             label: "Wrench open door to Fabrication (-20% food, -10% oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
+            unlockCondition: () => {if(hasClosedDoor("clone_bay", "fabrication")) {isActionUnlockConditionMet("wrench_door")}}, 
             onClick: () => {
-                // Add your action-specific logic here
                 wrenchOpen("clone_bay", "fabrication");
             },
         },
@@ -76,7 +73,6 @@ const buttonDescriptions = {
             label: "Wrench yourself (-100% food, -100% oxygen)",
             unlockCondition: () => isActionUnlockConditionMet("suicide"), 
             onClick: () => {
-                // Add your action-specific logic here
                 setBarLevels(suicideFood, suicideOxygen);
             },
         }
@@ -84,9 +80,8 @@ const buttonDescriptions = {
     scanners: {
         action1: {
             label: "Wrench open door to Kitchen (-20% food, -10% oxygen)",
-            unlockCondition: () => isActionUnlockConditionMet("wrench_door"), 
+            unlockCondition: () => {if(hasClosedDoor("scanners", "kitchen")) {isActionUnlockConditionMet("wrench_door")}}, 
             onClick: () => {
-                // Add your action-specific logic here
                 wrenchOpen("scanners", "kitchen");
             },
         },
@@ -94,7 +89,6 @@ const buttonDescriptions = {
             label: "Action 2 in Scanners",
             unlockCondition: () => true, 
             onClick: () => {
-                // Add your action-specific logic here
                 console.log("Action 2 in Scanners clicked");
             },
         },
