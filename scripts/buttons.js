@@ -50,21 +50,21 @@ const buttonDescriptions = {
     clone_bay: {
         action1: {
             label: "Wrench open door to Scanners (-20% food, -10% oxygen)",
-            unlockCondition: () => {if(hasClosedDoor("clone_bay", "scanners", doors)) {isActionUnlockConditionMet("wrench_door")}}, 
+            unlockCondition: () => hasClosedDoor("clone_bay", "scanners", doors) ? isActionUnlockConditionMet("wrench_door") : false,
             onClick: () => {
                 wrenchOpen("clone_bay", "scanners");
             },
         },
         action2: {
             label: "Wrench open door to Shields (-20% food, -10% oxygen)",
-            unlockCondition: () => {if(hasClosedDoor("clone_bay", "shields", doors)) {isActionUnlockConditionMet("wrench_door")}}, 
+            unlockCondition: () => hasClosedDoor("clone_bay", "shields", doors) ? isActionUnlockConditionMet("wrench_door") : false,
             onClick: () => {
                 wrenchOpen("clone_bay", "shields");
             },
         },
         action3: {
             label: "Wrench open door to Fabrication (-20% food, -10% oxygen)",
-            unlockCondition: () => {if(hasClosedDoor("clone_bay", "fabrication", doors)) {isActionUnlockConditionMet("wrench_door")}}, 
+            unlockCondition: () => hasClosedDoor("clone_bay", "fabrication", doors) ? isActionUnlockConditionMet("wrench_door") : false,
             onClick: () => {
                 wrenchOpen("clone_bay", "fabrication");
             },
@@ -80,7 +80,7 @@ const buttonDescriptions = {
     scanners: {
         action1: {
             label: "Wrench open door to Kitchen (-20% food, -10% oxygen)",
-            unlockCondition: () => {if(hasClosedDoor("scanners", "kitchen", doors)) {isActionUnlockConditionMet("wrench_door")}}, 
+            unlockCondition: () => hasClosedDoor("kitchen", "scanners", doors) ? isActionUnlockConditionMet("wrench_door") : false,
             onClick: () => {
                 wrenchOpen("scanners", "kitchen");
             },
