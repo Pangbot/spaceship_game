@@ -11,13 +11,13 @@ const initialTabContent = [
 let tabContent = initialTabContent.slice();
 
 function showOptionsMenu(tabNumber) {
-    window.changeTab(tabNumber);
     updateTabContent();
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('options');
 
     overlay.style.display = 'block';
     popup.style.display = 'block';
+    window.changeTab(tabNumber);
 }
 
 function hideOptionsMenu() {
