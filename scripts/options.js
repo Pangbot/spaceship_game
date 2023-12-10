@@ -60,13 +60,13 @@ function formatTime(seconds) {
         const hours = Math.floor(seconds / 3600);
         const remainingMinutes = Math.floor((seconds % 3600) / 60);
         const remainingSeconds = seconds % 60;
-        return `${hours} hours, ${remainingMinutes} minutes, and ${remainingSeconds} seconds`;
+        return `${hours} hours, ${remainingMinutes} minutes, and ${remainingSeconds.toFixed(2)} seconds`;
     } else if (seconds > 60) {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
-        return `${minutes} minutes and ${remainingSeconds} seconds`;
+        return `${minutes} minutes and ${remainingSeconds.toFixed(2)} seconds`;
     } else {
-        return `${seconds} seconds`;
+        return `${seconds.toFixed(2)} seconds`;
     }
 }
 
