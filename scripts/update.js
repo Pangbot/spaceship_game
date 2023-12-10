@@ -11,30 +11,35 @@ export function updateGame() {
         setLastMessageClicked(false);
     }
 
-    // Delegate click event to a common ancestor
-    const commonAncestor = document.querySelector('.container-of-all-room-highlights');
+    // Add click event listeners to room highlights
+    const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
-    commonAncestor.addEventListener('click', function (event) {
-        const target = event.target;
+    allRoomHighlights.forEach(highlight => {
+        // Check if the element already has a click event listener
+        const hasClickListener = highlight.hasAttribute('data-click-listener');
 
-        // Check if the clicked element has the class 'roomHighlight1x2', 'roomHighlight2x1', or 'roomHighlight2x2'
-        if (target.matches('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2')) {
-            const clickedRoomId = target.getAttribute('data-room-id');
+        if (!hasClickListener) {
+            // Add a click event listener only if it doesn't have one
+            highlight.setAttribute('data-click-listener', 'true');
 
-            if (hasOpenDoor(currentRoom.id, clickedRoomId, doors)) {
-                // Transition to the target room
-                currentRoom.id = clickedRoomId;
-                currentRoom.top = parseInt(target.style.top);
-                currentRoom.left = parseInt(target.style.left);
-                currentRoom.width = parseInt(target.getAttribute('data-room-width')) * 50;
-                currentRoom.height = parseInt(target.getAttribute('data-room-height')) * 50;
+            highlight.addEventListener('click', function (event) {
+                const clickedRoomId = highlight.getAttribute('data-room-id');
 
-                // Update room highlights
-                highlightAdjacentRooms(currentRoom.id);
+                if (hasOpenDoor(currentRoom.id, clickedRoomId, doors)) {
+                    // Transition to the target room
+                    currentRoom.id = clickedRoomId;
+                    currentRoom.top = parseInt(highlight.style.top);
+                    currentRoom.left = parseInt(highlight.style.left);
+                    currentRoom.width = parseInt(highlight.getAttribute('data-room-width')) * 50;
+                    currentRoom.height = parseInt(highlight.getAttribute('data-room-height')) * 50;
 
-                // Update button descriptions based on the new room
-                updateButtonDescriptions(currentRoom.id);
-            }
+                    // Update room highlights
+                    highlightAdjacentRooms(currentRoom.id);
+
+                    // Update button descriptions based on the new room
+                    updateButtonDescriptions(currentRoom.id);
+                }
+            }, { once: true });
         }
     });
 }
