@@ -239,7 +239,7 @@ button:disabled {
     margin-bottom: 8px; /* Optional spacing between door statuses */
 }
   
-.roomId, .targetRoomId {
+.roomId {
     /* Style for each part of the sentence */
     display: inline-block;
     text-align: center;
@@ -248,8 +248,14 @@ button:disabled {
 
 .openStatus {
     color: green;
-  }
+}
   
-  .closedStatus {
+.closedStatus {
     color: red;
-  }
+}
+
+.display_status {
+    display: inline-block;
+    text-align: center;
+    width: 70px;
+}

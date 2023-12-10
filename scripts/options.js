@@ -84,7 +84,6 @@ function formatTime(seconds) {
     }
 }
 
-
 function getBarsStatus() {
     let barsStatus = '';
 
@@ -94,7 +93,7 @@ function getBarsStatus() {
     let remainingTimeOxygen = oxygenValue / oxygenRate;
     let remainingTimeFood = foodValue / foodRate;
 
-    barsStatus += `Oxygen bar is ${oxygenValue.toFixed(2)}% full. Remaining time: ${formatTime(remainingTimeOxygen)}<br>`;
+    barsStatus += `Oxygen bar is ${oxygenValue.toFixed(2)}% full. Remaining time: ${formatTime(remainingTimeOxygen)}<br><br>`;
     barsStatus += `Food bar is ${foodValue.toFixed(2)}% full. Remaining time: ${formatTime(remainingTimeFood)}<br>`;
 
     barsStatus += '<br>';
@@ -118,13 +117,22 @@ function getDoorsStatus() {
             return name.charAt(0).toUpperCase() + name.slice(1).replace(/_/g, ' ');
         };
 
+        const formatStatus = (status) => {
+            // Uppercase the first character
+            const formattedStatus = status.charAt(0).toUpperCase();
+        
+            // Add "!" if the status is "open", otherwise add "."
+            return status === 'open' ? `${formattedStatus}!` : `${formattedStatus}.`;
+        };
+
         // Use divs with specific classes for styling
         doorsStatus += `<div class="doorStatus ${statusClass}">
                             The door between 
                             <span class="roomId">${formatRoomName(door.roomId)}</span>
                             and 
-                            <span class="targetRoomId">${formatRoomName(door.targetRoomId)}</span>
-                            is currently ${doorStatus}.
+                            <span class="roomId">${formatRoomName(door.targetRoomId)}</span>
+                            is currently 
+                            <span class="display_status">${formatStatus(doorStatus)}</span>
                         </div>`;
     }
 
