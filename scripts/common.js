@@ -54,8 +54,8 @@ function unlockDoor(roomId, targetRoomId) {
 
 let lastMessageClicked = false;
 let isEventListenerActive = true;
-function changeEventListenerActive() {
-    isEventListenerActive = true;
+function changeEventListenerActive(state) {
+    isEventListenerActive = state;
 }
 let isGamePaused = false;
 

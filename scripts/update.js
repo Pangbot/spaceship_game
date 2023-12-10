@@ -3,14 +3,14 @@
 import { updateResourceBars } from './resourceBars.js';
 import { highlightAdjacentRooms, hasOpenDoor } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
-import { currentRoom, doors, lastMessageClicked, setLastMessageClicked, isEventListenerActive } from './common.js';
+import { currentRoom, doors, lastMessageClicked, setLastMessageClicked, isEventListenerActive, changeEventListenerActive } from './common.js';
 
 export function updateGame() {
     if (lastMessageClicked) {
         updateResourceBars();
         setLastMessageClicked(false);
     }
-    
+
     // Add click event listeners to room highlights
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
@@ -44,5 +44,5 @@ export function updateGame() {
     }
 
     // Disable the event listener flag after the first click
-    isEventListenerActive = false;
+    changeEventListenerActive(false);
 }

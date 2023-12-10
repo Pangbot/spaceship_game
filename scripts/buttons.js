@@ -15,7 +15,7 @@ function wrenchOpen(roomFrom, roomTo) {
     changeBarLevels(wrenchFoodLoss, wrenchOxygenLoss);
     unlockDoor(roomFrom, roomTo);
     highlightAdjacentRooms(roomFrom);
-    changeEventListenerActive();
+    changeEventListenerActive(true);
 }
 
 // Button Descriptions
