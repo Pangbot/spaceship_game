@@ -55,22 +55,38 @@ function updateTabNumber(index) {
     tabContent[index] = initialTabContent[index] + extraContent;
 }
 
+function formatTime(seconds) {
+    if (seconds > 3600) {
+        const hours = Math.floor(seconds / 3600);
+        const remainingMinutes = Math.floor((seconds % 3600) / 60);
+        const remainingSeconds = seconds % 60;
+        return `${hours} hours, ${remainingMinutes} minutes, and ${remainingSeconds} seconds`;
+    } else if (seconds > 60) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes} minutes and ${remainingSeconds} seconds`;
+    } else {
+        return `${seconds} seconds`;
+    }
+}
+
 function getBarsStatus() {
     let barsStatus = '';
 
     let oxygenValue = parseFloat(document.getElementById('oxygen_bar').getAttribute('data-fill'));
     let foodValue = parseFloat(document.getElementById('food_bar').getAttribute('data-fill'));
 
-    let remainingTimeOxygen = (oxygenValue / oxygenRate).toFixed(2);
-    let remainingTimeFood = (foodValue / foodRate).toFixed(2);
+    let remainingTimeOxygen = oxygenValue / oxygenRate;
+    let remainingTimeFood = foodValue / foodRate;
 
-    barsStatus += `Oxygen bar is ${oxygenValue.toFixed(2)}% full. Remaining time: ${remainingTimeOxygen} seconds.<br>`;
-    barsStatus += `Food bar is ${foodValue.toFixed(2)}% full. Remaining time: ${remainingTimeFood} seconds.<br>`;
+    barsStatus += `Oxygen bar is ${oxygenValue.toFixed(2)}% full. Remaining time: ${formatTime(remainingTimeOxygen)}<br>`;
+    barsStatus += `Food bar is ${foodValue.toFixed(2)}% full. Remaining time: ${formatTime(remainingTimeFood)}<br>`;
 
     barsStatus += '<br>';
 
     return barsStatus;
 }
+
 
 function getDoorsStatus() {
     let doorsStatus = '';
