@@ -11,15 +11,12 @@ const initialTabContent = [
 let tabContent = initialTabContent;
 
 function showOptionsMenu() {
-    tabContent = initialTabContent;
     updateTabContent();
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('options');
 
     overlay.style.display = 'block';
     popup.style.display = 'block';
-
-    document.getElementById('content').innerHTML = `<p>${tabContent[index]}</p>`;
 }
 
 function hideOptionsMenu() {
