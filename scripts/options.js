@@ -28,6 +28,7 @@ function hideOptionsMenu() {
 
 function updateTabContent() {
     tabContent = initialTabContent;
+    console.log(tabContent);
     for (let i = 0; i < tabContent.length; i++) {
         updateTabNumber(i);
     }
