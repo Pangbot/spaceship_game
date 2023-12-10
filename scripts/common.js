@@ -102,5 +102,5 @@ function changeCurrentTabNumber(index) {
     currentTabNumber = index;
 }
 
-export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, changeCurrentTabNumber, 
+export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, changeCurrentTabNumber, currentTabNumber, 
     manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, isEventListenerActive, changeEventListenerActive, oxygenRate, foodRate };
