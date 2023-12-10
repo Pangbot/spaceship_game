@@ -11,39 +11,49 @@ export function updateGame() {
         setLastMessageClicked(false);
     }
 
-    // Add click event listeners to room highlights
+    // Remove or add event listeners based on the flag
+    if (isEventListenerActive) {
+        removePreviousEventListeners();
+        addNewEventListeners();
+    }
+
+    // Disable the event listener flag after the first click
+    changeEventListenerActive(false);
+}
+
+function addNewEventListeners() {
     const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
     allRoomHighlights.forEach(highlight => {
         highlight.addEventListener('click', handleRoomHighlightClick);
     });
+}
 
-    function handleRoomHighlightClick(event) {
-        if (!isEventListenerActive) {
-            return;
-        }
-        console.log("recreating event listeners.")
+function removePreviousEventListeners() {
+    const allRoomHighlights = document.querySelectorAll('.roomHighlight1x2, .roomHighlight2x1, .roomHighlight2x2');
 
-        const highlight = event.currentTarget; // Use 'currentTarget' to get the element to which the event listener is attached
+    allRoomHighlights.forEach(highlight => {
+        highlight.removeEventListener('click', handleRoomHighlightClick);
+    });
+}
 
-        const clickedRoomId = highlight.getAttribute('data-room-id');
+function handleRoomHighlightClick(event) {
+    const highlight = event.currentTarget;
 
-        if (hasOpenDoor(currentRoom.id, clickedRoomId, doors)) {
-            // Transition to the target room
-            currentRoom.id = clickedRoomId;
-            currentRoom.top = parseInt(highlight.style.top);
-            currentRoom.left = parseInt(highlight.style.left);
-            currentRoom.width = parseInt(highlight.getAttribute('data-room-width')) * 50;
-            currentRoom.height = parseInt(highlight.getAttribute('data-room-height')) * 50;
+    const clickedRoomId = highlight.getAttribute('data-room-id');
 
-            // Update room highlights
-            highlightAdjacentRooms(currentRoom.id);
+    if (hasOpenDoor(currentRoom.id, clickedRoomId, doors)) {
+        // Transition to the target room
+        currentRoom.id = clickedRoomId;
+        currentRoom.top = parseInt(highlight.style.top);
+        currentRoom.left = parseInt(highlight.style.left);
+        currentRoom.width = parseInt(highlight.getAttribute('data-room-width')) * 50;
+        currentRoom.height = parseInt(highlight.getAttribute('data-room-height')) * 50;
 
-            // Update button descriptions based on the new room
-            updateButtonDescriptions(currentRoom.id);
-        }
+        // Update room highlights
+        highlightAdjacentRooms(currentRoom.id);
+
+        // Update button descriptions based on the new room
+        updateButtonDescriptions(currentRoom.id);
     }
-
-    // Disable the event listener flag after the first click
-    changeEventListenerActive(false);
 }
