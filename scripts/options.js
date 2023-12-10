@@ -102,7 +102,6 @@ function getBarsStatus() {
     return barsStatus;
 }
 
-
 function getDoorsStatus() {
     let doorsStatus = '<div id="doorsStatusContainer">';
 
@@ -113,12 +112,18 @@ function getDoorsStatus() {
         // Choose the class based on the door status
         const statusClass = doorStatus === 'open' ? 'openStatus' : 'closedStatus';
 
+        // Function to format the room names
+        const formatRoomName = (name) => {
+            // Uppercase the first character and replace "_" with a space
+            return name.charAt(0).toUpperCase() + name.slice(1).replace(/_/g, ' ');
+        };
+
         // Use divs with specific classes for styling
         doorsStatus += `<div class="doorStatus ${statusClass}">
                             The door between 
-                            <span class="roomId">${door.roomId}</span>
+                            <span class="roomId">${formatRoomName(door.roomId)}</span>
                             and 
-                            <span class="targetRoomId">${door.targetRoomId}</span>
+                            <span class="targetRoomId">${formatRoomName(door.targetRoomId)}</span>
                             is currently ${doorStatus}.
                         </div>`;
     }
@@ -127,5 +132,6 @@ function getDoorsStatus() {
 
     return doorsStatus;
 }
+
 
 export { showOptionsMenu, hideOptionsMenu, tabContent, updateTabContent };

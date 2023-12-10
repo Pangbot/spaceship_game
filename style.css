@@ -226,6 +226,7 @@ button:disabled {
     cursor: pointer;
     border: 1px solid #ccc;
     user-select: none;
+    text-align: center;
 }
 
 .tab.active {
