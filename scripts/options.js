@@ -60,15 +60,30 @@ function formatTime(seconds) {
         const hours = Math.floor(seconds / 3600);
         const remainingMinutes = Math.floor((seconds % 3600) / 60);
         const remainingSeconds = seconds % 60;
-        return `${hours} hours, ${remainingMinutes} minutes, and ${remainingSeconds.toFixed(2)} seconds`;
+
+        // Adjust the text based on whether the value is 1 or not
+        const hoursText = hours === 1 ? 'hour' : 'hours';
+        const minutesText = remainingMinutes === 1 ? 'minute' : 'minutes';
+        const secondsText = remainingSeconds === 1 ? 'second' : 'seconds';
+
+        return `${hours} ${hoursText}, ${remainingMinutes} ${minutesText}, and ${remainingSeconds.toFixed(2)} ${secondsText}`;
     } else if (seconds > 60) {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
-        return `${minutes} minutes and ${remainingSeconds.toFixed(2)} seconds`;
+
+        // Adjust the text based on whether the value is 1 or not
+        const minutesText = minutes === 1 ? 'minute' : 'minutes';
+        const secondsText = remainingSeconds === 1 ? 'second' : 'seconds';
+
+        return `${minutes} ${minutesText} and ${remainingSeconds.toFixed(2)} ${secondsText}`;
     } else {
-        return `${seconds.toFixed(2)} seconds`;
+        // Adjust the text based on whether the value is 1 or not
+        const secondsText = seconds === 1 ? 'second' : 'seconds';
+
+        return `${seconds.toFixed(2)} ${secondsText}`;
     }
 }
+
 
 function getBarsStatus() {
     let barsStatus = '';
@@ -91,8 +106,15 @@ function getBarsStatus() {
 function getDoorsStatus() {
     let doorsStatus = '';
 
-    for(let i = 0; i < doors.length; i++ ) {
-        doorsStatus += `Door between ${doors[i].roomId} and ${doors[i].targetRoomId} is currently ${doors[i].status}.<br>`
+    for (let i = 0; i < doors.length; i++) {
+        const door = doors[i];
+        const doorStatus = door.status;
+
+        // Choose the color based on the door status
+        const textColor = doorStatus === 'open' ? 'green' : 'red';
+
+        // Use inline styles to set the color
+        doorsStatus += `<span style="color: ${textColor};">Door between ${door.roomId} and ${door.targetRoomId} is currently ${doorStatus}.</span><br>`;
     }
 
     doorsStatus += '<br>';
