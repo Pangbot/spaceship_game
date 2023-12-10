@@ -1,12 +1,11 @@
 // game.js
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
-import { isGamePaused, setGamePause, tabContent } from './common.js';
+import { isGamePaused, setGamePause } from './common.js';
+import { tabContent } from './options.js';
 import { runStoryEvent, checkForNextStoryEvent } from './storyController.js';
 import { showOptionsMenu, hideOptionsMenu } from './options.js';
 import { updateResourceBars } from './resourceBars.js';
-
-let fps = 0;
 
 function changeTab(index) {
     const tabs = document.querySelectorAll('.tab');

@@ -1,21 +1,21 @@
 // resourceBars.js
 // Handles the logic surrounding the oxygen/food bars.
 
-import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenAdjust, resetManualTime, currentRoom } from "./common.js";
+import { isGamePaused, manualTime, manualFood, manualOxygen, foodAdjust, oxygenAdjust, resetManualTime, currentRoom, oxygenRate, foodRate } from "./common.js";
 import { updateButtonChecks } from './buttons.js';
 
 function updateResourceBars() {
     let bars = [
         {
             id: 'oxygen_bar',
-            rate: 0.2,
+            rate: oxygenRate,
             element: document.getElementById('oxygen_bar'),
             manual: manualOxygen,
             adjust: oxygenAdjust,
         },
         {
             id: 'food_bar',
-            rate: 1,
+            rate: foodRate,
             element: document.getElementById('food_bar'),
             manual: manualFood,
             adjust: foodAdjust,

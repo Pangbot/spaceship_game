@@ -1,6 +1,5 @@
 // common.js
 // A place for common variables
-import { highlightAdjacentRooms } from './roomHighlighting.js';
 
 let currentRoom = {
     id: "clone_bay",
@@ -65,6 +64,9 @@ let manualOxygen = 100;
 let foodAdjust = 0;
 let oxygenAdjust = 0;
 
+let oxygenRate = 0.2;
+let foodRate = 1;
+
 function resetManualTime() {
     manualTime = 0;
 }
@@ -94,12 +96,5 @@ let storyMessages = [
     { message_shown: false, message_content: ["I hate you."] }
 ];
 
-let tabContent = [
-    'This is the content of Statistics.<br><br>Bitches: 0',
-    'This is the content of Tasks.<br><br>Task 1: Get some bitches.',
-    'This is the content of Sound.<br><br>There is no sound. :(',
-    'This is the content of Options.<br><br>Save/Load/Reset game I guess?'
-];
-
-export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, tabContent, unlockDoor, manualTime, manualFood, 
-    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, isEventListenerActive, changeEventListenerActive };
+export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, 
+    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, isEventListenerActive, changeEventListenerActive, oxygenRate, foodRate };
