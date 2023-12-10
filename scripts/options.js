@@ -119,7 +119,7 @@ function getDoorsStatus() {
 
         const formatStatus = (status) => {
             // Uppercase the first character
-            const formattedStatus = status.charAt(0).toUpperCase();
+            const formattedStatus = status.charAt(0).toUpperCase() + status.slice(1);
         
             // Add "!" if the status is "open", otherwise add "."
             return status === 'open' ? `${formattedStatus}!` : `${formattedStatus}.`;
