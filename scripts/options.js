@@ -8,7 +8,7 @@ const initialTabContent = [
     'This is the content of Options.<br><br>Save/Load/Reset game I guess?'
 ];
 
-let tabContent = initialTabContent;
+let tabContent = initialTabContent.slice();
 
 function showOptionsMenu() {
     updateTabContent();
@@ -27,7 +27,7 @@ function hideOptionsMenu() {
 }
 
 function updateTabContent() {
-    tabContent = initialTabContent;
+    tabContent = initialTabContent.slice();
     console.log(tabContent);
     for (let i = 0; i < tabContent.length; i++) {
         updateTabNumber(i);
