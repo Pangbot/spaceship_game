@@ -221,6 +221,7 @@ button:disabled {
 }
 
 .tab {
+    flex-grow: 1;
     padding: 10px;
     cursor: pointer;
     border: 1px solid #ccc;
@@ -230,4 +231,15 @@ button:disabled {
 .tab.active {
     background-color: #3498db; /* Change this to the desired background color for the active tab */
     color: #ffffff; /* Change this to the desired text color for the active tab */
+}
+
+.doorStatus {
+    /* Style for each door status */
+    margin-bottom: 8px; /* Optional spacing between door statuses */
+}
+  
+.roomId, .targetRoomId {
+    /* Style for each part of the sentence */
+    display: inline-block;
+    width: 150px; /* Adjust the width as needed */
 }

@@ -104,20 +104,24 @@ function getBarsStatus() {
 
 
 function getDoorsStatus() {
-    let doorsStatus = '';
+    let doorsStatus = '<div id="doorsStatusContainer">';
 
     for (let i = 0; i < doors.length; i++) {
         const door = doors[i];
         const doorStatus = door.status;
 
-        // Choose the color based on the door status
-        const textColor = doorStatus === 'open' ? 'green' : 'red';
+        // Choose the class based on the door status
+        const statusClass = doorStatus === 'open' ? 'openStatus' : 'closedStatus';
 
-        // Use inline styles to set the color
-        doorsStatus += `<span style="color: ${textColor};">Door between ${door.roomId} and ${door.targetRoomId} is currently ${doorStatus}.</span><br>`;
+        // Use divs with specific classes for styling
+        doorsStatus += `<div class="doorStatus ${statusClass}">
+                            <span class="roomId">${door.roomId}</span>
+                            <span class="targetRoomId">${door.targetRoomId}</span>
+                            is currently ${doorStatus}.
+                        </div>`;
     }
 
-    doorsStatus += '<br>';
+    doorsStatus += '</div><br>';
 
     return doorsStatus;
 }
