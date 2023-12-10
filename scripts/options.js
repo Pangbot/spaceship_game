@@ -39,11 +39,11 @@ function updateTabNumber(index) {
             extraContent += getBarsStatus();
             extraContent += getDoorsStatus();
         case 1:
-            extraContent += str(index);
+            extraContent += (index).toString();
         case 2:
-            extraContent += str(index);
+            extraContent += (index).toString();
         case 3:
-            extraContent += str(index);
+            extraContent += (index).toString();
     }
     tabContent[index] = initialTabContent[index] + extraContent;
 }
@@ -59,6 +59,8 @@ function getBarsStatus() {
 
     barsStatus += `Oxygen bar is ${oxygenValue}% full. Remaining time: ${remainingTimeOxygen} seconds.<br>`
     barsStatus += `Food bar is ${foodValue}% full. Remaining time: ${remainingTimeFood} seconds.<br>`
+
+    barsStatus += '<br>'
 
     return barsStatus;
 }
