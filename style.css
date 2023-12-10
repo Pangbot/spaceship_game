@@ -241,5 +241,5 @@ button:disabled {
 .roomId, .targetRoomId {
     /* Style for each part of the sentence */
     display: inline-block;
-    width: 150px; /* Adjust the width as needed */
+    width: 100px; /* Adjust the width as needed */
 }

@@ -115,7 +115,9 @@ function getDoorsStatus() {
 
         // Use divs with specific classes for styling
         doorsStatus += `<div class="doorStatus ${statusClass}">
+                            The door between 
                             <span class="roomId">${door.roomId}</span>
+                            and 
                             <span class="targetRoomId">${door.targetRoomId}</span>
                             is currently ${doorStatus}.
                         </div>`;
