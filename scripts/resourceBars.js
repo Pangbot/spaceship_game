@@ -82,10 +82,8 @@ function updateResourceBars() {
                 // Calculate the sum of extraTimes
                 const sum = extraTimes.reduce((acc, num) => acc + num, 0);
 
-                console.log(`Last extra time: ${extraTime}. Average extra time: ${sum / extraTimes.length}`);
+                // console.log(`Last extra time: ${extraTime}. Average extra time: ${sum / extraTimes.length}`);
 
-                // Reset counters for the next second
-                frames = 0;
                 // Update the last timestamp after the bars are updated
                 lastTimestamp = now;
             }

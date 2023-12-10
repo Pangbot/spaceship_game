@@ -22,6 +22,7 @@ export function updateGame() {
         if (!isEventListenerActive) {
             return;
         }
+        console.log("recreating event listeners.")
 
         const highlight = event.currentTarget; // Use 'currentTarget' to get the element to which the event listener is attached
 
