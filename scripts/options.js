@@ -54,8 +54,8 @@ function getBarsStatus() {
     let oxygenValue = document.getElementById('oxygen_bar').getAttribute('data-fill');
     let foodValue = document.getElementById('food_bar').getAttribute('data-fill');
 
-    remainingTimeOxygen = (oxygenValue / oxygenRate).toFixed(1);
-    remainingTimeFood = (foodValue / foodRate).toFixed(1);
+    let remainingTimeOxygen = (oxygenValue / oxygenRate).toFixed(1);
+    let remainingTimeFood = (foodValue / foodRate).toFixed(1);
 
     barsStatus += `Oxygen bar is ${oxygenValue}% full. Remaining time: ${remainingTimeOxygen} seconds.<br>`
     barsStatus += `Food bar is ${foodValue}% full. Remaining time: ${remainingTimeFood} seconds.<br>`
