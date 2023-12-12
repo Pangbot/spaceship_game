@@ -56,13 +56,15 @@ function updateTabNumber(index) {
 }
 
 function getLordOfTimeCheckbox() {
-    document.querySelectorAll('*').forEach(element => {
-        if (element.id) {
-            console.log(`Element ID: ${element.id}`);
-        }
-    });
+    const popup = document.getElementById('options');
+
+    popup.style.display = 'block';
     // Assuming the checkbox is already in the HTML, just return its HTML content
-    return document.getElementById('lordOfTimeContainer').outerHTML;
+    const checkbox = document.getElementById('lordOfTimeContainer').outerHTML;
+
+    popup.style.display = 'none';
+
+    return checkbox;
 }
 
 function formatTime(seconds) {
