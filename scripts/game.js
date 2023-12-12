@@ -19,8 +19,9 @@ function changeTab(index) {
         }
     });
 
-    content.innerHTML = `<p>${tabContent[index]}</p>`;
-
+    if(index != 3) {
+        content.innerHTML = `<p>${tabContent[index]}</p>`;
+    }
     changeCurrentTabNumber(index);
 }
 
