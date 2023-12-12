@@ -1,7 +1,7 @@
 // game.js
 import { initialiseGame } from './init.js';
 import { updateGame } from './update.js';
-import { isGamePaused, setGamePause, currentTabNumber, changeCurrentTabNumber } from './common.js';
+import { isGamePaused, setGamePause, currentTabNumber, changeCurrentTabNumber, previousFoodRate, previousOxygenRate, setFoodRate, setOxygenRate } from './common.js';
 import { tabContent } from './options.js';
 import { runStoryEvent, checkForNextStoryEvent } from './storyController.js';
 import { showOptionsMenu, hideOptionsMenu } from './options.js';
@@ -25,6 +25,23 @@ function changeTab(index) {
 }
 
 window.changeTab = changeTab;
+
+function handleLordOfTimeCheckboxChange() {
+    // Get the checkbox element
+    var checkbox = document.getElementById('lordOfTimeCheckbox');
+
+    // Check if the checkbox is checked
+    if (checkbox.checked) {
+        // Call the setFoodRate and setOxygenRate functions (replace with your actual functions)
+        setFoodRate(0);
+        setOxygenRate(0);
+    } else {
+        setFoodRate(previousFoodRate);
+        setOxygenRate(previousOxygenRate);
+    }
+}
+
+window.handleLordOfTimeCheckboxChange = handleLordOfTimeCheckboxChange;
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Game script loaded!");
