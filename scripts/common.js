@@ -66,6 +66,18 @@ let oxygenAdjust = 0;
 
 let oxygenRate = 0.2;
 let foodRate = 1;
+let previousOxygenRate = 0.2;
+let previousFoodRate = 0.2;
+
+function setOxygenRate(rate) {
+    previousOxygenRate = oxygenRate;
+    oxygenRate = rate;
+}
+
+function setFoodRate(rate) {
+    previousFoodRate = foodRate;
+    foodRate = rate;
+}
 
 function resetManualTime() {
     manualTime = 0;
@@ -103,4 +115,5 @@ function changeCurrentTabNumber(index) {
 }
 
 export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, changeCurrentTabNumber, currentTabNumber, 
-    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, isEventListenerActive, changeEventListenerActive, oxygenRate, foodRate };
+    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, isEventListenerActive, changeEventListenerActive, oxygenRate, foodRate, setOxygenRate, 
+    setFoodRate, previousOxygenRate, previousFoodRate };

@@ -1,11 +1,11 @@
 // options.js
-import { doors, oxygenRate, foodRate } from './common.js';
+import { doors, oxygenRate, foodRate, setOxygenRate, setFoodRate, previousOxygenRate, previousFoodRate } from './common.js';
 
 const initialTabContent = [
     'This is the content of Statistics.<br><br>',
-    'This is the content of Tasks.<br><br>Task 1: Get some bitches.',
-    'This is the content of Sound.<br><br>There is no sound. :(',
-    'This is the content of Options.<br><br>Save/Load/Reset game I guess?'
+    'This is the content of Tasks.<br><br>',
+    'This is the content of Sound.<br><br>',
+    'This is the content of Options.<br><br>'
 ];
 
 let tabContent = initialTabContent.slice();
@@ -49,7 +49,7 @@ function updateTabNumber(index) {
             extraContent += (index).toString();
             break;
         case 3:
-            extraContent += (index).toString();
+            extraContent += theLordOfTime();
             break;
     }
     tabContent[index] = initialTabContent[index] + extraContent;
@@ -141,5 +141,38 @@ function getDoorsStatus() {
     return doorsStatus;
 }
 
+function theLordOfTime() {
+    // Create a container div
+    const lordOfTimeContainer = document.createElement('div');
+
+    // Create a label element
+    const label = document.createElement('label');
+    label.appendChild(document.createTextNode('The Lord of Time'));
+
+    // Create a checkbox element
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = 'lordOfTimeCheckbox'; // Assign an ID for reference if needed
+
+    // Add event listener to the checkbox
+    checkbox.addEventListener('change', function () {
+        // Check if the checkbox is checked
+        if (checkbox.checked) {
+            // Call the setFoodRate and setOxygenRate functions
+            setFoodRate(0);
+            setOxygenRate(0);
+        } else {
+            setFoodRate(previousFoodRate);
+            setOxygenRate(previousOxygenRate);
+        }
+    });
+
+    // Append the label and checkbox to the container
+    lordOfTimeContainer.appendChild(label);
+    lordOfTimeContainer.appendChild(checkbox);
+
+    // Return the HTML content
+    return lordOfTimeContainer.outerHTML;
+}
 
 export { showOptionsMenu, hideOptionsMenu, tabContent, updateTabContent };
