@@ -21,7 +21,9 @@ function changeTab(index) {
 
     if(index != 3) {
         content.innerHTML = `<p>${tabContent[index]}</p>`;
+        changeCurrentTabNumber(index);
     } else {
+        changeCurrentTabNumber(index);
         document.querySelectorAll('*').forEach(element => {
             if (element.id) {
                 console.log(`Element ID: ${element.id}`);
@@ -29,7 +31,7 @@ function changeTab(index) {
         });
         content.innerHTML = document.getElementById("options-tab-content").outerHTML;
     }
-    changeCurrentTabNumber(index);
+    
 }
 
 window.changeTab = changeTab;
