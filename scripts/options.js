@@ -1,5 +1,5 @@
 // options.js
-import { doors, oxygenRate, foodRate, setOxygenRate, setFoodRate, previousOxygenRate, previousFoodRate } from './common.js';
+import { doors, oxygenRate, foodRate } from './common.js';
 
 const initialTabContent = [
     'This is the content of Statistics.<br><br>',
@@ -49,10 +49,15 @@ function updateTabNumber(index) {
             extraContent += (index).toString();
             break;
         case 3:
-            extraContent += '';
+            extraContent += getLordOfTimeCheckbox();
             break;
     }
     tabContent[index] = initialTabContent[index] + extraContent;
+}
+
+function getLordOfTimeCheckbox() {
+    // Assuming the checkbox is already in the HTML, just return its HTML content
+    return document.getElementById('lordOfTimeContainer').outerHTML;
 }
 
 function formatTime(seconds) {
