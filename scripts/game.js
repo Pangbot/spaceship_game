@@ -13,26 +13,23 @@ function changeTab(index) {
 
     tabs.forEach((tab, i) => {
         if (i === index) {
-        tab.classList.add('active');
+            tab.classList.add('active');
         } else {
-        tab.classList.remove('active');
+            tab.classList.remove('active');
         }
     });
 
-    if(index != 3) {
+    if (index != 3) {
         content.innerHTML = `<p>${tabContent[index]}</p>`;
-        changeCurrentTabNumber(index);
     } else {
-        changeCurrentTabNumber(index);
-        document.querySelectorAll('*').forEach(element => {
-            if (element.id) {
-                console.log(`Element ID: ${element.id}`);
-            }
-        });
-        content.innerHTML = document.getElementById("options-tab-content").outerHTML;
+        // Clone the options-tab-content and append the clone to the content area
+        const optionsTabContentClone = document.getElementById("options-tab-content").cloneNode(true);
+        content.innerHTML = '';
+        content.appendChild(optionsTabContentClone);
     }
-    
+    changeCurrentTabNumber(index);
 }
+
 
 window.changeTab = changeTab;
 
