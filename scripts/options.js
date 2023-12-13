@@ -16,7 +16,10 @@ function showOptionsMenu(tabNumber) {
     const popup = document.getElementById('options');
 
     overlay.style.display = 'block';
-    popup.style.display = 'block';
+    popup.style.position = 'fixed';
+    popup.style.left = '50%';
+    popup.style.top = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
     window.changeTab(tabNumber);
 }
 
@@ -24,7 +27,8 @@ function hideOptionsMenu() {
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('options');
     overlay.style.display = 'none';
-    popup.style.display = 'none';
+    popup.style.position = 'absolute';
+    popup.style.left = '-9999px';
 }
 
 function updateTabContent() {
