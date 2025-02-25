@@ -8,7 +8,7 @@ body {
     position: absolute;
     top: 0;
     left: 1%;
-    width: calc(98% - 20px);
+    width: 98%;
     height: 105px;
     border: 1px solid #000;
     background-color: #222;
@@ -98,7 +98,7 @@ body {
 
 #all-container {
     position: absolute;
-    top: 210px;
+    top: 211px;
     left: 1%;
     height: 100%;
     width: 98%;

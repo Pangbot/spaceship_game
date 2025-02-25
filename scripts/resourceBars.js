@@ -66,13 +66,13 @@ function updateResourceBars() {
             });
     
             lastTimestamp = now;
-            setTimeout(() => resetManualTime(), updateThreshold * 2);
+            resetManualTime();
+            updateButtonChecks(currentRoom.id);
         }
     
         if (!isGamePaused) {
             // Use requestAnimationFrame for the next update
             animationFrameId = requestAnimationFrame(updateBars);
-            updateButtonChecks(currentRoom.id);
         }
     }
 
