@@ -59,9 +59,6 @@ function changeEventListenerActive(state) {
 
 let isGamePaused = false;
 
-let foodAdjust = 0;
-let oxygenAdjust = 0;
-
 let oxygenRate = 0;
 let foodRate = 0;
 let previousOxygenRate = 0;
@@ -82,4 +79,4 @@ function setGamePause(state) {
 }
 
 export { currentRoom, doors, isGamePaused, setGamePause, unlockDoor, isEventListenerActive, changeEventListenerActive,
-    foodAdjust, oxygenAdjust, oxygenRate, foodRate, setOxygenRate, setFoodRate, previousOxygenRate, previousFoodRate };
+    oxygenRate, foodRate, setOxygenRate, setFoodRate, previousOxygenRate, previousFoodRate };
