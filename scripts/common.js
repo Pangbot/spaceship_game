@@ -95,5 +95,5 @@ function setGamePause(state) {
 }
 
 export { currentRoom, doors, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, 
-    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, isEventListenerActive, changeEventListenerActive, oxygenRate, foodRate, setOxygenRate, 
+    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, oxygenRate, foodRate, setOxygenRate, 
     setFoodRate, previousOxygenRate, previousFoodRate };

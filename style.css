@@ -12,6 +12,7 @@ body {
     height: 210px;
     border: 1px solid #000;
     background-color: #444;
+    display: inline-flex;
 }
 
 #banner {
@@ -20,7 +21,17 @@ body {
 
 #bannerImage {
     height: 100px;
-    width: 100%;
+    width: calc(100% - 200px);
+}
+
+#optionsImage {
+    height: 100px;
+    width: 100px; 
+}
+
+#storyImage {
+    height: 100px;
+    width: 100px; 
 }
 
 .resource-bar-container {
@@ -180,30 +191,6 @@ button:disabled {
 
 .roomHighlight2x2.adjacent {
     background-color: rgba(255, 0, 0, 0.5);
-}
-
-#options-container {
-    position: absolute;
-    top: 0px;
-    left: calc(98% - 101px);
-    width: 101px;
-    height: 101px;
-}
-
-#optionsImage {
-    width: 100%; 
-}
-
-#story-container {
-    position: absolute;
-    top: 0px;
-    left: 1%;
-    width: 101px;
-    height: 101px;
-}
-
-#storyImage {
-    width: 100%; 
 }
 
 .doorStatus {
