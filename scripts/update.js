@@ -3,13 +3,10 @@
 import { updateResourceBars } from './resourceBars.js';
 import { highlightAdjacentRooms, hasOpenDoor } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
-import { currentRoom, doors, lastMessageClicked, setLastMessageClicked, isEventListenerActive, changeEventListenerActive } from './common.js';
+import { currentRoom, doors, isEventListenerActive, changeEventListenerActive } from './common.js';
 
 export function updateGame() {
-    if (lastMessageClicked) {
-        updateResourceBars();
-        setLastMessageClicked(false);
-    }
+    updateResourceBars();
 
     // Remove or add event listeners based on the flag
     if (isEventListenerActive) {
