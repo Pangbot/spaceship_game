@@ -30,7 +30,7 @@ function updateResourceBars() {
         bar.currentValue = parseFloat(bar.element.getAttribute('data-fill')) || 0;
     });
 
-    let updateThreshold = 100; // Set the threshold to some milliseconds
+    let updateThreshold = 250; // Set the threshold to some milliseconds
     let extraTimes = [];
 
     function updateBars() {
@@ -66,14 +66,12 @@ function updateResourceBars() {
             });
     
             lastTimestamp = now;
-            resetManualTime();
+            setTimeout(() => resetManualTime(), updateThreshold * 2);
         }
     
         if (!isGamePaused) {
             // Use requestAnimationFrame for the next update
-            setTimeout(() => {
-                animationFrameId = requestAnimationFrame(updateBars);
-            }, updateThreshold);
+            animationFrameId = requestAnimationFrame(updateBars);
             updateButtonChecks(currentRoom.id);
         }
     }
