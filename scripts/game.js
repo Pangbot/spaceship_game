@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
         // Use requestAnimationFrame to schedule the next iteration
-        requestAnimationFrame(gameLoop);
+        // requestAnimationFrame(gameLoop);
     }
 
     // Start the game loop
