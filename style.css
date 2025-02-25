@@ -41,7 +41,7 @@ body {
     position: absolute;
     top: 105px;
     left: 1%;
-    width: calc(98% - 20px);
+    width: 98%;
     height: 105px;
     border: 1px solid #000;
     background-color: #444;
@@ -129,6 +129,7 @@ body {
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #000;
+    margin-left: 5px;
 }
 
 button {

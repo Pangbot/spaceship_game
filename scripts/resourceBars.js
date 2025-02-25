@@ -45,57 +45,35 @@ function updateResourceBars() {
         if (!lastTimestamp) {
             lastTimestamp = now;
         }
+
+        // Update bars only if not paused and if enough time has passed
+        if (!isGamePaused && elapsedMilliseconds > updateThreshold) {
+            bars.forEach((bar) => {
+                const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
+                const decrease = bar.rate * (elapsedMilliseconds / 1000);
     
-        bars.forEach((bar) => {
-            const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
-    
-            // Calculate the decrease based on the time elapsed
-            const decrease = bar.rate * (elapsedMilliseconds / 1000);
-    
-            // Update bar only if not in story mode and if enough time has passed
-            if (!isGamePaused && elapsedMilliseconds > updateThreshold) {
                 if (manualTime > 1) {
                     bar.currentValue = bar.manual;
-                    const currentWidth = bar.currentValue;
-                    bar.element.style.width = `${currentWidth}%`;
-                    bar.element.setAttribute('data-fill', currentWidth);
-                    percentageElement.innerText = `${Math.round(currentWidth)}%`;
-            
                 } else if (manualTime > 0) {
                     bar.currentValue = Math.min(100, Math.max(0, bar.currentValue + bar.adjust));
-                    const currentWidth = bar.currentValue;
-                    bar.element.style.width = `${currentWidth}%`;
-                    bar.element.setAttribute('data-fill', currentWidth);
-                    percentageElement.innerText = `${Math.round(currentWidth)}%`;
-                }
-                else {
+                } else {
                     bar.currentValue = Math.max(0, bar.currentValue - decrease);
-                    const currentWidth = bar.currentValue;
-                    bar.element.style.width = `${currentWidth}%`;
-                    bar.element.setAttribute('data-fill', currentWidth);
-                    percentageElement.innerText = `${Math.round(currentWidth)}%`;
                 }
-                // Calculate FPS and output to the console
-                const extraTime = elapsedMilliseconds - updateThreshold;
-                extraTimes.push(extraTime);
-
-                // Calculate the sum of extraTimes
-                const sum = extraTimes.reduce((acc, num) => acc + num, 0);
-
-                // console.log(`Last extra time: ${extraTime}. Average extra time: ${sum / extraTimes.length}`);
-
-                // Update the last timestamp after the bars are updated
-                lastTimestamp = now;
-            }
-        });
-        if(elapsedMilliseconds > updateThreshold) {
+    
+                bar.element.style.width = `${bar.currentValue}%`;
+                bar.element.setAttribute('data-fill', bar.currentValue);
+                percentageElement.innerText = `${Math.round(bar.currentValue)}%`;
+            });
+    
+            lastTimestamp = now;
             resetManualTime();
         }
     
-        // Check if a story event needs to be called
         if (!isGamePaused) {
             // Use requestAnimationFrame for the next update
-            animationFrameId = requestAnimationFrame(updateBars);
+            setTimeout(() => {
+                animationFrameId = requestAnimationFrame(updateBars);
+            }, updateThreshold);
             updateButtonChecks(currentRoom.id);
         }
     }
