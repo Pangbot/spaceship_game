@@ -22,16 +22,19 @@ body {
 #bannerImage {
     height: 100px;
     width: 100%;
+    border: 1px solid #000;
 }
 
 #optionsImage {
     height: 100px;
-    width: 100px; 
+    width: 100px;
+    border: 1px solid #000;
 }
 
 #storyImage {
     height: 100px;
-    width: 100px; 
+    width: 100px;
+    border: 1px solid #000;
 }
 
 #resource-container {
@@ -103,7 +106,7 @@ body {
 }
 
 #shipMap {
-    position: absolute;
+    position: relative;
     top: 1px;
     left: 1px;
     width: 302px; 

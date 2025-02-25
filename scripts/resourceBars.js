@@ -30,7 +30,7 @@ function updateResourceBars() {
         bar.currentValue = parseFloat(bar.element.getAttribute('data-fill')) || 0;
     });
 
-    let updateThreshold = 250; // Set the threshold to some milliseconds
+    let updateThreshold = 20; // Set the threshold to some milliseconds
     let extraTimes = [];
 
     function updateBars() {
