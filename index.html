@@ -15,37 +15,6 @@
 
 </head>
 <body>
-    <div id="overlay"></div>
-    <div id="popup-container">
-        <div id="popup">
-        <p id="message">This is a popup message.</p>
-        </div>
-    </div>
-
-    <div id="options-container">
-        <div id="options">
-            <div class="tabs" id="tabs">
-                <div class="tab" onclick="changeTab(0)">Statistics</div>
-                <div class="tab" onclick="changeTab(1)">Tasks</div>
-                <div class="tab" onclick="changeTab(2)">Sound</div>
-                <div class="tab" onclick="changeTab(3)">Options</div>
-            </div>
-            
-            <div class="content" id="content">
-                <!-- Content for the fourth tab (Options) -->
-                <div id="options-tab-content">
-                    <!-- Existing content for Options tab -->
-                    <p>This is the content of Options.</p>
-    
-                    <!-- New content for the checkbox -->
-                    <div id="lordOfTimeContainer">
-                        <label for="lordOfTimeCheckbox">Become The Lord of Time</label>
-                        <input type="checkbox" id="lordOfTimeCheckbox" onchange="handleLordOfTimeCheckboxChange()">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="game-container">
         <!-- Ship Map -->
         <div id="shipMap">
@@ -74,8 +43,17 @@
         <div id="status-container">
             <!-- Banner -->
             <div id="banner">
-                <!-- Your banner content goes here -->
                 <img src="images/banner.png" id="bannerImage" draggable="false">
+            </div>
+
+            <!-- Story image -->
+            <div class="story-container">
+                <img src="images/story.png" id="storyImage" draggable="false">
+            </div>
+
+            <!-- Options image -->
+            <div class="options-container">
+                <img src="images/options.png" id="optionsImage" draggable="false">
             </div>
         
             <!-- Oxygen Bar -->
@@ -102,19 +80,19 @@
         </div>
         
         <!-- Common Container for Text and Buttons -->
-        <div id="container">
+        <div id="all-container">
             <!-- Buttons Container -->
-            <div class="container-buttons">
+            <div class="container">
             </div>
 
-            <!-- Examine Text 1 Container -->
-            <div class="container-text">
-                <p>You find yourself in the clone bay. The hum of machinery surrounds you, and the sterile smell of medical equipment lingers in the air.</p>
+            <!-- Actions Text Container -->
+            <div class="container">
+                <p>Actions will show here.</p>
             </div>
 
-            <!-- Story Text Container -->
-            <div class="container-text">
-                <p>Welcome to the spaceship adventure! Your mission is to explore the universe and survive the challenges ahead.</p>
+            <!-- Tasks Text Container -->
+            <div class="container">
+                <p>Tasks will show here.</p>
             </div>
         </div>
     </div>

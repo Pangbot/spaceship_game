@@ -99,21 +99,6 @@ function setGamePause(state) {
     isGamePaused = state;
 }
 
-function setLastMessageClicked(state) {
-    lastMessageClicked = state;
-}
-
-let storyMessages = [
-    { message_shown: false, message_content: ["Welcome to the game!"] },
-    { message_shown: false, message_content: ["I hate you."] }
-];
-
-let currentTabNumber = 0;
-
-function changeCurrentTabNumber(index) {
-    currentTabNumber = index;
-}
-
-export { currentRoom, doors, lastMessageClicked, setLastMessageClicked, storyMessages, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, changeCurrentTabNumber, currentTabNumber, 
+export { currentRoom, doors, lastMessageClicked, storyMessages, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, 
     manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, isEventListenerActive, changeEventListenerActive, oxygenRate, foodRate, setOxygenRate, 
     setFoodRate, previousOxygenRate, previousFoodRate };

@@ -153,7 +153,7 @@ function updateButtonChecks(roomId) {
     }
 }
 
-// Example unlock condition (adjust as needed)
+// Example unlock condition
 function isActionUnlockConditionMet(action) {
     const foodBar = document.getElementById('food_bar');
     const currentFood = parseFloat(foodBar.getAttribute('data-fill'));

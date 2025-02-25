@@ -4,7 +4,6 @@ import { highlightAdjacentRooms } from './roomHighlighting.js';
 import { updateButtonDescriptions } from './buttons.js';
 import { currentRoom } from './common.js';
 import { updateResourceBars } from './resourceBars.js';
-import { updateTabContent } from './options.js';
 
 export function initialiseGame() {
     console.log("Initialisation script loaded!");
@@ -17,12 +16,6 @@ export function initialiseGame() {
     document.getElementById('bannerImage').addEventListener('contextmenu', function (e) {
         e.preventDefault();
     });
-
-    // Call this to set tab content to its initial content
-    updateTabContent();
-
-    // Make tab 1 active
-    changeTab(0);
 
     // Initial Highlighting
     highlightAdjacentRooms(currentRoom.id);

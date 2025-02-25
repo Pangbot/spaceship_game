@@ -22,7 +22,6 @@ function updateResourceBars() {
         },
     ];
 
-    let animationFrameId;
     let lastTimestamp;
 
     // Initialize the bars based on their current width in the HTML
