@@ -53,10 +53,10 @@ function updateResourceBars() {
             });
     
             lastTimestamp = now;
-            animationFrameId = requestAnimationFrame(updateBars);
             updateButtonChecks(currentRoom.id);
             console.log("Bars updated.")
         }
+        animationFrameId = requestAnimationFrame(updateBars);
     }
 
     // Initial call to start the recursive process
