@@ -16,30 +16,6 @@
 </head>
 <body>
     <div id="game-container">
-        <!-- Ship Map -->
-        <div id="shipMap">
-            <!-- Image of the ship map -->
-            <img src="images/spaceship_real.png" id="mapImage" draggable="false">
-
-            <!-- Highlight overlays for rooms -->
-            <div class="roomHighlight2x1" data-room-id="piloting" data-room-width="2" data-room-height="1" style="top: 1px; left: 101px;"></div>
-            <div class="roomHighlight2x2" data-room-id="kitchen" data-room-width="2" data-room-height="2" style="top: 51px; left: 101px;"></div>
-            <div class="roomHighlight1x2" data-room-id="scanners" data-room-width="1" data-room-height="2" style="top: 151px; left: 101px;"></div>
-            <div class="roomHighlight1x2" data-room-id="doors" data-room-width="1" data-room-height="2" style="top: 151px; left: 151px;"></div>
-            <div class="roomHighlight2x2 highlighted" data-room-id="clone_bay" data-room-width="2" data-room-height="2" style="top: 251px; left: 51px;"></div>
-            <div class="roomHighlight2x2" data-room-id="shields" data-room-width="2" data-room-height="2" style="top: 251px; left: 151px;"></div>
-            <div class="roomHighlight2x2" data-room-id="fabrication" data-room-width="2" data-room-height="2" style="top: 351px; left: 51px;"></div>
-            <div class="roomHighlight2x2" data-room-id="weapons" data-room-width="2" data-room-height="2" style="top: 351px; left: 152px;"></div>
-            <div class="roomHighlight1x2" data-room-id="escape_pods_L" data-room-width="1" data-room-height="2" style="top: 351px; left: 1px;"></div>
-            <div class="roomHighlight1x2" data-room-id="escape_pods_R" data-room-width="1" data-room-height="2" style="top: 351px; left: 251px;"></div>
-            <div class="roomHighlight2x2" data-room-id="electrics" data-room-width="2" data-room-height="2" style="top: 451px; left: 101px;"></div>
-            <div class="roomHighlight1x2" data-room-id="oxygen" data-room-width="1" data-room-height="2" style="top: 501px; left: 51px;"></div>
-            <div class="roomHighlight1x2" data-room-id="water" data-room-width="1" data-room-height="2" style="top: 501px; left: 201px;"></div>
-            <div class="roomHighlight1x2" data-room-id="recycling" data-room-width="1" data-room-height="2" style="top: 601px; left: 51px;"></div>
-            <div class="roomHighlight1x2" data-room-id="security" data-room-width="1" data-room-height="2" style="top: 601px; left: 201px;"></div>
-            <div class="roomHighlight2x2" data-room-id="engine" data-room-width="2" data-room-height="2" style="top: 601px; left: 101px;"></div>
-            <div class="roomHighlight2x1" data-room-id="storage" data-room-width="2" data-room-height="1" style="top: 701px; left: 101px;"></div>
-        </div>
         <div id="banner-container">
             <!-- Banner -->
             <div id="story">
@@ -76,8 +52,32 @@
             </div>
         </div>
         
-        <!-- Common Container for Text and Buttons -->
+        <!-- Container for everything else -->
         <div id="all-container">
+            <!-- Ship Map -->
+            <div id="shipMap">
+                <!-- Image of the ship map -->
+                <img src="images/spaceship_real.png" id="mapImage" draggable="false">
+
+                <!-- Highlight overlays for rooms -->
+                <div class="roomHighlight2x1" data-room-id="piloting" data-room-width="2" data-room-height="1" style="top: 1px; left: 101px;"></div>
+                <div class="roomHighlight2x2" data-room-id="kitchen" data-room-width="2" data-room-height="2" style="top: 51px; left: 101px;"></div>
+                <div class="roomHighlight1x2" data-room-id="scanners" data-room-width="1" data-room-height="2" style="top: 151px; left: 101px;"></div>
+                <div class="roomHighlight1x2" data-room-id="doors" data-room-width="1" data-room-height="2" style="top: 151px; left: 151px;"></div>
+                <div class="roomHighlight2x2 highlighted" data-room-id="clone_bay" data-room-width="2" data-room-height="2" style="top: 251px; left: 51px;"></div>
+                <div class="roomHighlight2x2" data-room-id="shields" data-room-width="2" data-room-height="2" style="top: 251px; left: 151px;"></div>
+                <div class="roomHighlight2x2" data-room-id="fabrication" data-room-width="2" data-room-height="2" style="top: 351px; left: 51px;"></div>
+                <div class="roomHighlight2x2" data-room-id="weapons" data-room-width="2" data-room-height="2" style="top: 351px; left: 152px;"></div>
+                <div class="roomHighlight1x2" data-room-id="escape_pods_L" data-room-width="1" data-room-height="2" style="top: 351px; left: 1px;"></div>
+                <div class="roomHighlight1x2" data-room-id="escape_pods_R" data-room-width="1" data-room-height="2" style="top: 351px; left: 251px;"></div>
+                <div class="roomHighlight2x2" data-room-id="electrics" data-room-width="2" data-room-height="2" style="top: 451px; left: 101px;"></div>
+                <div class="roomHighlight1x2" data-room-id="oxygen" data-room-width="1" data-room-height="2" style="top: 501px; left: 51px;"></div>
+                <div class="roomHighlight1x2" data-room-id="water" data-room-width="1" data-room-height="2" style="top: 501px; left: 201px;"></div>
+                <div class="roomHighlight1x2" data-room-id="recycling" data-room-width="1" data-room-height="2" style="top: 601px; left: 51px;"></div>
+                <div class="roomHighlight1x2" data-room-id="security" data-room-width="1" data-room-height="2" style="top: 601px; left: 201px;"></div>
+                <div class="roomHighlight2x2" data-room-id="engine" data-room-width="2" data-room-height="2" style="top: 601px; left: 101px;"></div>
+                <div class="roomHighlight2x1" data-room-id="storage" data-room-width="2" data-room-height="1" style="top: 701px; left: 101px;"></div>
+            </div>
             <!-- Buttons Container -->
             <div class="container-buttons">
             </div>
