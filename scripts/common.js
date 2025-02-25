@@ -67,6 +67,8 @@ let previousFoodRate = 0;
 function setOxygenRate(rate) {
     previousOxygenRate = oxygenRate;
     oxygenRate = rate;
+    console.log("Oxygen rate changed")
+    console.log(oxygenRate)
 }
 
 function setFoodRate(rate) {

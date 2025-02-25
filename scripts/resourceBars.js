@@ -55,6 +55,7 @@ function updateResourceBars() {
             lastTimestamp = now;
             animationFrameId = requestAnimationFrame(updateBars);
             updateButtonChecks(currentRoom.id);
+            console.log("Bars updated.")
         }
     }
 
