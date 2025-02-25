@@ -75,7 +75,7 @@ body {
     overflow: hidden;
 }
 
-#oxygen-bar {
+.oxygen-bar {
     width: 100%;
     height: 48px;
     border: 1px solid #000;
@@ -84,7 +84,7 @@ body {
     overflow: visible;
 }
 
-#food-bar {
+.food-bar {
     width: 100%;
     height: 48px;
     border: 1px solid #000;
