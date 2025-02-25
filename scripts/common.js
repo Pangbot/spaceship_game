@@ -51,6 +51,12 @@ function unlockDoor(roomId, targetRoomId) {
     }
 }
 
+let isEventListenerActive = true;
+
+function changeEventListenerActive(state) {
+    isEventListenerActive = state;
+}
+
 let isGamePaused = false;
 
 let manualTime = 0;
@@ -94,6 +100,6 @@ function setGamePause(state) {
     isGamePaused = state;
 }
 
-export { currentRoom, doors, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, 
+export { currentRoom, doors, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, isEventListenerActive, changeEventListenerActive,
     manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, oxygenRate, foodRate, setOxygenRate, 
     setFoodRate, previousOxygenRate, previousFoodRate };

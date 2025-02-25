@@ -4,12 +4,12 @@ body {
     user-select: none;
 }
 
-#status-container {
+#banner-container {
     position: absolute;
     top: 0;
     left: 1%;
     width: calc(98% - 20px);
-    height: 210px;
+    height: 105px;
     border: 1px solid #000;
     background-color: #444;
     display: inline-flex;
@@ -32,6 +32,16 @@ body {
 #storyImage {
     height: 100px;
     width: 100px; 
+}
+
+#resource-container {
+    position: absolute;
+    top: 105px;
+    left: 1%;
+    width: calc(98% - 20px);
+    height: 105px;
+    border: 1px solid #000;
+    background-color: #444;
 }
 
 .resource-bar-container {
@@ -106,7 +116,8 @@ body {
     display: inline-flex;
 }
 
-.container {
+.container,
+.container-buttons {
     display: flex;
     height: 100%;
     width: 100%;
