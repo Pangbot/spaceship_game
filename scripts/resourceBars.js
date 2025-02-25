@@ -43,10 +43,14 @@ function updateResourceBars() {
         if (!isGamePaused && elapsedMilliseconds > updateThreshold) {
             bars.forEach((bar) => {
                 const percentageElement = bar.element.closest('.resource-bar-container').querySelector('.percentage');
-                const decrease = bar.rate * (elapsedMilliseconds / 1000);
-    
-                bar.currentValue = Math.max(0, bar.currentValue - decrease);
-    
+                const change = bar.rate * (elapsedMilliseconds / 1000);
+                
+                if (change > 0) {
+                    bar.currentValue = Math.max(0, bar.currentValue - change);
+                }
+                else {
+                    bar.currentValue = Math.min(100, bar.currentValue - change);
+                }
                 bar.element.style.width = `${bar.currentValue}%`;
                 bar.element.setAttribute('data-fill', bar.currentValue);
                 percentageElement.innerText = `${Math.round(bar.currentValue)}%`;
