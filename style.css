@@ -5,7 +5,7 @@ body {
 }
 
 #banner-container {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 1%;
     width: 98%;

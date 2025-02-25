@@ -1,18 +1,16 @@
 // buttons.js
 // Handles the logic surrounding creating and (un)locking buttons.
-import { unlockDoor, changeBarLevels, setBarLevels, changeEventListenerActive, doors } from './common.js';
+import { unlockDoor, setOxygenRate, setFoodRate, changeEventListenerActive, doors } from './common.js';
 import { highlightAdjacentRooms, hasClosedDoor } from './roomHighlighting.js';
 
-// Bar change amounts
-const wrenchFoodLoss = -20;
-const wrenchOxygenLoss = -10;
-const suicideFood = 0;
-const suicideOxygen = 0;
-const eatFoodGain = 50;
+// Bar rate changes
+const oxygenLoss = 0.2;
+const foodLoss = 1;
 
 // Function to open a door by wrenching it
 function wrenchOpen(roomFrom, roomTo) {
-    changeBarLevels(wrenchFoodLoss, wrenchOxygenLoss);
+    setOxygenRate(oxygenLoss);
+    setFoodRate(foodLoss);
     unlockDoor(roomFrom, roomTo);
     highlightAdjacentRooms(roomFrom);
     changeEventListenerActive(true);
@@ -43,7 +41,7 @@ const buttonDescriptions = {
             label: "Eat some food (+50% food)",
             unlockCondition: () => isActionUnlockConditionMet("eat_food"), 
             onClick: () => {
-                changeBarLevels(eatFoodGain, 0);
+                setFoodRate(-foodLoss);
             },
         },
     },
@@ -160,15 +158,7 @@ function isActionUnlockConditionMet(action) {
     const oxygenBar = document.getElementById('oxygen_bar');
     const currentOxygen = parseFloat(oxygenBar.getAttribute('data-fill'));
 
-    if (action === "suicide" && currentFood > 0 && currentOxygen > 0) {
-        return true;
-    } else if (action === "wrench_door" && currentFood > 20 && currentOxygen > 10) {
-        return true;
-    } else if (action === "eat_food") {
-        return true;
-    }
-
-    return false;
+    return (currentFood > 0 && currentOxygen > 0);
 }
 
 export { updateButtonDescriptions, updateButtonChecks };

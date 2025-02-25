@@ -59,16 +59,13 @@ function changeEventListenerActive(state) {
 
 let isGamePaused = false;
 
-let manualTime = 0;
-let manualFood = 100;
-let manualOxygen = 100;
 let foodAdjust = 0;
 let oxygenAdjust = 0;
 
-let oxygenRate = 0.2;
-let foodRate = 1;
-let previousOxygenRate = 0.2;
-let previousFoodRate = 0.2;
+let oxygenRate = 0;
+let foodRate = 0;
+let previousOxygenRate = 0;
+let previousFoodRate = 0;
 
 function setOxygenRate(rate) {
     previousOxygenRate = oxygenRate;
@@ -80,26 +77,9 @@ function setFoodRate(rate) {
     foodRate = rate;
 }
 
-function resetManualTime() {
-    manualTime = 0;
-}
-
-function setBarLevels(foodNum, oxygenNum) {
-    manualTime = 2;
-    manualFood = foodNum;
-    manualOxygen = oxygenNum;
-}
-
-function changeBarLevels(foodAdj, oxygenAdj) {
-    manualTime = 1;
-    foodAdjust = foodAdj;
-    oxygenAdjust = oxygenAdj;
-}
-
 function setGamePause(state) {
     isGamePaused = state;
 }
 
-export { currentRoom, doors, isGamePaused, setGamePause, unlockDoor, manualTime, manualFood, isEventListenerActive, changeEventListenerActive,
-    manualOxygen, foodAdjust, oxygenAdjust, setBarLevels, changeBarLevels, resetManualTime, oxygenRate, foodRate, setOxygenRate, 
-    setFoodRate, previousOxygenRate, previousFoodRate };
+export { currentRoom, doors, isGamePaused, setGamePause, unlockDoor, isEventListenerActive, changeEventListenerActive,
+    foodAdjust, oxygenAdjust, oxygenRate, foodRate, setOxygenRate, setFoodRate, previousOxygenRate, previousFoodRate };
